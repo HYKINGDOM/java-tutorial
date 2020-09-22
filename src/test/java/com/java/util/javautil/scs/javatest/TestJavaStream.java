@@ -6,7 +6,6 @@ import com.java.util.javautil.scs.domain.TimeMap;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -14,7 +13,6 @@ import java.util.stream.Stream;
 
 import static com.google.common.primitives.Ints.asList;
 import static java.util.stream.Collectors.*;
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -463,9 +461,10 @@ public class TestJavaStream {
 
         System.out.println("===================================================");
 
+        timeMapList.add(null);
         List<TimeMap> collect3 = timeMapList
                 .stream()
-                .filter(e -> null != e.getLocalDateTime())
+                .filter(e -> Optional.ofNullable(e.getLocalDateTime()).isPresent())
                 .collect(toList());
 
         for (TimeMap timeMap : collect3) {
@@ -481,7 +480,7 @@ public class TestJavaStream {
      */
     @Test
     public void test_java_lambda_list_compare_sort() {
-        //下面两组方法结果是一样的就是对结果进行排序,第一个是最大值
+        //下面两组方法结果是一样的就是对结果进行排序,第一个是最大值Power
         //timeMapList.sort((TimeMap t1, TimeMap t2) -> t1.getLocalDateTime().compareTo(t2.getLocalDateTime()));
         //reversed为从大到小排序,不加的话默认从小到大排序
         timeMapList.sort(Comparator.comparing(TimeMap::getLocalDateTime, Comparator.nullsLast(LocalDateTime::compareTo))
