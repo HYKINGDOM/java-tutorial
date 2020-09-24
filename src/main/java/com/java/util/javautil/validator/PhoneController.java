@@ -1,6 +1,7 @@
 package com.java.util.javautil.validator;
 
 import com.java.util.javautil.utils.ResultVo;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.regex.Pattern;
@@ -49,6 +50,31 @@ public class PhoneController extends ResultVo {
     @GetMapping("/test03")
     public ResultVo phoneInfoTest03(@RequestBody PhoneForm phoneForm) {
         return ResultVo.success(phoneForm);
+    }
+
+
+    @PostMapping("/test04/customTest")
+    public ResultVo customTest(@RequestBody @Validated CustomForm form) {
+        return ResultVo.success(form.getPhone());
+    }
+
+
+    /**
+     * 添加用户
+     */
+    @PostMapping("/addUser")
+    public ResultVo addUser(@RequestBody @Validated({Insert.class}) UserForm form){
+        // 选择对应的分组进行校验
+        return ResultVo.success(form);
+    }
+
+    /**
+     * 更新用户
+     */
+    @PostMapping("/updateUser")
+    public ResultVo updateUser(@RequestBody @Validated({Update.class}) UserForm form){
+        // 选择对应的分组进行校验
+        return ResultVo.success(form);
     }
 
 
