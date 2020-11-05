@@ -453,11 +453,7 @@ public class TestJavaStream {
     @Test
     public void test_java_lambda_filter_is_empty() {
         LocalDateTime localDateTime3 = LocalDateTime.now().plusDays(7);
-        for (TimeMap timeMap : timeMapList) {
-            System.out.println("Id:= " + timeMap.getId());
-            System.out.println("LocalDateTime:= " + timeMap.getLocalDateTime());
-            System.out.println("SortNum:= " + timeMap.getSortNum());
-        }
+        testfor(timeMapList);
 
         System.out.println("===================================================");
 
@@ -467,11 +463,7 @@ public class TestJavaStream {
                 .filter(e -> Optional.ofNullable(e.getLocalDateTime()).isPresent())
                 .collect(toList());
 
-        for (TimeMap timeMap : collect3) {
-            System.out.println("Id:= " + timeMap.getId());
-            System.out.println("LocalDateTime:= " + timeMap.getLocalDateTime());
-            System.out.println("SortNum:= " + timeMap.getSortNum());
-        }
+        testfor(collect3);
 
     }
 
@@ -483,14 +475,15 @@ public class TestJavaStream {
         //下面两组方法结果是一样的就是对结果进行排序,第一个是最大值Power
         //timeMapList.sort((TimeMap t1, TimeMap t2) -> t1.getLocalDateTime().compareTo(t2.getLocalDateTime()));
         //reversed为从大到小排序,不加的话默认从小到大排序
-        timeMapList.sort(Comparator.comparing(TimeMap::getLocalDateTime, Comparator.nullsLast(LocalDateTime::compareTo))
-                .reversed());
+        timeMapList.sort(Comparator.comparing(TimeMap::getLocalDateTime, Comparator.nullsLast(LocalDateTime::compareTo)));
 
-        for (TimeMap timeMap : timeMapList) {
-            System.out.println("Id:= " + timeMap.getId());
-            System.out.println("LocalDateTime:= " + timeMap.getLocalDateTime());
-            System.out.println("SortNum:= " + timeMap.getSortNum());
-        }
+        testfor(timeMapList);
+
+        System.out.println("=======================================================");
+
+        timeMapList.sort(Comparator.comparing(TimeMap::getLocalDateTime, Comparator.nullsLast(LocalDateTime::compareTo)).reversed());
+
+        testfor(timeMapList);
     }
 
     /**
@@ -546,11 +539,44 @@ public class TestJavaStream {
                 return t1.getSortNum().compareTo(t2.getSortNum());
             }
         });
+        testfor(timeMapList);
+    }
+
+    private void testfor(List<TimeMap> timeMapList) {
         for (TimeMap timeMap : timeMapList) {
             System.out.println("Id:= " + timeMap.getId());
             System.out.println("LocalDateTime:= " + timeMap.getLocalDateTime());
             System.out.println("SortNum:= " + timeMap.getSortNum());
         }
+    }
+
+    @Test
+    public void test_java_local_date_time() {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        LocalDateTime localDateTime1 = localDateTime.minusDays(1);
+        LocalDateTime localDateTime2 = localDateTime.plusDays(1);
+
+        LocalDateTime localDateTime3 = localDateTime.minusSeconds(1);
+        LocalDateTime localDateTime4 = localDateTime.plusSeconds(1);
+
+        System.out.println("localDateTime1 : =" + localDateTime1);
+        System.out.println("localDateTime2 : =" + localDateTime2);
+        int i1 = localDateTime2.compareTo(localDateTime1);
+        int i2 = localDateTime1.compareTo(localDateTime2);
+        int i3 = localDateTime1.compareTo(localDateTime1);
+
+        System.out.println("i1 : =" + i1);
+        System.out.println("i2 : =" + i2);
+        System.out.println("i3 : =" + i3);
+
+        int i4 = localDateTime3.compareTo(localDateTime4);
+        int i5 = localDateTime4.compareTo(localDateTime3);
+        int i6 = localDateTime4.compareTo(localDateTime4);
+
+        System.out.println("i4 : =" + i4);
+        System.out.println("i5 : =" + i5);
+        System.out.println("i6 : =" + i6);
+
     }
 
     /**
