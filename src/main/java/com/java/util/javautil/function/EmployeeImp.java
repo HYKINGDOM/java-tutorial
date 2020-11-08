@@ -4,5 +4,10 @@ import java.util.function.Function;
 
 public interface EmployeeImp {
 
-    void employeeMindId(Integer empID, Function<Integer, Object> employeeId);
+    /**
+     *
+     * @param empId
+     * @param employeeId
+     */
+    void employeeMindId(Integer empId, Function<Integer, Object> employeeId);
 }

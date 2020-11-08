@@ -1,4 +1,4 @@
-package com.java.util.javautil.scs.treenode;
+package com.java.util.javautil.tree.treenode;
 
 import lombok.Getter;
 import lombok.Setter;
