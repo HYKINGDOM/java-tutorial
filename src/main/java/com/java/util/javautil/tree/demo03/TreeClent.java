@@ -51,7 +51,21 @@ public class TreeClent {
         depAllNode.add(depNode10);
         depAllNode.add(depNode11);
 
-        for (int i = 0; i < 10000; i++) {
+        depAllNode.add(depNode20);
+        depAllNode.add(depNode21);
+        depAllNode.add(depNode22);
+        depAllNode.add(depNode23);
+        depAllNode.add(depNode24);
+
+        depAllNode.add(depNode30);
+        depAllNode.add(depNode31);
+        depAllNode.add(depNode32);
+        depAllNode.add(depNode33);
+        depAllNode.add(depNode34);
+
+
+
+        for (int i = 0; i < 100000; i++) {
             int nextInt = new Random().nextInt(22) + 1;
             int ran2 = (int) (Math.random() * (20000 - 20) + 20);
             depAllNode.add(new DepInfo(ran2, "杭州" + i, nextInt));
