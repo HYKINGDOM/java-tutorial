@@ -1,7 +1,7 @@
 package com.java.util.javautil.patterns.commandpattern.recommend.command;
 
 
-import com.design.pattern.project.commandpattern.recommend.device.Stereo;
+import com.java.util.javautil.patterns.commandpattern.recommend.device.Stereo;
 
 /**
  * 音响打开

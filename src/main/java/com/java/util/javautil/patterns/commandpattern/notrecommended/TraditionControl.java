@@ -1,8 +1,8 @@
 package com.java.util.javautil.patterns.commandpattern.notrecommended;
 
 
-import com.design.pattern.project.commandpattern.recommend.device.Light;
-import com.design.pattern.project.commandpattern.recommend.device.Stereo;
+import com.java.util.javautil.patterns.commandpattern.recommend.device.Light;
+import com.java.util.javautil.patterns.commandpattern.recommend.device.Stereo;
 
 /**
  * 按钮的具体执行方法

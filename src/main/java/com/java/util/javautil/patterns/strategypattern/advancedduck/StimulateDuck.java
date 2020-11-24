@@ -1,10 +1,9 @@
-package com.design.pattern.project.strategypattern.advancedduck;
+package com.java.util.javautil.patterns.strategypattern.advancedduck;
 
-
-import com.design.pattern.project.strategypattern.advancedduck.ducks.*;
-import com.design.pattern.project.strategypattern.advancedduck.flybehavior.NoFlyBehavior;
-import com.design.pattern.project.strategypattern.advancedduck.quackbehavior.NoQuackBehavior;
-import com.design.pattern.project.strategypattern.advancedduck.swimbehavior.NoSwimBehavior;
+import com.java.util.javautil.patterns.strategypattern.advancedduck.ducks.*;
+import com.java.util.javautil.patterns.strategypattern.advancedduck.flybehavior.NoFlyBehavior;
+import com.java.util.javautil.patterns.strategypattern.advancedduck.quackbehavior.NoQuackBehavior;
+import com.java.util.javautil.patterns.strategypattern.advancedduck.swimbehavior.NoSwimBehavior;
 
 /**
  * 基于策略模式的实践
