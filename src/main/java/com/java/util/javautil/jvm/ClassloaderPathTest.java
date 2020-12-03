@@ -11,6 +11,7 @@ public class ClassloaderPathTest {
         //获取BootStrapClassLoader 能够加载的api的路径
         URL[] urLs = Launcher.getBootstrapClassPath().getURLs();
         for (URL urL : urLs) {
+            int i = 1;
             System.out.println(urL.getPath());
         }
 
