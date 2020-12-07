@@ -63,8 +63,8 @@ public class JasyptUtils {
     }
 
     public static void main(String[] args) throws Exception {
-        String message = "2268461750@qq.com";
-        String passwordKey = "wangmaox";
+        String message = "root";
+        String passwordKey = "alibabaRoot";
 
         //一个同样的密码和秘钥，每次执行加密，密文都是不一样的。但是解密是没问题的。
         String jasyptEncrypt = stringEncryptor(passwordKey, message, true);
