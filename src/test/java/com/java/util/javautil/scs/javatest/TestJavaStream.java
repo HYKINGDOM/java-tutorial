@@ -149,7 +149,7 @@ public class TestJavaStream {
         timeMapList = Lists.newArrayList(
                 new TimeMap(0, localDateTime0, 5),
                 new TimeMap(1, localDateTime1, 3),
-                new TimeMap(2, localDateTime2, 5),
+                new TimeMap(2, localDateTime2, null),
                 new TimeMap(3, null, 3),
                 new TimeMap(4, localDateTime4, 5));
     }
@@ -512,16 +512,28 @@ public class TestJavaStream {
         System.out.println("Max Time:" + timeMap7);
 
 
-        //返回包含最小值的对象
-        TimeMap timeMap6 = timeMapList
-                .stream()
-                .min(Comparator.comparing(TimeMap::getLocalDateTime))
-                .orElse(null);
-        System.out.println("Max Time:" + Objects.requireNonNull(timeMap6).getLocalDateTime());
+//        //返回包含最小值的对象
+//        TimeMap timeMap6 = timeMapList
+//                .stream()
+//                .min(Comparator.comparing(TimeMap::getLocalDateTime))
+//                .orElse(null);
+//        System.out.println("Max Time:" + Objects.requireNonNull(timeMap6).getLocalDateTime());
+//
+//        for (TimeMap timeMap : timeMapList) {
+//            System.out.println("LocalDateTime:= " + timeMap.getLocalDateTime());
+//        }
 
-        for (TimeMap timeMap : timeMapList) {
-            System.out.println("LocalDateTime:= " + timeMap.getLocalDateTime());
-        }
+        TimeMap timeMap = new TimeMap();
+        timeMap.setSortNum(5);
+
+        boolean contains = timeMapList.contains(timeMap);
+        System.out.println(contains);
+
+        System.out.println("==================================");
+        String str = timeMapList.stream()
+                .filter(o ->o.getSortNum() != null)
+                .map(e -> e.getSortNum().toString()).collect(Collectors.joining(","));
+        System.out.println(str);
 
     }
 

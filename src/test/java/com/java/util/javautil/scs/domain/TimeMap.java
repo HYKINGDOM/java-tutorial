@@ -7,6 +7,10 @@ public class TimeMap {
     private LocalDateTime localDateTime;
     private Integer sortNum;
 
+    public TimeMap(){
+
+    }
+
     public TimeMap(int id, LocalDateTime localDateTime, Integer sortNum) {
         this.id = id;
         this.localDateTime = localDateTime;
