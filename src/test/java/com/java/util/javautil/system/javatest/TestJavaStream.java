@@ -1,11 +1,11 @@
-package com.java.util.javautil.scs.javatest;
+package com.java.util.javautil.system.javatest;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.java.util.javautil.scs.domain.TimeMap;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -28,9 +28,6 @@ public class TestJavaStream {
     private List<Map<String, Object>> listCopy;
 
     private Map<String, Object> map;
-
-
-    private List<TimeMap> timeMapList;
 
     /**
      * 初始化数据
@@ -137,23 +134,6 @@ public class TestJavaStream {
         map.put("type", "3");
         listCopy.add(map);
     }
-
-    @Before
-    public void before_init_java_local_time_compete() {
-        LocalDateTime localDateTime0 = LocalDateTime.now();
-        LocalDateTime localDateTime1 = localDateTime0.plusDays(1);
-        LocalDateTime localDateTime2 = localDateTime0.plusDays(5);
-        LocalDateTime localDateTime3 = localDateTime0.plusDays(7);
-        LocalDateTime localDateTime4 = localDateTime0.plusDays(4);
-
-        timeMapList = Lists.newArrayList(
-                new TimeMap(0, localDateTime0, 5),
-                new TimeMap(1, localDateTime1, 3),
-                new TimeMap(2, localDateTime2, null),
-                new TimeMap(3, null, 3),
-                new TimeMap(4, localDateTime4, 5));
-    }
-
 
     /**
      * 基于Lamada表达式的list和map的遍历
@@ -290,7 +270,7 @@ public class TestJavaStream {
      */
     @Test
     public void test_java_stream_collection_group_by() {
-        IntSummaryStatistics summaryStatistics = lists.stream().mapToInt(e -> Integer.parseInt(e.get("age").toString())).summaryStatistics();
+        IntSummaryStatistics summaryStatistics = lists.stream().mapToInt(e -> Integer.valueOf(e.get("age").toString())).summaryStatistics();
         System.out.printf("Max: %d, Min: %d, Ave: %f, Sum: %d, count: %d",
                 summaryStatistics.getMax(),
                 summaryStatistics.getMin(),
@@ -378,25 +358,22 @@ public class TestJavaStream {
         System.out.println(Arrays.toString(values));
     }
 
-    @Test
-    public void test_java_lambda_match() {
-        List<String> strs = Arrays.asList("a", "a", "a", "a", "b");
-        boolean aa = strs.stream().anyMatch(str -> str.equals("a"));
-        boolean bb = strs.stream().allMatch(str -> str.equals("a"));
-        boolean cc = strs.stream().noneMatch(str -> str.equals("a"));
-        long count = strs.stream().filter(str -> str.equals("a")).count();
-        System.out.println(aa);// TRUE 只要有一个存在就返回true
-        System.out.println(bb);// FALSE 全部都是一种类型
-        System.out.println(cc);// FALSE 没有这种类型
-        System.out.println(count);
-    }
-
-
     /**
      * 对于嵌套for循环的lamada表达式的优化
      */
     @Test
     public void test_list_for_list() {
+
+        List<String> strs = Arrays.asList("a", "a", "a", "a", "b");
+        boolean aa = strs.stream().anyMatch(str -> str.equals("a"));
+        boolean bb = strs.stream().allMatch(str -> str.equals("a"));
+        boolean cc = strs.stream().noneMatch(str -> str.equals("a"));
+        long count = strs.stream().filter(str -> str.equals("a")).count();
+        System.out.println(aa);// TRUE
+        System.out.println(bb);// FALSE
+        System.out.println(cc);// FALSE
+        System.out.println(count);
+
 
         //noneMatch 不满足判断条件的数据返回
         lists.stream()
@@ -420,21 +397,8 @@ public class TestJavaStream {
                 .forEach(map -> {
                     System.out.println(map.toString());
                 });
+
     }
-
-    @Test
-    public void test_java_lambda__list_copy() {
-        List<String> list1 = Lists.newArrayList();
-        List<String> list2;
-        list1.add("1");
-        list1.add("2");
-        list1.add("3");
-
-        list2 = list1.stream().map(string -> "stream().map()处理之后：" + string).collect(Collectors.toList());
-
-        list2.forEach(System.out::println);
-    }
-
 
     @Test
     public void test_java_list_map_data() {
@@ -446,104 +410,89 @@ public class TestJavaStream {
         System.out.println(Arrays.toString(lists.toArray()));
     }
 
-
     /**
-     * filter过滤为null的条件
+     * List对象排序
      */
     @Test
-    public void test_java_lambda_filter_is_empty() {
-        LocalDateTime localDateTime3 = LocalDateTime.now().plusDays(7);
-        testfor(timeMapList);
+    public void test_java_local_time_compete() {
+        LocalDateTime localDateTime0 = LocalDateTime.now();
+        LocalDateTime localDateTime1 = localDateTime0.plusDays(1);
+        LocalDateTime localDateTime2 = localDateTime0.plusDays(5);
+        LocalDateTime localDateTime3 = localDateTime0.plusDays(7);
+        LocalDateTime localDateTime4 = localDateTime0.plusDays(4);
 
-        System.out.println("===================================================");
+        List<TimeMap> timeMapList = Lists.newArrayList(
+                new TimeMap(0, localDateTime0, 5),
+                new TimeMap(1, localDateTime1, 3),
+                new TimeMap(2, localDateTime2, 5),
+                new TimeMap(3, null, 3),
+                new TimeMap(4, localDateTime4, 5));
 
-        timeMapList.add(null);
-        List<TimeMap> collect3 = timeMapList
-                .stream()
-                .filter(e -> Optional.ofNullable(e.getLocalDateTime()).isPresent())
-                .collect(toList());
+        System.out.println("==================准备数据=======================");
 
-        testfor(collect3);
+        for (TimeMap timeMap : timeMapList) {
+            System.out.println("Id:= " + timeMap.getId());
+            System.out.println("LocalDateTime:= " + timeMap.getLocalDateTime());
+            System.out.println("SortNum:= " + timeMap.getSortNum());
+        }
 
-    }
 
-    /**
-     * 对list进行比较排序
-     */
-    @Test
-    public void test_java_lambda_list_compare_sort() {
-        //下面两组方法结果是一样的就是对结果进行排序,第一个是最大值Power
+        System.out.println("==================单条件排序=======================");
+
+        //下面两组方法结果是一样的就是对结果进行排序,第一个是最大值
         //timeMapList.sort((TimeMap t1, TimeMap t2) -> t1.getLocalDateTime().compareTo(t2.getLocalDateTime()));
         //reversed为从大到小排序,不加的话默认从小到大排序
-        timeMapList.sort(Comparator.comparing(TimeMap::getLocalDateTime, Comparator.nullsLast(LocalDateTime::compareTo)));
-
-        testfor(timeMapList);
-
-        System.out.println("=======================================================");
-
         timeMapList.sort(Comparator.comparing(TimeMap::getLocalDateTime, Comparator.nullsLast(LocalDateTime::compareTo)).reversed());
 
-        testfor(timeMapList);
-    }
+        List<TimeMap> collect1 = timeMapList.stream().filter(o -> o.getSortNum() == 5).collect(toList());
 
-    /**
-     * 对list进行比较排序之后返回最大值或者最小值
-     */
-    @Test
-    public void test_java_lambda_list_compare_sort_return_max_or_min() {
+        for (TimeMap timeMap : collect1) {
+            System.out.println("Id:= " + timeMap.getId());
+            System.out.println("LocalDateTime:= " + timeMap.getLocalDateTime());
+            System.out.println("SortNum:= " + timeMap.getSortNum());
+        }
+
+        System.out.println("============================================================");
+
+
+        List<TimeMap> collect2 = timeMapList.stream().filter(o -> o.getSortNum() == 3).collect(toList());
+
+        for (TimeMap timeMap : collect2) {
+            System.out.println("Id:= " + timeMap.getId());
+            System.out.println("LocalDateTime:= " + timeMap.getLocalDateTime());
+            System.out.println("SortNum:= " + timeMap.getSortNum());
+        }
+
+
+        System.out.println("==================单条件排序=======================");
+
+        List<TimeMap> collect = timeMapList.stream()
+                .filter(o -> o.getLocalDateTime() != null).collect(toList());
 
         //返回最大值之前进行判空和去重
         LocalDateTime timeMap5 = timeMapList.stream()
                 .filter(o -> o.getLocalDateTime() != null)
-                .map(TimeMap::getLocalDateTime)
-                .distinct()
-                .max(LocalDateTime::compareTo)
-                .orElse(null);
+                .map(TimeMap::getLocalDateTime).distinct()
+                .max(LocalDateTime::compareTo).orElse(null);
         System.out.println("Max Time:" + timeMap5);
 
-        LocalDateTime timeMap7 = Optional.of(timeMapList).orElseGet(Collections::emptyList)
-                .stream()
+        LocalDateTime timeMap7 = Optional.of(timeMapList).orElseGet(Collections::emptyList).stream()
                 .filter(o -> o.getId() == 888)
-                .map(TimeMap::getLocalDateTime)
-                .distinct()
-                .max(LocalDateTime::compareTo)
-                .orElse(null);
+                .map(TimeMap::getLocalDateTime).distinct()
+                .max(LocalDateTime::compareTo).orElse(null);
 
         System.out.println("Max Time:" + timeMap7);
 
 
-//        //返回包含最小值的对象
-//        TimeMap timeMap6 = timeMapList
-//                .stream()
-//                .min(Comparator.comparing(TimeMap::getLocalDateTime))
-//                .orElse(null);
-//        System.out.println("Max Time:" + Objects.requireNonNull(timeMap6).getLocalDateTime());
-//
-//        for (TimeMap timeMap : timeMapList) {
-//            System.out.println("LocalDateTime:= " + timeMap.getLocalDateTime());
-//        }
+        //返回包含最小值的对象
+        TimeMap timeMap6 = timeMapList.stream().min(Comparator.comparing(TimeMap::getLocalDateTime)).orElse(null);
+        System.out.println("Max Time:" + timeMap6.getLocalDateTime());
 
-        TimeMap timeMap = new TimeMap();
-        timeMap.setSortNum(5);
+        for (TimeMap timeMap : timeMapList) {
+            System.out.println("LocalDateTime:= " + timeMap.getLocalDateTime());
+        }
 
-        boolean contains = timeMapList.contains(timeMap);
-        System.out.println(contains);
-
-        System.out.println("==================================");
-        String str = timeMapList.stream()
-                .filter(o ->o.getSortNum() != null)
-                .map(e -> e.getSortNum().toString()).collect(Collectors.joining(","));
-        System.out.println(str);
-
-    }
-
-
-    /**
-     * List对象多条件排序
-     */
-    @Test
-    public void test_java_lambda_list_multiple_compare_sort_return_max_or_min() {
-
+        System.out.println("===================下面是多条件排序======================");
         timeMapList.sort((t1, t2) -> {
             if (t1.getSortNum().equals(t2.getSortNum())) {
                 return t1.getLocalDateTime().compareTo(t2.getLocalDateTime());
@@ -551,73 +500,69 @@ public class TestJavaStream {
                 return t1.getSortNum().compareTo(t2.getSortNum());
             }
         });
-        testfor(timeMapList);
-    }
-
-    private void testfor(List<TimeMap> timeMapList) {
         for (TimeMap timeMap : timeMapList) {
             System.out.println("Id:= " + timeMap.getId());
             System.out.println("LocalDateTime:= " + timeMap.getLocalDateTime());
             System.out.println("SortNum:= " + timeMap.getSortNum());
         }
-    }
 
-    @Test
-    public void test_java_local_date_time() {
-        LocalDateTime localDateTime = LocalDateTime.now();
-        LocalDateTime localDateTime1 = localDateTime.minusDays(1);
-        LocalDateTime localDateTime2 = localDateTime.plusDays(1);
 
-        LocalDateTime localDateTime3 = localDateTime.minusSeconds(1);
-        LocalDateTime localDateTime4 = localDateTime.plusSeconds(1);
+        Map<Integer, List<TimeMap>> integerListMap = timeMapList.stream().collect(groupingBy(TimeMap::getSortNum));
 
-        System.out.println("localDateTime1 : =" + localDateTime1);
-        System.out.println("localDateTime2 : =" + localDateTime2);
-        int i1 = localDateTime2.compareTo(localDateTime1);
-        int i2 = localDateTime1.compareTo(localDateTime2);
-        int i3 = localDateTime1.compareTo(localDateTime1);
-
-        System.out.println("i1 : =" + i1);
-        System.out.println("i2 : =" + i2);
-        System.out.println("i3 : =" + i3);
-
-        int i4 = localDateTime3.compareTo(localDateTime4);
-        int i5 = localDateTime4.compareTo(localDateTime3);
-        int i6 = localDateTime4.compareTo(localDateTime4);
-
-        System.out.println("i4 : =" + i4);
-        System.out.println("i5 : =" + i5);
-        System.out.println("i6 : =" + i6);
 
     }
 
     /**
-     * groupby分组加入判空
+     * 初始化数据对象
      */
-    @Test
-    public void test_java_stream_group_not_null() {
-        Map<LocalDateTime, List<TimeMap>> localDateTimeListMap = timeMapList
-                .stream()
-                .filter(e -> null != e.getLocalDateTime())
-                .collect(groupingBy(TimeMap::getLocalDateTime));
-        for (Map.Entry<LocalDateTime, List<TimeMap>> localDateTimeListEntry : localDateTimeListMap.entrySet()) {
-            System.out.println(localDateTimeListEntry.getKey());
+    private static class TimeMap {
+        private int id;
+        private LocalDateTime localDateTime;
+        private Integer sortNum;
+
+        public TimeMap(int id, LocalDateTime localDateTime, Integer sortNum) {
+            this.id = id;
+            this.localDateTime = localDateTime;
+            this.sortNum = sortNum;
+        }
+
+        public Integer getSortNum() {
+            return sortNum;
+        }
+
+        public void setSortNum(Integer sortNum) {
+            this.sortNum = sortNum;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public LocalDateTime getLocalDateTime() {
+            return localDateTime;
+        }
+
+        public void setLocalDateTime(LocalDateTime localDateTime) {
+            this.localDateTime = localDateTime;
         }
     }
 
     @Test
-    public void test_iterator(){
+    public void test_true_false() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime localDateTime = now.plusDays(118);
+        LocalDateTime localDateTime1 = now.plusDays(119);
+        System.out.println(localDateTime);
+        System.out.println(localDateTime1);
+        System.out.println(localDateTime.getDayOfYear());
+        System.out.println(localDateTime1.getDayOfYear());
+        long toDays = Duration.between(localDateTime, localDateTime1).toDays();
+        System.out.println(toDays);
 
-        String[] strings = new String[]{"1","2","3","4","5","6","7","8"};
-
-        List<String> stringList = Arrays.asList(strings);
-
-        stringList.removeIf(("2")::equals);
-
-        for (String string : strings) {
-            System.out.println(string);
-        }
     }
-
 
 }

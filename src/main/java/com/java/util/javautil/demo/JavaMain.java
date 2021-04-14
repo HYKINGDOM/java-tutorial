@@ -1,20 +1,38 @@
 package com.java.util.javautil.demo;
 
 
-import java.time.LocalDate;
-
-import static com.java.util.javautil.demo.JavaStream.testDemo;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class JavaMain {
+    
+    private volatile static String stre = "dasda";
 
     public static void main(String[] args) {
 
-        LocalDate localDate = LocalDate.now();
-        LocalDate localDate1 = localDate.minusDays(16);
-        System.out.println(localDate1);
-        LocalDate localDate2 = localDate.minusDays(14);
-        System.out.println(localDate2);
-        LocalDate localDate3 = localDate.minusDays(1316);
-        System.out.println(localDate3);
+        String[] strings = new String[]{"1", "2", "3", "4", "5", "6", "7", "8"};
+
+        List<String> stringList = Arrays.asList(strings);
+
+        stringList.removeIf(("2")::equals);
+
+        for (String string : strings) {
+            System.out.println(string);
+        }
+    }
+
+
+    private static void test_for() {
+
+        String[] strings = new String[]{"1", "2", "3", "4", "5", "6", "7", "8"};
+
+        List<String> stringList = Arrays.asList(strings);
+
+        List<String> stringArrayList = new ArrayList<>(Arrays.asList(strings));
+        stringArrayList.removeIf(("2")::equals);
+        for (String string : strings) {
+            System.out.println(string);
+        }
     }
 }
