@@ -1,10 +1,13 @@
 package com.java.util.javautil.DDD.alibaba;
 
+import lombok.Data;
+
 import javax.validation.constraints.NotNull;
 
 /**
  * @author bingbing
  */
+@Data
 public class User {
 
     UserId userId;
