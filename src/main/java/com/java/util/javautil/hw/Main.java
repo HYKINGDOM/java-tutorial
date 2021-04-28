@@ -1,4 +1,4 @@
-package com.java.util.javautil.huawei;
+package com.java.util.javautil.hw;
 
 
 public class Main {

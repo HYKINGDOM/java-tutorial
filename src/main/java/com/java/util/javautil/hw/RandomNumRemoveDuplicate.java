@@ -1,4 +1,4 @@
-package com.java.util.javautil.huawei;
+package com.java.util.javautil.hw;
 
 import java.util.Scanner;
 import java.util.TreeSet;

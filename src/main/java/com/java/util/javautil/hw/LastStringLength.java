@@ -1,6 +1,5 @@
-package com.java.util.javautil.huawei;
+package com.java.util.javautil.hw;
 
-import java.io.InputStream;
 import java.util.Scanner;
 
 /**
