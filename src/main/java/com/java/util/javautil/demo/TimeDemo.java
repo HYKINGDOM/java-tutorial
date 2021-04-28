@@ -1,15 +1,45 @@
 package com.java.util.javautil.demo;
 
+import javafx.beans.binding.ObjectExpression;
+
+import java.sql.Timestamp;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
+
 public class TimeDemo {
 
 
     public static void main(String[] args) {
-        int date1 = 29700;
-        String change = change(date1);
-        System.out.println(change);
+
+        List<Object[]>  list = new ArrayList<>();
+
+        Timestamp time1 = Timestamp.from(Instant.now());
+        Timestamp time2 = Timestamp.from(Instant.now());
+        Object[] objects = new Object[]{time1,time2};
+
+        list.add(objects);
+
+        for (Object[] objects1 : list) {
+            long time = Timestamp.valueOf(objects1[1].toString()).getTime();
+            LocalDateTime localDateTime = timestampToDatetime(time);
+            System.out.println(localDateTime);
+        }
 
 
     }
+
+
+
+    public static LocalDateTime timestampToDatetime(long timestamp){
+        Instant instant = Instant.ofEpochMilli(timestamp);
+        return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+    }
+
+
 
 
     public static String change(int second){

@@ -14,12 +14,23 @@ public class RandomNumRemoveDuplicate {
         Scanner scanner = new Scanner(System.in);
         TreeSet<Integer> treeSet = new TreeSet<>();
 
-        int nextInt = scanner.nextInt();
+        String line = scanner.nextLine();
+        Scanner in2 = new Scanner(line);
+        while (in2.hasNextLine()){
+            boolean b = in2.hasNext();
+            boolean hasNextLine = in2.hasNextLine();
+            boolean hasNext = in2.hasNext();
+            String string = in2.toString();
+            int i = in2.nextInt();
 
-        for (int i = 0; i < nextInt; i++) {
-            treeSet.add(scanner.nextInt());
+            System.out.println(i);
         }
-        treeSet.forEach(System.out::println);
+//        for (int i = 0; i < nextInt; i++)
+//
+//        {
+//            treeSet.add(scanner.nextInt());
+//        }
+//        treeSet.forEach(System.out::println);
     }
 
 
