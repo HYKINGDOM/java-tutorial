@@ -1,9 +1,10 @@
-package com.java.util.javautil.givename;
+package com.java.util.javautil.common;
 
 import com.google.common.base.Splitter;
-import org.apache.commons.lang3.StringUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 
 public class GiveName {
 

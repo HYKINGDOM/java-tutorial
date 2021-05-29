@@ -1,4 +1,4 @@
-package com.java.util.javautil.zip;
+package com.java.util.javautil.utils.zip;
 
 
 import com.google.common.base.Splitter;
@@ -12,7 +12,6 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 public class TestUnzipDirWithPassword {

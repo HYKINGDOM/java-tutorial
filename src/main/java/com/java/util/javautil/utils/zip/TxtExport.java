@@ -1,4 +1,4 @@
-package com.java.util.javautil.zip;
+package com.java.util.javautil.utils.zip;
 
 import java.io.BufferedReader;
 import java.io.File;

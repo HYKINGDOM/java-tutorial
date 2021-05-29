@@ -1,14 +1,13 @@
-package com.java.util.javautil.zip;
+package com.java.util.javautil.utils.zip;
 
 import com.google.common.base.Splitter;
 import net.lingala.zip4j.exception.ZipException;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-import static com.java.util.javautil.zip.TestUnzipDirWithPassword.unzip;
+import static com.java.util.javautil.utils.zip.TestUnzipDirWithPassword.unzip;
 
 public class ZipPassWord {
 

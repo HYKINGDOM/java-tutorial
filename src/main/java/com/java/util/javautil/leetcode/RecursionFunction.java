@@ -1,4 +1,4 @@
-package com.java.util.javautil.recursion;
+package com.java.util.javautil.leetcode;
 
 public class RecursionFunction {
 
