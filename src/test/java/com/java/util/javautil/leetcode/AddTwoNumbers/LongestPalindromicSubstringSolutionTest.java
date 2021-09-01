@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
-public class SolutionTest {
+public class LongestPalindromicSubstringSolutionTest {
 
     @Test
     public void print_list_node_data(){

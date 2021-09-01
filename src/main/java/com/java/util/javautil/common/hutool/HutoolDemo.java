@@ -66,14 +66,14 @@ public class HutoolDemo {
 
 
 
-        Integer[] a = {1,2,3,4,5,6};
-        Integer[] filter = ArrayUtil.filter(a, new Editor<Integer>(){
-            @Override
-            public Integer edit(Integer t) {
-                return (t % 2 == 0) ? t : null;
-            }});
-
-
+//        Integer[] a = {1,2,3,4,5,6};
+//        Integer[] filter = ArrayUtil.filter(a, new Editor<Integer>(){
+//            @Override
+//            public Integer edit(Integer t) {
+//                return (t % 2 == 0) ? t : null;
+//            }});
+//
+//
 
 
 

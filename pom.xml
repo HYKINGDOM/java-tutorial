@@ -38,26 +38,11 @@
             <version>3.0.2</version>
         </dependency>
 
-        <!-- pdf相关依赖 -->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.pdfbox</groupId>-->
-<!--            <artifactId>pdfbox</artifactId>-->
-<!--            <version>2.0.15</version>-->
-<!--        </dependency>-->
-
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.pdfbox/fontbox &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.pdfbox</groupId>-->
-<!--            <artifactId>fontbox</artifactId>-->
-<!--            <version>2.0.15</version>-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.pdfbox/jempbox &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.pdfbox</groupId>-->
-<!--            <artifactId>jempbox</artifactId>-->
-<!--            <version>1.8.16</version>-->
-<!--        </dependency>-->
-
+        <dependency>
+            <groupId>com.alibaba.compileflow</groupId>
+            <artifactId>compileflow</artifactId>
+            <version>1.0.0</version>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.pdfbox</groupId>
@@ -132,7 +117,7 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.5.8</version>
+            <version>5.7.7</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok-maven-plugin -->
         <dependency>
