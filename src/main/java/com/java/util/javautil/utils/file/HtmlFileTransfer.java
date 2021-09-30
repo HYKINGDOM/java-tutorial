@@ -19,6 +19,7 @@ import static com.java.util.javautil.utils.file.FileTypeUtils.WEB_EXTENSION;
 public class HtmlFileTransfer {
 
     public void mHtmlFileTransfer(File file) {
+
         File[] files = file.listFiles();
         if (files != null) {
             String filePath = file.getAbsolutePath() + File.separator + "另存为网页";
@@ -33,7 +34,7 @@ public class HtmlFileTransfer {
             List<String> stringList = new ArrayList<>(Arrays.asList(WEB_EXTENSION));
             for (File rootPathFile : fileList) {
                 if (stringList.contains(FileTypeUtil.getType(rootPathFile))) {
-                    System.out.println(rootPathFile.toPath().toString());
+                    System.out.println(rootPathFile.toPath());
                     PathUtil.move(rootPathFile.toPath(), path, true);
                     System.out.println("文件移动成功");
                 }

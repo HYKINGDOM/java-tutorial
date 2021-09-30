@@ -7,10 +7,7 @@ import cn.hutool.core.io.file.PathUtil;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.java.util.javautil.utils.file.FileTypeUtils.TORRENT_EXTENSION;
@@ -21,9 +18,9 @@ import static com.java.util.javautil.utils.file.FileTypeUtils.TORRENT_EXTENSION;
 public class WindowsFiles {
 
     public static void main(String[] args) {
-        File file = FileUtil.file("J:\\迅雷下载");
-        HtmlFileTransfer htmlFileTransfer = new HtmlFileTransfer();
-        htmlFileTransfer.mHtmlFileTransfer(file);
+//        File file = FileUtil.file("J:\\迅雷下载");
+//        HtmlFileTransfer htmlFileTransfer = new HtmlFileTransfer();
+//        htmlFileTransfer.mHtmlFileTransfer(file);
 
 //        SmallVideoFileTransfer smallVideoFileTransfer = new SmallVideoFileTransfer();
 //        smallVideoFileTransfer.smallVideoFileListTransfer(file);
@@ -31,6 +28,10 @@ public class WindowsFiles {
 //        File file = FileUtil.file("J:\\迅雷下载\\小说");
 //        TXTRename txtRename = new TXTRename();
 //        txtRename.txtRenamed(file);
+
+        VideoFileSwitch videoFileSwitch = new VideoFileSwitch();
+        videoFileSwitch.videoFile();
+
     }
 
 }
