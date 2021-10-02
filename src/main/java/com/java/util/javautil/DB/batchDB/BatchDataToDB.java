@@ -13,7 +13,7 @@ public class BatchDataToDB {
     private String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 
 
-    private String SPLIT_DATA_BASE_PATH = "jdbc:mysql://localhost:3366/mag_1223_test?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&allowMultiQueries=true";
+    private String DATA_BASE_PATH = "jdbc:mysql://localhost:3366/mag_1223_test?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&allowMultiQueries=true";
 
 
     private String SPACE_STRING = " ";
@@ -29,7 +29,7 @@ public class BatchDataToDB {
         Connection conn = null;
         try {
             Class.forName(JDBC_DRIVER);
-            conn = DriverManager.getConnection(SPLIT_DATA_BASE_PATH);
+            conn = DriverManager.getConnection(DATA_BASE_PATH);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -77,7 +77,7 @@ public class BatchDataToDB {
             //加载数据库驱动
             Class.forName(JDBC_DRIVER);
             //建立数据库连接，获得连接对象conn
-            Connection conn = DriverManager.getConnection(SPLIT_DATA_BASE_PATH);
+            Connection conn = DriverManager.getConnection(DATA_BASE_PATH);
             stmt = conn.createStatement();
             stmt.executeUpdate(deleteSql);
         } catch (ClassNotFoundException | SQLException e) {
