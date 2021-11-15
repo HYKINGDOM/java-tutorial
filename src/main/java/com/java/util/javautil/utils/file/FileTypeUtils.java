@@ -12,8 +12,8 @@ public class FileTypeUtils {
 
     public static final String[] FLASH_EXTENSION = {"swf", "flv"};
 
-    public static final String[] VIDEO_EXTENSION = {"mp4", "swf", "flv", "mp3", "wav", "wma", "wmv", "mid", "avi", "mpg", "asf", "rm", "rmvb",
-            "MP4", "SWF", "FLV", "MP3", "WAV", "WMA", "WMV", "MID", "AVI", "MPG", "ASF", "RM", "RMVB"};
+    public static final String[] VIDEO_EXTENSION = {"MP4", "SWF", "FLV", "MP3", "WAV", "WMA", "WMV", "MID", "AVI", "MPG",
+            "ASF", "RM", "RMVB", "MKV", "MOV", "TS","MPEG","MTS","3GP"};
 
     public static final String[] DOC_EXTENSION = {"doc", "docx", "xls", "xlsx", "ppt", "pptx",
             "DOC", "DOCX", "XLS", "XLSX", "PPT", "PPTX"};

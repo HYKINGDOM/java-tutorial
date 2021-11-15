@@ -25,5 +25,8 @@ public class PlasticBaseDuck extends BaseDuck {
         System.out.println("**PlasticBaseDuck**");
     }
 
-
+    @Override
+    public String getDuckName() {
+        return this.getClass().getSimpleName();
+    }
 }

@@ -27,5 +27,8 @@ public class RedHeadBaseDuck extends BaseDuck {
         System.out.println("**RedHead**");
     }
 
-
+    @Override
+    public String getDuckName() {
+        return this.getClass().getSimpleName();
+    }
 }

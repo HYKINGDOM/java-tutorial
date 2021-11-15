@@ -7,6 +7,7 @@ import com.java.util.javautil.patterns.strategypattern.advancedduck.swimbehavior
 
 /**
  * 石头做的鸭子
+ *
  * @author Administrator
  */
 public class StoneBaseDuck extends BaseDuck {
@@ -15,7 +16,7 @@ public class StoneBaseDuck extends BaseDuck {
     /**
      * 石头鸭所具有的属性
      */
-    public StoneBaseDuck(){
+    public StoneBaseDuck() {
         mFlyBehavior = new NoFlyBehavior();
         mQuackBehavior = new NoQuackBehavior();
         mSwimBehavior = new NoSwimBehavior();
@@ -27,4 +28,8 @@ public class StoneBaseDuck extends BaseDuck {
         System.out.println("**StoneBaseDuck**");
     }
 
+    @Override
+    public String getDuckName() {
+        return this.getClass().getSimpleName();
+    }
 }

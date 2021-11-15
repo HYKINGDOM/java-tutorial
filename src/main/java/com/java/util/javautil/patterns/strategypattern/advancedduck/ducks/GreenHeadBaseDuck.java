@@ -26,5 +26,10 @@ public class GreenHeadBaseDuck extends BaseDuck {
 
     }
 
+    @Override
+    public String getDuckName() {
+        return this.getClass().getSimpleName();
+    }
+
 
 }

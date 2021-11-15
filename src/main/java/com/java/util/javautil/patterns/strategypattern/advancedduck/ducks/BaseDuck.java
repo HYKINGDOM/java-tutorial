@@ -38,6 +38,9 @@ public abstract class BaseDuck {
     public abstract void display();
 
 
+    public abstract String getDuckName();
+
+
     /**
      * 基本飞行行为
      */
@@ -87,5 +90,6 @@ public abstract class BaseDuck {
     public void setmSwimBehavior(SwimBehavior swimBehavior) {
         mSwimBehavior = swimBehavior;
     }
+
 
 }

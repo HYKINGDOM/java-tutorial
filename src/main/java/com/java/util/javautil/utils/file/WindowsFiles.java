@@ -28,10 +28,15 @@ public class WindowsFiles {
 //        File file = FileUtil.file("J:\\迅雷下载\\小说");
 //        TXTRename txtRename = new TXTRename();
 //        txtRename.txtRenamed(file);
-
+//
         VideoFileSwitch videoFileSwitch = new VideoFileSwitch();
         videoFileSwitch.videoFile();
 
+
+//        PrivateVideoClassFile parentVideoClassFile = new PrivateVideoClassFile();
+//        Map<Integer, List<String>> listMap = parentVideoClassFile.countPrivateVideoClassFile();
+//
     }
+
 
 }
