@@ -6,7 +6,6 @@ import lombok.extern.java.Log;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -50,11 +49,6 @@ public class InputConfigFile {
     public String getProperty(String key) {
         if (null == props) {
             loadProps();
-        }
-
-        for (Map.Entry<Object, Object> objectObjectEntry : props.entrySet()) {
-            System.out.print(objectObjectEntry.getKey()+ " = ");
-            System.out.println(objectObjectEntry.getValue());
         }
         return props.getProperty(key);
     }

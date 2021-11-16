@@ -81,7 +81,7 @@ public class VideoFileSwitch {
 
 
     public void videoFile() {
-        File file = FileUtil.file("L:\\win\\日韩ready");
+        File file = FileUtil.file("H:\\迅雷下载\\精东影业之密友");
         File[] files = file.listFiles();
 
         List<File> fileDirectoryLists = fileDirectoryLists(files, fileList);

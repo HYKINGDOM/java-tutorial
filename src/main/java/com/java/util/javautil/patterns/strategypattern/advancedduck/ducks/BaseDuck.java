@@ -87,7 +87,7 @@ public abstract class BaseDuck {
      *
      * @param swimBehavior
      */
-    public void setmSwimBehavior(SwimBehavior swimBehavior) {
+    public void setSwimBehavior(SwimBehavior swimBehavior) {
         mSwimBehavior = swimBehavior;
     }
 
