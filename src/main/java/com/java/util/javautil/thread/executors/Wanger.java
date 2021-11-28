@@ -15,12 +15,7 @@ public class Wanger {
                 60L, TimeUnit.SECONDS,
                 new ArrayBlockingQueue(10));
         for (int i = 0; i < 10; i++) {
-            Thread thread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("我叫" + Thread.currentThread().getName() + "，使用推荐线程池的方式");
-                }
-            });
+            Thread thread = new Thread(() -> System.out.println("我叫" + Thread.currentThread().getName() + "，使用推荐线程池的方式"));
             executorService.execute(thread);
         }
         executorService.shutdown();
