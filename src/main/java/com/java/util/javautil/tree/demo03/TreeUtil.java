@@ -3,6 +3,7 @@ package com.java.util.javautil.tree.demo03;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Ace on 2017/6/12.
@@ -24,7 +25,7 @@ public class TreeUtil {
                 trees.add(treeNode);
             }
             for (T it : treeNodes) {
-                if (it.getParentId() == treeNode.getId()) {
+                if (Objects.equals(it.getParentId(), treeNode.getId())) {
                     if (treeNode.getChildren() == null) {
                         treeNode.setChildren(new ArrayList<>());
                     }
@@ -61,7 +62,7 @@ public class TreeUtil {
      */
     public static <T extends AbstractTreeNode> T findChildren(T treeNode, List<T> treeNodes) {
         for (T it : treeNodes) {
-            if (treeNode.getId() == it.getParentId()) {
+            if (Objects.equals(treeNode.getId(), it.getParentId())) {
                 if (treeNode.getChildren() == null) {
                     treeNode.setChildren(new ArrayList<>());
                 }

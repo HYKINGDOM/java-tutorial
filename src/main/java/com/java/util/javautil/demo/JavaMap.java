@@ -19,6 +19,17 @@ public class JavaMap {
         javaMap.mapCompute();
 
 
+        for (Map.Entry<Integer, String> stringEntry : stringHashMap.entrySet()) {
+
+
+        }
+
+
+        for (Integer integer : stringHashMap.keySet()) {
+
+        }
+
+
         for (Map.Entry<Integer, String> integerStringEntry : stringHashMap.entrySet()) {
             System.out.println(integerStringEntry.toString());
         }

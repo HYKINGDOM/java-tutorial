@@ -471,8 +471,8 @@ public class TestJavaStream {
 
         //返回最大值之前进行判空和去重
         LocalDateTime timeMap5 = timeMapList.stream()
-                .filter(o -> o.getLocalDateTime() != null)
-                .map(TimeMap::getLocalDateTime).distinct()
+                .map(TimeMap::getLocalDateTime)
+                .filter(Objects::nonNull).distinct()
                 .max(LocalDateTime::compareTo).orElse(null);
         System.out.println("Max Time:" + timeMap5);
 

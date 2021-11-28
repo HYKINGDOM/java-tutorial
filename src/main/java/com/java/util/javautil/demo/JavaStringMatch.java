@@ -78,7 +78,7 @@ public class JavaStringMatch {
         if( str.indexOf(targetEle) == -1 ) {
             return 0;
         }else {
-            //从当前找到位置的下一个位置下标开始，截取字符串，再进行递归
+            //从当前找到位置的下一个位置下标开始，截取字符串，再进行递归Enum
             return 1 + searchEleNum( str.substring( str.indexOf( targetEle ) + 1 ),targetEle);
         }
     }
