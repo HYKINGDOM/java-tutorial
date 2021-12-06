@@ -45,11 +45,11 @@ public class ParentService {
 
     public List<ParentEntity> convertDomainToEntityByEnum(List<ParentDomain> parentDomainList) {
         List<ParentEntity> parentEntities = new ArrayList<>();
-        for (ParentDomain parentDomain : parentDomainList) {
-            ParentEntity entity = DomainEnum.getEntity(parentDomain.typeCode());
-            BeanUtils.copyProperties(parentDomain, Objects.requireNonNull(entity));
-            parentEntities.add(entity);
-        }
+//        for (ParentDomain parentDomain : parentDomainList) {
+//            ParentEntity entity = DomainEnum.getEntity(parentDomain.typeCode());
+//            BeanUtils.copyProperties(parentDomain, Objects.requireNonNull(entity));
+//            parentEntities.add(entity);
+//        }
         return parentEntities;
     }
 }
