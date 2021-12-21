@@ -1,4 +1,4 @@
-package com.java.util.javautil.hw;
+package com.java.util.javautil.interview.hw;
 
 
 public class Main {
