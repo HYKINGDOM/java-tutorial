@@ -5,7 +5,7 @@ public class TicketWindow extends Thread {
 
     private final String name;
 
-    private static final int Maximum = 10000;
+    private static final int Maximum = 500;
 
     private static int index = 1;
 

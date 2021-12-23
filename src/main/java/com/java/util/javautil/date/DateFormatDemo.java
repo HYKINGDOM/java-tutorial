@@ -4,6 +4,7 @@ import org.apache.commons.lang3.reflect.FieldUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -18,7 +19,14 @@ public class DateFormatDemo {
 
     public static void main(String[] args) throws ParseException {
 
-
+        SimpleDateFormat sdfYMD = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        String format = sdfYMD.format(date);
+        System.out.println(format);
+        Date parse = sdfYMD.parse(format);
+        System.out.println(parse);
+        Date date1 = new Date(format);
+        System.out.println(date1);
     }
 
 
