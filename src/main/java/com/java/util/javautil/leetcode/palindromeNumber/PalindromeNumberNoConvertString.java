@@ -1,5 +1,8 @@
 package com.java.util.javautil.leetcode.palindromeNumber;
 
+/**
+ * @author HY
+ */
 public class PalindromeNumberNoConvertString {
 
     public boolean isPalindrome(int x) {
