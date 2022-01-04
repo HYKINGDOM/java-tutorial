@@ -1,5 +1,7 @@
 package com.java.util.javautil;
 
+import cn.hutool.core.util.StrUtil;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 public class DemoTest {
@@ -7,11 +9,8 @@ public class DemoTest {
     public static void main(String[] args) {
 
 
-        ThreadLocalRandom current = ThreadLocalRandom.current();
-        current.nextDouble();
-
-        for (int i = 0; i < 10; i++) {
-            System.out.println(current.nextDouble());
+        for (int i = 1; i <= 2; i++) {
+            System.out.println(i *4);
         }
     }
 
