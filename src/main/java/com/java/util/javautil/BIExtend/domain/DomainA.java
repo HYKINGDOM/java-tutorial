@@ -1,9 +1,11 @@
 package com.java.util.javautil.BIExtend.domain;
 
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 
+@Builder
 @ToString
 @Data
 public class DomainA extends ParentDomain{

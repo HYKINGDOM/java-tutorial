@@ -22,15 +22,13 @@ public class ParentServiceTest {
     @Before
     public void setUp() throws Exception {
         parentService = new ParentService();
-        DomainA domainA = new DomainA();
+        DomainA domainA = DomainA.builder().age(12).build();
         domainA.setUserId(100);
         domainA.setUserName("domainA");
-        domainA.setAge(12);
 
-        DomainB domainB = new DomainB();
+        DomainB domainB = DomainB.builder().nickName("TestB").build();
         domainB.setUserId(101);
         domainB.setUserName("domainB");
-        domainB.setNickName("TestB");
 
         DomainC domainC = new DomainC();
         domainC.setGender(true);
