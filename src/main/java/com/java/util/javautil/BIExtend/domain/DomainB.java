@@ -2,7 +2,9 @@ package com.java.util.javautil.BIExtend.domain;
 
 
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
+@SuperBuilder
 @Data
 public class DomainB extends ParentDomain {
 
