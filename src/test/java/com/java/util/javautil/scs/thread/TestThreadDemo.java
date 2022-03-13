@@ -1,6 +1,7 @@
 package com.java.util.javautil.scs.thread;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -10,7 +11,7 @@ import java.util.concurrent.Executors;
  * @date 2019/3/28
  */
 public class TestThreadDemo {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
         //两个线程的线程池
         ExecutorService executor = Executors.newFixedThreadPool(2);
         //小红买酒任务，这里的future2代表的是小红未来发生的操作，返回小红买东西这个操作的结果
@@ -27,7 +28,6 @@ public class TestThreadDemo {
         }, executor);
 
         //小明买烟任务，这里的future1代表的是小明未来买东西会发生的事，返回值是小明买东西的结果
-
         CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> {
             System.out.println("爸：小明你去买包烟！");
             try {
@@ -39,6 +39,9 @@ public class TestThreadDemo {
                 return "这是我托人带来的口信，我已经不在了。";
             }
         }, executor);
+
+        CompletableFuture<String> future = future1.thenCombine(future2, (str1, str2) -> str1 + "======test=====" + str2);
+        System.out.println(future.get());
 
         //获取小红买酒结果，从小红的操作中获取结果，把结果打印
         future2.thenAccept((e) -> {

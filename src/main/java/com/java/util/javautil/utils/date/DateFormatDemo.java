@@ -1,6 +1,7 @@
 package com.java.util.javautil.utils.date;
 
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -15,9 +16,8 @@ public class DateFormatDemo {
 
     public static void main(String[] args) throws ParseException {
 
-        String dateStr = "2017-03-01";
-        Date date = DateUtil.parse(dateStr);
-        System.out.println(date);
+        System.out.println(LocalDate.now());
+        System.out.println(LocalDateTime.now());
     }
 
 
