@@ -1,6 +1,6 @@
 package com.java.util.javautil.system.demo01;
 
-import sun.misc.BASE64Decoder;
+import cn.hutool.core.codec.Base64;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,10 +20,10 @@ public class ImgDataUrl {
         if (imgStr == null) {
             return false;
         }
-        BASE64Decoder decoder = new BASE64Decoder();
+
         try {
             //Base64解码
-            byte[] b = decoder.decodeBuffer(imgStr);
+            byte[] b = Base64.decode(imgStr);
             for (int i = 0; i < b.length; ++i) {
                 if (b[i] < 0) {
                     //调整异常数据

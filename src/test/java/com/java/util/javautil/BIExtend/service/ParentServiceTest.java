@@ -26,7 +26,7 @@ public class ParentServiceTest {
         domainA.setUserId(100);
         domainA.setUserName("domainA");
 
-        DomainB domainB = DomainB.builder().nickName("TestB").build();
+        DomainB domainB = new DomainB();
         domainB.setUserId(101);
         domainB.setUserName("domainB");
 

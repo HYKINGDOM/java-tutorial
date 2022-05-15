@@ -1,9 +1,6 @@
 package com.java.util.javautil.demo;
 
-import javafx.beans.binding.ObjectExpression;
-
 import java.sql.Timestamp;
-import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;

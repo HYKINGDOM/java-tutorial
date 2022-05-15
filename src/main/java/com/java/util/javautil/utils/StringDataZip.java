@@ -1,10 +1,14 @@
 package com.java.util.javautil.utils;
 
+import cn.hutool.core.codec.Base64;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
+
+import static javax.xml.crypto.dsig.Transform.BASE64;
 
 /**
  *
@@ -27,7 +31,7 @@ public class StringDataZip {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new sun.misc.BASE64Encoder().encode(out.toByteArray());
+        return Base64.encode(out.toByteArray());
     }
 
     /**
@@ -38,11 +42,7 @@ public class StringDataZip {
             return compressedStr;
         }
         byte[] compressed = new byte[0];
-        try {
-            compressed = new sun.misc.BASE64Decoder().decodeBuffer(compressedStr);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        compressed = Base64.decode(compressedStr);
 
         String decompressed = null;
         try (ByteArrayOutputStream out = new ByteArrayOutputStream();
