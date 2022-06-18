@@ -6,7 +6,8 @@ import org.openjdk.jmh.infra.Blackhole;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-@Warmup(iterations = 5, time = 1) // 先预热4轮
+@Warmup(iterations = 5, time = 1) // 先预热5轮
+@Threads(2)
 @Measurement(iterations = 5, time = 1)// 进行5轮测试
 @Fork(value = 2, jvmArgsAppend = {"-XX:+UseG1GC", "-Xms8g", "-Xmx8g"})// Fork进行的数目
 @BenchmarkMode(Mode.AverageTime)// 平均时间
@@ -24,11 +25,12 @@ public class ListBenchmark {
 
     @Setup
     public void setup() {
-        var list = switch (type) {
-            case "Array", "ArrayList" -> new ArrayList<>(size);
-            case "LinkedList" -> new LinkedList<>();
-            default -> throw new AssertionError();
-        };
+        var list =
+                switch (type) {
+                    case "Array", "ArrayList" -> new ArrayList<>(size);
+                    case "LinkedList" -> new LinkedList<>();
+                    default -> throw new AssertionError();
+                };
 
         Random random = new Random(0);
         for (int i = 0; i < size; i++) {
