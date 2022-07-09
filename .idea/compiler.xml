@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="leetcode" />
+        <module name="java-domian-driver-design" />
+        <module name="java-common" />
+        <module name="java-validate" />
+        <module name="interview-code" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="interview-code" target="1.8" />
+      <module name="java-common" target="14" />
+      <module name="java-domian-driver-design" target="1.8" />
+      <module name="java-tutorial" target="14" />
+      <module name="java-validate" target="1.8" />
+      <module name="leetcode" target="1.8" />
+      <module name="LeetCode" target="14" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="LeetCode" options="-parameters" />
+      <module name="java-tutorial" options="" />
+    </option>
+  </component>
+</project>
