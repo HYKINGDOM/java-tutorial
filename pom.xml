@@ -18,6 +18,8 @@
         <module>interview-code</module>
         <module>java-thread</module>
         <module>java-patterns</module>
+        <module>java-function</module>
+        <module>java-benchmark</module>
     </modules>
 
     <properties>

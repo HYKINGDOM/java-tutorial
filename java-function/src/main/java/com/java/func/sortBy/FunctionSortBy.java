@@ -1,4 +1,5 @@
-package com.java.util.javautil.function.sortBy;
+package com.java.func.sortBy;
+
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;

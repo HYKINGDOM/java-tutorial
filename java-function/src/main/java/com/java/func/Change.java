@@ -1,4 +1,4 @@
-package com.java.util.javautil.function;
+package com.java.func;
 
 public class Change {
 

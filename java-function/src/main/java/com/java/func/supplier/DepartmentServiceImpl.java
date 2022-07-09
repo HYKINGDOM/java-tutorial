@@ -1,4 +1,4 @@
-package com.java.util.javautil.function.supplier;
+package com.java.func.supplier;
 
 public class DepartmentServiceImpl implements DepartmentService{
     @Override

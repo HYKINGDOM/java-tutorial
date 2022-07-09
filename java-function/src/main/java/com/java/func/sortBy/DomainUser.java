@@ -1,4 +1,4 @@
-package com.java.util.javautil.function.sortBy;
+package com.java.func.sortBy;
 
 
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.java.util.javautil.function.actuallyapplication;
+package com.java.func.actuallyapplication;
 
 import java.util.function.Function;
 

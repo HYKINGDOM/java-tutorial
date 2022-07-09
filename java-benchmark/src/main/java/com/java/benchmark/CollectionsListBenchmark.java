@@ -1,4 +1,4 @@
-package com.java.util.javautil.collection;
+package com.java.benchmark;
 
 
 import org.openjdk.jmh.annotations.BenchmarkMode;

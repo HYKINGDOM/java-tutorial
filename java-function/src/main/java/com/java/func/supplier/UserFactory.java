@@ -1,11 +1,8 @@
-package com.java.util.javautil.function.supplier;
-
-import javax.annotation.Resource;
-import java.util.Set;
+package com.java.func.supplier;
 
 public class UserFactory {
     // 部门服务, rpc 接口
-    @Resource
+
     private DepartmentService departmentService;
 
 //    // 主管服务, rpc 接口

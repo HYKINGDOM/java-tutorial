@@ -7,8 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="leetcode" />
         <module name="java-domian-driver-design" />
+        <module name="java-patterns" />
+        <module name="java-function" />
+        <module name="java-thread" />
+        <module name="leetcode" />
         <module name="java-common" />
         <module name="java-validate" />
         <module name="interview-code" />
@@ -18,6 +21,9 @@
       <module name="interview-code" target="1.8" />
       <module name="java-common" target="14" />
       <module name="java-domian-driver-design" target="1.8" />
+      <module name="java-function" target="1.8" />
+      <module name="java-patterns" target="1.8" />
+      <module name="java-thread" target="1.8" />
       <module name="java-tutorial" target="14" />
       <module name="java-validate" target="1.8" />
       <module name="leetcode" target="1.8" />
