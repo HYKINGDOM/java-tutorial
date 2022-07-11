@@ -7,27 +7,34 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="java-benchmark" />
         <module name="java-domian-driver-design" />
         <module name="java-patterns" />
         <module name="java-function" />
+        <module name="java-unit-test" />
         <module name="java-thread" />
         <module name="leetcode" />
         <module name="java-common" />
         <module name="java-validate" />
         <module name="interview-code" />
+        <module name="spring-boot-mysql" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="interview-code" target="1.8" />
+      <module name="java-benchmark" target="14" />
       <module name="java-common" target="14" />
+      <module name="java-database" target="1.8" />
       <module name="java-domian-driver-design" target="1.8" />
       <module name="java-function" target="1.8" />
       <module name="java-patterns" target="1.8" />
       <module name="java-thread" target="1.8" />
       <module name="java-tutorial" target="14" />
+      <module name="java-unit-test" target="1.8" />
       <module name="java-validate" target="1.8" />
       <module name="leetcode" target="1.8" />
       <module name="LeetCode" target="14" />
+      <module name="spring-boot-mysql" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

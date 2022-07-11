@@ -20,6 +20,8 @@
         <module>java-patterns</module>
         <module>java-function</module>
         <module>java-benchmark</module>
+        <module>java-unit-test</module>
+        <module>java-database</module>
     </modules>
 
     <properties>

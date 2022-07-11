@@ -1,5 +1,9 @@
-package com.java.util.javautil.scs.powermock;
+package com.java.unit.powermock;
 
+import com.java.unit.service.TestMethod;
+import com.java.unit.service.User;
+import com.java.unit.service.UserDao;
+import com.java.unit.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;

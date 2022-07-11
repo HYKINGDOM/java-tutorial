@@ -1,4 +1,4 @@
-package com.java.util.javautil.scs.powermock;
+package com.java.unit.service;
 
 public class UserDao {
     public int getCount() {

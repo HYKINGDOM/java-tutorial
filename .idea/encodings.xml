@@ -3,9 +3,13 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/interview-code/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/interview-code/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java-benchmark/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java-benchmark/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/java-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/java-common/src/main/java/com/java/coco/utils/zip/DeleteFileUtil.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/java-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java-database/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java-database/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/java-domian-driver-design/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/java-domian-driver-design/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/java-function/src/main/java" charset="UTF-8" />
@@ -14,6 +18,8 @@
     <file url="file://$PROJECT_DIR$/java-patterns/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/java-thread/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/java-thread/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java-unit-test/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java-unit-test/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/java-validate/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/java-validate/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/leetcode/src/main/java" charset="UTF-8" />

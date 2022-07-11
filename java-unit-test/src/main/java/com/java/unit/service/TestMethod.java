@@ -1,4 +1,4 @@
-package com.java.util.javautil.scs.powermock;
+package com.java.unit.service;
 
 import java.util.ArrayList;
 import java.util.List;

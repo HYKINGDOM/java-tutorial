@@ -1,4 +1,4 @@
-package com.java.util.javautil.UTMock;
+package com.java.unit.service;
 
 import org.junit.Before;
 import org.junit.Test;

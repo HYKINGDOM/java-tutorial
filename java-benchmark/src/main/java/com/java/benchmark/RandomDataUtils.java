@@ -1,4 +1,4 @@
-package com.java.coco.collection;
+package com.java.benchmark;
 
 import com.apifan.common.random.source.NumberSource;
 import com.apifan.common.random.source.OtherSource;
