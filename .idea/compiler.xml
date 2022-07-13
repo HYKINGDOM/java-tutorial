@@ -15,6 +15,7 @@
         <module name="java-thread" />
         <module name="leetcode" />
         <module name="java-common" />
+        <module name="java-vavr" />
         <module name="java-validate" />
         <module name="interview-code" />
         <module name="spring-boot-mysql" />
@@ -32,6 +33,7 @@
       <module name="java-tutorial" target="14" />
       <module name="java-unit-test" target="1.8" />
       <module name="java-validate" target="1.8" />
+      <module name="java-vavr" target="11" />
       <module name="leetcode" target="1.8" />
       <module name="LeetCode" target="14" />
       <module name="spring-boot-mysql" target="1.8" />
