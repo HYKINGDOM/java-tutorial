@@ -29,7 +29,7 @@
       <module name="java-domian-driver-design" target="1.8" />
       <module name="java-function" target="1.8" />
       <module name="java-patterns" target="1.8" />
-      <module name="java-thread" target="1.8" />
+      <module name="java-thread" target="9" />
       <module name="java-tutorial" target="14" />
       <module name="java-unit-test" target="1.8" />
       <module name="java-validate" target="1.8" />
