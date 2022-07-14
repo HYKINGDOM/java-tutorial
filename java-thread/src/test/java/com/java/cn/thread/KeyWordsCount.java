@@ -1,4 +1,4 @@
-package com.java.util.javautil.scs.thread;
+package com.java.cn.thread;
 
 public class KeyWordsCount {
 

@@ -1,4 +1,4 @@
-package com.java.util.javautil.thread;
+package com.java.cn.thread;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;

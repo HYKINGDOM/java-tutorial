@@ -1,4 +1,4 @@
-package com.java.util.javautil.thread.javajoin;
+package com.java.cn.thread.javajoin;
 
 import java.util.ArrayList;
 import java.util.List;

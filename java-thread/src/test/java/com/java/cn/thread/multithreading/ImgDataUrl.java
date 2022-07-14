@@ -1,4 +1,4 @@
-package com.java.util.javautil.scs.Multithreading;
+package com.java.cn.thread.multithreading;
 
 import cn.hutool.core.codec.Base64;
 
@@ -11,6 +11,7 @@ public class ImgDataUrl {
 
     /**
      * 对Base64字符串解码并生成图片
+     *
      * @param imgStr
      * @param imgName
      * @param imgPath

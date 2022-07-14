@@ -1,4 +1,4 @@
-package com.java.util.javautil.scs.Multithreading;
+package com.java.cn.thread.multithreading;
 
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;

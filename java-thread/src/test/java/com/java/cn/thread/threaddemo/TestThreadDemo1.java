@@ -1,4 +1,4 @@
-package com.java.util.javautil.scs.thread.threaddemo;
+package com.java.cn.thread.threaddemo;
 
 
 /**

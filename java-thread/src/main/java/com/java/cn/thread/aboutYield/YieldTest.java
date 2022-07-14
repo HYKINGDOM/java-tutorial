@@ -1,4 +1,4 @@
-package com.java.util.javautil.thread.aboutYield;
+package com.java.cn.thread.aboutYield;
 
 public class YieldTest implements Runnable{
 

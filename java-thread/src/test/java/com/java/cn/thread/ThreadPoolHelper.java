@@ -1,6 +1,7 @@
-package com.java.util.javautil.scs.thread;
+package com.java.cn.thread;
 
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,4 +1,4 @@
-package com.java.util.javautil.thread.javaconcurrencyprogramingmul.tiker;
+package com.java.cn.thread.javaconcurrencyprogramingmul.tiker;
 
 public class TicketWindow extends Thread {
 

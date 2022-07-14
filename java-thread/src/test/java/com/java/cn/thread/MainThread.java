@@ -1,7 +1,7 @@
-package com.java.util.javautil.scs.thread;
+package com.java.cn.thread;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.io.File;
 import java.util.concurrent.*;
