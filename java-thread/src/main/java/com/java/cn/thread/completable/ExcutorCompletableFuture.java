@@ -22,7 +22,6 @@ public class ExcutorCompletableFuture {
             }
             System.out.println("run end ...");
         });
-
         future.get();
     }
 
@@ -64,7 +63,7 @@ public class ExcutorCompletableFuture {
         TimeUnit.SECONDS.sleep(2);
     }
 
-    private static void thenApply() throws Exception {
+    public static void thenApply() throws Exception {
         CompletableFuture<Long> future = CompletableFuture.supplyAsync(() -> {
             long result = new Random().nextInt(100);
             System.out.println("result1=" + result);
@@ -103,15 +102,26 @@ public class ExcutorCompletableFuture {
         future.get();
     }
 
-
-    public static void thenRun() throws Exception {
-        CompletableFuture<Void> future = CompletableFuture.supplyAsync(() -> new Random().nextInt(10)).thenRun(() -> {
-            System.out.println("thenRun ...");
-        });
+    public static void thenAcceptAsync() throws Exception {
+        CompletableFuture<Void> future = CompletableFuture
+                .supplyAsync(() -> new Random().nextInt(10))
+                .thenAcceptAsync(System.out::println);
         future.get();
     }
 
-    private static void thenCombine() throws Exception {
+
+    public static void thenRun() throws Exception {
+        CompletableFuture<Void> future = CompletableFuture
+                .supplyAsync(() -> {
+                    int nextInt = new Random().nextInt(10);
+                    System.out.println(nextInt);
+                    return nextInt;
+                })
+                .thenRun(() -> System.out.println("thenRun ..."));
+        future.get();
+    }
+
+    public static void thenCombine() throws Exception {
         CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> "hello future1");
         CompletableFuture<String> future2 = CompletableFuture.supplyAsync(() -> "hello future2");
         CompletableFuture<String> result = future1.thenCombine(future2, (t, u) -> t + " " + u);
@@ -119,32 +129,22 @@ public class ExcutorCompletableFuture {
     }
 
 
-    private static void thenAcceptBoth() {
+    public static void thenAcceptBoth() {
         CompletableFuture<Integer> f1 = CompletableFuture.supplyAsync(() -> {
             int t = new Random().nextInt(3);
-            try {
-                TimeUnit.SECONDS.sleep(t);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             System.out.println("f1=" + t);
             return t;
         });
 
         CompletableFuture<Integer> f2 = CompletableFuture.supplyAsync(() -> {
             int t = new Random().nextInt(3);
-            try {
-                TimeUnit.SECONDS.sleep(t);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             System.out.println("f2=" + t);
             return t;
         });
         f1.thenAcceptBoth(f2, (t, u) -> System.out.println("f1=" + t + ";f2=" + u + ";"));
     }
 
-    private static void applyToEither() throws Exception {
+    public static void applyToEither() throws Exception {
         CompletableFuture<Integer> f1 = CompletableFuture.supplyAsync(() -> {
             int t = new Random().nextInt(3);
             try {
@@ -172,7 +172,7 @@ public class ExcutorCompletableFuture {
         System.out.println(result.get());
     }
 
-    private static void acceptEither() {
+    public static void acceptEither() throws Exception {
         CompletableFuture<Integer> f1 = CompletableFuture.supplyAsync(() -> {
             int t = new Random().nextInt(3);
             try {
@@ -194,11 +194,11 @@ public class ExcutorCompletableFuture {
             System.out.println("f2=" + t);
             return t;
         });
-        f1.acceptEither(f2, System.out::println);
+        System.out.println(f1.acceptEither(f2, System.out::println).get());
     }
 
 
-    private static void runAfterEither() {
+    public static void runAfterEither() throws Exception {
         CompletableFuture<Integer> f1 = CompletableFuture.supplyAsync(() -> {
             int t = new Random().nextInt(3);
             try {
@@ -220,10 +220,10 @@ public class ExcutorCompletableFuture {
             System.out.println("f2=" + t);
             return t;
         });
-        f1.runAfterEither(f2, () -> System.out.println("有一个任务已经完成了。"));
+        System.out.println(f1.runAfterEither(f2, () -> System.out.println("有一个任务已经完成了。")).get());
     }
 
-    private static void runAfterBoth() {
+    public static void runAfterBoth() throws Exception {
         CompletableFuture<Integer> f1 = CompletableFuture.supplyAsync(() -> {
             int t = new Random().nextInt(3);
             try {
@@ -245,11 +245,11 @@ public class ExcutorCompletableFuture {
             System.out.println("f2=" + t);
             return t;
         });
-        f1.runAfterBoth(f2, () -> System.out.println("上面两个任务都执行完成了。"));
+        System.out.println(f1.runAfterBoth(f2, () -> System.out.println("上面两个任务都执行完成了。")).get());
     }
 
 
-    private static void thenCompose() throws Exception {
+    public static void thenCompose() throws Exception {
         CompletableFuture<Integer> f = CompletableFuture.supplyAsync(() -> {
             int t = new Random().nextInt(3);
             System.out.println("t1=" + t);
@@ -262,11 +262,4 @@ public class ExcutorCompletableFuture {
         System.out.println("thenCompose result : " + f.get());
     }
 
-
-    public static void main(String[] args) {
-        List<String> strings = List.of("qw", "123");
-        strings.parallelStream().forEach(System.out::println);
-        strings.stream().parallel().forEach(System.out::println);
-
-    }
 }
