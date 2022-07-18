@@ -19,11 +19,13 @@
         <module name="java-mapstruct" />
         <module name="java-unit-test" />
         <module name="java-database" />
+        <module name="spring-boot-mongodb" />
         <module name="java-validate" />
         <module name="interview-code" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="database" target="11" />
       <module name="interview-code" target="1.8" />
       <module name="java-benchmark" target="14" />
       <module name="java-common" target="14" />
@@ -39,7 +41,8 @@
       <module name="java-vavr" target="11" />
       <module name="leetcode" target="1.8" />
       <module name="LeetCode" target="14" />
-      <module name="spring-boot-mysql" target="1.8" />
+      <module name="spring-boot-mongodb" target="11" />
+      <module name="spring-boot-mysql" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
