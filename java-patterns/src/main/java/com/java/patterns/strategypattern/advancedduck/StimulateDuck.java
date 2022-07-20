@@ -1,6 +1,12 @@
-package com.java.util.javautil.patterns.strategypattern.advancedduck;
+package com.java.patterns.strategypattern.advancedduck;
 
-import com.java.util.javautil.patterns.strategypattern.advancedduck.ducks.*;
+
+
+import com.java.patterns.strategypattern.advancedduck.ducks.PlasticBaseDuck;
+import com.java.patterns.strategypattern.advancedduck.ducks.BaseDuck;
+import com.java.patterns.strategypattern.advancedduck.ducks.GreenHeadBaseDuck;
+import com.java.patterns.strategypattern.advancedduck.ducks.RedHeadBaseDuck;
+import com.java.patterns.strategypattern.advancedduck.ducks.StoneBaseDuck;
 
 import java.util.ArrayList;
 import java.util.HashMap;

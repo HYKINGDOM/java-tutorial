@@ -1,4 +1,4 @@
-package com.java.util.javautil.patterns.decoratorpattern.coffeebar;
+package com.java.patterns.decoratorpattern.coffeebar;
 
 /**
  *

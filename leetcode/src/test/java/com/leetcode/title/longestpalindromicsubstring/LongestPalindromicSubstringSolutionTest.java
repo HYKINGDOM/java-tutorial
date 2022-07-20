@@ -2,7 +2,8 @@ package com.leetcode.title.longestpalindromicsubstring;
 
 
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -42,7 +43,7 @@ public class LongestPalindromicSubstringSolutionTest {
     public void test_example_5(){
         String str = "aacabdkacaa";
         String longestPalindrome = solution.longestPalindrome(str);
-        assertEquals("aca",longestPalindrome);
+        Assertions.assertEquals("aca", longestPalindrome);
     }
     @Test
     public void test_example_6(){

@@ -1,4 +1,4 @@
-package com.java.util.javautil.patterns.singletonpattern.java;
+package com.java.patterns.singletonpattern.java;
 
 /**
  * 单例模式基于多线程的优化

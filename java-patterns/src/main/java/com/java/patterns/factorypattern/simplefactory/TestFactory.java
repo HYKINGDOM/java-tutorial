@@ -1,4 +1,4 @@
-package com.java.util.javautil.patterns.factorypattern.simplefactory;
+package com.java.patterns.factorypattern.simplefactory;
 
 /**
  * @author yihur

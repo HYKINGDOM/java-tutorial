@@ -1,4 +1,4 @@
-package com.java.util.javautil.patterns.strategypattern.advancedduck.quackbehavior;
+package com.java.patterns.strategypattern.advancedduck.quackbehavior;
 
 /**
  * 鸭子叫声接口

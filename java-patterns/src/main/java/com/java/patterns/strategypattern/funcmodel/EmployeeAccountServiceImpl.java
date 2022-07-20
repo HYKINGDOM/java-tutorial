@@ -1,8 +1,7 @@
-package com.java.util.javautil.patterns.strategypattern.funcmodel;
+package com.java.patterns.strategypattern.funcmodel;
 
-import com.java.util.javautil.utils.ThreadLocalRandomUtils;
 
-import static com.java.util.javautil.utils.ThreadLocalRandomUtils.generateRandomInteger;
+import cn.hutool.core.util.RandomUtil;
 
 public class EmployeeAccountServiceImpl implements AccountService {
 
@@ -10,7 +9,7 @@ public class EmployeeAccountServiceImpl implements AccountService {
 
     @Override
     public String getAccountName(String accountId) {
-        return generateRandomInteger().toString();
+        return RandomUtil.randomString(12);
     }
 
     @Override

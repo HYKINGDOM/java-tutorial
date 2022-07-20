@@ -1,9 +1,9 @@
-package com.java.util.javautil.patterns.strategypattern.advancedduck.ducks;
+package com.java.patterns.strategypattern.advancedduck.ducks;
 
 
-import com.java.util.javautil.patterns.strategypattern.advancedduck.flybehavior.BadFlyBehavior;
-import com.java.util.javautil.patterns.strategypattern.advancedduck.quackbehavior.GaGaQuackBehavior;
-import com.java.util.javautil.patterns.strategypattern.advancedduck.swimbehavior.GoodSwimBehavior;
+import com.java.patterns.strategypattern.advancedduck.flybehavior.BadFlyBehavior;
+import com.java.patterns.strategypattern.advancedduck.quackbehavior.GaGaQuackBehavior;
+import com.java.patterns.strategypattern.advancedduck.swimbehavior.GoodSwimBehavior;
 
 /**
  * 绿头鸭

@@ -1,7 +1,7 @@
-package com.java.util.javautil.patterns.decoratorpattern.coffeebar.decorator;
+package com.java.patterns.decoratorpattern.coffeebar.decorator;
 
 
-import com.java.util.javautil.patterns.decoratorpattern.coffeebar.BaseDrink;
+import com.java.patterns.decoratorpattern.coffeebar.BaseDrink;
 
 /**
  * 酱油

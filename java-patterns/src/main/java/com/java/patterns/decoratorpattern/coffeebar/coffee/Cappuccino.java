@@ -1,4 +1,4 @@
-package com.java.util.javautil.patterns.decoratorpattern.coffeebar.coffee;
+package com.java.patterns.decoratorpattern.coffeebar.coffee;
 
 /**
  * 卡布奇诺咖啡

@@ -1,4 +1,4 @@
-package com.java.util.javautil.patterns.commandpattern.notrecommended;
+package com.java.patterns.commandpattern.notrecommended;
 
 /**
  * 控制接口

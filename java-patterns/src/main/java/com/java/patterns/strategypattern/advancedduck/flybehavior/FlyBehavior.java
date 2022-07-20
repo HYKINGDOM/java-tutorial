@@ -1,4 +1,4 @@
-package com.java.util.javautil.patterns.strategypattern.advancedduck.flybehavior;
+package com.java.patterns.strategypattern.advancedduck.flybehavior;
 
 /**
  *

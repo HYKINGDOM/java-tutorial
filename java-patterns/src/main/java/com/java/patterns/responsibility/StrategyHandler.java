@@ -1,4 +1,4 @@
-package com.java.util.javautil.patterns.responsibility;
+package com.java.patterns.responsibility;
 
 
 /**

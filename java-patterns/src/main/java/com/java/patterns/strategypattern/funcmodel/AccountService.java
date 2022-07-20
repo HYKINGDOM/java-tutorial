@@ -1,4 +1,4 @@
-package com.java.util.javautil.patterns.strategypattern.funcmodel;
+package com.java.patterns.strategypattern.funcmodel;
 
 public interface AccountService {
 

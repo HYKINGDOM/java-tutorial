@@ -1,4 +1,4 @@
-package com.java.util.javautil.patterns.decoratorpattern.coffeebar.decorator;
+package com.java.patterns.decoratorpattern.coffeebar.decorator;
 
 /**
  * 配料糖

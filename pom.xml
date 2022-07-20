@@ -24,6 +24,7 @@
         <module>database</module>
         <module>java-vavr</module>
         <module>java-mapstruct</module>
+        <module>spring-boot-transactional</module>
     </modules>
 
     <properties>

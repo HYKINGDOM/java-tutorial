@@ -1,11 +1,11 @@
-package com.java.util.javautil.patterns.decoratorpattern.coffeebar;
+package com.java.patterns.decoratorpattern.coffeebar;
 
 
-import com.java.util.javautil.patterns.decoratorpattern.coffeebar.coffee.Cappuccino;
-import com.java.util.javautil.patterns.decoratorpattern.coffeebar.coffee.Decaf;
-import com.java.util.javautil.patterns.decoratorpattern.coffeebar.decorator.Chocolate;
-import com.java.util.javautil.patterns.decoratorpattern.coffeebar.decorator.Milk;
-import com.java.util.javautil.patterns.decoratorpattern.coffeebar.juice.OrangeJuiceBase;
+import com.java.patterns.decoratorpattern.coffeebar.coffee.Cappuccino;
+import com.java.patterns.decoratorpattern.coffeebar.coffee.Decaf;
+import com.java.patterns.decoratorpattern.coffeebar.decorator.Chocolate;
+import com.java.patterns.decoratorpattern.coffeebar.decorator.Milk;
+import com.java.patterns.decoratorpattern.coffeebar.juice.OrangeJuiceBase;
 
 /**
  * 装饰器模式实践

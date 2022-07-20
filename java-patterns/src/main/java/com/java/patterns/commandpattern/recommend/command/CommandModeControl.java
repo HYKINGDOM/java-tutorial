@@ -1,8 +1,8 @@
-package com.java.util.javautil.patterns.commandpattern.recommend.command;
+package com.java.patterns.commandpattern.recommend.command;
 
 
 
-import com.java.util.javautil.patterns.commandpattern.notrecommended.Control;
+import com.java.patterns.commandpattern.notrecommended.Control;
 
 import java.util.Stack;
 

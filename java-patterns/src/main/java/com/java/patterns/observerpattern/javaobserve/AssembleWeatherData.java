@@ -1,4 +1,4 @@
-package com.java.util.javautil.patterns.observerpattern.javaobserve;
+package com.java.patterns.observerpattern.javaobserve;
 
 /**
  * 气象站返回组装数据类

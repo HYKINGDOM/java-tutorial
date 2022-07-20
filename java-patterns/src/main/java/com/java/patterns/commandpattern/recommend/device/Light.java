@@ -1,4 +1,4 @@
-package com.java.util.javautil.patterns.commandpattern.recommend.device;
+package com.java.patterns.commandpattern.recommend.device;
 
 /**
  * 灯光

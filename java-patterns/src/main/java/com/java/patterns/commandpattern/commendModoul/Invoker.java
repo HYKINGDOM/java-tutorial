@@ -1,4 +1,4 @@
-package com.java.util.javautil.patterns.commandpattern.commendModoul;
+package com.java.patterns.commandpattern.commendModoul;
 
 /**
  * @author yihur

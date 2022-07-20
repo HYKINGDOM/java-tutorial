@@ -1,4 +1,4 @@
-package com.java.util.javautil.patterns.observerpattern.baseobserve;
+package com.java.patterns.observerpattern.baseobserve;
 
 /**
  * 天气数据

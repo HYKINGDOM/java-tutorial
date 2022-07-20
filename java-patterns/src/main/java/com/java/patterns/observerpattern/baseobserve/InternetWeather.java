@@ -1,4 +1,4 @@
-package com.java.util.javautil.patterns.observerpattern.baseobserve;
+package com.java.patterns.observerpattern.baseobserve;
 
 /**
  * @author yihur

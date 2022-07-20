@@ -1,4 +1,4 @@
-package com.java.util.javautil.patterns.commandpattern.recommend.command;
+package com.java.patterns.commandpattern.recommend.command;
 
 /**
  * 没有命令
