@@ -65,7 +65,8 @@ public class VideoFileSwitch {
             "FUN2048.COM", "THZU.CCTM", "THZU.CC", "原创", "重磅泄露", "最新", "更新", "NYAP2P.COM", "BT-BTT.COM", "SOAV.COM",
             "UNCENSORED", "LEAKED", ".HD", "每日更新", "每日", "799DVD.COM", "606DVD.COM", "136DVD.COM", "136DVD.COM", "909DVD.COM", "132DVD.COM"
             , "FULIBUS.NET", "91视频", "91自拍", "国产自拍", "KiKi", "魔性论坛", "WWW.MOX.LIFE", "2048论坛BBS2048.ORG", "91大神猫先生千人斩之", "SEXFLEXVIDEO",
-            "YONITALE.COM", "BBS2048.ORG", ".COM", "ONLYFANS", "EAPK.XYZ"};
+            "YONITALE.COM", "BBS2048.ORG", ".COM", "ONLYFANS", "EAPK.XYZ", "❤", "GUOCHAN2048", "ThZu.Cc", "[", "]", "", "【", "】", "8899XX.XYZ",
+            "jav20s8.com","guochan2048.com"};
 
     public static final List<String> CONSTANT_FILE_NAME_LIST = new ArrayList<>(Arrays.asList(CONSTANT_FILE_NAME_ARRAY));
 
@@ -84,7 +85,7 @@ public class VideoFileSwitch {
 
 
     public void videoFile() {
-        File file = FileUtil.file("H:\\迅雷下载\\精东影业之密友");
+        File file = FileUtil.file("M:\\迅雷下载");
         File[] files = file.listFiles();
 
         List<File> fileDirectoryLists = fileDirectoryLists(files, fileList);
@@ -159,9 +160,9 @@ public class VideoFileSwitch {
     private String fixFileName(String filePath, String newFileName) {
         File f = new File(filePath);
         // 判断原文件是否存在（防止文件名冲突）
-        if (!f.exists()) {
-            return null;
-        }
+//        if (!f.exists()) {
+//            return null;
+//        }
         newFileName = newFileName.trim();
 
         // 文件名不能为空

@@ -1,5 +1,7 @@
 package com.java.coco.utils.file;
 
+import java.io.File;
+
 /**
  * @author HY
  */
@@ -13,12 +15,12 @@ public class WindowsFiles {
 //        SmallVideoFileTransfer smallVideoFileTransfer = new SmallVideoFileTransfer();
 //        smallVideoFileTransfer.smallVideoFileListTransfer(file);
 
-//        File file = FileUtil.file("J:\\迅雷下载\\小说");
-//        TXTRename txtRename = new TXTRename();
-//        txtRename.txtRenamed(file);
+        File file = new File("J:\\小说");
+        TXTRename txtRename = new TXTRename();
+        txtRename.txtRenamed(file);
 //
-        VideoFileSwitch videoFileSwitch = new VideoFileSwitch();
-        videoFileSwitch.videoFile();
+//        VideoFileSwitch videoFileSwitch = new VideoFileSwitch();
+//        videoFileSwitch.videoFile();
 
 
 //        PrivateVideoClassFile parentVideoClassFile = new PrivateVideoClassFile();

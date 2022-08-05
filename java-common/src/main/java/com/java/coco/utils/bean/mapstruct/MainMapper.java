@@ -15,9 +15,5 @@ import org.springframework.stereotype.Component;
 public interface MainMapper {
 
 
-    MainMapper INSTANCE = Mappers.getMapper(MainMapper.class);
-
-    @Mapping(source = "emailAddress", target = "email")
-    @Mapping(source = "nikeName", target = "nike_Name")
     StudentDto studentVo2Dto(StudentVo vo);
 }

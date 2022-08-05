@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 
 import static cn.hutool.core.io.FileUtil.readableFileSize;
 import static cn.hutool.core.io.FileUtil.rename;
+import static com.java.coco.utils.file.FileTypeUtils.FILE_SYMBOL_LIST;
+import static com.java.coco.utils.file.FileTypeUtils.FILTER_STRING_LIST;
 
 /**
  * @author HY
@@ -23,6 +25,8 @@ public class TXTRename {
     private static final String CAPITAL_TXT = "TXT";
 
     private static final String FILE_TXT_CHM = "chm";
+
+    private static final int FOREACH_NUMBER = 5;
 
     public void txtRenamed(File file) {
 
@@ -50,58 +54,19 @@ public class TXTRename {
         }
     }
 
-
     private String replaceName(String fileName) {
+        for (int i = 0; i < FOREACH_NUMBER; i++) {
+            FILE_SYMBOL_LIST.forEach(e -> replaceString(fileName, e));
+            FILTER_STRING_LIST.forEach(e -> replaceString(fileName, e));
+        }
+        return fileName;
+    }
+
+
+    private String replaceString(String fileName, String symbol) {
         fileName = fileName.trim();
-        if (fileName.contains("《")) {
-            fileName = fileName.replace("《", "");
-        }
-        if (fileName.contains("》")) {
-            fileName = fileName.replace("》", "");
-        }
-
-        if (fileName.contains("【")) {
-            fileName = fileName.replace("【", "");
-        }
-
-        if (fileName.contains("】")) {
-            fileName = fileName.replace("】", "");
-        }
-
-        if (fileName.contains("[")) {
-            fileName = fileName.replace("[", "");
-        }
-
-        if (fileName.contains("]")) {
-            fileName = fileName.replace("]", "");
-        }
-
-        if (fileName.contains("--")) {
-            fileName = fileName.replace("--", "");
-        }
-
-        if (fileName.contains("soushu555.com")) {
-            fileName = fileName.replace("soushu555.com", "");
-        }
-
-        if (fileName.contains("soushu555.org")) {
-            fileName = fileName.replace("soushu555.org", "");
-        }
-
-        if (fileName.contains("soushu555.net")) {
-            fileName = fileName.replace("soushu555.net", "");
-        }
-
-        if (fileName.contains("soushu2021.com")) {
-            fileName = fileName.replace("soushu2021.com", "");
-        }
-
-        if (fileName.contains("搜书吧网址")) {
-            fileName = fileName.replace("搜书吧网址", "");
-        }
-
-        if (fileName.contains("11")) {
-            fileName = fileName.replace("11", "1-1");
+        if (fileName.contains(symbol)) {
+            fileName = fileName.replace(symbol, "");
         }
 
         return fileName;
