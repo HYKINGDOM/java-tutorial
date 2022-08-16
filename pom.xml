@@ -25,6 +25,7 @@
         <module>java-vavr</module>
         <module>java-mapstruct</module>
         <module>spring-boot-transactional</module>
+        <module>spring-boot-project-event</module>
     </modules>
 
     <properties>
