@@ -6,6 +6,7 @@ import com.example.demo.infrastucture.dao.AccountRepository;
 import com.example.demo.service.TransactionService;
 import com.sun.net.httpserver.Authenticator;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class PropagationRequiredNewTransactionServiceImpl implements TransactionService {
 
     private static final String PROPAGATION_REQUIRES_NEW = "PropagationRequiredNew";
