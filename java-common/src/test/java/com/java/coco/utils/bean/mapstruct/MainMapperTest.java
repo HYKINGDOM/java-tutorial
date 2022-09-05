@@ -15,8 +15,8 @@ public class MainMapperTest {
                 .emailAddress("123@qq.com")
                 .nikeName("bryce")
                 .build();
-        StudentDto studentDto = MainMapper.INSTANCE.studentVo2Dto(studentVo);
-        System.out.println(studentDto);
+//        StudentDto studentDto = MainMapper.INSTANCE.studentVo2Dto(studentVo);
+//        System.out.println(studentDto);
     }
 
 }
