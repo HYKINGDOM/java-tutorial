@@ -12,7 +12,7 @@
     <groupId>com.java.db</groupId>
     <artifactId>database</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demo</name>
+    <name>java-database-demo</name>
     <description>Demo project for database</description>
     <packaging>pom</packaging>
 

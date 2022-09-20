@@ -13,6 +13,7 @@
         <module name="leetcode" />
         <module name="java-common" />
         <module name="java-vavr" />
+        <module name="spring-boot-project-async" />
         <module name="spring-boot-mysql" />
         <module name="spring-boot-project-event" />
         <module name="java-benchmark" />
@@ -47,6 +48,8 @@
       <module name="spring-boot-h2" target="11" />
       <module name="spring-boot-mongodb" target="11" />
       <module name="spring-boot-mysql" target="11" />
+      <module name="spring-boot-project" target="14" />
+      <module name="spring-boot-project-async" target="14" />
       <module name="spring-boot-project-event" target="14" />
       <module name="spring-boot-transactional" target="11" />
     </bytecodeTargetLevel>

@@ -21,11 +21,13 @@
         <module>java-function</module>
         <module>java-benchmark</module>
         <module>java-unit-test</module>
+        <module>java-database</module>
         <module>database</module>
         <module>java-vavr</module>
         <module>java-mapstruct</module>
         <module>spring-boot-transactional</module>
         <module>spring-boot-project-event</module>
+        <module>spring-boot-project-async</module>
     </modules>
 
     <properties>
