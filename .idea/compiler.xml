@@ -7,8 +7,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="java-spi" />
         <module name="spring-boot-h2" />
         <module name="java-function" />
+        <module name="spring-boot-project-cache" />
         <module name="java-thread" />
         <module name="leetcode" />
         <module name="java-common" />
@@ -29,29 +31,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="database" target="11" />
-      <module name="interview-code" target="1.8" />
-      <module name="java-benchmark" target="14" />
-      <module name="java-common" target="14" />
-      <module name="java-database" target="1.8" />
-      <module name="java-domian-driver-design" target="1.8" />
-      <module name="java-function" target="1.8" />
-      <module name="java-mapstruct" target="1.8" />
-      <module name="java-patterns" target="1.8" />
-      <module name="java-thread" target="9" />
-      <module name="java-tutorial" target="14" />
-      <module name="java-unit-test" target="1.8" />
-      <module name="java-validate" target="1.8" />
-      <module name="java-vavr" target="11" />
-      <module name="leetcode" target="1.8" />
       <module name="LeetCode" target="14" />
-      <module name="spring-boot-h2" target="11" />
-      <module name="spring-boot-mongodb" target="11" />
-      <module name="spring-boot-mysql" target="11" />
       <module name="spring-boot-project" target="14" />
-      <module name="spring-boot-project-async" target="14" />
-      <module name="spring-boot-project-event" target="14" />
-      <module name="spring-boot-transactional" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

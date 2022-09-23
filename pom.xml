@@ -28,11 +28,16 @@
         <module>spring-boot-transactional</module>
         <module>spring-boot-project-event</module>
         <module>spring-boot-project-async</module>
+        <module>spring-boot-project-cache</module>
+        <module>java-spi</module>
     </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <spring-boot-starter-web>2.7.2</spring-boot-starter-web>
+        <spring-boot-devtools>2.7.2</spring-boot-devtools>
+        <spring-boot-starter-test>2.7.2</spring-boot-starter-test>
     </properties>
 
     <dependencies>

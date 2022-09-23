@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -43,6 +44,7 @@ public class ThreadPoolExecutorConfig {
 
     @Bean("asyncTaskExecutor")
     public Executor getAsyncExecutor() {
+        //此处使用的是spring封装ThreadPoolExecutor之后的线程池
         ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
         //核心线程数
         threadPoolTaskExecutor.setCorePoolSize(CORE_POOL_SIZE);
@@ -59,6 +61,8 @@ public class ThreadPoolExecutorConfig {
         threadPoolTaskExecutor.initialize();
         return threadPoolTaskExecutor;
     }
+
+
 
 
     @Bean(name = "defaultThreadPoolExecutor", destroyMethod = "shutdown")

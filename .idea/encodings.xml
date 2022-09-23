@@ -26,6 +26,10 @@
     <file url="file://$PROJECT_DIR$/java-mapstruct/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/java-patterns/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/java-patterns/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java-spi/java-spi/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java-spi/java-spi/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java-spi/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java-spi/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/java-thread/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/java-thread/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/java-unit-test/src/main/java" charset="UTF-8" />
@@ -38,6 +42,8 @@
     <file url="file://$PROJECT_DIR$/leetcode/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-project-async/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-project-async/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot-project-cache/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot-project-cache/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-project-event/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-project-event/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-transactional/src/main/java" charset="UTF-8" />
