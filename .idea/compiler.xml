@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="java-spi" />
         <module name="spring-boot-h2" />
+        <module name="java-domain-driver-design" />
         <module name="java-function" />
         <module name="spring-boot-project-cache" />
         <module name="java-thread" />
@@ -19,7 +20,6 @@
         <module name="spring-boot-mysql" />
         <module name="spring-boot-project-event" />
         <module name="java-benchmark" />
-        <module name="java-domian-driver-design" />
         <module name="java-patterns" />
         <module name="java-mapstruct" />
         <module name="spring-boot-transactional" />

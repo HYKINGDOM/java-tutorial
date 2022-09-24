@@ -14,7 +14,7 @@
         <module>leetcode</module>
         <module>java-validate</module>
         <module>java-common</module>
-        <module>java-domian-driver-design</module>
+        <module>java-domain-driver-design</module>
         <module>interview-code</module>
         <module>java-thread</module>
         <module>java-patterns</module>
@@ -35,6 +35,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <spring-boot-starter-version>2.7.3</spring-boot-starter-version>
         <spring-boot-starter-web>2.7.2</spring-boot-starter-web>
         <spring-boot-devtools>2.7.2</spring-boot-devtools>
         <spring-boot-starter-test>2.7.2</spring-boot-starter-test>
@@ -49,20 +50,20 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.9.0-M1</version>
+            <version>5.9.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.9.0-M1</version>
+            <version>5.9.0</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.powermock</groupId>
             <artifactId>powermock-api-mockito2</artifactId>
-            <version>2.0.7</version>
+            <version>2.0.9</version>
             <scope>test</scope>
         </dependency>
 
@@ -70,7 +71,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>4.6.1</version>
+            <version>4.8.0</version>
             <scope>test</scope>
         </dependency>
 
@@ -78,7 +79,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
-            <version>4.6.1</version>
+            <version>4.8.0</version>
             <scope>test</scope>
         </dependency>
 
@@ -93,7 +94,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.20</version>
+            <version>1.18.24</version>
             <scope>provided</scope>
         </dependency>
 
@@ -106,7 +107,7 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.8.4</version>
+            <version>5.8.6</version>
         </dependency>
 
         <dependency>

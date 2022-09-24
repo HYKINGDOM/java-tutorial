@@ -10,9 +10,9 @@
     </parent>
 
     <groupId>com.java.domain.driver.design</groupId>
-    <artifactId>java-domian-driver-design</artifactId>
+    <artifactId>java-domain-driver-design</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>java-domian-driver-design</name>
+    <name>java-domain-driver-design</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
