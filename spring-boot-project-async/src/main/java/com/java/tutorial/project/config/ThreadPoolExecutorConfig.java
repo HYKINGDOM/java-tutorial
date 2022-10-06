@@ -63,8 +63,6 @@ public class ThreadPoolExecutorConfig {
     }
 
 
-
-
     @Bean(name = "defaultThreadPoolExecutor", destroyMethod = "shutdown")
     public ThreadPoolExecutor systemCheckPoolExecutorService() {
         return new ThreadPoolExecutor(3, 10, 60, TimeUnit.SECONDS,

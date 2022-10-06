@@ -2,6 +2,7 @@ package com.java.coco.demo;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
@@ -11,6 +12,9 @@ public class JavaMap {
     private static HashMap<Integer, String> stringHashMap = new HashMap<>();
 
     public static void main(String[] args) {
+        ConcurrentHashMap concurrentHashMapde = new ConcurrentHashMap();
+
+
         stringHashMap.put(1, "one");
         stringHashMap.put(2, "two");
         stringHashMap.put(3, "three");

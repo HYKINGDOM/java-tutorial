@@ -25,6 +25,7 @@ public class Main {
 
         List<Integer> integerList = new ArrayList<>();
         HashMap<String, Integer> hashMap = new HashMap<>();
+
         for (int i = 0; i < charsS.length; i++) {
             for (int j = 0; j < charsL.length; j++) {
                 if (charsL[j] == charsS[i]){

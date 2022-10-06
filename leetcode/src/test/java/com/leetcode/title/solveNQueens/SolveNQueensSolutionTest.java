@@ -66,6 +66,4 @@ class SolveNQueensSolutionTest {
         boolean b = solveNQueensSolution.judgeDiagonalLeftLine(chars, 1, 1, 4);
         System.out.println(b);
     }
-
-
 }
