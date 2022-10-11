@@ -1,13 +1,31 @@
 package com.java.coco.demo;
 
+import com.java.coco.utils.date.ConcurrentDateFormat;
+
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class JavaMap {
 
+
+    public void testCollectionsMap() {
+        Map<Object, Object> objectObjectMap = Collections.synchronizedMap(new HashMap<>(16));
+
+
+        Hashtable<Object, Object> objectObjectHashtable = new Hashtable<>();
+
+
+    }
+
+    public static void setStringConcurrentHashMap() {
+        ConcurrentMap<String, ConcurrentDateFormat> CACHE = new ConcurrentHashMap<>(3);
+    }
 
     private static HashMap<Integer, String> stringHashMap = new HashMap<>();
 
@@ -96,10 +114,9 @@ public class JavaMap {
 
     /**
      * 如果 Map 中 key 对应的映射不存在或者为 null，则将 value（不能是 null）关联到 key 上；
-     *
-     *
+     * <p>
+     * <p>
      * 否则执行 Function，如果执行结果非 null 则用该结果跟 key 关联，否则在 Map 中删除 key 的映射．
-     *
      */
     public void mapMerge() {
         stringHashMap.merge(2, "测试字段", new BiFunction<String, String, String>() {
@@ -115,19 +132,19 @@ public class JavaMap {
     /**
      * 用是把 remappingFunction 的计算结果关联到 key 上，如果计算结果为 null，则在 Map 中删除 key 的映射．
      */
-    public void mapCompute(){
+    public void mapCompute() {
         stringHashMap.compute(2, new BiFunction<Integer, String, String>() {
             @Override
             public String apply(Integer integer, String s) {
                 return s.concat("eaweqweqe");
             }
         });
-        String newMsg ="dasda";
-        stringHashMap.compute(3, (k,v) -> v==null ? newMsg : v.concat(newMsg));
+        String newMsg = "dasda";
+        stringHashMap.compute(3, (k, v) -> v == null ? newMsg : v.concat(newMsg));
     }
 
 
-    public void mapComputeIfAbsent(){
+    public void mapComputeIfAbsent() {
         stringHashMap.computeIfAbsent(2, new Function<Integer, String>() {
             @Override
             public String apply(Integer integer) {
@@ -137,7 +154,7 @@ public class JavaMap {
     }
 
 
-    public void mapComputeIfPresent(){
+    public void mapComputeIfPresent() {
 
     }
 

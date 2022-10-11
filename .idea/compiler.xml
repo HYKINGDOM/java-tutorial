@@ -14,6 +14,7 @@
         <module name="spring-boot-project-cache" />
         <module name="java-thread" />
         <module name="leetcode" />
+        <module name="spring-boot-project-bean" />
         <module name="java-common" />
         <module name="java-vavr" />
         <module name="spring-boot-project-async" />
@@ -33,6 +34,7 @@
     <bytecodeTargetLevel>
       <module name="LeetCode" target="14" />
       <module name="spring-boot-project" target="14" />
+      <module name="spring-boot-project-cache (1)" target="14" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
