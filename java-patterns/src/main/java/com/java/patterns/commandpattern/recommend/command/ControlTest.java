@@ -1,8 +1,8 @@
 package com.java.patterns.commandpattern.recommend.command;
 
 
-import com.java.util.javautil.patterns.commandpattern.recommend.device.Light;
-import com.java.util.javautil.patterns.commandpattern.recommend.device.Stereo;
+import com.java.patterns.commandpattern.recommend.device.Light;
+import com.java.patterns.commandpattern.recommend.device.Stereo;
 
 /**
  * 测试方法
