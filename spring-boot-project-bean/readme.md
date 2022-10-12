@@ -1,18 +1,17 @@
-# Getting Started
+从上面的执行结果可以看出，代码执行顺序符合 Bean 生命周期的执行顺序：
 
-### Reference Documentation
-For further reference, please consider the following sections:
+1. 实例化：为 Bean 分配内存空间；
+2. 设置属性：将当前类依赖的 Bean 属性，进行注入和装配；
+3. 初始化：
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.7.2/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.7.2/maven-plugin/reference/html/#build-image)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/2.7.2/reference/htmlsingle/#web)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/2.7.2/reference/htmlsingle/#using.devtools)
+    * 执行各种通知；
+    * 执行初始化的前置方法；
+    * 执行初始化方法；
+    * 执行初始化的后置方法。
 
-### Guides
-The following guides illustrate how to use some features concretely:
+4. 使用 Bean：在程序中使用 Bean 对象；
+5. 销毁 Bean：将 Bean 对象进行销毁操作。
 
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
+
+链接：https://juejin.cn/post/7139876540741287950
 
