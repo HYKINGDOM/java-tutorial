@@ -1,0 +1,101 @@
+package com.java.coco.utils.file.arrange;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static com.java.coco.utils.file.util.DirectorUtil.clearNullFileDir;
+import static com.java.coco.utils.file.util.FileNameUtils.formatFileNameHandle;
+import static com.java.coco.utils.file.util.FileNameUtils.rewriteFileName;
+import static com.java.coco.utils.file.util.FilesUtil.fileFromDirectoryToFiles;
+
+/**
+ * 模版模式整理文件夹
+ *
+ * @author HY
+ */
+public abstract class FileArrange {
+
+
+    public Map<String, List<File>> fileFromDirectoryToFiles = new HashMap<>();
+
+
+    public final void execute(String path, List<String> fileType) {
+
+        getAllFile(path);
+
+        fileMoveAndRenameHandle(fileType);
+
+        fileDetailHandle();
+
+        createFileHandle();
+
+        fileGroupHandle();
+
+        cleanNullDirector(path);
+
+    }
+
+    /**
+     * 获取文件下所有的文件
+     */
+    private void getAllFile(String path) {
+
+        fileFromDirectoryToFiles = fileFromDirectoryToFiles(path);
+
+    }
+
+    /**
+     * 按照类型整理文件放到root文件目录,如果重复就重命名
+     */
+    public void fileMoveAndRenameHandle(List<String> fileType) {
+        for (String typeStr : fileType) {
+            if (fileFromDirectoryToFiles.containsKey(typeStr)) {
+                List<File> files = fileFromDirectoryToFiles.get(typeStr);
+                for (File file : files) {
+                    System.out.println("修改前: " + file.getName());
+                    String rootPathFileName = formatFileNameHandle(file.getName());
+                    System.out.println("格式化文件名: " + rootPathFileName);
+                    rewriteFileName(file.getPath(), rootPathFileName);
+                    System.out.println("修改后: " + file.getName());
+                    System.out.println("====================");
+                }
+            }
+        }
+
+    }
+
+
+    /**
+     * 各不同类型的文件做特殊处理
+     */
+    public abstract void fileDetailHandle();
+
+
+    /**
+     * 创建文件夹
+     */
+    public void createFileHandle() {
+        System.out.println("创建文件夹");
+
+    }
+
+
+    /**
+     * 业务分类放到不同的文件夹
+     */
+    public void fileGroupHandle() {
+        System.out.println("业务分类放到不同的文件夹");
+    }
+
+
+    /**
+     * 清理空文件夹
+     */
+    private void cleanNullDirector(String path) {
+        System.out.println("清理空文件夹");
+        clearNullFileDir(path);
+    }
+
+}

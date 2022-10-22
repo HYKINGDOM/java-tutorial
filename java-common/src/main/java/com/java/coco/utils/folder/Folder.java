@@ -8,12 +8,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.java.coco.utils.file.FileTypeUtils.FILE_SYMBOL_LIST;
-import static com.java.coco.utils.folder.FolderUtil.folderDirectoryLists;
-
 public class Folder {
 
     private List<File> fileList = new ArrayList<>();
+
+    public static final List<String> FILE_SYMBOL_LIST = List.of(" ", "-", "@", "「", "」", "《", "》", "【", "】", "[", "]", "『"
+            , "』", "〖", "〗", "▌", "(", ")", "（", "）", "。", "“", "”", "，", "~", "#", "!", "！", "+", "=", "⊙");
 
 
     public static void main(String[] args) {

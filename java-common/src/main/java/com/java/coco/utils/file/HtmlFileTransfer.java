@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.java.coco.utils.file.FileTypeUtils.WEB_EXTENSION;
+import static com.java.coco.utils.file.constant.FileTypeConstant.WEB_EXTENSION;
 
 /**
  * @author HY

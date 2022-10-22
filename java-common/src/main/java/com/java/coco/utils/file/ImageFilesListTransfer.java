@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.java.coco.utils.file.FileTypeUtils.IMAGE_EXTENSION;
+import static com.java.coco.utils.file.constant.FileTypeConstant.IMAGE_EXTENSION;
 
 /**
  * @author HY

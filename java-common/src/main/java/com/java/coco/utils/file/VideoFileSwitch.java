@@ -10,9 +10,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static cn.hutool.core.io.FileUtil.rename;
 import static com.java.coco.utils.HalfAndFullConverseUtil.qj2bj;
-import static com.java.coco.utils.file.FileTypeUtils.VIDEO_EXTENSION;
-import static com.java.coco.utils.file.FileUtil.fileDirectoryLists;
+import static com.java.coco.utils.file.constant.FileTypeConstant.VIDEO_EXTENSION;
+import static com.java.coco.utils.file.util.FilesUtil.fileDirectoryLists;
 
 /**
  * @author HY
@@ -103,7 +104,7 @@ public class VideoFileSwitch {
                 rootPathFileName = qj2bj(rootPathFileName);
                 System.out.println("修改中: " + rootPathFileName);
                 fixFileName(rootPathFile.getPath(), rootPathFileName);
-                //rename(rootPathFile, rootPathFileName, true);
+                rename(rootPathFile, rootPathFileName, true);
                 System.out.println("修改后: " + rootPathFile.getName());
                 System.out.println("====================");
             }

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.java.coco.utils.file.FileTypeUtils.VIDEO_EXTENSION;
+import static com.java.coco.utils.file.constant.FileTypeConstant.VIDEO_EXTENSION;
 import static java.util.stream.Collectors.groupingBy;
 
 /**
