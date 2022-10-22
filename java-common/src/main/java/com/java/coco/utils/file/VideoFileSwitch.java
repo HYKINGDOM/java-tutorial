@@ -67,7 +67,7 @@ public class VideoFileSwitch {
             "UNCENSORED", "LEAKED", ".HD", "每日更新", "每日", "799DVD.COM", "606DVD.COM", "136DVD.COM", "136DVD.COM", "909DVD.COM", "132DVD.COM"
             , "FULIBUS.NET", "91视频", "91自拍", "国产自拍", "KiKi", "魔性论坛", "WWW.MOX.LIFE", "2048论坛BBS2048.ORG", "91大神猫先生千人斩之", "SEXFLEXVIDEO",
             "YONITALE.COM", "BBS2048.ORG", ".COM", "ONLYFANS", "EAPK.XYZ", "❤", "GUOCHAN2048", "ThZu.Cc", "[", "]", "", "【", "】", "8899XX.XYZ",
-            "jav20s8.com","guochan2048.com"};
+            "jav20s8.com", "guochan2048.com"};
 
     public static final List<String> CONSTANT_FILE_NAME_LIST = new ArrayList<>(Arrays.asList(CONSTANT_FILE_NAME_ARRAY));
 

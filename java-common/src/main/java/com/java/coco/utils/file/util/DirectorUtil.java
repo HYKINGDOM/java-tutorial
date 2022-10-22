@@ -4,7 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+
+import static com.java.coco.utils.file.constant.FileTypeConstant.getAllFileType;
 
 public class DirectorUtil {
 
@@ -31,13 +36,23 @@ public class DirectorUtil {
     }
 
 
-    public static void createDirector(String path) throws IOException {
+    public static void createDirector(String path, Map<String, List<File>> listMap) throws IOException {
+
+        Map<String, List<String>> allFileType = getAllFileType();
+
+        String rootPath = path + File.pathSeparator + "整理";
+
+        List<String> createFile = new ArrayList<>();
+
+        for (Map.Entry<String, List<String>> stringListEntry : allFileType.entrySet()) {
+            String key = stringListEntry.getKey();
+
+        }
+
         Files.createDirectories(Paths.get("I:\\data\\test1\\test2\\test3\\test4\\test5\\"));
         Files.write(Paths.get("I:\\data\\test1\\test2\\test2.log"), "hello".getBytes());
         Files.write(Paths.get("I:\\data\\test1\\test2\\test3\\test3.log"), "hello".getBytes());
     }
-
-
 
 
     public static void createMoreFiles() throws IOException {
