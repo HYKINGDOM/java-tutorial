@@ -1,5 +1,7 @@
 package com.java.coco.utils.file.util;
 
+import cn.hutool.core.io.FileTypeUtil;
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.RandomUtil;
 
 import java.io.File;
@@ -36,6 +38,32 @@ public class FileNameUtils {
         return newName;
     }
 
+    /**
+     * 修改文件
+     *
+     * @param toFile 需要修改的文件
+     * @return 已修改后的文件
+     */
+    public static File rewriteRandomFileName(File toFile) {
+
+
+        String type = FileTypeUtil.getType(toFile);
+
+        String randomName = getRandomFileName() + "." + type;
+
+        String rewriteFileName = renameFile(toFile.getPath(), randomName, toFile);
+
+        assert rewriteFileName != null;
+        File file = new File(rewriteFileName);
+        return FileUtil.rename(file, randomName, false);
+    }
+
+    public static File rewriteFileName(File toFile, String newFileName) {
+
+        String rewriteFileName = rewriteFileName(toFile.getPath(), newFileName);
+
+        return FileUtil.rename(toFile, rewriteFileName, false);
+    }
 
     /**
      * 通过文件路径直接修改文件名
@@ -58,6 +86,10 @@ public class FileNameUtils {
             newFileName = getRandomFileName();
         }
 
+        return renameFile(filePath, newFileName, file);
+    }
+
+    private static String renameFile(String filePath, String newFileName, File file) {
         String substring = newFileName.substring(newFileName.lastIndexOf("."));
         if (!substring.isEmpty()) {
             newFileName = newFileName.replace(substring, "");

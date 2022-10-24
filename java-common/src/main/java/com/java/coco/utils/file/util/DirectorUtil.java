@@ -1,13 +1,17 @@
 package com.java.coco.utils.file.util;
 
+import cn.hutool.core.io.file.PathUtil;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 import static com.java.coco.utils.file.constant.FileTypeConstant.getAllFileType;
 
@@ -36,22 +40,39 @@ public class DirectorUtil {
     }
 
 
-    public static void createDirector(String path, Map<String, List<File>> listMap) throws IOException {
+    public static Map<String, List<String>> createDirector(String path, Map<String, List<File>> listMap) {
 
         Map<String, List<String>> allFileType = getAllFileType();
 
-        String rootPath = path + File.pathSeparator + "整理";
+        String rootPath = path + File.separator + "整理";
 
-        List<String> createFile = new ArrayList<>();
+        List<String> createFilePath = new ArrayList<>();
+        createFilePath.add(rootPath);
+
+        Set<String> keySet = listMap.keySet();
 
         for (Map.Entry<String, List<String>> stringListEntry : allFileType.entrySet()) {
             String key = stringListEntry.getKey();
-
+            List<String> value = stringListEntry.getValue();
+            String curPath = rootPath + File.separator + key;
+            createFilePath.add(curPath);
+            for (String str : value) {
+                if (keySet.contains(str)) {
+                    String curPathNext = curPath + File.separator + str;
+                    createFilePath.add(curPathNext);
+                }
+            }
         }
 
-        Files.createDirectories(Paths.get("I:\\data\\test1\\test2\\test3\\test4\\test5\\"));
-        Files.write(Paths.get("I:\\data\\test1\\test2\\test2.log"), "hello".getBytes());
-        Files.write(Paths.get("I:\\data\\test1\\test2\\test3\\test3.log"), "hello".getBytes());
+        for (String createPath : createFilePath) {
+            Path filePath = Paths.get(createPath);
+            if (!PathUtil.exists(filePath, false)) {
+                PathUtil.mkdir(filePath);
+                System.out.println("文件夹创建成功: " + createPath);
+            }
+        }
+
+        return allFileType;
     }
 
 

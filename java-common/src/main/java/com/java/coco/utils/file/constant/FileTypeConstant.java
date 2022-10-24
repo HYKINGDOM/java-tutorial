@@ -32,7 +32,6 @@ public class FileTypeConstant {
 
 
     public static Map<String, List<String>> getAllFileType() {
-        List<String> list = new ArrayList<>();
         Map<String, List<String>> listMap = new HashMap<>(16);
         listMap.put("图片", List.of(IMAGE_EXTENSION));
         listMap.put("视频", List.of(VIDEO_EXTENSION));
@@ -42,14 +41,15 @@ public class FileTypeConstant {
         listMap.put("种子", List.of(TORRENT_EXTENSION));
         listMap.put("压缩文件", List.of(ZIP_EXTENSION));
 
-        list.addAll(List.of(IMAGE_EXTENSION));
-        list.addAll(List.of(VIDEO_EXTENSION));
-        list.addAll(List.of(DOC_EXTENSION));
-        list.addAll(List.of(WEB_EXTENSION));
-        list.addAll(List.of(TXT_EXTENSION));
-        list.addAll(List.of(TORRENT_EXTENSION));
-        list.addAll(List.of(ZIP_EXTENSION));
-        listMap.put("其他", list);
+//        List<String> list = new ArrayList<>();
+//        list.addAll(List.of(IMAGE_EXTENSION));
+//        list.addAll(List.of(VIDEO_EXTENSION));
+//        list.addAll(List.of(DOC_EXTENSION));
+//        list.addAll(List.of(WEB_EXTENSION));
+//        list.addAll(List.of(TXT_EXTENSION));
+//        list.addAll(List.of(TORRENT_EXTENSION));
+//        list.addAll(List.of(ZIP_EXTENSION));
+        listMap.put("其他", Lists.newArrayList());
 
         return listMap;
     }

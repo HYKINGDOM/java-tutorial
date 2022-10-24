@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import static com.java.coco.utils.file.util.DirectorUtil.clearNullFileDir;
+import static com.java.coco.utils.file.util.DirectorUtil.createDirector;
+import static com.java.coco.utils.file.util.FileMoveUtil.moveFileToTargetIndex;
 import static com.java.coco.utils.file.util.FileNameUtils.formatFileNameHandle;
 import static com.java.coco.utils.file.util.FileNameUtils.rewriteFileName;
 import static com.java.coco.utils.file.util.FilesUtil.fileFromDirectoryToFiles;
@@ -20,8 +22,13 @@ public abstract class FileArrange {
 
     public Map<String, List<File>> fileFromDirectoryToFiles = new HashMap<>();
 
+    private String rootPath;
+
+    private Map<String, List<String>> arrangeDirector = new HashMap<>();
 
     public final void execute(String path, List<String> fileType) {
+
+        rootPath = path;
 
         getAllFile(path);
 
@@ -29,7 +36,7 @@ public abstract class FileArrange {
 
         fileDetailHandle();
 
-        createFileHandle();
+        createFileHandle(path);
 
         fileGroupHandle();
 
@@ -57,13 +64,15 @@ public abstract class FileArrange {
                     System.out.println("修改前: " + file.getName());
                     String rootPathFileName = formatFileNameHandle(file.getName());
                     System.out.println("格式化文件名: " + rootPathFileName);
-                    rewriteFileName(file.getPath(), rootPathFileName);
+                    rewriteFileName(file, rootPathFileName);
                     System.out.println("修改后: " + file.getName());
+                    moveFileToTargetIndex(rootPath, file);
                     System.out.println("====================");
                 }
             }
         }
-
+        //重新加载文件路径
+        getAllFile(rootPath);
     }
 
 
@@ -76,9 +85,9 @@ public abstract class FileArrange {
     /**
      * 创建文件夹
      */
-    public void createFileHandle() {
+    public void createFileHandle(String path) {
         System.out.println("创建文件夹");
-
+        arrangeDirector = createDirector(path, fileFromDirectoryToFiles);
     }
 
 
@@ -87,6 +96,12 @@ public abstract class FileArrange {
      */
     public void fileGroupHandle() {
         System.out.println("业务分类放到不同的文件夹");
+
+
+        for (Map.Entry<String, List<File>> stringListEntry : fileFromDirectoryToFiles.entrySet()) {
+
+        }
+
     }
 
 
