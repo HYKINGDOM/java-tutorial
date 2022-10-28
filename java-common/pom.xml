@@ -23,6 +23,32 @@
 
     <dependencies>
 
+
+        <!-- https://mvnrepository.com/artifact/org.apache.james/apache-mime4j -->
+        <dependency>
+            <groupId>org.apache.james</groupId>
+            <artifactId>apache-mime4j</artifactId>
+            <version>0.8.7</version>
+            <type>pom</type>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.apache.james/apache-mime4j-core -->
+        <dependency>
+            <groupId>org.apache.james</groupId>
+            <artifactId>apache-mime4j-core</artifactId>
+            <version>0.8.7</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.apache.james/apache-mime4j-dom -->
+        <dependency>
+            <groupId>org.apache.james</groupId>
+            <artifactId>apache-mime4j-dom</artifactId>
+            <version>0.8.7</version>
+        </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/org.bytedeco/javacv-platform -->
         <dependency>
             <groupId>org.bytedeco</groupId>
