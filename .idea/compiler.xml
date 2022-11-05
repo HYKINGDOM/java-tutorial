@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="java-spi" />
+        <module name="spring-boot-project-template" />
         <module name="spring-boot-h2" />
         <module name="java-domain-driver-design" />
         <module name="java-function" />

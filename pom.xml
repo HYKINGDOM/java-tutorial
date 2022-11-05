@@ -30,6 +30,7 @@
         <module>spring-boot-project-async</module>
         <module>spring-boot-project-cache</module>
         <module>spring-boot-project-bean</module>
+        <module>spring-boot-project-template</module>
         <module>java-spi</module>
         <module>business-data</module>
     </modules>
