@@ -9,28 +9,29 @@
         <outputRelativeToContentRoot value="true" />
         <module name="java-spi" />
         <module name="spring-boot-project-template" />
-        <module name="spring-boot-h2" />
         <module name="java-domain-driver-design" />
         <module name="java-function" />
+        <module name="spring-boot-project-bean" />
+        <module name="java-vavr" />
+        <module name="spring-boot-mysql" />
+        <module name="business-data" />
+        <module name="java-benchmark" />
+        <module name="spring-boot-transactional" />
+        <module name="java-unit-test" />
+        <module name="interview-code" />
+        <module name="spring-boot-h2" />
         <module name="spring-boot-project-cache" />
         <module name="java-thread" />
         <module name="leetcode" />
-        <module name="spring-boot-project-bean" />
+        <module name="spring-boot-project-schedule-job" />
         <module name="java-common" />
-        <module name="java-vavr" />
         <module name="spring-boot-project-async" />
-        <module name="spring-boot-mysql" />
         <module name="spring-boot-project-event" />
-        <module name="business-data" />
-        <module name="java-benchmark" />
         <module name="java-patterns" />
         <module name="java-mapstruct" />
-        <module name="spring-boot-transactional" />
-        <module name="java-unit-test" />
         <module name="java-database" />
         <module name="spring-boot-mongodb" />
         <module name="java-validate" />
-        <module name="interview-code" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

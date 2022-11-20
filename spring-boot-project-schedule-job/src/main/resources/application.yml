@@ -1,0 +1,7 @@
+server:
+  port: 8768
+
+#logging:
+#  level:
+#    com.java.tutorial.project: info
+#    org.springframework: info

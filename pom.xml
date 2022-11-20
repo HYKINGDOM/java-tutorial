@@ -33,6 +33,7 @@
         <module>spring-boot-project-template</module>
         <module>java-spi</module>
         <module>business-data</module>
+        <module>spring-boot-project-schedule-job</module>
     </modules>
 
     <properties>
@@ -110,7 +111,7 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.8.6</version>
+            <version>5.8.9</version>
         </dependency>
 
         <dependency>
