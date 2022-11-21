@@ -34,8 +34,8 @@ public class ThreadLocalAsyncController {
 
     @RequestMapping("/testThreadLocalAsyncThreadLocal")
     public String testThreadLocalAsyncThreadLocal() {
-        log.info("我是Controller层testThreadLocalAsyncThreadLocal处理线程，线程名：{}", Thread.currentThread().getName());
         String traceId = TraceIDUtil.getTraceId();
+        log.info("我是Controller层testThreadLocalAsyncThreadLocal处理线程，线程名：{}", Thread.currentThread().getName());
         log.info(" TraceIDUtil的值为：" + traceId);
         threadLocalAsyncService.testThreadLocalAsyncThreadLocal();
         return traceId;

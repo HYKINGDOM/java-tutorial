@@ -2,7 +2,6 @@ package com.java.tutorial.project.schedule;
 
 import com.java.tutorial.project.util.TraceIDUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.MDC;
 
 
 @Slf4j
@@ -24,11 +23,11 @@ public class ScheduleRunnable implements Runnable {
     @Override
     public void run() {
         try {
-            TraceIDUtil.setTraceIdByTransmittableThreadLocal();
+            String traceId = TraceIDUtil.getTraceId();
             Thread.sleep(5000L);
             log.info("任务线程： {}, 任务执行结束,TraceId: {}, beanName： {}, params： {}, methodName： {}",
                     Thread.currentThread().getName(),
-                    TraceIDUtil.getTraceId(),
+                    traceId,
                     target,
                     params,
                     method);

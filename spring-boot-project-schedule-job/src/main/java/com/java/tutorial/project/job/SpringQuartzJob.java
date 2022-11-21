@@ -7,6 +7,8 @@ import com.java.tutorial.project.util.SpringUtils;
 import com.java.tutorial.project.util.TraceIDUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.JobExecutionContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 import org.springframework.util.StopWatch;
@@ -23,7 +25,15 @@ public class SpringQuartzJob extends QuartzJobBean {
     //private Executor executor = SpringUtils.getBean("ttlThreadServiceMDCExecutor");
 
 
-    private ThreadPoolTaskExecutor executor = SpringUtils.getBean("threadPoolTaskExecutor");
+    @Autowired
+    @Qualifier(value = "ttlThreadMDCExecutor")
+    private Executor executor;
+
+
+//    @Autowired
+//    @Qualifier(value = "threadPoolTaskExecutor")
+//    private ThreadPoolTaskExecutor executor;
+
 
     @Override
     protected void executeInternal(JobExecutionContext context) {
