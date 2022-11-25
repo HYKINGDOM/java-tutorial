@@ -2,7 +2,7 @@ package com.java.tutorial.tool.domain;
 
 
 import com.alibaba.fastjson2.JSONObject;
-import com.java.tutorial.tool.util.TraceIDUtil;
+import com.java.coco.utils.TraceIDUtil;
 
 import java.time.LocalDateTime;
 
@@ -16,6 +16,7 @@ public class MessageDtoBuilder {
     /**
      * 设置消息生产端的对象并返回
      * 构建过程中设置TraceID
+     *
      * @param businessId
      * @param payload
      * @param version
@@ -35,6 +36,7 @@ public class MessageDtoBuilder {
     /**
      * 将消息的消费端接收的消息进行转换
      * 转换过程中设置TraceID
+     *
      * @param messageObject
      * @return
      */

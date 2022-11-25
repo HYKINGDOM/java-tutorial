@@ -1,11 +1,7 @@
-package com.java.coco.utils.bean.mapstruct;
-
+package com.java.mapstruct.mapstruct;
 
 
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
-import org.springframework.stereotype.Component;
 
 /**
  * @author HY

@@ -21,11 +21,10 @@
 
 	<dependencies>
 
-		<!-- https://mvnrepository.com/artifact/com.alibaba/transmittable-thread-local -->
 		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>transmittable-thread-local</artifactId>
-			<version>2.14.2</version>
+			<groupId>com.java.coco</groupId>
+			<artifactId>java-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.alibaba.fastjson2/fastjson2 -->

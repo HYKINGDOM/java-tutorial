@@ -1,4 +1,4 @@
-package com.java.coco.utils.bean.mapstruct;
+package com.java.mapstruct.mapstruct;
 
 import lombok.Data;
 

@@ -1,7 +1,7 @@
-package com.java.tutorial.project.util;
+package com.java.coco.utils;
 
-public class InheritableThreadLocalUtil {
-    public static final InheritableThreadLocal<String> THREAD_LOCAL = new InheritableThreadLocal<>();
+public class ThreadLocalUtil {
+    public static final ThreadLocal<String> THREAD_LOCAL = new ThreadLocal<>();
     //设置线程需要保存的值
     public static void setValue (String str) {
         THREAD_LOCAL.set(str);

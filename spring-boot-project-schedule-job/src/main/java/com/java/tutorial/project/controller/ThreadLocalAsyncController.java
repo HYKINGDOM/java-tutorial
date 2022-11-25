@@ -2,8 +2,6 @@ package com.java.tutorial.project.controller;
 
 
 import com.java.tutorial.project.service.ThreadLocalAsyncService;
-import com.java.tutorial.project.util.InheritableThreadLocalUtil;
-import com.java.tutorial.project.util.TraceIDUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

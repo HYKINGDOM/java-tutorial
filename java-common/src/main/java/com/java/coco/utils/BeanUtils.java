@@ -1,4 +1,4 @@
-package com.java.coco.utils.bean.mapstruct;
+package com.java.coco.utils;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;

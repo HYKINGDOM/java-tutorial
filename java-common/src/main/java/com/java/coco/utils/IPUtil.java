@@ -1,4 +1,4 @@
-package com.java.tutorial.tool.util;
+package com.java.coco.utils;
 
 import lombok.extern.slf4j.Slf4j;
 

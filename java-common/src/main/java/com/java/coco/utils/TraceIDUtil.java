@@ -1,4 +1,4 @@
-package com.java.tutorial.project.util;
+package com.java.coco.utils;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
 import lombok.extern.slf4j.Slf4j;

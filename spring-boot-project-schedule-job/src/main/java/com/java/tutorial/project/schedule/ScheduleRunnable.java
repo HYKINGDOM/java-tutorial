@@ -1,6 +1,6 @@
 package com.java.tutorial.project.schedule;
 
-import com.java.tutorial.project.util.TraceIDUtil;
+import com.java.coco.utils.TraceIDUtil;
 import lombok.extern.slf4j.Slf4j;
 
 
