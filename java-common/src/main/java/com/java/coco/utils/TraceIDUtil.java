@@ -52,12 +52,18 @@ public class TraceIDUtil {
         log.info("current thread of ttlTraceId: {}, traceId: {}", ttlTraceId, traceId);
         if (StringUtils.isEmpty(traceId) && StringUtils.isEmpty(ttlTraceId)) {
             traceId = createTraceId();
+            ttlTraceId = traceId;
             setTraceIdToMdc(traceId);
-            setTraceIdToTtl(traceId);
+            setTraceIdToTtl(ttlTraceId);
         } else if (!StringUtils.isEmpty(traceId) && StringUtils.isEmpty(ttlTraceId)) {
+            ttlTraceId = traceId;
             setTraceIdToTtl(traceId);
         } else if (StringUtils.isEmpty(traceId) && !StringUtils.isEmpty(ttlTraceId)) {
             traceId = ttlTraceId;
+            setTraceIdToMdc(ttlTraceId);
+        }
+
+        if (!ttlTraceId.equals(traceId)){
             setTraceIdToMdc(ttlTraceId);
         }
 

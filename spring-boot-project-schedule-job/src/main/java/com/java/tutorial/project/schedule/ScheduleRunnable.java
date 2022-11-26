@@ -25,7 +25,7 @@ public class ScheduleRunnable implements Runnable {
         try {
             String traceId = TraceIDUtil.getTraceId();
             Thread.sleep(5000L);
-            log.info("任务线程： {}, 任务执行结束,TraceId: {}, beanName： {}, params： {}, methodName： {}",
+            log.info("子任务线程： {}, 子任务执行结束,TraceId: {}, beanName： {}, params： {}, methodName： {}",
                     Thread.currentThread().getName(),
                     traceId,
                     target,

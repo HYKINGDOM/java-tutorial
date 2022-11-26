@@ -85,10 +85,10 @@ public class ThreadPoolConfig {
 
     @Bean(name = "ttlThreadMDCExecutor")
     public Executor ttlThreadServiceMDCExecutor() {
-        String threadNamePrefix = "Thread-Executor-Pool-%d";
+        String threadNamePrefix = "Thread-Executor-MDC-Pool-";
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
-        taskExecutor.setCorePoolSize(CORE_POOL_SIZE);
-        taskExecutor.setMaxPoolSize(MAX_POOL_SIZE);
+        taskExecutor.setCorePoolSize(2);
+        taskExecutor.setMaxPoolSize(3);
         taskExecutor.setKeepAliveSeconds(KEEP_ALIVE_TIME);
         taskExecutor.setQueueCapacity(QUEUE_CAPACITY);
         taskExecutor.setThreadNamePrefix(threadNamePrefix);

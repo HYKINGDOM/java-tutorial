@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.quartz.JobExecutionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 import org.springframework.util.StopWatch;
 
@@ -23,30 +24,31 @@ public class SpringQuartzJob extends QuartzJobBean {
     //private Executor executor = SpringUtils.getBean("ttlThreadServiceMDCExecutor");
 
 
-    @Autowired
-    @Qualifier(value = "ttlThreadMDCExecutor")
-    private Executor executor;
-
-
 //    @Autowired
-//    @Qualifier(value = "threadPoolTaskExecutor")
-//    private ThreadPoolTaskExecutor executor;
+//    @Qualifier(value = "ttlThreadMDCExecutor")
+//    private Executor executor;
+
+
+    @Autowired
+    @Qualifier(value = "threadPoolTaskExecutor")
+    private ThreadPoolTaskExecutor executor;
 
 
     @Override
     protected void executeInternal(JobExecutionContext context) {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
-        log.info("准备循环开始执行任务, traceID: {}", TraceIDUtil.getTraceId());
+        log.info("准备循环开始执行定时任务, traceID: {}", TraceIDUtil.getTraceId());
         context.getJobDetail().getJobDataMap().forEach(
                 (k, v) -> {
-                    for (int i = 0; i < 2; i++) {
+                    for (int i = 0; i < 3; i++) {
                         extracted(getSysJobLog(), k, v);
                     }
                 }
         );
         stopWatch.stop();
         log.info("循环定时任务执行结束，执行时间: " + stopWatch.getLastTaskTimeMillis());
+        TraceIDUtil.clearTraceId();
     }
 
     private static SysJobLog getSysJobLog() {

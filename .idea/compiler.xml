@@ -7,7 +7,6 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="java-spi" />
         <module name="spring-boot-project-template" />
         <module name="java-domain-driver-design" />
         <module name="java-function" />
@@ -35,6 +34,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="java-spi" target="14" />
       <module name="LeetCode" target="14" />
       <module name="spring-boot-project" target="14" />
       <module name="spring-boot-project-cache (1)" target="14" />
