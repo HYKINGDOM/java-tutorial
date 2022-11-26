@@ -1,0 +1,63 @@
+version: '3'
+services:
+  rocketmq-name-server:
+    image: rocketmqinc/rocketmq
+    container_name: rocketmq-name-server
+    environment:
+      - "MAX_POSSIBLE_HEAP=100000000"
+      - "JAVA_OPTS= -server -Xms1024m -Xmx1024m -Xmn1024m -XX:MetaspaceSize=512m -XX:MaxMetaspaceSize=320m"
+    volumes:
+      - ./docker/rocketmq/nameserver/logs:/root/logs
+      - ./docker/rocketmq/nameserver/store:/root/store
+    ports:
+      - "9876:9876"
+    command: /bin/bash -c "/opt/rocketmq-4.4.0/bin/mqnamesrv"
+    restart: always
+    privileged: true
+    network_mode: bridge
+
+  rocketmq-broker:
+    depends_on:
+      - rocketmq-name-server
+    links:
+      - rocketmq-name-server
+    image: rocketmqinc/rocketmq
+    container_name: rocketmq-broker
+    volumes:
+      - ./docker/rocketmq/broker/data/logs:/root/logs
+      - ./docker/rocketmq/broker/data/store:/root/store
+      - ./docker/rocketmq/broker/conf:/opt/docker/rocketmq
+    command: /bin/bash -c "/opt/rocketmq-4.4.0/bin/mqbroker"
+    environment:
+      - "NAMESRV_ADDR=rocketmq-name-server:9876"
+      - "MAX_POSSIBLE_HEAP=200000000"
+    ports:
+      - "10911:10911"
+      - "10909:10909"
+    restart: always
+    privileged: true
+    network_mode: bridge
+
+  rocketmq-admin:
+    depends_on:
+      - rocketmq-name-server
+      - rocketmq-broker
+    links:
+      - rocketmq-name-server
+    image: pangliang/rocketmq-console-ng
+    container_name: rocketmq-admin
+    environment:
+      - "NAMESRV_ADDR=rocketmq-name-server:9876"
+      - "JAVA_OPTS=-Drocketmq.namesrv.addr=rocketmq-name-server:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false"
+    ports:
+      - "8080:8080"
+    restart: always
+    privileged: true
+    network_mode: bridge
+#    networks:
+#      - custom-service
+
+#
+#networks:
+#  custom-service:
+#    driver: custom-services-1

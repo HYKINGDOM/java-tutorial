@@ -1,0 +1,42 @@
+version: '3'
+services:
+  mysql-master:
+    container_name: mysql-master
+    image: mysql
+    command:
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --explicit_defaults_for_timestamp=true
+      --lower_case_table_names=1
+      --max_allowed_packet=128M
+      --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      TZ: Asia/Shanghai
+    restart: always
+    privileged: true
+    ports:
+      - "3339:3306"
+    network_mode: bridge
+
+  nacos-server:
+    image: nacos/nacos-server
+    container_name: nacos-server
+    depends_on:
+      - mysql-master
+    ports:
+      - "8848:8848"
+      - "9555:9555"
+    restart: always
+    environment:
+      MODE: standalone
+      SPRING_DATASOURCE_PLATFORM: mysql-master
+      MYSQL_SERVICE_HOST: mysql-master
+      NACOS_APPLICATION_PORT: 8848
+      MYSQL_SERVICE_DB_NAME: nacos_config
+      MYSQL_SERVICE_USER: root
+      MYSQL_SERVICE_PASSWORD: root
+    volumes:
+      - ./cluster-logs/nacos1:/home/nacos/logs
+      - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
+    network_mode: bridge

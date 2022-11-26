@@ -1,0 +1,13 @@
+#
+# ** THIS IS AN AUTO-GENERATED FILE **
+#
+i18n.locale: "zh-CN"
+xpack.spaces.enabled: false
+
+# Default Kibana configuration for docker target
+server.name: kibana
+server.host: "0"
+elasticsearch.hosts: ["http://192.168.31.154:9200"]
+monitoring.ui.container.elasticsearch.enabled: true
+xpack.reporting.capture.browser.chromium.disableSandbox: false
+xpack.reporting.encryptionKey: "122333444455555666666777777788888888"

@@ -1,0 +1,75 @@
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /usr/share/filebeat/logs/*.log
+    fields:
+       type: kscs-crm #输出的index索引
+    multiline.type: pattern
+    multiline.pattern: '^\d{4}'
+    multiline.negate: true
+    multiline.match: after
+    multiline.max_lines：:  500
+    tags: ['es-java']
+
+#  - type: log
+#    enabled: true
+#    paths:
+#      - /usr/share/filebeat/logs/kscs-system/*.log
+#    fields:
+#       type: kscs-system #输出的index索引
+#    multiline.type: pattern
+#    multiline.pattern: '^\d{4}'
+#    multiline.negate: true
+#    multiline.match: after
+#    multiline.max_lines：:  500
+#    tags: ["es-java"]
+
+setup.kibana.host: "http://192.168.31.154:5601"
+setup.dashboards.enabled: true
+
+filebeat.config.modules:
+  # Glob pattern for configuration loading
+  path: ${path.config}/modules.d/*.yml
+
+  # Set to true to enable config reloading
+  reload.enabled: false
+
+
+output.elasticsearch:
+  hosts: ["192.168.31.154:9200"]
+  indices:
+    - index: "ai_nginx_%{[agent.version]}-%{+yyyy.MM.dd}"
+      when.contains:
+        tags: "nginx"
+    - index: "es-java-%{[agent.version]}-%{+yyyy.MM.dd}"
+      when.contains:
+        tags: "es-java"
+
+##filebeat.inputs:
+#- type: log
+#  enabled: true
+#  paths:
+#     - /var/logs/xxxxx-service/info.log #修改为对应服务的日志地址
+#  fields:
+#     type: xxxxx-service-dev #输出的index索引
+#- type: log
+#  enabled: true
+#  paths:
+#     - /var/logs/yyyyyy-service/info*.log
+#  fields:
+#     type: yyyyyy-service-dev
+#setup.template.settings:
+#  index.number_of_shards: 1
+#filebeat.config.modules:
+#  path: ${path.config}/modules.d/*.yml
+#  reload.enabled: false
+#output.logstash:
+#  hosts: ["logstash_ip:5044"]
+#  ssl.certificate_authorities: ["/etc/filebeat/logstash-beats.crt"]
+#processors:
+#  - add_host_metadata:
+#      when.not.contains.tags: forwarded
+#  - add_cloud_metadata: ~
+#  - add_docker_metadata: ~
+#  - add_kubernetes_metadata: ~
