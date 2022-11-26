@@ -33,6 +33,7 @@
         <module>spring-boot-project-template</module>
         <module>business-data</module>
         <module>spring-boot-project-schedule-job</module>
+        <module>spring-boot-project-drools</module>
     </modules>
 
     <properties>
@@ -45,10 +46,6 @@
     </properties>
 
     <dependencies>
-
-
-
-
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -87,10 +84,7 @@
             <version>2.0.19</version>
         </dependency>
 
-
-
         <!-- 测试依赖 -->
-
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -135,7 +129,50 @@
 
     </dependencies>
 
+<!--        <repositories>-->
+<!--            <repository>-->
+<!--                <id>alimaven</id>-->
+<!--                <name>aliyun maven</name>-->
+<!--                <url>http://maven.aliyun.com/nexus/content/groups/public/</url>-->
+<!--            </repository>-->
+
+<!--            <repository>-->
+<!--                <id>activiti-repos2</id>-->
+<!--                <name>Activiti Repository 2</name>-->
+<!--                <url>https://app.camunda.com/nexus/content/groups/public</url>-->
+<!--            </repository>-->
+<!--            <repository>-->
+<!--                <id>springsource-repos</id>-->
+<!--                <name>SpringSource Repository</name>-->
+<!--                <url>http://repo.spring.io/release/</url>-->
+<!--            </repository>-->
+
+
+<!--            <repository>-->
+<!--                <id>central-repos</id>-->
+<!--                <name>Central Repository</name>-->
+<!--                <url>http://repo.maven.apache.org/maven2</url>-->
+<!--            </repository>-->
+
+
+<!--            <repository>-->
+<!--                <id>activiti-repos</id>-->
+<!--                <name>Activiti Repository</name>-->
+<!--                <url>https://maven.alfresco.com/nexus/content/groups/public</url>-->
+<!--            </repository>-->
+
+<!--            <repository>-->
+<!--                <id>oschina-repos</id>-->
+<!--                <name>Oschina Releases</name>-->
+<!--                <url>http://maven.oschina.net/content/groups/public</url>-->
+<!--            </repository>-->
+
+
+<!--        </repositories>-->
+
+
     <build>
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
