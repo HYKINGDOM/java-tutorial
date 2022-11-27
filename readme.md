@@ -10,3 +10,8 @@
 * vavr
 * async
 * thread
+
+##### xml
+
+
+    "dynamic.classpath": "true",

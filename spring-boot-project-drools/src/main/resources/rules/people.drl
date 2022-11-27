@@ -1,0 +1,14 @@
+package com.java.tutorial.project.domain
+
+import com.java.tutorial.project.domain.People
+import com.java.tutorial.project.rule.PeopleRuleAction
+
+dialect  "java"
+
+rule "man"
+    when
+        $p : People(sex == 1 && drlType == "people")
+    then
+        PeopleRuleAction.doParse($p, drools.getRule());
+        System.out.println($p.getName() + "是男孩");
+end
