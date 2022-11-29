@@ -40,10 +40,10 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-boot-starter-version>2.7.3</spring-boot-starter-version>
-        <spring-boot-starter-web>2.7.2</spring-boot-starter-web>
-        <spring-boot-devtools>2.7.2</spring-boot-devtools>
-        <spring-boot-starter-test>2.7.2</spring-boot-starter-test>
+        <spring-boot-starter-version>2.7.5</spring-boot-starter-version>
+        <spring-boot-starter-web>2.7.5</spring-boot-starter-web>
+        <spring-boot-devtools>2.7.5</spring-boot-devtools>
+        <spring-boot-starter-test>2.7.5</spring-boot-starter-test>
     </properties>
 
     <dependencies>
@@ -173,7 +173,6 @@
 
 
     <build>
-
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
