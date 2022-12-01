@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.ItemProcessListener;
 
 /**
- * ItemProcessListener和ItemReadListener类似，是围绕着ItemProcessor进行处理的
+ * ItemProcessListener和ItemReadListener类似，processor
  *
  * @author hy
  */
