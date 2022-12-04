@@ -5,9 +5,11 @@ import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.annotation.format.DateTimeFormat;
 import com.alibaba.excel.annotation.format.NumberFormat;
 import com.alibaba.excel.annotation.write.style.ColumnWidth;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.java.tutorial.project.config.GenderConverter;
 import lombok.Data;
-import org.apache.poi.hpsf.Date;
+
+import java.util.Date;
 
 
 /**
@@ -35,6 +37,7 @@ public class UserDO {
     @ExcelProperty("生日")
     @ColumnWidth(20)
     @DateTimeFormat("yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
     private Date birthday;
 
     @ExcelProperty("手机号")
