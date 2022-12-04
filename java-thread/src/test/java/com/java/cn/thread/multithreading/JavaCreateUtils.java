@@ -1,7 +1,7 @@
 package com.java.cn.thread.multithreading;
 
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.UUID;
