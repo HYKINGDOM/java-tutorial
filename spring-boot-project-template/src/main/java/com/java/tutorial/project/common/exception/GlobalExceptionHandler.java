@@ -1,5 +1,9 @@
 package com.java.tutorial.project.common.exception;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import lombok.val;
+import org.springframework.boot.json.GsonJsonParser;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -27,7 +31,8 @@ public class GlobalExceptionHandler {
         Map<String, Object> objectObjectHashMap = new HashMap<>(2);
         objectObjectHashMap.put("code", "500");
         objectObjectHashMap.put("data", collect);
-        return gsonFormat.toJson(objectObjectHashMap);
+        val gsonJsonParser = new Gson();
+        return gsonJsonParser.toJson(objectObjectHashMap);
     }
 
 

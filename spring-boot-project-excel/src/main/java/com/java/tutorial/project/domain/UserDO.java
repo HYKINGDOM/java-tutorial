@@ -34,7 +34,7 @@ public class UserDO {
 
     @ExcelProperty("生日")
     @ColumnWidth(20)
-    @DateTimeFormat("yyyy-MM-dd")
+    @DateTimeFormat("yyyy-MM-dd HH:mm:ss")
     private Date birthday;
 
     @ExcelProperty("手机号")
