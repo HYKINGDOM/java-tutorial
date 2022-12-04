@@ -35,6 +35,7 @@
         <module>spring-boot-project-schedule-job</module>
         <module>spring-boot-project-drools</module>
         <module>spring-boot-project-batch</module>
+        <module>spring-boot-project-excel</module>
     </modules>
 
     <properties>

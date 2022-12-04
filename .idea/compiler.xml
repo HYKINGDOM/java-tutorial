@@ -16,6 +16,7 @@
         <module name="business-data" />
         <module name="spring-boot-project-drools" />
         <module name="java-benchmark" />
+        <module name="spring-boot-project-excel" />
         <module name="spring-boot-transactional" />
         <module name="java-unit-test" />
         <module name="interview-code" />

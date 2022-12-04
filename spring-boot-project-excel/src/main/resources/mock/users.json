@@ -1,0 +1,52 @@
+[
+  {
+    "id": 91,
+    "username": "test_670135c29bbc",
+    "password": "test_24e7c7e0999b",
+    "nickname": "test_6652b53e2198",
+    "birthday": "2031-03-23 23:52:13",
+    "phone": "test_6c0366f0b5a9",
+    "height": 34.84,
+    "gender": 42
+  },
+  {
+    "id": 94,
+    "username": "test_60a74abb0c61",
+    "password": "test_c072cc612992",
+    "nickname": "test_359abfb585ed",
+    "birthday": "2016-06-09 07:12:16",
+    "phone": "test_9bcf17aa8c5d",
+    "height": 47.16,
+    "gender": 66
+  },
+  {
+    "id": 32,
+    "username": "test_655e5762a72e",
+    "password": "test_2016feb45177",
+    "nickname": "test_c42132242412",
+    "birthday": "2021-10-07 05:17:10",
+    "phone": "test_ee38e039d0d6",
+    "height": 53.21,
+    "gender": 89
+  },
+  {
+    "id": 39,
+    "username": "test_09e1e37ccb32",
+    "password": "test_10b0314b4ad1",
+    "nickname": "test_cd7fb844fd19",
+    "birthday": "2014-05-16 11:50:36",
+    "phone": "test_bcb3ba04ca53",
+    "height": 54.07,
+    "gender": 90
+  },
+  {
+    "id": 64,
+    "username": "test_d26fcb154729",
+    "password": "test_5cebafbc8ef4",
+    "nickname": "test_20ee99ac3dda",
+    "birthday": "2017-07-27 11:50:21",
+    "phone": "test_23458623197c",
+    "height": 49.27,
+    "gender": 98
+  }
+]
