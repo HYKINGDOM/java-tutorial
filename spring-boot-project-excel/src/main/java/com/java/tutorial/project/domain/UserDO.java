@@ -7,8 +7,8 @@ import com.alibaba.excel.annotation.format.NumberFormat;
 import com.alibaba.excel.annotation.write.style.ColumnWidth;
 import com.java.tutorial.project.config.GenderConverter;
 import lombok.Data;
+import org.apache.poi.hpsf.Date;
 
-import java.util.Date;
 
 /**
  * 用户信息

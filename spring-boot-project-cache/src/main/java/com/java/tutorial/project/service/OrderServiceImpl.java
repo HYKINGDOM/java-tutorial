@@ -18,12 +18,11 @@ public class OrderServiceImpl implements OrderService {
     @DoubleCache(cacheName = "order", key = "#id",
             type = CacheType.FULL)
     public Order getOrderById(Long id) {
-        Order myOrder = new Order();
-        return myOrder;
+        return Order.builder().id(id).build();
     }
 
     @Override
-    @DoubleCache(cacheName = "order",key = "#order.id",
+    @DoubleCache(cacheName = "order", key = "#order.id",
             type = CacheType.PUT)
     public Order updateOrder(Order order) {
 
@@ -31,16 +30,15 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    @DoubleCache(cacheName = "order",key = "#id",
+    @DoubleCache(cacheName = "order", key = "#id",
             type = CacheType.DELETE)
     public void deleteOrder(Long id) {
 
     }
 
     @Override
-    @DoubleCache(cacheName = "order",key = "#id")
-    public Order getOrderByIdAndStatus(Long id,Integer status) {
-        Order myOrder = new Order();
-        return myOrder;
+    @DoubleCache(cacheName = "order", key = "#id")
+    public Order getOrderByIdAndStatus(Long id, Integer status) {
+        return Order.builder().id(id).status(status).build();
     }
 }
