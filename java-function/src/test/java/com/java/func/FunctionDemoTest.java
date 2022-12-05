@@ -3,11 +3,13 @@ package com.java.func;
 import cn.hutool.core.util.RandomUtil;
 import org.junit.jupiter.api.Test;
 
+import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
 
 public class FunctionDemoTest {
@@ -45,6 +47,7 @@ public class FunctionDemoTest {
 
         };
 
+        //生成一个组合函数, 该函数首先将当前 Function 作为其输入, 然后将 after 函数应用于输入后产生的结果.
         Function<String, Integer> couterOfHello = hello.andThen(counter);
         String param = "阿文";
         System.out.println("hello 函数带'" + param + "'参数,  生成的字符串的长度: " + couterOfHello.apply(param));
@@ -76,6 +79,7 @@ public class FunctionDemoTest {
 
         };
 
+        //生成一个组合函数, 该函数首先将 before 函数应用于当前函数的输入, 然后将当前函数应用于结果.
         Function<String, String> filterTooLong = hello.compose(longerThanFiveFilter);
 
         System.out.println("超过5个字符的将不会显示." + filterTooLong.apply("Aristotle"));
@@ -137,8 +141,6 @@ public class FunctionDemoTest {
         param = "Java";
         System.out.println(analyse.apply(param, 16));
     }
-
-
 
 
     /**
@@ -212,6 +214,51 @@ public class FunctionDemoTest {
         System.out.println("-".repeat(40));
 
         dialogue.accept("谁谁谁");
+    }
+
+
+    @Test
+    public void test_BiConsumer() {
+        BiConsumer<String, Integer> hello = new BiConsumer<>() {
+            @Override
+            public void accept(String name, Integer age) {
+                System.out.println("你好, 我叫" + name + ", 今年 " + age + " 岁了.");
+            }
+        };
+        System.out.print("BiConsumer 示例");
+        hello.accept("21yi", 1);
+    }
+
+    @Test
+    public void test_BiConsumer01() {
+        BiConsumer<String, String> say = new BiConsumer<>() {
+            @Override
+            public void accept(String t, String u) {
+                System.out.println("A: 你" + u + "了, " + t);
+            }
+        };
+
+        BiConsumer<String, String> no = new BiConsumer<>() {
+            @Override
+            public void accept(String t, String u) {
+                System.out.println("B: 是的, 我" + u + "了, 但请叫我 达" + t + " !");
+            }
+        };
+
+        BiConsumer<String, String> still = new BiConsumer<>() {
+            @Override
+            public void accept(String t, String u) {
+                System.out.println("A: 好的, " + t + "; 没问题, " + t + "; 你" + u + "好厉害啊, " + t);
+            }
+        };
+
+        //组合的 Consumer 公用了相同的输入
+        BiConsumer<String, String> dialogue = say.andThen(no).andThen(still);
+        dialogue.accept("文西", "受伤");
+
+        System.out.println("-".repeat(40));
+
+        dialogue.accept("21yi", "学编程");
     }
 
 
@@ -365,24 +412,42 @@ public class FunctionDemoTest {
     }
 
 
+    @Test
+    public void test_UnaryOperator() {
+        UnaryOperator<String> maskTel = new UnaryOperator<>() {
+            @Override
+            public String apply(String tel) {
+                if (tel.length() < 8) {
+                    return tel;
+                }
+                return tel.substring(0, 2) + "****" + tel.substring(6, tel.length());
+            }
+        };
+        System.out.println("UnaryOperator 示例, 掩盖电话: " + maskTel.apply("1234567890"));
+    }
 
 
+    @Test
+    public void test_UnaryOperator01() {
+        UnaryOperator<String> idHello = UnaryOperator.identity();
+
+        String param = "Jack789789515";
+        System.out.println("是否总是相等? " + idHello.apply(applyUnaryOperator(param)).equals(param));
 
 
+        UnaryOperator<Integer> idHello2 = UnaryOperator.identity();
+
+        Integer ten = 10;
+        System.out.println("是否总是相等? " + idHello2.apply(ten).equals(ten));
+    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+    private String applyUnaryOperator(String tel) {
+        if (tel.length() < 8) {
+            return tel;
+        }
+        return tel.substring(0, 2) + "****" + tel.substring(6, tel.length());
+    }
 
 
     private static class Person {
@@ -402,6 +467,90 @@ public class FunctionDemoTest {
             return age;
         }
 
+    }
+
+
+    @Test
+    public void test_FunctionalProgramming() {
+
+        Function<String, Integer> strLen = new Function<>() {
+
+            @Override
+            public Integer apply(String t) {
+                return t.length();
+            }
+
+        };
+        System.out.println("Function 示例, 字符串长度: " + strLen.apply("Hello"));
+
+        Consumer<String> sayHello = new Consumer<>() {
+            @Override
+            public void accept(String t) {
+                System.out.println("Consumer 示例: 你好, " + t);
+            }
+        };
+        sayHello.accept("21yi");
+
+        Supplier<Integer> randSupplier = new Supplier<>() {
+            @Override
+            public Integer get() {
+                return (int) (Math.random() * 100);
+            }
+        };
+        System.out.println("Supplier 示例, 1-100随机数: " + randSupplier.get());
+
+        Predicate<Double> isDoubleMax = new Predicate<>() {
+            @Override
+            public boolean test(Double d) {
+                return d.equals(Double.MAX_VALUE);
+            }
+        };
+        System.out.println("Predicate 示例, 是否 Double 的最大值? " + isDoubleMax.test(Double.MAX_VALUE));
+
+        UnaryOperator<String> maskTel = new UnaryOperator<>() {
+            @Override
+            public String apply(String tel) {
+                if (tel.length() < 8) {
+                    return tel;
+                }
+                return tel.substring(0, 2) + "****" + tel.substring(6, tel.length());
+            }
+        };
+        System.out.println("UnaryOperator 示例, 掩盖电话: " + maskTel.apply("1234567890"));
+
+        BiConsumer<String, Integer> hello = new BiConsumer<>() {
+            @Override
+            public void accept(String name, Integer age) {
+                System.out.println("你好, 我叫" + name + ", 今年 " + age + " 岁了.");
+            }
+        };
+        System.out.print("BiConsumer 示例");
+        hello.accept("21yi", 1);
+
+        BiFunction<String, Integer, Boolean> expectLength = new BiFunction<>() {
+            @Override
+            public Boolean apply(String t, Integer u) {
+                return t.length() == u;
+            }
+        };
+        System.out.println("BiFunction 示例, 字符串长度是否符合预期? " + expectLength.apply("21yi", 4));
+
+        applyFunction(
+                (s) -> {
+                    return s.toString().length();
+                },
+                "21yi");
+
+        acceptConsumer(System.out::println, "Hello, 21yi");
+
+    }
+
+    private static void applyFunction(Function func, String p) {
+        System.out.println("Function 的执行结果: " + func.apply(p));
+    }
+
+    private static void acceptConsumer(Consumer consumer, String p) {
+        consumer.accept(p);
     }
 
 }
