@@ -1,13 +1,16 @@
 package com.java.tutorial.tool.producer;
 
 
+import com.java.coco.utils.TraceIDUtil;
+import com.java.tutorial.tool.domain.MessageDto;
 import com.java.tutorial.tool.event.OrderEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.ApplicationContext;
+import org.apache.logging.log4j.message.Message;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 /**
  * @author HY
@@ -17,15 +20,18 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class OrderProducer {
 
-    private final ApplicationContext applicationContext;
+//    private final ApplicationContext applicationContext;
 
     private final ApplicationEventPublisher applicationEventPublisher;
 
-    public String sendMessage(String orderId){
+    public String sendMessage(String orderId) {
         log.info(orderId);
 
-        applicationEventPublisher.publishEvent(new OrderEvent(orderId, this));
-        //applicationContext.publishEvent(new OrderEvent(orderId, this));
+        String traceId = TraceIDUtil.getTraceId();
+        log.info("Producer: {}", traceId);
+        OrderEvent orderEvent = new OrderEvent(traceId, orderId, "123", LocalDateTime.now(), this);
+
+        applicationEventPublisher.publishEvent(orderEvent);
         return "message send";
     }
 

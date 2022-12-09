@@ -1,21 +1,56 @@
 package com.java.tutorial.tool.event;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 import org.springframework.context.ApplicationEvent;
+
+import java.time.Clock;
+import java.time.LocalDateTime;
 
 /**
  * @author HY
  */
-@Setter
 @Getter
+@Setter
 public class OrderEvent extends ApplicationEvent {
 
-    private String orderId;
+    private Long businessId;
 
-    public OrderEvent(String orderId, Object source) {
+    private String traceId;
+
+    private Object payload;
+
+    private String version;
+
+    private LocalDateTime currentDateTime;
+
+
+
+    public OrderEvent(String traceId, Object payload, String version, LocalDateTime currentDateTime, Object source) {
         super(source);
-        this.orderId = orderId;
+        this.traceId = traceId;
+        this.payload = payload;
+        this.version = version;
+        this.currentDateTime = currentDateTime;
+    }
+
+    public OrderEvent(Long businessId, String traceId, Object payload, String version, LocalDateTime currentDateTime, Object source) {
+        super(source);
+        this.businessId = businessId;
+        this.traceId = traceId;
+        this.payload = payload;
+        this.version = version;
+        this.currentDateTime = currentDateTime;
+    }
+
+    public OrderEvent(Long businessId, String traceId, Object payload, String version, LocalDateTime currentDateTime, Object source, Clock clock) {
+        super(source, clock);
+        this.businessId = businessId;
+        this.traceId = traceId;
+        this.payload = payload;
+        this.version = version;
+        this.currentDateTime = currentDateTime;
     }
 }

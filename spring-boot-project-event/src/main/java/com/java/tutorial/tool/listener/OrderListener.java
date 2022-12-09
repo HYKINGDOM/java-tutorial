@@ -15,10 +15,10 @@ public class OrderListener implements ApplicationListener<OrderEvent> {
 
     @Override
     public void onApplicationEvent(OrderEvent event) {
-        String orderId = event.getOrderId();
-        log.info("message orderId:{}", orderId);
+        String traceId = event.getTraceId();
+        log.info("message traceId: {}", traceId);
 
-        if ("test".equals(orderId)) {
+        if ("test".equals(traceId)) {
             throw new RuntimeException();
         }
     }
