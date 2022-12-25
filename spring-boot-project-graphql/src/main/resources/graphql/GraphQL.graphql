@@ -1,0 +1,23 @@
+
+
+type Query {
+    # 获取具体的用户
+    getUserById(id : Int) : UserVo
+    # 获取具体的博客
+    getPostById(id : Int) : PostVo
+}
+
+type UserVo {
+    userId : ID!,
+    userName : String,
+    realName : String,
+    email : String,
+    postVos : [PostVo]
+}
+
+type PostVo {
+    postId : ID!,
+    title : String!,
+    text : String,
+    category : String
+}

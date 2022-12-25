@@ -33,6 +33,7 @@
         <module name="java-mapstruct" />
         <module name="java-database" />
         <module name="spring-boot-mongodb" />
+        <module name="spring-boot-project-graphql" />
         <module name="java-validate" />
       </profile>
     </annotationProcessing>

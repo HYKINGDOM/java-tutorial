@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: spring-boot-project-graphql
+
+
+server:
+   port: 8080
+
+graphql:
+  tools:
+    schema-location-pattern: "**/*.graphql"
+  playground:
+    enabled: true
+  servlet:
+    cors-enabled: true
+    mapping: /graphql
+    enabled: true
+    max-query-depth: 5
+    exception-handlers-enabled: true

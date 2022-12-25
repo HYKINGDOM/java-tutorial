@@ -36,6 +36,7 @@
         <module>spring-boot-project-drools</module>
         <module>spring-boot-project-batch</module>
         <module>spring-boot-project-excel</module>
+        <module>spring-boot-project-graphql</module>
     </modules>
 
     <properties>
@@ -54,12 +55,6 @@
             <artifactId>lombok</artifactId>
             <version>1.18.24</version>
             <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok-maven-plugin</artifactId>
-            <version>1.18.20.0</version>
         </dependency>
 
         <dependency>
@@ -86,12 +81,12 @@
             <version>2.0.19</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-validation</artifactId>
-            <version>2.7.5</version>
-        </dependency>
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-validation</artifactId>-->
+<!--            <version>2.7.5</version>-->
+<!--        </dependency>-->
 
 
 
@@ -187,12 +182,13 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.7.7</version>
             </plugin>
             <!--  构建时跳过测试 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.1</version>
+                <version>3.0.0-M7</version>
                 <configuration>
                     <skipTests>true</skipTests>
                 </configuration>
@@ -200,9 +196,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
                 <configuration>
-                    <source>14</source>
-                    <target>14</target>
+                    <source>11</source> <!-- 源代码使用的JDK版本 -->
+                    <target>11</target> <!-- 需要生成的目标class文件的编译版本 -->
+                    <encoding>UTF-8</encoding><!-- 字符集编码 -->
+                    <verbose>true</verbose>
+                    <showWarnings>true</showWarnings>
                 </configuration>
             </plugin>
 
