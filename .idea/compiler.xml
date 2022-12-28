@@ -28,6 +28,7 @@
         <module name="java-common" />
         <module name="spring-boot-project-async" />
         <module name="spring-boot-project-batch" />
+        <module name="spring-boot-project-security" />
         <module name="spring-boot-project-event" />
         <module name="java-patterns" />
         <module name="java-mapstruct" />
