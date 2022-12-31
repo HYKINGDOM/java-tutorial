@@ -1,13 +1,11 @@
 # Getting Started
 
 ### Reference Documentation
-For further reference, please consider the following sections:
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.7.2/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.7.2/maven-plugin/reference/html/#build-image)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/2.7.2/reference/htmlsingle/#web)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/2.7.2/reference/htmlsingle/#using.devtools)
+spring security 系列框架变化太大，几乎每一个版本更新之后接口和方法都会大面积的变动，加上oauth2-server这样的设计现在的官方还在规划当中，这些设计的变化导致现阶段学习这些并不能实际运用，因为很快就会被淘汰，
+
+所以我觉得现阶段应该以学习基础为主，以及各个框架的设计思路
+
 
 ### Guides
 The following guides illustrate how to use some features concretely:
