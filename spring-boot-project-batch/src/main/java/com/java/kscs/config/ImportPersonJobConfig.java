@@ -1,9 +1,11 @@
 package com.java.kscs.config;
 
+import cn.hutool.core.util.StrUtil;
 import com.java.kscs.dto.Address;
 import com.java.kscs.listener.AssemblyReadCsvPathListener;
 import com.java.kscs.listener.CustomStepExecutionListener;
 import com.java.kscs.mapper.ReoportFieldSetMapper;
+import com.java.kscs.process.AddressItemProcessor;
 import com.java.kscs.tasklet.PrintImportFilePathTaskLet;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +14,7 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
+import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
@@ -40,8 +43,10 @@ public class ImportPersonJobConfig {
 
     @Bean
     public Job importPersonJob() {
+        JobBuilder jobBuilder = jobBuilderFactory.get("import-address-job");
+        log.info("importPersonJob start");
         // 获取一个job builder, jobName可以是不存在的
-        return jobBuilderFactory.get("import-address-job")
+        return jobBuilder
                 // 添加job execution 监听器
                 .listener(new AssemblyReadCsvPathListener())
                 // 打印 job parameters 和 ExecutionContext 中的值
@@ -61,7 +66,6 @@ public class ImportPersonJobConfig {
     public FlatFileItemReader<Address> readCsvItemReader(
             @Value("#{jobExecutionContext['importPath']}") String importPath) {
 
-
         // 读取数据
         return new FlatFileItemReaderBuilder<Address>()
                 .name("read-csv-file")
@@ -78,20 +82,20 @@ public class ImportPersonJobConfig {
     public Step handleCsvFileStep() {
         // 每读取一条数据，交给这个处理
         ItemProcessor<Address, Address> processor = item -> {
-            if (Integer.parseInt(Optional.ofNullable(item.getCityId()).orElse("0")) > 25) {
-                log.info("城市地址[{}]， 城市ID:[{}>25]不处理", item.getAddress(), item.getAddress2());
-                return null;
+            if (StrUtil.isEmpty(item.getCityId())) {
+                item.setCityId("0");
             }
+            log.info("Address Item Processor :{}", item);
             return item;
         };
 
         // 读取到了 chunk 大小的数据后，开始执行写入
         ItemWriter<Address> itemWriter = items -> {
-            log.info("开始写入数据");
             for (Address item : items) {
-                log.info("{}", item);
+                log.info("开始写入数据 : {}", item);
             }
         };
+
 
         return stepBuilderFactory.get("handle-csv-file")
                 // 每读取2条数据，执行一次write，当每read一条数据后，都会执行process
@@ -114,7 +118,8 @@ public class ImportPersonJobConfig {
      * @return Step
      */
     private Step printParametersAndContextVariables() {
-        return stepBuilderFactory.get("print-context-params").tasklet(printImportFilePathTaskLet)
+        return stepBuilderFactory.get("print-context-params")
+                .tasklet(printImportFilePathTaskLet)
                 // 当job重启时，如果达到了3此，则该step不在执行
                 .startLimit(3)
                 // 当job重启时，如果该step的是已经处理完成即COMPLETED状态时，下方给false表示该step不在重启，即不在执行

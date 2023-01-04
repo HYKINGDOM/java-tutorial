@@ -1,4 +1,4 @@
-package com.java.kscs.validate;
+package com.java.kscs.listener;
 
 import com.java.kscs.dto.BlogInfo;
 import org.slf4j.Logger;

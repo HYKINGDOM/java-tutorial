@@ -1,5 +1,6 @@
 package com.java.kscs.config;
 
+import com.java.coco.utils.TraceIDUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -7,6 +8,7 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.job.builder.FlowBuilder;
+import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.job.flow.Flow;
 import org.springframework.batch.core.job.flow.support.SimpleFlow;
 import org.springframework.batch.repeat.RepeatStatus;
@@ -32,26 +34,36 @@ public class ParallelStepsJobConfig {
 
     @Bean
     public Job job() {
-        return jobBuilderFactory.get("job").start(splitFlow()).next(step4())
+        JobBuilder jobBuilder = jobBuilderFactory.get("job");
+        log.info(jobBuilder.toString());
+        return jobBuilder
+                .start(splitFlow())
+                .next(step4())
                 .build()        // builds FlowJobBuilder instance
                 .build();       // builds Job instance
     }
 
     @Bean
     public Flow splitFlow() {
-        return new FlowBuilder<SimpleFlow>("splitFlow").split(taskExecutor())
+        return new FlowBuilder<SimpleFlow>("splitFlow")
+                .split(taskExecutor())
                 // flow1 和 flow2 并行执行
-                .add(flow1(), flow2()).build();
+                .add(flow1(), flow2())
+                .build();
     }
 
     @Bean
     public Flow flow1() {
-        return new FlowBuilder<SimpleFlow>("flow1").start(step1()).next(step2()).build();
+        FlowBuilder<SimpleFlow> simpleFlowFlowBuilder = new FlowBuilder<>("flow1");
+        log.info("flow1 start");
+        return simpleFlowFlowBuilder.start(step1()).next(step2()).build();
     }
 
     @Bean
     public Flow flow2() {
-        return new FlowBuilder<SimpleFlow>("flow2").start(step3()).build();
+        FlowBuilder<SimpleFlow> simpleFlowFlowBuilder = new FlowBuilder<>("flow2");
+        log.info("flow2 start");
+        return simpleFlowFlowBuilder.start(step3()).build();
     }
 
     @Bean
@@ -66,12 +78,15 @@ public class ParallelStepsJobConfig {
 
     @Bean
     public Step step2() {
-        return stepBuilderFactory.get("step2").tasklet((contribution, chunkContext) -> {
-            log.info("step2 start");
-            TimeUnit.SECONDS.sleep(2);
-            log.info("step2 end");
-            return RepeatStatus.FINISHED;
-        }).build();
+        return stepBuilderFactory
+                .get("step2")
+                .tasklet((contribution, chunkContext) -> {
+                    log.info("step2 start");
+                    TimeUnit.SECONDS.sleep(2);
+                    log.info("step2 end");
+                    return RepeatStatus.FINISHED;
+                })
+                .build();
     }
 
     @Bean
@@ -95,8 +110,14 @@ public class ParallelStepsJobConfig {
         }).build();
     }
 
+    /**
+     * 线程池
+     * @return
+     */
     @Bean
     public TaskExecutor taskExecutor() {
-        return new SimpleAsyncTaskExecutor("spring_batch");
+        SimpleAsyncTaskExecutor springBatch = new SimpleAsyncTaskExecutor("spring_batch");
+        TraceIDUtil.getTraceId();
+        return springBatch;
     }
 }

@@ -38,7 +38,7 @@
             </Policies>
         </RollingFile>
 
-        <RollingFile name="RollingFileWarn" fileName="${filepath}/warn-%d{yyyy-MM-dd-HH}.log"
+        <RollingFile name="RollingFileWarn" fileName="${filepath}/warn-%d{yyyy-MM-dd}.log"
                      filePattern="${filepath}/$${date:yyyy-MM}/warn-%d{yyyy-MM-dd}-%i.log">
             <Filters>
                 <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
