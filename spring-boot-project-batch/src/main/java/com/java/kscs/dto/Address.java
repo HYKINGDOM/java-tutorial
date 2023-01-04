@@ -2,26 +2,30 @@ package com.java.kscs.dto;
 
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldNameConstants;
+
+import java.util.Date;
 
 /**
  * 用户类
  *
  * @author hy
  */
+@Data
+@Builder
 @AllArgsConstructor
-@Getter
-@ToString
 @FieldNameConstants
 public class Address {
-    private String addressId;
+    private Long addressId;
     private String address;
     private String address2;
     private String district;
     private String cityId;
     private String postalCode;
     private String phone;
-    private String lastUpdate;
+    private Date lastUpdate;
 }

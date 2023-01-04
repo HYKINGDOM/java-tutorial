@@ -1,6 +1,7 @@
 package com.java.kscs.validate;
 
 
+import com.java.kscs.dto.BlogInfo;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
@@ -139,8 +140,8 @@ public class MyBatchConfig {
      * @return
      */
     @Bean
-    public MyBeanValidator myBeanValidator() {
-        return new MyBeanValidator<BlogInfo>();
+    public MyBeanValidator<BlogInfo> myBeanValidator() {
+        return new MyBeanValidator<>();
     }
 
 

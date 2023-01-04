@@ -87,7 +87,8 @@ public class ParallelStepsJobConfig {
     @Bean
     public Step step4() {
         return stepBuilderFactory.get("step4").tasklet((contribution, chunkContext) -> {
-            log.info("step4 start");
+
+            log.info("step4 start:{}, {}", contribution.toString(), chunkContext.toString());
             TimeUnit.SECONDS.sleep(4);
             log.info("step4 end");
             return RepeatStatus.FINISHED;

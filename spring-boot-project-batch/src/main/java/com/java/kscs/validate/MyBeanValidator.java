@@ -1,5 +1,6 @@
 package com.java.kscs.validate;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.item.validator.ValidationException;
 import org.springframework.batch.item.validator.Validator;
 import org.springframework.beans.factory.InitializingBean;
@@ -13,6 +14,7 @@ import java.util.Set;
  * @author HY
  * @param <T>
  */
+@Slf4j
 public class MyBeanValidator<T> implements Validator<T>, InitializingBean {
 
     private javax.validation.Validator validator;
@@ -24,6 +26,7 @@ public class MyBeanValidator<T> implements Validator<T>, InitializingBean {
     @Override
     public void validate(T value) throws ValidationException {
         Set<ConstraintViolation<T>> constraintViolations = validator.validate(value);
+        log.info("异常数据： constraintViolations: {}", constraintViolations.size());
         if (constraintViolations.size() > 0) {
             StringBuilder message = new StringBuilder();
             for (ConstraintViolation<T> constraintViolation : constraintViolations) {

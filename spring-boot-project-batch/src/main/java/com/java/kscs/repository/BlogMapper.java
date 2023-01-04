@@ -1,6 +1,7 @@
-package com.java.kscs.validate;
+package com.java.kscs.repository;
 
 
+import com.java.kscs.dto.BlogInfo;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
@@ -10,12 +11,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @Author : JCccc
- * @Description :
- **/
+ *
+ */
 @Mapper
 public interface BlogMapper {
-    @Insert("INSERT INTO bloginfo ( blogAuthor, blogUrl, blogTitle, blogItem )   VALUES ( #{blogAuthor}, #{blogUrl},#{blogTitle},#{blogItem}) ")
+    @Insert("INSERT INTO bloginfo ( blogAuthor, blogUrl, blogTitle, blogItem )   VALUES (#{blogAuthor}, #{blogUrl},#{blogTitle},#{blogItem}) ")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     int insert(BlogInfo bloginfo);
 

@@ -1,4 +1,4 @@
-package com.java.kscs.startjob;
+package com.java.kscs.job;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.*;
@@ -7,7 +7,6 @@ import org.springframework.batch.core.repository.JobExecutionAlreadyRunningExcep
 import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
 import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -30,10 +29,12 @@ public class StartImportPersonJob {
 
     @PostConstruct
     public void startJob() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
+        String formatDate = LocalDate.of(2022, 8, 31).format(DateTimeFormatter.ofPattern("yyyyMMdd"));
         JobParameters jobParameters = new JobParametersBuilder()
-                .addString("importDate", LocalDate.of(2022, 8, 31).format(DateTimeFormatter.ofPattern("yyyyMMdd")))
+                .addString("importDate", formatDate)
                 .toJobParameters();
         JobExecution execution = jobLauncher.run(importPersonJob, jobParameters);
+        boolean stopping = execution.isStopping();
         log.info("job invoked");
     }
 }

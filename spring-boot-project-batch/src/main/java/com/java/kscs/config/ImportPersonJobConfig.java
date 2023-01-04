@@ -3,6 +3,7 @@ package com.java.kscs.config;
 import com.java.kscs.dto.Address;
 import com.java.kscs.listener.AssemblyReadCsvPathListener;
 import com.java.kscs.listener.CustomStepExecutionListener;
+import com.java.kscs.mapper.ReoportFieldSetMapper;
 import com.java.kscs.tasklet.PrintImportFilePathTaskLet;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,11 +17,12 @@ import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
-import org.springframework.batch.item.file.mapping.RecordFieldSetMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+
+import java.util.Optional;
 
 /**
  * @author hy
@@ -58,17 +60,25 @@ public class ImportPersonJobConfig {
     @StepScope
     public FlatFileItemReader<Address> readCsvItemReader(
             @Value("#{jobExecutionContext['importPath']}") String importPath) {
+
+
         // 读取数据
-        return new FlatFileItemReaderBuilder<Address>().name("read-csv-file").resource(new ClassPathResource(importPath))
-                .delimited().delimiter(",").names("address_id", "address", "address2", "district", "city_id", "postal_code", "phone", "last_update")
-                .fieldSetMapper(new RecordFieldSetMapper<>(Address.class)).build();
+        return new FlatFileItemReaderBuilder<Address>()
+                .name("read-csv-file")
+                .resource(new ClassPathResource(importPath))
+                .delimited()
+                .delimiter(",")
+                .names("address_id", "address", "address2", "district", "city_id", "postal_code", "phone", "last_update")
+                .linesToSkip(1)
+                .fieldSetMapper(new ReoportFieldSetMapper())
+                .build();
     }
 
     @Bean
     public Step handleCsvFileStep() {
         // 每读取一条数据，交给这个处理
         ItemProcessor<Address, Address> processor = item -> {
-            if (Integer.parseInt(item.getCityId()) > 25) {
+            if (Integer.parseInt(Optional.ofNullable(item.getCityId()).orElse("0")) > 25) {
                 log.info("城市地址[{}]， 城市ID:[{}>25]不处理", item.getAddress(), item.getAddress2());
                 return null;
             }
@@ -91,7 +101,8 @@ public class ImportPersonJobConfig {
                 // 读取一条数据就开始处理
                 .processor(processor)
                 // 当读取的数据的数量到达 chunk 时，调用该方法进行处理
-                .writer(itemWriter).build();
+                .writer(itemWriter)
+                .build();
     }
 
     /**

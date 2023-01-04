@@ -1,4 +1,4 @@
-package com.java.kscs.validate;
+package com.java.kscs.dto;
 
 
 import lombok.Data;

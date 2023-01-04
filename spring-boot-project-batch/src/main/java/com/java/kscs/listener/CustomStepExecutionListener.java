@@ -20,7 +20,7 @@ public class CustomStepExecutionListener implements StepExecutionListener {
     @Override
     public void beforeStep(StepExecution execution) {
         String stepName = execution.getStepName();
-        log.info("step:[{}]开始执行了", stepName);
+        log.info("beforeStep beforeStep:[{}]开始执行了", stepName);
     }
 
     /**
@@ -31,7 +31,7 @@ public class CustomStepExecutionListener implements StepExecutionListener {
      */
     @Override
     public ExitStatus afterStep(StepExecution execution) {
-        log.info("step:[{}]结束执行了", execution.getStepName());
+        log.info("beforeStep afterStep:[{}]结束执行了", execution.getStepName());
         return execution.getExitStatus();
     }
 }
