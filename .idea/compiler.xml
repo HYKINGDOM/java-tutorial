@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="spring-boot-project-template" />
+        <module name="spring-boot-project-mongodb-jpa" />
         <module name="java-domain-driver-design" />
         <module name="java-function" />
         <module name="spring-boot-project-bean" />

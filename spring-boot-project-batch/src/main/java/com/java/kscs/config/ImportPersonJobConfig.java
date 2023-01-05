@@ -6,6 +6,7 @@ import com.java.kscs.listener.AssemblyReadCsvPathListener;
 import com.java.kscs.listener.CustomStepExecutionListener;
 import com.java.kscs.mapper.ReoportFieldSetMapper;
 import com.java.kscs.process.AddressItemProcessor;
+import com.java.kscs.repository.AddressRepository;
 import com.java.kscs.tasklet.PrintImportFilePathTaskLet;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,9 +38,11 @@ public class ImportPersonJobConfig {
 
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
-
     private final PrintImportFilePathTaskLet printImportFilePathTaskLet;
     private final ItemReader<Address> readCsvItemReader;
+
+
+    private final AddressRepository addressRepository;
 
     @Bean
     public Job importPersonJob() {
@@ -93,6 +96,7 @@ public class ImportPersonJobConfig {
         ItemWriter<Address> itemWriter = items -> {
             for (Address item : items) {
                 log.info("开始写入数据 : {}", item);
+                addressRepository.save(item);
             }
         };
 

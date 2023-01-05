@@ -38,6 +38,7 @@
         <module>spring-boot-project-excel</module>
         <module>spring-boot-project-graphql</module>
         <module>spring-boot-project-security</module>
+        <module>spring-boot-project-mongodb-jpa</module>
     </modules>
 
     <properties>

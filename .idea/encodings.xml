@@ -58,6 +58,8 @@
     <file url="file://$PROJECT_DIR$/spring-boot-project-excel/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-project-graphql/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-project-graphql/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot-project-mongodb-jpa/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot-project-mongodb-jpa/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-project-schedule-job/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-project-schedule-job/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-project-security/src/main/java" charset="UTF-8" />
