@@ -1,5 +1,7 @@
 package com.java.cn.thread.completable;
 
+import cn.hutool.core.util.RandomUtil;
+
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
@@ -223,9 +225,10 @@ public class ExcutorCompletableFuture {
         System.out.println(f1.runAfterEither(f2, () -> System.out.println("有一个任务已经完成了。")).get());
     }
 
-    public static void runAfterBoth() throws Exception {
+
+    public static void acceptEitherAsync() throws Exception {
         CompletableFuture<Integer> f1 = CompletableFuture.supplyAsync(() -> {
-            int t = new Random().nextInt(3);
+            int t = RandomUtil.randomInt(5, 10);
             try {
                 TimeUnit.SECONDS.sleep(t);
             } catch (InterruptedException e) {
@@ -236,7 +239,7 @@ public class ExcutorCompletableFuture {
         });
 
         CompletableFuture<Integer> f2 = CompletableFuture.supplyAsync(() -> {
-            int t = new Random().nextInt(3);
+            int t = RandomUtil.randomInt(1, 5);
             try {
                 TimeUnit.SECONDS.sleep(t);
             } catch (InterruptedException e) {
@@ -245,21 +248,84 @@ public class ExcutorCompletableFuture {
             System.out.println("f2=" + t);
             return t;
         });
-        System.out.println(f1.runAfterBoth(f2, () -> System.out.println("上面两个任务都执行完成了。")).get());
+
+        Consumer<Object> objectConsumer = o -> System.out.println("有一个任务已经完成了。 返回参数为： " + o.toString());
+
+        CompletableFuture<Void> voidCompletableFuture = f1.acceptEitherAsync(f2, objectConsumer);
+
+        System.out.println(voidCompletableFuture.get());
+    }
+
+
+    public static void runAfterBoth() throws Exception {
+        CompletableFuture<Integer> f1 = CompletableFuture.supplyAsync(() -> {
+            int t = new Random().nextInt(10);
+            try {
+                TimeUnit.SECONDS.sleep(t);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("f1=" + t);
+            return t;
+        });
+
+        CompletableFuture<Integer> f2 = CompletableFuture.supplyAsync(() -> {
+            int t = new Random().nextInt(10);
+            try {
+                TimeUnit.SECONDS.sleep(t);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("f2=" + t);
+            return t;
+        });
+
+
+        CompletableFuture<Integer> f3 = CompletableFuture.supplyAsync(() -> {
+            int t = new Random().nextInt(10);
+            try {
+                TimeUnit.SECONDS.sleep(t);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("f3=" + t);
+            return t;
+        });
+
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("t1 t2 都执行完成了。");
+            }
+        };
+
+        CompletableFuture<Void> voidCompletableFuture = f1.runAfterBoth(f2, runnable).runAfterBoth(f3, () -> System.out.println("t3 都执行完成了。"));
+        System.out.println(voidCompletableFuture.get());
     }
 
 
     public static void thenCompose() throws Exception {
-        CompletableFuture<Integer> f = CompletableFuture.supplyAsync(() -> {
-            int t = new Random().nextInt(3);
+        CompletableFuture<Integer> future01 = CompletableFuture.supplyAsync(() -> {
+            int t = new Random().nextInt(10);
             System.out.println("t1=" + t);
             return t;
-        }).thenCompose(param -> CompletableFuture.supplyAsync(() -> {
+        });
+
+        future01.thenCompose(param -> CompletableFuture.supplyAsync(() -> {
             int t = param * 2;
             System.out.println("t2=" + t);
             return t;
         }));
-        System.out.println("thenCompose result : " + f.get());
+
+
+        future01.thenCompose(param -> CompletableFuture.supplyAsync(() -> {
+            int t = param * 10;
+            System.out.println("t3=" + t);
+            return t;
+        }));
+
+
+        System.out.println("thenCompose result : " + future01.get());
     }
 
 }

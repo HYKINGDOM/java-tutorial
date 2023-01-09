@@ -2,7 +2,7 @@ package com.java.tutorial.project.config;
 
 import com.google.common.collect.Lists;
 import com.java.tutorial.project.domain.User;
-import com.java.tutorial.project.mapper.UserMapper;
+import com.java.tutorial.project.mapper.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,13 +20,13 @@ import java.util.function.Function;
 @Slf4j
 public class AsyncTask {
     @Autowired
-    private UserMapper userMapper;
+    private UserRepository userRepository;
     @Autowired
     private Executor asyncTaskExecutor;
 
     public CompletableFuture<List<User>> getUsername(List<Integer> ids) {
         return CompletableFuture
-                .supplyAsync(() -> userMapper.getUsers(ids), asyncTaskExecutor)
+                .supplyAsync(() -> userRepository.getUsers(ids), asyncTaskExecutor)
                 .exceptionally(throwable -> {
                     log.info("异常：{}", throwable.getMessage());
                     return Lists.newArrayList();
@@ -44,7 +44,7 @@ public class AsyncTask {
             //具体要执行的逻辑
             List<User> userParam = new ArrayList<>();
             try {
-                userParam = userMapper.getUsers(ids);
+                userParam = userRepository.getUsers(ids);
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
                 e.printStackTrace();
