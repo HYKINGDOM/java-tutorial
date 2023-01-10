@@ -89,4 +89,14 @@ class ExcutorCompletableFutureTest {
     void test_thenCompose() throws Exception {
         thenCompose();
     }
+
+    @Test
+    void test_thenComposeAsync() throws Exception {
+        thenComposeAsync();
+    }
+
+    @Test
+    void test_thenComposeAsyncExecutor() throws Exception {
+        thenComposeAsyncExecutor();
+    }
 }
