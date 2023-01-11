@@ -361,25 +361,41 @@ public class ExcutorCompletableFuture {
         CompletableFuture<Integer> future01 = CompletableFuture.supplyAsync(() -> {
             int t = new Random().nextInt(10);
             System.out.println("t1=" + t);
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             return t;
         });
 
         ExecutorService executorService = Executors.newFixedThreadPool(3);
 
-        CompletableFuture<Integer> future02 = future01.thenComposeAsync(param -> CompletableFuture.supplyAsync(() -> {
-            int t = param * 2;
+        CompletableFuture<String> future02 = future01.thenComposeAsync(param -> CompletableFuture.supplyAsync(() -> {
+            String t = param.toString() +  2;
             System.out.println("t2=" + t);
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             return t;
         }), executorService);
 
 
-        CompletableFuture<Integer> future03 = future01.thenComposeAsync(param -> CompletableFuture.supplyAsync(() -> {
-            int t = param * 10;
+        CompletableFuture<String> future03 = future01.thenComposeAsync(param -> CompletableFuture.supplyAsync(() -> {
+            String t = param.toString() +  3;
             System.out.println("t3=" + t);
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             return t;
         }),executorService);
 
 
+        System.out.println(("=").repeat(30));
         System.out.println("thenCompose future01 result : " + future01.get());
         System.out.println("thenCompose future02 result : " + future02.get());
         System.out.println("thenCompose future03 result : " + future03.get());
