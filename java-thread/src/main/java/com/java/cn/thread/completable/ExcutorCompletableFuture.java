@@ -1,11 +1,16 @@
 package com.java.cn.thread.completable;
 
 import cn.hutool.core.util.RandomUtil;
+import com.google.common.collect.Lists;
+import lombok.val;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -357,12 +362,12 @@ public class ExcutorCompletableFuture {
         System.out.println("thenCompose future03 result : " + future03.get());
     }
 
-    public static void thenComposeAsyncExecutor() throws Exception {
+    public static void thenComposeAsyncExecutor() throws ExecutionException, InterruptedException {
         CompletableFuture<Integer> future01 = CompletableFuture.supplyAsync(() -> {
             int t = new Random().nextInt(10);
-            System.out.println("t1=" + t);
             try {
                 Thread.sleep(2000);
+                System.out.println("t1=" + t);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -371,33 +376,44 @@ public class ExcutorCompletableFuture {
 
         ExecutorService executorService = Executors.newFixedThreadPool(3);
 
-        CompletableFuture<String> future02 = future01.thenComposeAsync(param -> CompletableFuture.supplyAsync(() -> {
+        ExecutorService executorService02 = Executors.newSingleThreadExecutor();
+
+        CompletableFuture<List<String>> future02 = future01.thenComposeAsync(param -> CompletableFuture.supplyAsync(() -> {
+            List<String> arrayList = Lists.newArrayList();
             String t = param.toString() +  2;
-            System.out.println("t2=" + t);
             try {
                 Thread.sleep(3000);
+                System.out.println("t2=" + t);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            return t;
-        }), executorService);
+            arrayList.add(t);
+            return arrayList;
+        }), executorService02);
 
 
-        CompletableFuture<String> future03 = future01.thenComposeAsync(param -> CompletableFuture.supplyAsync(() -> {
+        CompletableFuture<List<String>> future03 = future01.thenComposeAsync(param -> CompletableFuture.supplyAsync(() -> {
+            List<String> arrayList = Lists.newArrayList();
             String t = param.toString() +  3;
-            System.out.println("t3=" + t);
             try {
                 Thread.sleep(5000);
+                System.out.println("t3=" + t);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            return t;
+            arrayList.add(t);
+            return arrayList;
         }),executorService);
 
 
+        val stringCompletableFuture = future02.thenCombine(future03, (t, u) -> {
+            List<String> arrayList = Lists.newArrayList();
+            arrayList.addAll(t);
+            arrayList.addAll(u);
+            return arrayList;
+        });
         System.out.println(("=").repeat(30));
-        System.out.println("thenCompose future01 result : " + future01.get());
-        System.out.println("thenCompose future02 result : " + future02.get());
-        System.out.println("thenCompose future03 result : " + future03.get());
+        System.out.println("thenCompose stringCompletableFuture result : " + stringCompletableFuture.get());
+
     }
 }
