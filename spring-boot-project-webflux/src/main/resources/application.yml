@@ -1,0 +1,18 @@
+server:
+  port: 8089
+
+spring:
+  r2dbc:
+    url: r2dbc:mysql://localhost:3306/demo_test?serverTimezone=GMT%2B8
+    username: root
+    password: root
+    name: r2dbc
+    pool:
+      validation-query: SELECT 1
+      enabled: true
+
+  jpa:
+    hibernate:
+      naming:
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy

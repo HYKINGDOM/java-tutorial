@@ -11,6 +11,7 @@
         <module name="spring-boot-project-template" />
         <module name="java-domain-driver-design" />
         <module name="java-function" />
+        <module name="spring-boot-project-webflux" />
         <module name="spring-boot-project-bean" />
         <module name="java-vavr" />
         <module name="spring-boot-mysql" />
