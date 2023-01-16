@@ -12,6 +12,8 @@ public interface OrderService {
 
     Order updateOrder(Order order);
 
+    Order updatePutOrder(Order order);
+
     void deleteOrder(Long id);
 
     Order getOrderByIdAndStatus(Long id,Integer status);

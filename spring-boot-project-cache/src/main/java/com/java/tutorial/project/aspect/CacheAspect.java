@@ -20,6 +20,9 @@ import java.util.Objects;
 import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author HY
+ */
 @Slf4j
 @Component
 @Aspect
@@ -28,7 +31,7 @@ public class CacheAspect {
     private final Cache<String, Object> cache;
     private final RedisTemplate<String, Object> redisTemplate;
 
-    @Pointcut("@annotation(com.cn.dc.annotation.DoubleCache)")
+    @Pointcut("@annotation(com.java.tutorial.project.annotation.DoubleCache)")
     public void cacheAspect() {
     }
 

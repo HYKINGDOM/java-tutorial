@@ -29,6 +29,15 @@ public class OrderServiceImpl implements OrderService {
         return order;
     }
 
+
+    @Override
+    @DoubleCache(cacheName = "order", key = "#order.id",
+            type = CacheType.PUT)
+    public Order updatePutOrder(Order order) {
+
+        return order;
+    }
+
     @Override
     @DoubleCache(cacheName = "order", key = "#id",
             type = CacheType.DELETE)

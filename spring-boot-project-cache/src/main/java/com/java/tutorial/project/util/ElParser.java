@@ -23,9 +23,7 @@ public class ElParser {
         ExpressionParser parser = new SpelExpressionParser();
         //通过evaluationContext.setVariable可以在上下文中设定变量。
         EvaluationContext context = new StandardEvaluationContext();
-        map.entrySet().forEach(entry ->
-                context.setVariable(entry.getKey(), entry.getValue())
-        );
+        map.forEach(context::setVariable);
 
         //解析表达式，如果表达式是一个模板表达式，需要为解析传入模板解析器上下文
         Expression expression = parser.parseExpression(elString, new TemplateParserContext());
