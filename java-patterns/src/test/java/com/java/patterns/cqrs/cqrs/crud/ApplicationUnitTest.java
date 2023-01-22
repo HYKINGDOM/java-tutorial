@@ -1,10 +1,22 @@
 package com.java.patterns.cqrs.cqrs.crud;
 
 
-import com.java.tutorial.project.patterns.crud.repository.UserRepository;
-import com.java.tutorial.project.patterns.crud.service.UserService;
-import com.java.tutorial.project.patterns.domain.Address;
-import com.java.tutorial.project.patterns.domain.Contact;
+
+import com.java.patterns.cqrs.cqrs.commands.CreateUserCommand;
+import com.java.patterns.cqrs.cqrs.commands.UpdateUserCommand;
+import com.java.patterns.cqrs.cqrs.projections.UserProjection;
+import com.java.patterns.cqrs.cqrs.queries.AddressByRegionQuery;
+import com.java.patterns.cqrs.cqrs.queries.ContactByTypeQuery;
+import com.java.patterns.cqrs.cqrs.repository.UserReadRepository;
+import com.java.patterns.cqrs.cqrs.repository.UserWriteRepository;
+import com.java.patterns.cqrs.crud.repository.UserRepository;
+import com.java.patterns.cqrs.crud.service.UserService;
+import com.java.patterns.cqrs.domain.Address;
+import com.java.patterns.cqrs.domain.Contact;
+import com.java.patterns.cqrs.es.events.Event;
+import com.java.patterns.cqrs.es.repository.EventStore;
+import com.java.patterns.cqrs.escqrs.aggregates.UserAggregate;
+import com.java.patterns.cqrs.escqrs.projectors.UserProjector;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

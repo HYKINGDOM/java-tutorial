@@ -2,12 +2,14 @@ package com.java.patterns.cqrs.cqrs.projectors;
 
 
 
-import com.java.tutorial.project.patterns.cqrs.repository.UserReadRepository;
-import com.java.tutorial.project.patterns.domain.Address;
-import com.java.tutorial.project.patterns.domain.Contact;
-import com.java.tutorial.project.patterns.domain.User;
-import com.java.tutorial.project.patterns.domain.UserAddress;
-import com.java.tutorial.project.patterns.domain.UserContact;
+
+
+import com.java.patterns.cqrs.cqrs.repository.UserReadRepository;
+import com.java.patterns.cqrs.domain.Address;
+import com.java.patterns.cqrs.domain.Contact;
+import com.java.patterns.cqrs.domain.User;
+import com.java.patterns.cqrs.domain.UserAddress;
+import com.java.patterns.cqrs.domain.UserContact;
 
 import java.util.HashMap;
 import java.util.HashSet;

@@ -1,18 +1,21 @@
 package com.java.patterns.cqrs.cqrs.cqrs;
 
 
-import com.java.tutorial.project.patterns.cqrs.aggregates.UserAggregate;
-import com.java.tutorial.project.patterns.cqrs.commands.CreateUserCommand;
-import com.java.tutorial.project.patterns.cqrs.commands.UpdateUserCommand;
-import com.java.tutorial.project.patterns.cqrs.projections.UserProjection;
-import com.java.tutorial.project.patterns.cqrs.projectors.UserProjector;
-import com.java.tutorial.project.patterns.cqrs.queries.AddressByRegionQuery;
-import com.java.tutorial.project.patterns.cqrs.queries.ContactByTypeQuery;
-import com.java.tutorial.project.patterns.cqrs.repository.UserReadRepository;
-import com.java.tutorial.project.patterns.cqrs.repository.UserWriteRepository;
-import com.java.tutorial.project.patterns.domain.Address;
-import com.java.tutorial.project.patterns.domain.Contact;
-import com.java.tutorial.project.patterns.domain.User;
+
+import com.java.patterns.cqrs.cqrs.aggregates.UserAggregate;
+import com.java.patterns.cqrs.cqrs.commands.CreateUserCommand;
+import com.java.patterns.cqrs.cqrs.commands.UpdateUserCommand;
+import com.java.patterns.cqrs.cqrs.projections.UserProjection;
+import com.java.patterns.cqrs.cqrs.projectors.UserProjector;
+import com.java.patterns.cqrs.cqrs.queries.AddressByRegionQuery;
+import com.java.patterns.cqrs.cqrs.queries.ContactByTypeQuery;
+import com.java.patterns.cqrs.cqrs.repository.UserReadRepository;
+import com.java.patterns.cqrs.cqrs.repository.UserWriteRepository;
+import com.java.patterns.cqrs.domain.Address;
+import com.java.patterns.cqrs.domain.Contact;
+
+
+import com.java.patterns.cqrs.domain.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
