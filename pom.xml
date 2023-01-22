@@ -40,6 +40,7 @@
         <module>spring-boot-project-security</module>
         <module>spring-boot-project-mongodb-jpa</module>
         <module>spring-boot-project-webflux</module>
+        <module>spring-boot-project-cqrs</module>
     </modules>
 
     <properties>

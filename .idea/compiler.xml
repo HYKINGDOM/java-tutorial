@@ -13,6 +13,7 @@
         <module name="java-function" />
         <module name="spring-boot-project-webflux" />
         <module name="spring-boot-project-bean" />
+        <module name="spring-boot-project-cqrs" />
         <module name="java-vavr" />
         <module name="spring-boot-mysql" />
         <module name="business-data" />

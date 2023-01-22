@@ -45,6 +45,8 @@
     <file url="file://$PROJECT_DIR$/spring-boot-project-bean/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-project-cache/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-project-cache/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot-project-cqrs/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot-project-cqrs/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-project-drools/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-project-drools/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-project-event/src/main/java" charset="UTF-8" />
