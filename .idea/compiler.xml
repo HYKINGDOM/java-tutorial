@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="spring-boot-project-template" />
+        <module name="spring-boot-project-mongodb-jpa" />
         <module name="java-domain-driver-design" />
         <module name="java-function" />
         <module name="spring-boot-project-webflux" />
@@ -48,7 +49,6 @@
           <entry name="E:/apache-maven-3.6.2/repostory/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar" />
           <entry name="E:/apache-maven-3.6.2/repostory/com/chinadaas/platform/dflow/0.1-SNAPSHOT/dflow-0.1-SNAPSHOT.jar" />
         </processorPath>
-        <module name="spring-boot-project-mongodb-jpa" />
         <module name="spring-boot-project-cqrs" />
       </profile>
     </annotationProcessing>
