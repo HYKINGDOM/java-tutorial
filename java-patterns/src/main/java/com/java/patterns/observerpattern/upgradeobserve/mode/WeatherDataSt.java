@@ -1,11 +1,13 @@
-package com.java.util.javautil.patterns.observerpattern.upgradeobserve.mode;
+package com.java.patterns.observerpattern.upgradeobserve.mode;
 
-import com.java.util.javautil.patterns.observerpattern.upgradeobserve.observer.Observer;
-import com.java.util.javautil.patterns.observerpattern.upgradeobserve.observer.Subject;
+
+
+
+import com.java.patterns.observerpattern.upgradeobserve.observer.Observer;
+import com.java.patterns.observerpattern.upgradeobserve.observer.Subject;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 
 /**

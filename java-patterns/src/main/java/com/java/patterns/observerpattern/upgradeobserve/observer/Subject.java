@@ -1,4 +1,4 @@
-package com.java.util.javautil.patterns.observerpattern.upgradeobserve.observer;
+package com.java.patterns.observerpattern.upgradeobserve.observer;
 
 
 /**
