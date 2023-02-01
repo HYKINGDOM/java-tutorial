@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: spring-boot-lab-kafka
+  kafka:
+    bootstrap-servers: localhost:9092 # kafka连接接地址
+    #    client-id: # 发送请求时传给服务器的id
+    producer:
+      #      bootstrap-servers: ${KAFKA_HOST:localhost}:${KAFKA_PORT:9092} # 会覆盖 spring.kafka.bootstrap-servers 配置
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer # 序列化key的类
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer # 序列化value的类
+      properties:
+        partitioner:
+          class: com.java.tutorial.project.config.CustomPartitioner # 指定分区规则
+        spring:
+          json:
+            value:
+              default:
+                type:
+            trusted:
+              packages: com.engrz.lab.* # 允许json反序列化的包
+            add:
+              type:
+                headers: false
+    consumer:
+      #      bootstrap-servers: ${KAFKA_HOST:localhost}:${KAFKA_PORT:9092} # 会覆盖 spring.kafka.bootstrap-servers 配置
+      group-id: kafka-test # 消费者所属消息组
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer # 反序列化key的类
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer # 反序列化value的类

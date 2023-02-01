@@ -24,6 +24,7 @@
         <module name="interview-code" />
         <module name="spring-boot-h2" />
         <module name="spring-boot-project-cache" />
+        <module name="spring-boot-project-mq-kafka" />
         <module name="java-thread" />
         <module name="leetcode" />
         <module name="spring-boot-project-schedule-job" />

@@ -41,6 +41,7 @@
         <module>spring-boot-project-mongodb-jpa</module>
         <module>spring-boot-project-webflux</module>
         <module>spring-boot-project-cqrs</module>
+        <module>spring-boot-project-mq-kafka</module>
     </modules>
 
     <properties>

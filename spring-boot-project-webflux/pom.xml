@@ -43,12 +43,12 @@
             <version>1.33</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.github.jasync-sql/jasync-r2dbc-mysql -->
-        <dependency>
-            <groupId>com.github.jasync-sql</groupId>
-            <artifactId>jasync-r2dbc-mysql</artifactId>
-            <version>2.1.11</version>
-        </dependency>
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.github.jasync-sql/jasync-r2dbc-mysql &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>com.github.jasync-sql</groupId>-->
+<!--            <artifactId>jasync-r2dbc-mysql</artifactId>-->
+<!--            <version>2.1.11</version>-->
+<!--        </dependency>-->
 
 
         <dependency>
