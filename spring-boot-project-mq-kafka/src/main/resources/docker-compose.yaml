@@ -30,7 +30,7 @@ services:
       - '9093:9093'
     environment:
       - TZ=Asia/Shanghai
-      - KAFKA_BROKER_ID=0
+      - KAFKA_BROKER_ID=1
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
       - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://192.168.1.4:9092 # 传递回客户端的元数据，填写宿主机IP地址
       - KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092
