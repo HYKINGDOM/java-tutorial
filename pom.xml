@@ -42,6 +42,8 @@
         <module>spring-boot-project-webflux</module>
         <module>spring-boot-project-cqrs</module>
         <module>spring-boot-project-mq-kafka</module>
+        <module>spring-boot-project-mybatis-plus-dynamic-datasource</module>
+        <module>spring-boot-project-eureka-server</module>
     </modules>
 
     <properties>
