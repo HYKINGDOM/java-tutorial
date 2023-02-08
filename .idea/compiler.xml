@@ -23,8 +23,8 @@
         <module name="java-unit-test" />
         <module name="interview-code" />
         <module name="spring-boot-h2" />
-        <module name="spring-boot-project-cache" />
         <module name="spring-boot-project-mq-kafka" />
+        <module name="spring-boot-project-eureka-server" />
         <module name="java-thread" />
         <module name="leetcode" />
         <module name="spring-boot-project-schedule-job" />
@@ -40,6 +40,16 @@
         <module name="spring-boot-project-graphql" />
         <module name="java-validate" />
       </profile>
+      <profile name="Annotation profile for spring-boot-project-mybatis-plus-dynamic-datasource" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="E:/apache-maven-3.6.2/repostory/org/mapstruct/mapstruct-processor/${org.mapstruct.version}/mapstruct-processor-${org.mapstruct.version}.jar" />
+          <entry name="E:/apache-maven-3.6.2/repostory/org/project-lombok/lombok/1.18.12/lombok-1.18.12.jar" />
+        </processorPath>
+        <module name="spring-boot-project-mybatis-plus-dynamic-datasource" />
+      </profile>
       <profile name="Annotation profile for java-tutorial" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -53,5 +63,9 @@
         <module name="spring-boot-project-cqrs" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="spring-boot-project-cache (1)" target="11" />
+      <module name="spring-boot-project-cache (2)" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>

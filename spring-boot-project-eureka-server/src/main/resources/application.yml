@@ -1,2 +1,57 @@
-{
-    }
+server:
+    port: 7001
+
+eureka:
+    instance:
+        hostname: eureka7001.com #eureka服务端的实例名称
+    client:
+        register-with-eureka: false     #false表示不向注册中心注册自己。
+        fetch-registry: false     #false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务
+        service-url:
+            #单机
+            #设置与Eureka Server交互的地址查询服务和注册服务都需要依赖这个地址（单机）。
+            defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+
+
+# hystrix
+#feign:
+#    hystrix:
+#        enabled: true
+#    client:
+#        config:
+#            feignName:
+#                connectTimeout: 5000
+#                readTimeout: 5000
+#                loggerLevel: BASIC
+
+#ribbon:
+#    ReadTimeout: 60000
+#    ConnectTimeout: 60000
+#
+#hystrix:
+#    command:
+#        default:  #default全局有效，service id指定应用有效
+#            execution:
+#                isolation:
+#                    thread:
+#                        timeoutInMilliseconds: 60000 #断路器超时时间，默认1000ms
+#
+#eureka:
+#    client: #客户端注册进eureka服务列表内
+#        service-url:
+#            defaultZone: http://localhost:7001/eureka
+#            #            defaultZone: http://eureka7001.com:7001/eureka
+#            #defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+#    instance:
+#        instance-id: ${spring.application.name}:${server.port}
+#        prefer-ip-address: true     #访问路径可以显示IP地址
+## 暴露监控端点
+#management:
+#    endpoints:
+#        web:
+#            exposure:
+#                include: '*'
+#    endpoint:
+#        health:
+#            show-details: ALWAYS

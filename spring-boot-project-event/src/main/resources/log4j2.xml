@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="info" monitorInterval="30">
+    <Properties>
+        <Property name="filepath">logs/spring-boot-batch</Property>
+        <property name="app.name" value="spring-boot-batch"/>
+    </Properties>
+    <appenders>
+        <console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [traceId: %X{traceId}] [%p] - %l - %m%n"/>
+        </console>
+
+        <RollingFile name="RollingFileDebug" fileName="${filepath}/debug-%d{yyyy-MM-dd-HH}.log"
+                     filePattern="${filepath}/$${date:yyyy-MM}/debug-%d{yyyy-MM-dd}-%i.log">
+            <Filters>
+                <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+                <ThresholdFilter level="WARN" onMatch="DENY" onMismatch="NEUTRAL"/>
+            </Filters>
+            <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <!--日志文档保留天数 -->
+            <maxHistory>30</maxHistory>
+        </RollingFile>
+
+
+        <RollingFile name="RollingFileInfo" fileName="${filepath}/info-%d{yyyy-MM-dd-HH}.log"
+                     filePattern="${filepath}/$${date:yyyy-MM}/info-%d{yyyy-MM-dd}-%i.log">
+            <Filters>
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+                <ThresholdFilter level="WARN" onMatch="DENY" onMismatch="NEUTRAL"/>
+            </Filters>
+            <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+        </RollingFile>
+
+        <RollingFile name="RollingFileWarn" fileName="${filepath}/warn-%d{yyyy-MM-dd}.log"
+                     filePattern="${filepath}/$${date:yyyy-MM}/warn-%d{yyyy-MM-dd}-%i.log">
+            <Filters>
+                <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+                <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
+            </Filters>
+            <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [traceId: %X{traceId}] [%p] - %l - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+
+        <RollingFile name="RollingFileError" fileName="${filepath}/error-%d{yyyy-MM-dd-HH}.log"
+                     filePattern="${filepath}/$${date:yyyy-MM}/error-%d{yyyy-MM-dd}-%i.log">
+            <ThresholdFilter level="ERROR"/>
+            <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [traceId: %X{traceId}] [%p] - %l - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+        </RollingFile>
+
+    </appenders>
+
+    <loggers>
+        <logger name="org.springframework" level="INFO">
+        </logger>
+        <logger name="com.mysql" level="INFO">
+        </logger>
+
+        <root level="all">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="RollingFileDebug"/>
+            <appender-ref ref="RollingFileInfo"/>
+            <appender-ref ref="RollingFileWarn"/>
+            <appender-ref ref="RollingFileError"/>
+        </root>
+    </loggers>
+
+</configuration>

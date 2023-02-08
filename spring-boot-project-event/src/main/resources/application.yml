@@ -1,3 +1,18 @@
 
 server:
   port: 8080
+spring:
+  devtools:
+    add-properties: true
+
+test:
+  configs:
+    - name: config_1
+      value: 111
+      msg: 配置1
+    - name: config_2
+      value: 222
+      msg: 配置2
+    - name: config_3
+      value: 333
+      msg: 配置3
