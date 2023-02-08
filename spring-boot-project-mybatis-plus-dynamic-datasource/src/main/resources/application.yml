@@ -1,2 +1,35 @@
-{
-    }
+#mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
+#spring.datasource.dynamic.primary=postgresql
+#spring.datasource.dynamic.strict=true
+#spring.datasource.dynamic.datasource.mysql.url=jdbc:mysql://localhost:3306/spring_boot_test?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false
+#spring.datasource.dynamic.datasource.mysql.driver-class-name=com.mysql.cj.jdbc.Driver
+#spring.datasource.dynamic.datasource.mysql.username=root
+#spring.datasource.dynamic.datasource.mysql.password=123456
+#spring.datasource.dynamic.datasource.postgresql.url=jdbc:postgresql://localhost:7092/postgres
+#spring.datasource.dynamic.datasource.postgresql.driver-class-name=org.postgresql.Driver
+#spring.datasource.dynamic.datasource.postgresql.username=postgres
+#spring.datasource.dynamic.datasource.postgresql.password=123456
+
+
+
+spring:
+  datasource:
+    dynamic:
+      primary: postgresql
+      strict: true
+      datasource:
+        mysql:
+          url: jdbc:mysql://localhost:3306/spring_boot_test?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: root
+          password: root
+        postgresql:
+          url: postgresql://localhost:5432/postgres
+          driver-class-name: org.postgresql.Driver
+          username: root
+          password: root
+
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
