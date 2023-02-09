@@ -10,9 +10,11 @@
         <module name="spring-boot-project-template" />
         <module name="spring-boot-project-mongodb-jpa" />
         <module name="java-domain-driver-design" />
+        <module name="spring-boot-project-sse" />
         <module name="java-function" />
         <module name="spring-boot-project-webflux" />
         <module name="spring-boot-project-bean" />
+        <module name="spring-boot-project-websocket" />
         <module name="java-vavr" />
         <module name="spring-boot-mysql" />
         <module name="business-data" />
@@ -24,6 +26,7 @@
         <module name="interview-code" />
         <module name="spring-boot-h2" />
         <module name="spring-boot-project-mq-kafka" />
+        <module name="spring-boot-project-cache" />
         <module name="spring-boot-project-eureka-server" />
         <module name="java-thread" />
         <module name="leetcode" />

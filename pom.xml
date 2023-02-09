@@ -44,6 +44,8 @@
         <module>spring-boot-project-mq-kafka</module>
         <module>spring-boot-project-mybatis-plus-dynamic-datasource</module>
         <module>spring-boot-project-eureka-server</module>
+        <module>spring-boot-project-sse</module>
+        <module>spring-boot-project-websocket</module>
     </modules>
 
     <properties>
