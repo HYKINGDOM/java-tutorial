@@ -1,5 +1,6 @@
 package com.java.tutorial.project.config;
 
+import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -19,8 +20,8 @@ public class MybatisPlusConfig {
     /**
      * 分页插件*/
     @Bean
-    public PaginationInterceptor paginationInterceptor(){
-        return new PaginationInterceptor();
+    public PaginationInnerInterceptor paginationInterceptor(){
+        return new PaginationInnerInterceptor();
     }
 
     @Bean
