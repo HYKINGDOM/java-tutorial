@@ -20,7 +20,7 @@ public class MybatisPlusConfig {
     /**
      * 分页插件*/
     @Bean
-    public PaginationInnerInterceptor paginationInterceptor(){
+    public PaginationInnerInterceptor paginationInnerInterceptor(){
         return new PaginationInnerInterceptor();
     }
 
@@ -30,7 +30,7 @@ public class MybatisPlusConfig {
         sqlSessionFactoryBean.setDataSource(dataSource);
         sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:mapper/*/*.xml"));
         sqlSessionFactoryBean.setTransactionFactory(new SpringManagedTransactionFactory());
-        sqlSessionFactoryBean.setPlugins(new Interceptor[]{paginationInterceptor()});
+        sqlSessionFactoryBean.setPlugins((Interceptor) paginationInnerInterceptor());
         return sqlSessionFactoryBean.getObject();
     }
 
