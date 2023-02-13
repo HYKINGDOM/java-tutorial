@@ -52,7 +52,7 @@ public class SysUserEntity {
     /**
      * 乐观锁
      */
-    private Integer vision;
+    private Integer version;
     /**
      * 创建人
      */

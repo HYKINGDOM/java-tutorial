@@ -1,5 +1,6 @@
 package com.java.tutorial.project.service.impl;
 
+import com.baomidou.dynamic.datasource.annotation.DSTransactional;
 import com.java.tutorial.project.domain.base.SysUser;
 import com.java.tutorial.project.service.SysUserService;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,7 @@ public class SysUserServiceImpl implements SysUserService {
      * @return 实例对象
      */
     @Override
+    @DSTransactional
     public SysUser insert(SysUser sysUser) {
         return null;
     }
