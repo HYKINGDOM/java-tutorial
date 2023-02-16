@@ -52,7 +52,7 @@ public class RanDomUtils {
      * @param strLength
      * @return
      */
-    public String randomNumeric(Integer strLength) {
+    public static String randomNumeric(Integer strLength) {
         return RandomStringUtils.randomNumeric(strLength);
     }
 

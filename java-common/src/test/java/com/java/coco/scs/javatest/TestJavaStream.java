@@ -2,10 +2,17 @@ package com.java.coco.scs.javatest;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.java.coco.domian.SysUserAccount;
 import com.java.coco.scs.domain.TimeMap;
+import lombok.val;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.Reader;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collection;
@@ -21,6 +28,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static com.google.common.primitives.Ints.asList;
+import static com.java.coco.scs.fixture.SysUserAccountFixture.buildSysUserAccount;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.mapping;
@@ -332,6 +340,43 @@ public class TestJavaStream {
         //按照类型分组之后 返回带上每组数据的其中一个字段的额list
         Map<Object, List<Object>> listMap = lists.stream().collect(groupingBy(e -> e.get("type").toString() + e.get("name"), mapping(e_ -> e_.get("name"), toList())));
         System.out.println(listMap.toString());
+    }
+
+
+    @Test
+    public void test_collect_group_by_java_type() {
+
+
+        List<SysUserAccount> sysUserAccounts = buildSysUserAccount(20);
+        Map<String, Map<Integer, Long>> resultMap = sysUserAccounts.stream()
+                .collect(Collectors.groupingBy(SysUserAccount::getUserName,
+                        Collectors.groupingBy(SysUserAccount::getStatus,
+                                Collectors.counting())));
+
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+//        val gsonJsonParser = new Gson();
+        String toJson = gson.toJson(resultMap);
+        System.out.println(toJson);
+
+    }
+
+
+    @Test
+    public void test_collect_group_by_java_type_01() {
+
+
+        List<SysUserAccount> sysUserAccounts = buildSysUserAccount(20);
+
+        Map<Boolean, Long> resultMap = sysUserAccounts.stream()
+                .collect(Collectors.partitioningBy(e -> e.getStatus() == 5,
+                        Collectors.counting()));
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String toJson = gson.toJson(resultMap);
+        System.out.println(toJson);
+
     }
 
 
