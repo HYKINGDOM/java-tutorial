@@ -1,5 +1,10 @@
 package com.java.coco.scs.javatest;
 
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONFactory;
+import com.alibaba.fastjson2.JSONObject;
+import com.alibaba.fastjson2.JSONWriter;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
@@ -20,6 +25,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.LongSummaryStatistics;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -363,6 +369,16 @@ public class TestJavaStream {
     }
 
 
+    /**
+     * 1️⃣ collect是Stream流的一个终止方法，会使用传入的收集器（入参）对结果执行相关的操作，这个收集器必须是Collector接口的某个具体实现类
+     * 2️⃣ Collector是一个接口，collect方法的收集器是Collector接口的具体实现类
+     * 3️⃣ Collectors是一个工具类，提供了很多的静态工厂方法，提供了很多Collector接口的具体实现类，是为了方便程序员使用而预置的一些较为通用的收集器（如果不使用Collectors类，而是自己去实现Collector接口，也可以）。
+     * <p>
+     * 作者：架构悟道
+     * 链接：https://juejin.cn/post/7121539527151190053
+     * 来源：稀土掘金
+     * 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+     */
     @Test
     public void test_collect_group_by_java_type_01() {
 
@@ -380,12 +396,67 @@ public class TestJavaStream {
     }
 
 
+    @Test
+    public void test_collect_group_by_java_type_02() {
+
+
+        List<SysUserAccount> sysUserAccounts = buildSysUserAccount(20);
+
+        IntSummaryStatistics summaryStatistics = sysUserAccounts.stream()
+                .collect(Collectors.summarizingInt(SysUserAccount::getVision));
+
+        System.out.println(summaryStatistics);
+
+
+        LongSummaryStatistics longSummaryStatistics = sysUserAccounts.stream()
+                .collect(Collectors.summarizingLong(SysUserAccount::getVision));
+
+        System.out.println(longSummaryStatistics);
+
+    }
+
+    @Test
+    public void test_collect_group_by_java_type_03() {
+
+
+        List<SysUserAccount> sysUserAccounts = buildSysUserAccount(20);
+
+        Map<Integer, Long> collect = sysUserAccounts.stream()
+                .collect(groupingBy(SysUserAccount::getStatus,
+                        counting()));
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String toJson = gson.toJson(collect);
+        System.out.println(toJson);
+
+    }
+
+
+    @Test
+    public void test_collect_group_by_java_type_04() {
+
+
+        List<SysUserAccount> sysUserAccounts = buildSysUserAccount(20);
+
+        SysUserAccount collect = sysUserAccounts.stream()
+                .filter(employee -> employee.getStatus() == 1)
+                .collect(
+                        Collectors.collectingAndThen(
+                                Collectors.maxBy(Comparator.comparingInt(SysUserAccount::getVision)),
+                                Optional::get)
+                );
+
+        System.out.println(JSONObject.toJSONString(sysUserAccounts, JSONWriter.Feature.PrettyFormat, JSONWriter.Feature.MapSortField));
+
+    }
+
+
     /**
      * 将list<map<>>中的数据取出拼接成字符串
      */
     @Test
     public void test_group_by_java_list_to_string() {
-        String name = lists.stream().map(e -> e.get("name").toString()).collect(Collectors.joining(",", "[", "]"));
+        String name = lists.stream().map(e -> e.get("name")).map(String::valueOf).collect(Collectors.joining(",", "[", "]"));
         System.out.println("name:" + name);
     }
 
