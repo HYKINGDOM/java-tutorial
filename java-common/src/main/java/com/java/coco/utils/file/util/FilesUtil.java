@@ -70,4 +70,24 @@ public class FilesUtil {
             }
         }
     }
+
+
+    /**
+     * 遍历删除空文件夹
+     * @param dir
+     * @return
+     */
+    public static boolean deleteDir(File dir){
+        File[] files = dir.listFiles();
+        if(files != null){
+            for(File file : files){
+                if(file.isDirectory()){
+                    deleteDir(file);
+                } else {
+                    file.delete();
+                }
+            }
+        }
+        return dir.delete();
+    }
 }
