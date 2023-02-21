@@ -14,11 +14,13 @@ import com.google.gson.JsonParser;
 import com.java.coco.domian.SysUserAccount;
 import com.java.coco.scs.domain.TimeMap;
 import lombok.val;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.Reader;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -232,6 +234,17 @@ public class TestJavaStream {
         //返回总和能被3整除的数对
         List<int[]> res3 = nums2List.stream().flatMap(i -> nums3List.stream().filter(j -> (i + j) % 3 == 0).map(j -> new int[]{i, j})).collect(Collectors.toList());
         res3.forEach(e -> System.out.println(Arrays.toString(e)));
+
+        System.out.println("=========================================");
+        //给定两数组，返回数组对
+        List<Integer> integerList1 = Lists.newArrayList(1, 2, 3, 4, 5, 6);
+        List<Integer> integerList2 = Lists.newArrayList(5, 6, 7, 8, 9, 0);
+        List<List<Integer>> objects = Lists.newArrayList();
+        IntStream
+                .range(1, 4)
+                .forEach(i -> objects.add(integerList1));
+
+        objects.stream().flatMap(Collection::stream).forEach(System.out::print);
 
     }
 
