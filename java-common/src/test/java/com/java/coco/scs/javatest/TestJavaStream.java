@@ -245,6 +245,22 @@ public class TestJavaStream {
                 .forEach(i -> objects.add(integerList1));
 
         objects.stream().flatMap(Collection::stream).forEach(System.out::print);
+        System.out.println("");
+
+        //每个调用flatMap返回一个Optional包装所需对象（如果存在）或null不存在。
+        System.out.println("=========================================");
+        Map<Integer, String> map1 = Maps.newHashMap();
+        map1.put(1, "str");
+
+        Map<Integer, Map> map2 = Maps.newHashMap();
+        map2.put(2, map1);
+
+        Map<Integer, Map> map3 = Maps.newHashMap();
+        map3.put(3, map2);
+
+        Optional.of(map3).flatMap(e -> Optional.ofNullable(e.get(3)))
+                .flatMap(o -> Optional.ofNullable(o.get(2)))
+                .ifPresent(System.out::println);
 
     }
 
@@ -265,7 +281,7 @@ public class TestJavaStream {
     }
 
     /**
-     * reduce 对数据计算后返回
+     * Reduce操作将流的所有元素组合成单个结果。Java 8支持三种不同的reduce方法。第一个将元素流简化为流的一个元素
      */
     @Test
     public void test_java_stream_reduce() {
@@ -276,6 +292,13 @@ public class TestJavaStream {
         int result = Stream.of(1, 2, 3, 4)
                 .reduce(1, (acc, element) -> acc * element);
         assertEquals(24, result);
+
+        System.out.println("=========================================");
+        Stream.of(45, 10, 20, 5).reduce((a, b) -> a > b ? a: b)
+                .ifPresent(System.out::println);
+
+        System.out.println("=========================================");
+
     }
 
     /**
