@@ -9,7 +9,7 @@ alerting:
   alertmanagers:
     - static_configs:
         - targets:
-           - alertmanager:9093
+           - alert-manager:9093
 
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
@@ -30,4 +30,4 @@ scrape_configs:
 
   - job_name: "node-exporter"
     consul_sd_configs:
-      - server: 'consul-server-ip:8500'
+      - server: 'consul:8500'
