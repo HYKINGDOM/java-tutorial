@@ -1,0 +1,112 @@
+version: '3'
+
+
+services:
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    hostname: prometheus
+    restart: always
+    privileged: true
+    user: root
+    volumes:
+      - ./prometheus/conf:/etc/prometheus
+      - ./prometheus/data:/prometheus
+    ports:
+      - "9090:9090"
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    networks:
+      service-monitor:
+        aliases:
+          - prometheus
+
+  victoria-metrics:
+    image: victoriametrics/victoria-metrics
+    container_name: victoria-metrics
+    hostname: victoria-metrics
+    privileged: true
+    restart: always
+    volumes:
+      - ./victoriametrics:/victoriametrics
+    ports:
+      - "8428:8428"
+    command:
+      - '-storageDataPath=/victoriametrics'
+      - '-retentionPeriod=1'
+    depends_on:
+      - prometheus
+    networks:
+      service-monitor:
+        aliases:
+          - victoria-metrics
+
+  alert-manager:
+    image: prom/alertmanager
+    container_name: alert-manager
+    hostname: alert-manager
+    privileged: true
+    user: root
+    restart: always
+    volumes:
+      - ./alertmanager/conf:/etc/alertmanager
+    ports:
+      - "9093:9093"
+    depends_on:
+      - prometheus
+    networks:
+      service-monitor:
+        aliases:
+          - alert-manager
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    hostname: grafana
+    restart: always
+    privileged: true
+    user: root
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana/data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    networks:
+      service-monitor:
+        aliases:
+          - grafana
+
+  node-exporter:
+    image: quay.io/prometheus/node-exporter
+    container_name: node-exporter
+    hostname: node-exporter
+    restart: always
+    privileged: true
+    user: root
+    ports:
+      - "9100:9100"
+    networks:
+      service-monitor:
+        aliases:
+          - node-exporter
+
+  consul:
+    image: consul:1.14.4
+    container_name: consul
+    hostname: consul
+    restart: always
+    privileged: true
+    user: root
+    ports:
+      - "8500:8500"
+    volumes:
+      - ./consul/data:/consul/data
+    command: [agent,-server,-ui,-client=0.0.0.0,-bootstrap-expect=1]
+
+
+networks:
+  service-monitor:
+    driver: bridge
