@@ -25,6 +25,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.LongSummaryStatistics;
@@ -245,7 +246,7 @@ public class TestJavaStream {
                 .forEach(i -> objects.add(integerList1));
 
         objects.stream().flatMap(Collection::stream).forEach(System.out::print);
-        System.out.println("");
+        System.out.println();
 
         //每个调用flatMap返回一个Optional包装所需对象（如果存在）或null不存在。
         System.out.println("=========================================");
@@ -294,11 +295,38 @@ public class TestJavaStream {
         assertEquals(24, result);
 
         System.out.println("=========================================");
-        Stream.of(45, 10, 20, 5).reduce((a, b) -> a > b ? a: b)
+        Stream.of(45, 10, 20, 5).reduce((a, b) -> a > b ? a : b)
                 .ifPresent(System.out::println);
 
         System.out.println("=========================================");
+        Map<String, Integer> integerMap00 = new HashMap<>();
+        integerMap00.put("name", 0);
+        integerMap00.put("age", 0);
 
+        Map<String, Integer> integerMap01 = new HashMap<>();
+        integerMap01.put("name", 100);
+        integerMap01.put("age", 25);
+
+        Map<String, Integer> integerMap02 = new HashMap<>();
+        integerMap02.put("name", 255);
+        integerMap02.put("age", 10);
+        List<Map<String, Integer>> lists = Lists.newArrayList();
+        lists.add(integerMap01);
+        lists.add(integerMap02);
+
+        Map<String, Integer> amp = lists.stream().reduce(integerMap00, (p1, p2) -> {
+            p1.put("name", p1.get("name") + p2.get("name"));
+            p1.put("age", p1.get("age") + p2.get("age"));
+            return p1;
+        });
+
+        System.out.format("name=%s; age=%s", amp.get("name"), amp.get("age")).println();
+
+        System.out.println("=========================================");
+        //Integer age = lists.stream().reduce(0, (sum, p) -> sum += p.get("age"), (sum1, sum2) -> sum1 + sum2);
+        Integer age = lists.stream().reduce(0, (sum, p) -> sum + p.get("age"), Integer::sum);
+
+        System.out.format("age=%s", age);
     }
 
     /**
