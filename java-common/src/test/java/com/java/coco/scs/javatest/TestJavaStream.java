@@ -33,6 +33,7 @@ import java.util.LongSummaryStatistics;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -591,6 +592,11 @@ public class TestJavaStream {
     @Test
     public void test_list_for_list() {
 
+        lists.forEach(System.out::println);
+        System.out.println("==========================================");
+        listCopy.forEach(System.out::println);
+        System.out.println("==========================================");
+
         //noneMatch 不满足判断条件的数据返回
         lists.stream()
                 .filter(map -> listCopy.stream().noneMatch(map1 -> map.get("age").equals(map1.get("age")) && map.get("name").equals(map1.get("name"))))
@@ -613,6 +619,21 @@ public class TestJavaStream {
                 .forEach(map -> {
                     System.out.println(map.toString());
                 });
+        System.out.println("==========================================");
+
+        Map<String, Object> integerMap02 = new HashMap<>();
+        integerMap02.put("age", 10);
+
+        Map<String, Object> collect = Stream.of(lists, listCopy).flatMap(Collection::stream).distinct().reduce(integerMap02, (a, b) -> {
+            if (a.get("age").equals(b.get("age"))) {
+                return a;
+            }
+            return integerMap02;
+        });
+
+        System.out.println(collect.toString());
+
+
     }
 
     @Test
@@ -803,11 +824,11 @@ public class TestJavaStream {
 
         String[] strings = new String[]{"1", "2", "3", "4", "5", "6", "7", "8"};
 
-        List<String> stringList = Arrays.asList(strings);
+        List<String> stringList = new ArrayList<>(List.of(strings));
 
         stringList.removeIf(("2")::equals);
 
-        for (String string : strings) {
+        for (String string : stringList) {
             System.out.println(string);
         }
     }
