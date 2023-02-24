@@ -13,6 +13,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.java.coco.domian.SysUserAccount;
+import com.java.coco.scs.domain.Person;
 import com.java.coco.scs.domain.TimeMap;
 import lombok.val;
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -329,6 +330,31 @@ public class TestJavaStream {
         Integer age = lists.stream().reduce(0, (sum, p) -> sum + p.get("age"), Integer::sum);
 
         System.out.format("age=%s", age);
+
+
+        System.out.println("=========================================");
+        List<Person> persons = Arrays.asList(
+                new Person("Max", 18),
+                new Person("Peter", 23),
+                new Person("Pamela", 23),
+                new Person("David", 12));
+
+        Integer reduce = persons
+                .parallelStream()
+                .reduce(0,
+                        (sum, p) -> {
+                            System.out.format("accumulator: sum=%s; person=%s [%s]\n",
+                                    sum, p, Thread.currentThread().getName());
+                            return sum + p.getAge();
+                        },
+                        (sum1, sum2) -> {
+                            System.out.format("combiner: sum1=%s; sum2=%s [%s]\n",
+                                    sum1, sum2, Thread.currentThread().getName());
+                            return sum1 + sum2;
+                        });
+
+        System.out.println(reduce);
+
     }
 
     /**
