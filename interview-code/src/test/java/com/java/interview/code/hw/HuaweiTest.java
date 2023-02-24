@@ -1,17 +1,20 @@
-package com.java.util.javautil.interview.hw;
+package com.java.interview.code.hw;
 
-import org.junit.Assert;
-import org.junit.Test;
+
+
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HuaweiTest {
 
     @Test
     public void test_sale() {
         //Assert.assertEquals(140165471, getFibonacci(50));
-        Assert.assertEquals(89, getRecursion(8));
+        assertEquals(89, getRecursion(8));
     }
 
 

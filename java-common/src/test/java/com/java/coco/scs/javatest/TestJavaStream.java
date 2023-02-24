@@ -1,5 +1,6 @@
 package com.java.coco.scs.javatest;
 
+import cn.hutool.core.math.MathUtil;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONFactory;
 import com.alibaba.fastjson2.JSONObject;
@@ -44,7 +45,9 @@ import static com.java.coco.scs.fixture.SysUserAccountFixture.buildSysUserAccoun
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.mapping;
+import static java.util.stream.Collectors.summingInt;
 import static java.util.stream.Collectors.toList;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -339,6 +342,7 @@ public class TestJavaStream {
                 new Person("Pamela", 23),
                 new Person("David", 12));
 
+
         Integer reduce = persons
                 .parallelStream()
                 .reduce(0,
@@ -356,6 +360,38 @@ public class TestJavaStream {
         System.out.println(reduce);
 
     }
+
+
+    /**
+     * Takewhile:假设要在流中找到所有小于20的数字，可能会出现一下情况：
+     * 在其顺序执行过程中，只能得到过滤条件触发之前输入的数字，后面的输入全部都会被舍弃。也就是说当第一次过滤条件被触发时，会忽略剩余的输入然后执行返回或退出命令。
+     * <p>
+     * Dropwhile方法会丢弃过滤条件触发之前的所有输入，一旦过滤条件触发，就输出之后的所有数据。
+     */
+    @Test
+    public void test_java_stream_take_while_drop_while() {
+        List<Integer> numberList = Arrays.asList(1, 3, 5, 8, 10, 20, 35, 2, 5, 7);
+        //输入的数字
+        numberList.stream().takeWhile(num -> num <= 20).forEach(System.out::println);
+        System.out.println("=========================================");
+        List<Integer> numberList01 = Arrays.asList(1, 3, 5, 8, 10, 20, 35, 2, 5, 7);
+        //输出之后的所有数据。
+        numberList01.stream().dropWhile(num -> num <= 20).forEach(System.out::println);
+    }
+
+
+    @Test
+    public void test_java_stream_03() {
+        Map<Integer, String> integerMap02 = new HashMap<>();
+        integerMap02.put(255, "name");
+        integerMap02.put(10, "age");
+        String orDefault = integerMap02.getOrDefault(10, "de");
+        assertThat(orDefault).isEqualTo("age");
+
+        String orDefault02 = integerMap02.getOrDefault(101, "de");
+        assertThat(orDefault02).isEqualTo("de");
+    }
+
 
     /**
      * map计算平方数

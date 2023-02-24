@@ -1,15 +1,16 @@
-package com.java.util.javautil.interview.hw;
+package com.java.interview.code.hw;
 
-import org.junit.Before;
-import org.junit.Test;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LastStringLengthTest {
 
     private LastStringLength lastStringLength;
 
-    @Before
+    @BeforeEach
     public void initTest(){
         lastStringLength = new LastStringLength();
     }

@@ -1,4 +1,4 @@
-package com.java.util.javautil.interview.hw.huawei.test2;
+package com.java.interview.code.hw.huawei.test2;
 
 import java.util.ArrayList;
 import java.util.HashMap;

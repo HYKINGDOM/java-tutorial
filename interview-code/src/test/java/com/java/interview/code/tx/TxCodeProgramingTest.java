@@ -1,13 +1,9 @@
-package com.java.util.javautil.interview.tx;
+package com.java.interview.code.tx;
 
-import org.junit.Before;
+
+import org.junit.jupiter.api.BeforeEach;
 
 public class TxCodeProgramingTest {
 
-    private TxCodePrograming txCodePrograming;
 
-    @Before
-    public void setUp() {
-        txCodePrograming = new TxCodePrograming();
-    }
 }

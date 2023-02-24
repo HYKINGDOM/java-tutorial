@@ -1,4 +1,4 @@
-package com.java.util.javautil.interview.hw;
+package com.java.interview.code.hw;
 
 import java.util.Scanner;
 import java.util.TreeSet;
