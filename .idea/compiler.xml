@@ -49,9 +49,23 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="E:/apache-maven-3.6.2/repostory/org/mapstruct/mapstruct-processor/${org.mapstruct.version}/mapstruct-processor-${org.mapstruct.version}.jar" />
-          <entry name="E:/apache-maven-3.6.2/repostory/org/project-lombok/lombok/1.18.12/lombok-1.18.12.jar" />
+          <entry name="E:/apache-maven-3.6.2/repostory/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar" />
         </processorPath>
         <module name="spring-boot-project-mybatis-plus-dynamic-datasource" />
+      </profile>
+      <profile name="Annotation profile for spring-boot-project-manifold-extensions" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="E:/apache-maven-3.6.2/repostory/org/projectlombok/lombok/1.18.26/lombok-1.18.26.jar" />
+          <entry name="E:/apache-maven-3.6.2/repostory/systems/manifold/manifold-ext/2023.1.3/manifold-ext-2023.1.3.jar" />
+          <entry name="E:/apache-maven-3.6.2/repostory/systems/manifold/manifold/2023.1.3/manifold-2023.1.3.jar" />
+          <entry name="E:/apache-maven-3.6.2/repostory/systems/manifold/manifold-rt/2023.1.3/manifold-rt-2023.1.3.jar" />
+          <entry name="E:/apache-maven-3.6.2/repostory/systems/manifold/manifold-util/2023.1.3/manifold-util-2023.1.3.jar" />
+          <entry name="E:/apache-maven-3.6.2/repostory/systems/manifold/manifold-ext-rt/2023.1.3/manifold-ext-rt-2023.1.3.jar" />
+        </processorPath>
+        <module name="spring-boot-project-manifold-extensions" />
       </profile>
       <profile name="Annotation profile for java-tutorial" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -70,5 +84,50 @@
       <module name="spring-boot-project-cache (1)" target="11" />
       <module name="spring-boot-project-cache (2)" target="1.5" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-Xplugin:Manifold " />
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="business-data" options="" />
+      <module name="database" options="" />
+      <module name="interview-code" options="" />
+      <module name="java-benchmark" options="" />
+      <module name="java-common" options="" />
+      <module name="java-database" options="" />
+      <module name="java-domain-driver-design" options="" />
+      <module name="java-function" options="" />
+      <module name="java-mapstruct" options="" />
+      <module name="java-patterns" options="" />
+      <module name="java-thread" options="" />
+      <module name="java-tutorial" options="" />
+      <module name="java-unit-test" options="" />
+      <module name="java-validate" options="" />
+      <module name="java-vavr" options="" />
+      <module name="leetcode" options="" />
+      <module name="spring-boot-h2" options="" />
+      <module name="spring-boot-mongodb" options="" />
+      <module name="spring-boot-mysql" options="" />
+      <module name="spring-boot-project-async" options="" />
+      <module name="spring-boot-project-batch" options="" />
+      <module name="spring-boot-project-bean" options="" />
+      <module name="spring-boot-project-cache" options="" />
+      <module name="spring-boot-project-cqrs" options="" />
+      <module name="spring-boot-project-drools" options="" />
+      <module name="spring-boot-project-eureka-server" options="" />
+      <module name="spring-boot-project-event" options="" />
+      <module name="spring-boot-project-excel" options="" />
+      <module name="spring-boot-project-graphql" options="" />
+      <module name="spring-boot-project-manifold-extensions" options="&quot;-Xplugin:Manifold no-bootstrap&quot;" />
+      <module name="spring-boot-project-mongodb-jpa" options="" />
+      <module name="spring-boot-project-mq-kafka" options="" />
+      <module name="spring-boot-project-mybatis-plus-dynamic-datasource" options="" />
+      <module name="spring-boot-project-schedule-job" options="" />
+      <module name="spring-boot-project-security" options="" />
+      <module name="spring-boot-project-sse" options="" />
+      <module name="spring-boot-project-template" options="" />
+      <module name="spring-boot-project-webflux" options="" />
+      <module name="spring-boot-project-websocket" options="" />
+      <module name="spring-boot-transactional" options="" />
+    </option>
   </component>
 </project>

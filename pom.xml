@@ -46,6 +46,7 @@
         <module>spring-boot-project-eureka-server</module>
         <module>spring-boot-project-sse</module>
         <module>spring-boot-project-websocket</module>
+        <module>spring-boot-project-manifold-extensions</module>
     </modules>
 
     <properties>
@@ -55,6 +56,7 @@
         <spring-boot-starter-web>2.7.5</spring-boot-starter-web>
         <spring-boot-devtools>2.7.5</spring-boot-devtools>
         <spring-boot-starter-test>2.7.5</spring-boot-starter-test>
+        <lombok.version>1.18.26</lombok.version>
     </properties>
 
     <dependencies>
@@ -62,14 +64,14 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.24</version>
+            <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.8.10</version>
+            <version>5.8.12</version>
         </dependency>
 
         <dependency>
@@ -84,11 +86,11 @@
             <version>3.12.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.alibaba.fastjson2</groupId>
-            <artifactId>fastjson2</artifactId>
-            <version>2.0.19</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.alibaba.fastjson2</groupId>-->
+<!--            <artifactId>fastjson2</artifactId>-->
+<!--            <version>2.0.19</version>-->
+<!--        </dependency>-->
 
 <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation &ndash;&gt;-->
 <!--        <dependency>-->
