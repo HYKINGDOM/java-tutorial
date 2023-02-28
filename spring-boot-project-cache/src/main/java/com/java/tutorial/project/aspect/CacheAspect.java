@@ -14,6 +14,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 import java.lang.reflect.Method;
 import java.util.Objects;
@@ -30,6 +31,8 @@ import java.util.concurrent.TimeUnit;
 public class CacheAspect {
     private final Cache<String, Object> cache;
     private final RedisTemplate<String, Object> redisTemplate;
+
+    private final StringRedisTemplate stringRedisTemplate;
 
     @Pointcut("@annotation(com.java.tutorial.project.annotation.DoubleCache)")
     public void cacheAspect() {
