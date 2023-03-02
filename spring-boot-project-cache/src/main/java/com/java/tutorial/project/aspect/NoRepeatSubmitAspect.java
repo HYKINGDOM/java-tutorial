@@ -27,7 +27,7 @@ public class NoRepeatSubmitAspect {
 
 
     @Autowired
-    private RedisTemplate redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     /**
      * 定义切点
@@ -37,7 +37,7 @@ public class NoRepeatSubmitAspect {
     }
 
     @Around("preventDuplication()")
-    public Object around(ProceedingJoinPoint joinPoint) throws Exception {
+    public Object around(ProceedingJoinPoint joinPoint) {
 
         /**
          * 获取请求信息
@@ -45,6 +45,7 @@ public class NoRepeatSubmitAspect {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder
                 .getRequestAttributes();
 
+        assert attributes != null;
         HttpServletRequest request = attributes.getRequest();
 
         // 获取执行方法
@@ -67,7 +68,7 @@ public class NoRepeatSubmitAspect {
         // 这个值只是为了标记，不重要
         String redisValue = redisKey.concat(annotation.value()).concat("submit duplication");
 
-        if (!redisTemplate.hasKey(redisKey)) {
+        if (Boolean.FALSE.equals(redisTemplate.hasKey(redisKey))) {
             // 设置防重复操作限时标记（前置通知）
             redisTemplate.opsForValue()
                     .set(redisKey, redisValue, annotation.expireSeconds(), TimeUnit.SECONDS);
