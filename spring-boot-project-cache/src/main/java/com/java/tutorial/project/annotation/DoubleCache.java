@@ -1,5 +1,7 @@
 package com.java.tutorial.project.annotation;
 
+import com.java.tutorial.project.common.CacheType;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

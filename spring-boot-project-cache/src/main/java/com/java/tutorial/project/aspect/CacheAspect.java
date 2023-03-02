@@ -1,7 +1,7 @@
 package com.java.tutorial.project.aspect;
 
 import com.github.benmanes.caffeine.cache.Cache;
-import com.java.tutorial.project.annotation.CacheType;
+import com.java.tutorial.project.common.CacheType;
 import com.java.tutorial.project.annotation.DoubleCache;
 import com.java.tutorial.project.common.CacheConstant;
 import com.java.tutorial.project.util.ElParser;

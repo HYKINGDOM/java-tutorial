@@ -1,4 +1,4 @@
-package com.java.tutorial.project.annotation;
+package com.java.tutorial.project.common;
 
 /**
  * 缓存操作类型

@@ -1,7 +1,7 @@
 package com.java.tutorial.project.service;
 
 
-import com.java.tutorial.project.annotation.CacheType;
+import com.java.tutorial.project.common.CacheType;
 import com.java.tutorial.project.annotation.DoubleCache;
 import com.java.tutorial.project.entity.Order;
 import lombok.AllArgsConstructor;
