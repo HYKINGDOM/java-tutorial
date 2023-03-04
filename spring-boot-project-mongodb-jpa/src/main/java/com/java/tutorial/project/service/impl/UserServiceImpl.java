@@ -2,7 +2,7 @@ package com.java.tutorial.project.service.impl;
 
 
 import com.java.tutorial.project.domain.User;
-import com.java.tutorial.project.infrastucture.dao.UserEntityRepository;
+import com.java.tutorial.project.infrastucture.UserEntityRepository;
 import com.java.tutorial.project.infrastucture.entity.UserEntity;
 import com.java.tutorial.project.service.UserService;
 import lombok.AllArgsConstructor;

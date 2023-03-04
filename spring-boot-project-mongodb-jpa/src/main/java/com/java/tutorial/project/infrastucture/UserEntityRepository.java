@@ -1,4 +1,4 @@
-package com.java.tutorial.project.infrastucture.dao;
+package com.java.tutorial.project.infrastucture;
 
 
 import com.java.tutorial.project.domain.User;

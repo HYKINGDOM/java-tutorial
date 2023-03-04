@@ -1,13 +1,15 @@
-package com.java.tutorial.project.infrastucture.dao;
+package com.java.tutorial.project.infrastucture.repository;
 
 
 import com.java.tutorial.project.domain.User;
-import com.java.tutorial.project.infrastucture.dao.mapper.UserEntityMapper;
+import com.java.tutorial.project.infrastucture.UserEntityRepository;
+import com.java.tutorial.project.infrastucture.dao.UserEntityDao;
 import com.java.tutorial.project.infrastucture.entity.UserEntity;
 import com.java.tutorial.project.infrastucture.entity.UserNameEntity;
+import com.java.tutorial.project.infrastucture.mapper.UserEntityMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
@@ -15,8 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * @author hy
+ */
 @RequiredArgsConstructor
-@Component
+@Repository
 public class UserEntityRepositoryImpl implements UserEntityRepository {
 
     private final UserEntityDao userEntityDao;

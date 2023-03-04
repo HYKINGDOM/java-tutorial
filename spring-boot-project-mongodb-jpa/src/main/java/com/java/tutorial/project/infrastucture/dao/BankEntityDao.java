@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
  * @author HY
  */
 @Repository
-public interface BankEntityRepository extends MongoRepository<BankEntity, String> {
+public interface BankEntityDao extends MongoRepository<BankEntity, String> {
 
 }

@@ -1,4 +1,4 @@
-package com.java.tutorial.project.infrastucture.dao.mapper;
+package com.java.tutorial.project.infrastucture.mapper;
 
 
 import com.java.tutorial.project.domain.User;
