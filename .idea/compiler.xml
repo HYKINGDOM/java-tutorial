@@ -8,7 +8,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="spring-boot-project-template" />
-        <module name="spring-boot-project-mongodb-jpa" />
         <module name="java-domain-driver-design" />
         <module name="spring-boot-project-sse" />
         <module name="java-function" />
@@ -88,6 +87,17 @@
           <entry name="E:/apache-maven-3.6.2/repostory/org/projectlombok/lombok/1.18.26/lombok-1.18.26.jar" />
         </processorPath>
         <module name="spring-boot-project-cache" />
+      </profile>
+      <profile name="Annotation profile for spring-boot-project-mongodb-jpa" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="E:/apache-maven-3.6.2/repostory/org/mapstruct/mapstruct-processor/1.5.3.Final/mapstruct-processor-1.5.3.Final.jar" />
+          <entry name="E:/apache-maven-3.6.2/repostory/org/mapstruct/mapstruct/1.5.3.Final/mapstruct-1.5.3.Final.jar" />
+          <entry name="E:/apache-maven-3.6.2/repostory/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar" />
+        </processorPath>
+        <module name="spring-boot-project-mongodb-jpa" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

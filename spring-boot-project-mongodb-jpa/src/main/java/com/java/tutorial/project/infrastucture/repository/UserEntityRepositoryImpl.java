@@ -7,6 +7,7 @@ import com.java.tutorial.project.infrastucture.dao.UserEntityDao;
 import com.java.tutorial.project.infrastucture.entity.UserEntity;
 import com.java.tutorial.project.infrastucture.entity.UserNameEntity;
 import com.java.tutorial.project.infrastucture.mapper.UserEntityMapper;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Repository;
@@ -28,6 +29,8 @@ public class UserEntityRepositoryImpl implements UserEntityRepository {
 
     private final UserEntityMapper userEntityMapper;
 
+
+    private final JPAQueryFactory jpaQueryFactory;
 
     @Transactional(rollbackFor = Exception.class)
     @Override

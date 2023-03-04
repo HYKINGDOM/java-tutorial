@@ -9,6 +9,7 @@ import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import javax.persistence.Entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.List;
  * @author HY
  */
 @Data
+@Entity
 @Document(collection = "MGdatabase.userNameEntities")
 public class UserEntity implements Serializable {
 
