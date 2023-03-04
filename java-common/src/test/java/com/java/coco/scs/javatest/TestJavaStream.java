@@ -726,6 +726,41 @@ public class TestJavaStream {
 
     @Test
     public void test_java_lambda_collectors_copy() {
+
+
+        Map<Integer, List<Person>> personsByAge = persons
+                .stream()
+                .collect(Collectors.groupingBy(Person::getAge));
+
+        personsByAge
+                .forEach((age, p) -> System.out.format("age %s: %s\n", age, p));
+
+
+        Double averageAge = persons
+                .stream()
+                .collect(Collectors.averagingInt(Person::getAge));
+
+        System.out.println(averageAge);
+
+
+        IntSummaryStatistics ageSummary =
+                persons
+                        .stream()
+                        .collect(Collectors.summarizingInt(Person::getAge));
+
+        System.out.println(ageSummary);
+
+
+        //为了将流元素转换为映射，我们必须指定如何映射键和值。请记住，映射的键必须是唯一的，否则抛出一个IllegalStateException。您可以选择将合并函数作为附加参数传递以绕过异常：
+        Map<Integer, String> map = persons
+                .stream()
+                .collect(Collectors.toMap(
+                        p -> p.getAge(),
+                        p -> p.getName(),
+                        (name1, name2) -> name1 + ";" + name2));
+
+        System.out.println(map);
+
         Collector<Person, StringJoiner, String> personNameCollector =
                 Collector.of(
                         () -> new StringJoiner(" | "),          // supplier
