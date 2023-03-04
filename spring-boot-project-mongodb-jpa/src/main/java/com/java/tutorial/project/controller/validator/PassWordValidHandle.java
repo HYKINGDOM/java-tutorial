@@ -1,15 +1,12 @@
-package com.java.tutorial.project.config;
+package com.java.tutorial.project.controller.validator;
 
+import com.java.tutorial.project.controller.validator.annotation.PassWordValid;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.validation.ClockProvider;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import javax.validation.ConstraintViolation;
-import javax.validation.metadata.ConstraintDescriptor;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 /**

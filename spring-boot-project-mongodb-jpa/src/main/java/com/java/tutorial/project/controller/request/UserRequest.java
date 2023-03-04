@@ -1,11 +1,11 @@
 package com.java.tutorial.project.controller.request;
 
 
-import com.java.tutorial.project.config.PassWordValid;
-import com.java.tutorial.project.config.UserValid;
+import com.java.tutorial.project.controller.validator.annotation.PassWordValid;
+import com.java.tutorial.project.controller.validator.annotation.UserValid;
 import com.java.tutorial.project.controller.validator.Severity;
-import com.java.tutorial.project.controller.validator.UserCreate;
-import com.java.tutorial.project.controller.validator.UserUpdate;
+import com.java.tutorial.project.controller.validator.annotation.UserCreate;
+import com.java.tutorial.project.controller.validator.annotation.UserUpdate;
 import lombok.Builder;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;

@@ -4,11 +4,11 @@ package com.java.tutorial.project.controller;
 
 import com.java.tutorial.project.controller.request.UserRequest;
 import com.java.tutorial.project.controller.response.UserResponse;
-import com.java.tutorial.project.controller.validator.UserCreate;
-import com.java.tutorial.project.controller.validator.UserSequence;
-import com.java.tutorial.project.controller.validator.UserSequenceDesc;
-import com.java.tutorial.project.controller.validator.UserSequenceExcludeDefault;
-import com.java.tutorial.project.controller.validator.UserUpdate;
+import com.java.tutorial.project.controller.validator.annotation.UserCreate;
+import com.java.tutorial.project.controller.validator.annotation.UserSequence;
+import com.java.tutorial.project.controller.validator.annotation.UserSequenceDesc;
+import com.java.tutorial.project.controller.validator.annotation.UserSequenceExcludeDefault;
+import com.java.tutorial.project.controller.validator.annotation.UserUpdate;
 import com.java.tutorial.project.infrastucture.entity.UserEntity;
 import com.java.tutorial.project.mapper.UserMapper;
 import com.java.tutorial.project.service.UserService;
@@ -21,6 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.groups.Default;
 
+/**
+ * @author hy
+ */
 @RestController
 @RequestMapping("/user")
 @AllArgsConstructor

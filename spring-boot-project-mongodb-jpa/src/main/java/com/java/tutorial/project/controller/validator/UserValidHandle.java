@@ -1,7 +1,8 @@
-package com.java.tutorial.project.config;
+package com.java.tutorial.project.controller.validator;
 
 
 import com.java.tutorial.project.controller.request.UserRequest;
+import com.java.tutorial.project.controller.validator.annotation.UserValid;
 import org.hibernate.validator.internal.engine.constraintvalidation.ConstraintValidatorContextImpl;
 
 import javax.validation.ConstraintValidator;

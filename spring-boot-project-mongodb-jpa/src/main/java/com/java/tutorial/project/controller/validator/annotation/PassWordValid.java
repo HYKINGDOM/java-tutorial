@@ -1,5 +1,7 @@
-package com.java.tutorial.project.config;
+package com.java.tutorial.project.controller.validator.annotation;
 
+
+import com.java.tutorial.project.controller.validator.PassWordValidHandle;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

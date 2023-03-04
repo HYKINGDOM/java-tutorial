@@ -1,4 +1,4 @@
-package com.java.tutorial.project.controller.validator;
+package com.java.tutorial.project.controller.validator.annotation;
 
 import javax.validation.GroupSequence;
 import javax.validation.groups.Default;
