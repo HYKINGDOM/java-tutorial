@@ -735,6 +735,7 @@ public class TestJavaStream {
         personsByAge
                 .forEach((age, p) -> System.out.format("age %s: %s\n", age, p));
 
+        System.out.println("==========================================");
 
         Double averageAge = persons
                 .stream()
@@ -742,30 +743,31 @@ public class TestJavaStream {
 
         System.out.println(averageAge);
 
-
+        System.out.println("==========================================");
         IntSummaryStatistics ageSummary =
                 persons
                         .stream()
                         .collect(Collectors.summarizingInt(Person::getAge));
 
         System.out.println(ageSummary);
-
+        System.out.println("==========================================");
 
         //为了将流元素转换为映射，我们必须指定如何映射键和值。请记住，映射的键必须是唯一的，否则抛出一个IllegalStateException。您可以选择将合并函数作为附加参数传递以绕过异常：
         Map<Integer, String> map = persons
                 .stream()
                 .collect(Collectors.toMap(
-                        p -> p.getAge(),
-                        p -> p.getName(),
+                        Person::getAge,
+                        Person::getName,
                         (name1, name2) -> name1 + ";" + name2));
 
         System.out.println(map);
+        System.out.println("==========================================");
 
         Collector<Person, StringJoiner, String> personNameCollector =
                 Collector.of(
                         () -> new StringJoiner(" | "),          // supplier
                         (j, p) -> j.add(p.getName().toUpperCase()),  // accumulator
-                        (j1, j2) -> j1.merge(j2),               // combiner
+                        StringJoiner::merge,               // combiner
                         StringJoiner::toString);                // finisher
 
         String names = persons

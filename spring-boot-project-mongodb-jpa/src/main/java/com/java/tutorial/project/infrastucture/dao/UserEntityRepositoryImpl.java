@@ -24,7 +24,7 @@ public class UserEntityRepositoryImpl implements UserEntityRepository {
     private final UserEntityMapper userEntityMapper;
 
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void saveUser(User user) {
         UserEntity userEntity = userEntityMapper.toUserEntity(user);
