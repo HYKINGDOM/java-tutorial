@@ -35,7 +35,9 @@ import java.util.LongSummaryStatistics;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.StringJoiner;
 import java.util.function.Predicate;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -66,6 +68,8 @@ public class TestJavaStream {
 
 
     private List<TimeMap> timeMapList;
+
+    private List<Person> persons;
 
     /**
      * 初始化数据
@@ -187,6 +191,15 @@ public class TestJavaStream {
                 new TimeMap(2, localDateTime2, null),
                 new TimeMap(3, null, 3),
                 new TimeMap(4, localDateTime4, 5));
+
+
+        persons =
+                Arrays.asList(
+                        new Person("Max", 18),
+                        new Person("Peter", 23),
+                        new Person("Pamela", 23),
+                        new Person("David", 12));
+
     }
 
 
@@ -709,6 +722,22 @@ public class TestJavaStream {
         list2 = list1.stream().map(string -> "stream().map()处理之后：" + string).collect(Collectors.toList());
 
         list2.forEach(System.out::println);
+    }
+
+    @Test
+    public void test_java_lambda_collectors_copy() {
+        Collector<Person, StringJoiner, String> personNameCollector =
+                Collector.of(
+                        () -> new StringJoiner(" | "),          // supplier
+                        (j, p) -> j.add(p.getName().toUpperCase()),  // accumulator
+                        (j1, j2) -> j1.merge(j2),               // combiner
+                        StringJoiner::toString);                // finisher
+
+        String names = persons
+                .stream()
+                .collect(personNameCollector);
+
+        System.out.println(names);// MAX | PETER | PAMELA | DAVID
     }
 
 
