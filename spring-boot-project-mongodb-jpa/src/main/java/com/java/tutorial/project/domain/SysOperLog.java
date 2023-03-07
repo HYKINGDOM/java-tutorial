@@ -2,6 +2,8 @@ package com.java.tutorial.project.domain;
 
 
 import lombok.Data;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -10,6 +12,7 @@ import java.util.Date;
  * 操作日志记录;
  */
 @Data
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class SysOperLog implements Serializable, Cloneable {
     /**
      * 日志主键
