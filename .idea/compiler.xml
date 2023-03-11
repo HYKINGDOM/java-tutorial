@@ -65,18 +65,6 @@
         </processorPath>
         <module name="spring-boot-project-manifold-extensions" />
       </profile>
-      <profile name="Annotation profile for java-tutorial" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="E:/apache-maven-3.6.2/repostory/org/mapstruct/mapstruct-processor/1.5.3.Final/mapstruct-processor-1.5.3.Final.jar" />
-          <entry name="E:/apache-maven-3.6.2/repostory/org/mapstruct/mapstruct/1.5.3.Final/mapstruct-1.5.3.Final.jar" />
-          <entry name="E:/apache-maven-3.6.2/repostory/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar" />
-          <entry name="E:/apache-maven-3.6.2/repostory/com/chinadaas/platform/dflow/0.1-SNAPSHOT/dflow-0.1-SNAPSHOT.jar" />
-        </processorPath>
-        <module name="spring-boot-project-cqrs" />
-      </profile>
       <profile name="Annotation profile for spring-boot-project-cache" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -98,6 +86,18 @@
           <entry name="E:/apache-maven-3.6.2/repostory/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar" />
         </processorPath>
         <module name="spring-boot-project-mongodb-jpa" />
+      </profile>
+      <profile name="Annotation profile for java-tutorial" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="E:/apache-maven-3.6.2/repostory/org/mapstruct/mapstruct-processor/1.5.3.Final/mapstruct-processor-1.5.3.Final.jar" />
+          <entry name="E:/apache-maven-3.6.2/repostory/org/mapstruct/mapstruct/1.5.3.Final/mapstruct-1.5.3.Final.jar" />
+          <entry name="E:/apache-maven-3.6.2/repostory/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar" />
+          <entry name="E:/apache-maven-3.6.2/repostory/com/chinadaas/platform/dflow/0.1-SNAPSHOT/dflow-0.1-SNAPSHOT.jar" />
+        </processorPath>
+        <module name="spring-boot-project-cqrs" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
