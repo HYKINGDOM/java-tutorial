@@ -1,13 +1,10 @@
 package com.java.coco.scs.javatest;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.map.MapUtil;
-import cn.hutool.core.util.StrUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.java.coco.scs.domain.Person;
+import com.java.coco.domian.Person;
 import com.java.coco.scs.domain.TimeMap;
-import lombok.val;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.java.coco.scs.domain;
+package com.java.coco.domian;
 
 
 import lombok.AllArgsConstructor;

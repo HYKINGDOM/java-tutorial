@@ -1,27 +1,17 @@
 package com.java.coco.scs.javatest;
 
-import cn.hutool.core.math.MathUtil;
-import com.alibaba.fastjson2.JSON;
-import com.alibaba.fastjson2.JSONFactory;
 import com.alibaba.fastjson2.JSONObject;
 import com.alibaba.fastjson2.JSONWriter;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.google.common.collect.Comparators;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import com.java.coco.domian.SysUserAccount;
-import com.java.coco.scs.domain.Person;
+import com.java.coco.domian.Person;
 import com.java.coco.scs.domain.TimeMap;
-import lombok.val;
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.Reader;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +26,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.StringJoiner;
-import java.util.function.Predicate;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -47,7 +36,6 @@ import static com.java.coco.scs.fixture.SysUserAccountFixture.buildSysUserAccoun
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.mapping;
-import static java.util.stream.Collectors.summingInt;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;

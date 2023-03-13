@@ -1,18 +1,14 @@
 package com.java.coco.scs.javatest;
 
-import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.comparator.CompareUtil;
-import cn.hutool.core.util.StrUtil;
-import com.java.coco.scs.domain.Person;
+import com.java.coco.domian.Person;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+
+import static com.java.coco.utils.ListSortUtil.sortListByField;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * 自定义排序
@@ -21,122 +17,79 @@ import java.util.stream.Collectors;
  */
 public class TestSortedStream {
 
-    private List<Person> persons;
+
+    private List<Person> personList;
+
+
+    @Before
+    public void init_data() {
+        personList = Arrays.asList(new Person(null, 18), new Person("Peter", 23), new Person("Anda", 23), new Person("David", 12));
+    }
+
 
     @Test
     public void test_java_stream_sorted_01() {
 
-        persons =
-                Arrays.asList(
-                        new Person("Max", 18),
-                        new Person("Peter", 23),
-                        new Person("Pamela", 23),
-                        new Person("David", 12));
-
-
         String sortName = "name";
-
         boolean desc = Boolean.FALSE;
+        boolean descNull = Boolean.FALSE;
 
+        List<Person> persons = sortListByField(personList, sortName, Person.class, desc, descNull);
 
-        sortPersonListByFiled(sortName, desc).forEach(System.out::println);
+        assertThat(persons.size()).isEqualTo(4);
+        assertThat(persons.get(0).getName()).isEqualTo("Peter");
+        assertThat(persons.get(1).getName()).isEqualTo("David");
+        assertThat(persons.get(2).getName()).isEqualTo("Anda");
+        assertThat(persons.get(3).getName()).isNull();
     }
 
 
     @Test
     public void test_java_stream_sorted_02() {
 
-        persons =
-                Arrays.asList(
-                        new Person(null, 18),
-                        new Person("Peter", 23),
-                        new Person("Pamela", 23),
-                        new Person("David", 12));
-
-
         String sortName = "name";
+        boolean desc = Boolean.TRUE;
+        boolean descNull = Boolean.FALSE;
 
-        boolean desc = Boolean.FALSE;
-
-        sortPersonListByFiled(sortName, desc).forEach(System.out::println);
+        List<Person> persons = sortListByField(personList, sortName, Person.class, desc, descNull);
+        assertThat(persons.size()).isEqualTo(4);
+        assertThat(persons.get(0).getName()).isNull();
+        assertThat(persons.get(1).getName()).isEqualTo("Anda");
+        assertThat(persons.get(2).getName()).isEqualTo("David");
+        assertThat(persons.get(3).getName()).isEqualTo("Peter");
     }
 
 
     @Test
     public void test_java_stream_sorted_03() {
 
-        persons =
-                Arrays.asList(
-                        new Person(null, 13),
-                        new Person("Peter", null),
-                        new Person("Pamela", 34),
-                        new Person("David", 12));
-
-
-        String sortName = "age";
-
+        String sortName = "name";
         boolean desc = Boolean.FALSE;
+        boolean descNull = Boolean.TRUE;
 
-        sortPersonListByFiled(sortName, desc).forEach(System.out::println);
+        List<Person> persons = sortListByField(personList, sortName, Person.class, desc, descNull);
+
+        assertThat(persons.size()).isEqualTo(4);
+        assertThat(persons.get(0).getName()).isNull();
+        assertThat(persons.get(1).getName()).isEqualTo("Peter");
+        assertThat(persons.get(2).getName()).isEqualTo("David");
+        assertThat(persons.get(3).getName()).isEqualTo("Anda");
     }
+
 
     @Test
     public void test_java_stream_sorted_04() {
 
-        persons =
-                Arrays.asList(
-                        new Person(null, 13),
-                        new Person("Peter", null),
-                        new Person("Pamela", 34),
-                        new Person("David", 12));
-
-
-        String sortName = "age";
-
+        String sortName = "name";
         boolean desc = Boolean.TRUE;
+        boolean descNull = Boolean.TRUE;
 
-        sortPersonListByFiled(sortName, desc).forEach(System.out::println);
+        List<Person> persons = sortListByField(personList, sortName, Person.class, desc, descNull);
+        assertThat(persons.size()).isEqualTo(4);
+        assertThat(persons.get(0).getName()).isEqualTo("Anda");
+        assertThat(persons.get(1).getName()).isEqualTo("David");
+        assertThat(persons.get(2).getName()).isEqualTo("Peter");
+        assertThat(persons.get(3).getName()).isNull();
     }
-
-    private List<Person> sortPersonListByFiled(String sortName, boolean desc) {
-        return persons.stream()
-                .map(getPersonMapFunction())
-                .sorted(getMapComparator(sortName, desc))
-                .map(getMapPersonFunction())
-                .collect(Collectors.toList());
-    }
-
-    private static Comparator<Map<String, Object>> getMapComparator(String sortName, boolean desc) {
-        return (o1, o2) -> strCompare(Optional.ofNullable(o1.get(sortName)).map(String::valueOf).orElse(null), Optional.ofNullable(o2.get(sortName)).map(String::valueOf).orElse(null), desc);
-    }
-
-    private static Comparator<Map<String, Object>> getMapStrUtilComparator(String sortName, boolean desc) {
-        return (o1, o2) -> StrUtil.compare(Optional.ofNullable(o1.get(sortName)).map(String::valueOf).orElse(null), Optional.ofNullable(o2.get(sortName)).map(String::valueOf).orElse(null), desc);
-    }
-
-    private static Comparator<Map<String, Object>> getMapComparatorHasNull(String sortName, boolean desc) {
-        return (o1, o2) -> CompareUtil.compare(o1.get(sortName), o2.get(sortName), desc);
-    }
-
-    private static Function<Map<String, Object>, Person> getMapPersonFunction() {
-        return map1 -> BeanUtil.toBean(map1, Person.class);
-    }
-
-    private static Function<Person, Map<String, Object>> getPersonMapFunction() {
-        return BeanUtil::beanToMap;
-    }
-
-    public static int strCompare(CharSequence str1, CharSequence str2, boolean nullIsLess) {
-        if (str1 == str2) {
-            return 0;
-        } else if (str1 == null) {
-            return nullIsLess ? -1 : 1;
-        } else if (str2 == null) {
-            return nullIsLess ? 1 : -1;
-        } else {
-            return str1.toString().compareTo(str2.toString());
-        }
-    }
-
 
 }
