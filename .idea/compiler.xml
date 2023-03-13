@@ -100,10 +100,6 @@
         <module name="spring-boot-project-cqrs" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="spring-boot-project-cache (1)" target="11" />
-      <module name="spring-boot-project-cache (2)" target="1.5" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_STRING" value="-Xplugin:Manifold " />

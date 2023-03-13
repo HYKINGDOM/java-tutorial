@@ -5,10 +5,12 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.java.coco.domian.Person;
 import com.java.coco.scs.domain.TimeMap;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -174,39 +176,15 @@ public class TestGuavaStream {
     @Test
     public void test_java_stream_foreach() {
 
+        ArrayList<@Nullable Object> objects = Lists.newArrayList();
+
 
         String sortName = "name";
 
         boolean desc = Boolean.FALSE;
 
-        List<Person> personList = persons.stream().map(getPersonMapFunction()).sorted(getMapComparator(sortName, desc)).map(getMapPersonFunction()).collect(Collectors.toList());
-
-        personList.forEach(System.out::println);
     }
 
-    private static Comparator<Map<String, Object>> getMapComparator(String sortName, boolean desc) {
-        return (o1, o2) -> strCompare(Optional.ofNullable(o1.get(sortName)).map(String::valueOf).orElse(""), Optional.ofNullable(o2.get(sortName)).map(String::valueOf).orElse(""), desc);
-    }
-
-    private static Function<Map<String, Object>, Person> getMapPersonFunction() {
-        return map1 -> BeanUtil.toBean(map1, Person.class);
-    }
-
-    private static Function<Person, Map<String, Object>> getPersonMapFunction() {
-        return person -> BeanUtil.beanToMap(person);
-    }
-
-    public static int strCompare(CharSequence str1, CharSequence str2, boolean nullIsLess) {
-        if (str1 == str2) {
-            return 0;
-        } else if (str1 == null) {
-            return nullIsLess ? -1 : 1;
-        } else if (str2 == null) {
-            return nullIsLess ? 1 : -1;
-        } else {
-            return str1.toString().compareTo(str2.toString());
-        }
-    }
 
 
 }
