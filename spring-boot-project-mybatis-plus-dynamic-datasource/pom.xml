@@ -88,12 +88,6 @@
         </dependency>
 
 
-        <dependency>
-            <groupId>com.java.coco</groupId>
-            <artifactId>java-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
