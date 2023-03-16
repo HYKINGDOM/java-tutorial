@@ -86,7 +86,7 @@ public class PatternUtilTest {
     @Test
     public void TEST_MOR_CONTAINS_HA(){
 
-        String str = "哈哈哈";
+        String str = "好";
         System.out.println(UnicodeUtil.toUnicode(str));
     }
 }

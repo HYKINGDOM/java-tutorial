@@ -15,7 +15,7 @@ public class PatternUtil {
      *
      * (?=.*[\\u54c8])
      */
-    public static String MOR_CONTAINS_HA = "^(?=.[\\u54c8]){1,}$";
+    public static String MOR_CONTAINS_HA = "[\\u54c8]{1,}$";
 
 
 
