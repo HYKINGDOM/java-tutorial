@@ -10,6 +10,7 @@ import java.util.Date;
 
 /**
  * 基础类
+ * @author HY
  */
 @Data
 public class BaseEntity implements Serializable {
@@ -21,22 +22,25 @@ public class BaseEntity implements Serializable {
     private String tenantId;
 
     /**
+     * 删除标识
+     */
+    private String delFlag;
+
+
+    /**
      * 创建者
      */
-    private String createUser = "admin";
+    private String createUser;
 
     /**
      * 创建时间
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date createTime = new Date();
+    private Date createTime;
 
 
-    /**
-     * 删除标识
-     */
-    private String delFlag;
+
 
     /**
      * 更新者
@@ -48,17 +52,8 @@ public class BaseEntity implements Serializable {
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date updateTime = new Date();
+    private Date updateTime;
 
-    /**
-     * 备注
-     */
-    private String remark;
-
-    /**
-     * 搜索值
-     */
-    private String searchValue;
 
 
 }
