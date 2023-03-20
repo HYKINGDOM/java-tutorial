@@ -14,7 +14,7 @@ public class PatternUtilTest {
     private PatternUtil patternUtil;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp(){
         patternUtil = new PatternUtil();
     }
 
