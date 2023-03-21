@@ -4,14 +4,11 @@ import cn.hutool.core.util.RandomUtil;
 import com.google.common.collect.Lists;
 import com.java.tutorial.project.domain.User;
 import lombok.extern.slf4j.Slf4j;
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.function.Function;
 
 
 @Slf4j
@@ -20,7 +17,7 @@ public class TaskServiceImpl implements TaskService {
 
 
     @Override
-    public List<String> combindStrList(String str){
+    public List<String> combindStrList(String str) {
 
 
         CompletableFuture<List<String>> future1 = CompletableFuture.supplyAsync(() -> taskStringList01(str));
