@@ -31,19 +31,19 @@ public class TestPar {
         WorkerWrapper<String, String> workerWrapper2 =  new WorkerWrapper.Builder<String, String>()
                 .worker(w2)
                 .callback(w2)
-                .param("2")
+                .param("2222222")
                 .build();
 
         WorkerWrapper<String, String> workerWrapper1 =  new WorkerWrapper.Builder<String, String>()
                 .worker(w1)
                 .callback(w1)
-                .param("1")
+                .param("111111")
                 .build();
 
         WorkerWrapper<String, String> workerWrapper =  new WorkerWrapper.Builder<String, String>()
                 .worker(w)
                 .callback(w)
-                .param("0")
+                .param("000000")
                 .build();
 
         long now = SystemClock.now();
