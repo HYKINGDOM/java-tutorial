@@ -2,8 +2,9 @@ package com.java.tutorial.project.service;
 
 
 import cn.hutool.core.util.RandomUtil;
-import com.java.coco.utils.InheritableThreadLocalUtil;
-import com.java.coco.utils.TraceIDUtil;
+
+import com.java.tutorial.project.util.InheritableThreadLocalUtil;
+import com.java.tutorial.project.util.TraceIDUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;

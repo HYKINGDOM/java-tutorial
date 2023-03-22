@@ -1,9 +1,9 @@
 package com.java.tutorial.project.job;
 
 import cn.hutool.core.util.RandomUtil;
-import com.java.coco.utils.TraceIDUtil;
 import com.java.tutorial.project.schedule.ScheduleRunnable;
 import com.java.tutorial.project.schedule.SysJobLog;
+import com.java.tutorial.project.util.TraceIDUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.JobExecutionContext;
 import org.springframework.beans.factory.annotation.Autowired;
