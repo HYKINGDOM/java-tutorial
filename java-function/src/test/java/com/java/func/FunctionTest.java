@@ -1,8 +1,6 @@
 package com.java.func;
 
-import cn.hutool.core.util.RandomUtil;
-import cn.hutool.core.util.StrUtil;
-import com.java.coco.utils.RanDomCollectUtils;
+
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
@@ -10,15 +8,11 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
-import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class FunctionTest {
 
