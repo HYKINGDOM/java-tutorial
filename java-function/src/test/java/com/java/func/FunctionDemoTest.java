@@ -56,6 +56,33 @@ public class FunctionDemoTest {
         System.out.println("hello 函数带'" + param + "'参数,  生成的字符串的长度: " + couterOfHello.apply(param));
     }
 
+    @Test
+    public void test_Function01_01() {
+        Function<String, String> hello = new Function<>() {
+            @Override
+            public String apply(String t) {
+                return "Hello, " + t;
+            }
+        };
+
+        Function<String, String> counter = new Function<>() {
+
+            @Override
+            public String apply(String t) {
+                return String.valueOf(t.length());
+            }
+
+        };
+
+        //生成一个组合函数, 该函数首先将当前 Function 作为其输入, 然后将 after 函数应用于输入后产生的结果.
+        Function<String, String> couterOfHello = hello.compose(counter);
+        String param = "阿文";
+        System.out.println("hello 函数带'" + param + "'参数,  生成的字符串的长度: " + couterOfHello.apply(param));
+
+        param = "Java";
+        System.out.println("hello 函数带'" + param + "'参数,  生成的字符串的长度: " + couterOfHello.apply(param));
+    }
+
 
     @Test
     public void test_Function02() {
