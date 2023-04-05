@@ -1,7 +1,10 @@
 package com.java.coco.system.demo01;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 import java.util.concurrent.ExecutorService;

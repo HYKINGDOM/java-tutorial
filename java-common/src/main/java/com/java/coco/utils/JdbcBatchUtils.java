@@ -1,7 +1,5 @@
 package com.java.coco.utils;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.List;
@@ -12,19 +10,19 @@ import java.util.Map;
  *
  * @author Administrator
  */
-@Component
+//@Component
 public class JdbcBatchUtils {
 
-    @Value("${spring.datasource.driverClassName}")
+   // @Value("${spring.datasource.driverClassName}")
     private String jdbcDriver;
 
-    @Value("${spring.datasource.druid.master.url}")
+   // @Value("${spring.datasource.druid.master.url}")
     private String masterDataUrlAddress;
 
-    @Value("${spring.datasource.druid.master.username}")
+    //@Value("${spring.datasource.druid.master.username}")
     private String getMasterDataUsername;
 
-    @Value("${spring.datasource.druid.master.password}")
+    //@Value("${spring.datasource.druid.master.password}")
     private String getMasterDataPassword;
 
     /**

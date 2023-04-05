@@ -1,7 +1,9 @@
 package com.java.coco.tdd;
 
-import org.junit.Assert;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FizzBuzzWhizzTest {
 
@@ -10,7 +12,7 @@ public class FizzBuzzWhizzTest {
         FizzBuzzWhizz fizzBuzzWhizz = new FizzBuzzWhizz();
         int num = 3;
         String loudSay = fizzBuzzWhizz.loudSay(num);
-        Assert.assertEquals("Fizz", loudSay);
+        assertEquals("Fizz", loudSay);
     }
 
     @Test
@@ -18,7 +20,7 @@ public class FizzBuzzWhizzTest {
         FizzBuzzWhizz fizzBuzzWhizz = new FizzBuzzWhizz();
         int num = 5;
         String loudSay = fizzBuzzWhizz.loudSay(num);
-        Assert.assertEquals("Buzz", loudSay);
+        assertEquals("Buzz", loudSay);
     }
 
     @Test
@@ -26,7 +28,7 @@ public class FizzBuzzWhizzTest {
         FizzBuzzWhizz fizzBuzzWhizz = new FizzBuzzWhizz();
         int num = 7;
         String loudSay = fizzBuzzWhizz.loudSay(num);
-        Assert.assertEquals("Whizz", loudSay);
+        assertEquals("Whizz", loudSay);
     }
 
     @Test
@@ -34,7 +36,7 @@ public class FizzBuzzWhizzTest {
         FizzBuzzWhizz fizzBuzzWhizz = new FizzBuzzWhizz();
         int num = 15;
         String loudSay = fizzBuzzWhizz.loudSay(num);
-        Assert.assertEquals("FizzBuzz", loudSay);
+        assertEquals("FizzBuzz", loudSay);
     }
 
     @Test
@@ -42,7 +44,7 @@ public class FizzBuzzWhizzTest {
         FizzBuzzWhizz fizzBuzzWhizz = new FizzBuzzWhizz();
         int num = 21;
         String loudSay = fizzBuzzWhizz.loudSay(num);
-        Assert.assertEquals("FizzWhizz", loudSay);
+        assertEquals("FizzWhizz", loudSay);
     }
 
     @Test
@@ -50,7 +52,7 @@ public class FizzBuzzWhizzTest {
         FizzBuzzWhizz fizzBuzzWhizz = new FizzBuzzWhizz();
         int num = 70;
         String loudSay = fizzBuzzWhizz.loudSay(num);
-        Assert.assertEquals("BuzzWhizz", loudSay);
+        assertEquals("BuzzWhizz", loudSay);
     }
 
     @Test
@@ -58,7 +60,7 @@ public class FizzBuzzWhizzTest {
         FizzBuzzWhizz fizzBuzzWhizz = new FizzBuzzWhizz();
         int num = 105;
         String loudSay = fizzBuzzWhizz.loudSay(num);
-        Assert.assertEquals("FizzBuzzWhizz", loudSay);
+        assertEquals("FizzBuzzWhizz", loudSay);
     }
 
     @Test
@@ -66,7 +68,7 @@ public class FizzBuzzWhizzTest {
         FizzBuzzWhizz fizzBuzzWhizz = new FizzBuzzWhizz();
         int num = 13;
         String loudSay = fizzBuzzWhizz.loudSay(num);
-        Assert.assertEquals("Fizz", loudSay);
+        assertEquals("Fizz", loudSay);
     }
 
     @Test
@@ -74,7 +76,7 @@ public class FizzBuzzWhizzTest {
         FizzBuzzWhizz fizzBuzzWhizz = new FizzBuzzWhizz();
         int num = 315;
         String loudSay = fizzBuzzWhizz.loudSay(num);
-        Assert.assertEquals("FizzBuzzWhizz", loudSay);
+        assertEquals("FizzBuzzWhizz", loudSay);
     }
 
 
@@ -83,10 +85,8 @@ public class FizzBuzzWhizzTest {
         FizzBuzzWhizz fizzBuzzWhizz = new FizzBuzzWhizz();
         int num = 0;
         String loudSay = fizzBuzzWhizz.loudSay(num);
-        Assert.assertEquals("0", loudSay);
+        assertEquals("0", loudSay);
     }
-
-
 
 
 }

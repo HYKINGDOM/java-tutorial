@@ -1,7 +1,10 @@
 package com.java.coco.system.manager;
 
 import com.google.common.collect.Sets;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.*;
 import java.util.stream.Collectors;

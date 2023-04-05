@@ -6,8 +6,10 @@ import com.google.common.collect.Maps;
 import com.java.coco.domian.Person;
 import com.java.coco.scs.domain.TimeMap;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -41,7 +43,7 @@ public class TestGuavaStream {
     /**
      * 初始化数据
      */
-    @Before
+    @BeforeEach
     public void before_map_new_hashMap() {
         //用guava的方法创建HashMap,这样初始化的时候需要制定HashMap的大小,一般大小指定为:(长度/0.75)+1
         //这样指定大小,创建的好处了以避免HashMap的频繁的扩容导致性能的损耗
@@ -59,7 +61,7 @@ public class TestGuavaStream {
     /**
      * 初始化数据
      */
-    @Before
+    @BeforeEach
     public void before_java_junit() {
         lists = Lists.newArrayListWithCapacity(8);
         Map<String, Object> map = Maps.newHashMapWithExpectedSize(6);
@@ -103,7 +105,7 @@ public class TestGuavaStream {
     /**
      * 初始化数据
      */
-    @Before
+    @BeforeEach
     public void before_java_list_copy_junit() {
         listCopy = Lists.newArrayListWithCapacity(8);
         Map<String, Object> map = Maps.newHashMapWithExpectedSize(6);
@@ -144,7 +146,7 @@ public class TestGuavaStream {
         listCopy.add(map);
     }
 
-    @Before
+    @BeforeEach
     public void before_init_java_local_time_compete() {
         LocalDateTime localDateTime0 = LocalDateTime.now();
         LocalDateTime localDateTime1 = localDateTime0.plusDays(1);

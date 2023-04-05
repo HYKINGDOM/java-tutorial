@@ -1,7 +1,7 @@
 package com.java.coco.system.manager;
 
 import com.alibaba.fastjson.JSONObject;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.*;
 

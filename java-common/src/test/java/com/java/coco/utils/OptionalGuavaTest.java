@@ -2,7 +2,10 @@ package com.java.coco.utils;
 
 import com.google.common.base.Optional;
 import com.java.coco.guava.Test1;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OptionalGuavaTest {
 

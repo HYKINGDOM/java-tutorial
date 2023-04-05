@@ -1,6 +1,6 @@
 package com.java.coco.tree.treenode;
 
-import org.springframework.util.CollectionUtils;
+import cn.hutool.core.collection.CollectionUtil;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -89,7 +89,7 @@ public class TreeUtils {
     public static <T extends TreeNode> void fillLeaf(T parent, List<T> leafs) {
         List<T> children = parent.getChildren();
         // 如果节点没有子节点则说明为叶子节点
-        if (CollectionUtils.isEmpty(children)) {
+        if (CollectionUtil.isEmpty(children)) {
             leafs.add(parent);
             return;
         }

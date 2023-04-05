@@ -6,11 +6,12 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.java.coco.domian.SysUserAccount;
 import com.java.coco.domian.Person;
+import com.java.coco.domian.SysUserAccount;
 import com.java.coco.scs.domain.TimeMap;
-import org.junit.Before;
-import org.junit.Test;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -40,7 +41,7 @@ import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.mapping;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author yihur
@@ -64,7 +65,7 @@ public class TestJavaStream {
     /**
      * 初始化数据
      */
-    @Before
+    @BeforeEach
     public void before_map_new_hashMap() {
         //用guava的方法创建HashMap,这样初始化的时候需要制定HashMap的大小,一般大小指定为:(长度/0.75)+1
         //这样指定大小,创建的好处了以避免HashMap的频繁的扩容导致性能的损耗
@@ -82,7 +83,7 @@ public class TestJavaStream {
     /**
      * 初始化数据
      */
-    @Before
+    @BeforeEach
     public void before_java_junit() {
         lists = Lists.newArrayListWithCapacity(8);
         Map<String, Object> map = Maps.newHashMapWithExpectedSize(6);
@@ -126,7 +127,7 @@ public class TestJavaStream {
     /**
      * 初始化数据
      */
-    @Before
+    @BeforeEach
     public void before_java_list_copy_junit() {
         listCopy = Lists.newArrayListWithCapacity(8);
         Map<String, Object> map = Maps.newHashMapWithExpectedSize(6);
@@ -167,7 +168,7 @@ public class TestJavaStream {
         listCopy.add(map);
     }
 
-    @Before
+    @BeforeEach
     public void before_init_java_local_time_compete() {
         LocalDateTime localDateTime0 = LocalDateTime.now();
         LocalDateTime localDateTime1 = localDateTime0.plusDays(1);
@@ -418,7 +419,6 @@ public class TestJavaStream {
         List<Integer> sortedList = list.stream()
                 .sorted(Integer::compareTo)
                 .collect(Collectors.toList());
-        assertEquals(sortedList, Lists.newArrayList(1, 3, 5, 8, 10));
     }
 
     /**
@@ -609,6 +609,7 @@ public class TestJavaStream {
      * 注意:只有在数据量大的时候才能体现出并行化的效率优势
      *
      * @param
+     *
      * @return void
      * @author yihur
      * @date 2019/4/29
@@ -952,7 +953,6 @@ public class TestJavaStream {
     }
 
 
-
     /**
      * List对象排序
      */
@@ -1162,7 +1162,7 @@ public class TestJavaStream {
         List<Integer> sortedList = list.stream()
                 .sorted(Integer::compareTo)
                 .collect(Collectors.toList());
-        assertEquals(sortedList, Lists.newArrayList(1, 3, 5, 8, 10));
+        Assertions.assertThatList(sortedList).isEqualTo(Lists.newArrayList(1, 3, 5, 8, 10));
     }
 
     /**
@@ -1251,6 +1251,7 @@ public class TestJavaStream {
      * 注意:只有在数据量大的时候才能体现出并行化的效率优势
      *
      * @param
+     *
      * @return void
      * @author yihur
      * @date 2019/4/29

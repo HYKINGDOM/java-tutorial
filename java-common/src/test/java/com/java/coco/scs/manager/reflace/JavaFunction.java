@@ -1,6 +1,6 @@
 package com.java.coco.scs.manager.reflace;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -16,11 +16,11 @@ public class JavaFunction {
 
         try {
             //获取类对象
-            Class pClass1 = Class.forName(className);
+            Class<?> pClass1 = Class.forName(className);
             //获取构造器对象
-            Class pClass2 = Hero.class;
+            Class<Hero> pClass2 = Hero.class;
             //获取对象
-            Class pClass3 = new Hero().getClass();
+            Class<? extends Hero> pClass3 = Hero.class;
 
             System.out.println(pClass1 == pClass2);
             System.out.println(pClass1 == pClass3);
@@ -33,26 +33,26 @@ public class JavaFunction {
 
 
     /*
-	 * 通过Class对象可以获取某个类中的：构造方法、成员变量、成员方法；并访问成员；
-	 *
-	 * 1.获取构造方法：
-	 * 		1).批量的方法：
-	 * 			public Constructor[] getConstructors()：所有"公有的"构造方法
-	            public Constructor[] getDeclaredConstructors()：获取所有的构造方法(包括私有、受保护、默认、公有)
+     * 通过Class对象可以获取某个类中的：构造方法、成员变量、成员方法；并访问成员；
+     *
+     * 1.获取构造方法：
+     * 		1).批量的方法：
+     * 			public Constructor[] getConstructors()：所有"公有的"构造方法
+                public Constructor[] getDeclaredConstructors()：获取所有的构造方法(包括私有、受保护、默认、公有)
 
-	 * 		2).获取单个的方法，并调用：
-	 * 			public Constructor getConstructor(Class... parameterTypes):获取单个的"公有的"构造方法：
-	 * 			public Constructor getDeclaredConstructor(Class... parameterTypes):获取"某个构造方法"可以是私有的，或受保护、默认、公有；
-	 *
-	 * 2.创建对象
-	 * 		Constructor对象调用newInstance(Object... initargs)
-	 */
+     * 		2).获取单个的方法，并调用：
+     * 			public Constructor getConstructor(Class... parameterTypes):获取单个的"公有的"构造方法：
+     * 			public Constructor getDeclaredConstructor(Class... parameterTypes):获取"某个构造方法"可以是私有的，或受保护、默认、公有；
+     *
+     * 2.创建对象
+     * 		Constructor对象调用newInstance(Object... initargs)
+     */
     @Test
     public void test_contractor_java_class() {
 
         try {
             //1.加载Class对象
-            Class clazz = Hero.class;
+            Class<Hero> clazz = Hero.class;
 
 
             //2.获取所有公有构造方法
@@ -69,7 +69,7 @@ public class JavaFunction {
             }
 
             System.out.println("*****************获取公有、无参的构造方法*******************************");
-            Constructor con = clazz.getConstructor(null);
+            Constructor<Hero> con = clazz.getConstructor(null);
             //1>、因为是无参的构造方法所以类型是一个null,不写也可以：这里需要的是一个参数的类型，切记是类型
             //2>、返回的是描述这个无参构造函数的类对象。
             System.out.println("con = " + con);
@@ -88,7 +88,8 @@ public class JavaFunction {
             Method method = clazz.getDeclaredMethod("sumHero", int.class);
             System.out.println(method);
 
-        } catch (InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
+        } catch (InstantiationException | InvocationTargetException | NoSuchMethodException |
+                 IllegalAccessException e) {
             e.printStackTrace();
         }
     }
@@ -131,14 +132,14 @@ public class JavaFunction {
      *   args:调用方式时所传递的实参；
      */
     @Test
-    public void test_java_reflex_method(){
+    public void test_java_reflex_method() {
         HeroPlus heroPlus = new HeroPlus();
 
         Class<HeroPlus> heroPlusClass = HeroPlus.class;
 
         try {
-            Method method = heroPlusClass.getMethod("setName",String.class);
-            method.invoke(heroPlus,"aike");
+            Method method = heroPlusClass.getMethod("setName", String.class);
+            method.invoke(heroPlus, "aike");
             System.out.println(heroPlus.getName());
 
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
@@ -147,10 +148,10 @@ public class JavaFunction {
     }
 
     @Test
-    public void test_java_reflex_main_method(){
+    public void test_java_reflex_main_method() {
         try {
             //1、获取HeroPlus对象的字节码
-            Class clazz = HeroPlus.class;
+            Class<HeroPlus> clazz = HeroPlus.class;
 
             //2、获取main方法,第一个参数：方法名称，第二个参数：方法形参的类型，
             Method methodMain = clazz.getMethod("main", String[].class);
@@ -158,7 +159,7 @@ public class JavaFunction {
             // methodMain.invoke(null, new String[]{"a","b","c"});
             //第一个参数，对象类型，因为方法是static静态的，所以为null可以，第二个参数是String数组，这里要注意在jdk1.4时是数组，jdk1.5之后是可变参数
             //这里拆的时候将  new String[]{"a","b","c"} 拆成3个对象。所以需要将它强转。
-            methodMain.invoke(null, (Object)new String[]{"a","b","c"});//方式一
+            methodMain.invoke(null, (Object) new String[]{"a", "b", "c"});//方式一
             // methodMain.invoke(null, new Object[]{new String[]{"a","b","c"}});//方式二
 
         } catch (Exception e) {

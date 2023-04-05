@@ -9,8 +9,10 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -33,7 +35,7 @@ public class TestMapAndList {
 
     private List<Object> list;
 
-    @Before
+    @BeforeEach
     public void before_map_new_hashMap() {
         //用guava的方法创建HashMap,这样初始化的时候需要制定HashMap的大小,一般大小指定为:(长度/0.75)+1
         //这样指定大小,创建的好处了以避免HashMap的频繁的扩容导致性能的损耗
@@ -44,7 +46,7 @@ public class TestMapAndList {
         map.put("c++", "123");
     }
 
-    @Before
+    @BeforeEach
     public void before_list_new_arraylist() {
         list = new ArrayList<>();
         list.add(null);

@@ -1,7 +1,10 @@
 package com.java.coco.domian;
 
-import org.junit.Test;
-import org.springframework.beans.BeanUtils;
+import cn.hutool.core.bean.BeanUtil;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserTestTest {
 
@@ -14,7 +17,7 @@ public class UserTestTest {
         userTestA.setPassword("2222");
 
         UserTestB userTestB = new UserTestB();
-        BeanUtils.copyProperties(userTestA,userTestB);
+        BeanUtil.copyProperties(userTestA,userTestB);
 
         System.out.println(userTestB.toString());
     }

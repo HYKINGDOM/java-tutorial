@@ -2,8 +2,9 @@ package com.java.coco.scs.manager;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 
 import java.util.*;
 
@@ -20,7 +21,7 @@ public class TreeTestDemo {
 
     private List<Map<String,Object>> beanList;
 
-    @Before
+    @BeforeEach
     public void before_new_list(){
         bodyList = new ArrayList<>();
         rootList = new ArrayList<>();

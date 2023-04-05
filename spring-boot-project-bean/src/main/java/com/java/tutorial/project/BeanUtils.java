@@ -1,4 +1,5 @@
-package com.java.coco.utils;
+package com.java.tutorial.project;
+
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -101,4 +102,5 @@ public class BeanUtils extends org.springframework.beans.BeanUtils {
     public static boolean isMethodPropEquals(String m1, String m2) {
         return m1.substring(BEAN_METHOD_PROP_INDEX).equals(m2.substring(BEAN_METHOD_PROP_INDEX));
     }
+
 }

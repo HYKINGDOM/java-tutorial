@@ -1,6 +1,7 @@
 package com.java.coco.BIExtend.service;
 
 
+import cn.hutool.core.bean.BeanUtil;
 import com.java.coco.BIExtend.domain.ParentDomain;
 import com.java.coco.BIExtend.entity.EntityA;
 import com.java.coco.BIExtend.entity.EntityB;
@@ -8,7 +9,6 @@ import com.java.coco.BIExtend.entity.EntityC;
 import com.java.coco.BIExtend.entity.EntityD;
 import com.java.coco.BIExtend.entity.EntityE;
 import com.java.coco.BIExtend.entity.ParentEntity;
-import org.springframework.beans.BeanUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,7 +33,7 @@ public class ParentService {
         List<ParentEntity> parentEntities = new ArrayList<>();
         for (ParentDomain parentDomain : parentDomainList) {
             ParentEntity parentEntity = parentEntityMap.get(parentDomain.typeCode());
-            BeanUtils.copyProperties(parentDomain, parentEntity);
+            BeanUtil.copyProperties(parentDomain, parentEntity);
             parentEntities.add(parentEntity);
         }
 
@@ -45,7 +45,7 @@ public class ParentService {
         List<ParentEntity> parentEntities = new ArrayList<>();
         for (ParentDomain parentDomain : parentDomainList) {
             ParentEntity parentEntity = parentEntityMap.get(parentDomain.typeCode());
-            BeanUtils.copyProperties(parentDomain, parentEntity);
+            BeanUtil.copyProperties(parentDomain, parentEntity);
             parentEntities.add(parentEntity);
         }
 

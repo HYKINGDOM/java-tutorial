@@ -1,9 +1,9 @@
 package com.java.coco.utils;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static com.java.coco.utils.ThreadLocalRandomUtils.generateRandomInteger;
-import static org.junit.Assert.assertNotNull;
 
 public class ThreadLocalRandomUtilsTest {
 
@@ -11,7 +11,7 @@ public class ThreadLocalRandomUtilsTest {
     public void test_generate_Random_Integer() {
         Integer randomInteger = generateRandomInteger();
         System.out.println(randomInteger);
-        assertNotNull(randomInteger);
+        Assertions.assertNotNull(randomInteger);
 
     }
 }

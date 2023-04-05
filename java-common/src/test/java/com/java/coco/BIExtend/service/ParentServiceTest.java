@@ -7,13 +7,13 @@ import com.java.coco.BIExtend.domain.DomainD;
 import com.java.coco.BIExtend.domain.DomainE;
 import com.java.coco.BIExtend.domain.ParentDomain;
 import com.java.coco.BIExtend.entity.ParentEntity;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ParentServiceTest {
 
@@ -21,7 +21,7 @@ public class ParentServiceTest {
 
     private List<ParentDomain> parentDomainList = new ArrayList<>();
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         parentService = new ParentService();
         DomainA domainA = DomainA.builder().age(12).build();

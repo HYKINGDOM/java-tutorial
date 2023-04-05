@@ -1,8 +1,8 @@
 package com.java.coco.scs.javatest;
 
 import com.java.coco.domian.Person;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +21,7 @@ public class TestSortedStream {
     private List<Person> personList;
 
 
-    @Before
+    @BeforeEach
     public void init_data() {
         personList = Arrays.asList(new Person(null, 18), new Person("Peter", 23), new Person("Anda", 23), new Person("David", 12));
     }
