@@ -47,6 +47,7 @@
         <module>spring-boot-project-sse</module>
         <module>spring-boot-project-websocket</module>
         <module>spring-boot-project-manifold-extensions</module>
+        <module>spring-boot-project-thread</module>
     </modules>
 
     <properties>

@@ -6,10 +6,16 @@ import cn.hutool.core.util.RandomUtil;
 import com.java.tutorial.project.util.InheritableThreadLocalUtil;
 import com.java.tutorial.project.util.TraceIDUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.quartz.simpl.SimpleThreadPool;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.ThreadPoolExecutor;
 
+
+/**
+ * @author HY
+ */
 @Slf4j
 @Service
 public class ThreadLocalAsyncServiceImpl implements ThreadLocalAsyncService {

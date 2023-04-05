@@ -1,7 +1,13 @@
 server:
   port: 8768
 
+
+
 #logging:
 #  level:
 #    com.java.tutorial.project: info
-#    org.springframework: info
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  quartz:
+    scheduler-name: quartz-thread-%d

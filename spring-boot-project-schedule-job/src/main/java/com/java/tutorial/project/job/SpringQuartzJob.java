@@ -10,9 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.scheduling.quartz.QuartzJobBean;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
-
-import java.util.concurrent.Executor;
 
 
 /**
@@ -20,25 +19,20 @@ import java.util.concurrent.Executor;
  * @DisallowConcurrentExecution
  */
 @Slf4j
+@Component
 public class SpringQuartzJob extends QuartzJobBean {
-    //private Executor executor = SpringUtils.getBean("ttlThreadServiceMDCExecutor");
-
-
-//    @Autowired
-//    @Qualifier(value = "ttlThreadMDCExecutor")
-//    private Executor executor;
 
 
     @Autowired
     @Qualifier(value = "threadPoolTaskExecutor")
-    private ThreadPoolTaskExecutor executor;
+    private ThreadPoolTaskExecutor threadPoolTaskExecutor;
 
 
     @Override
     protected void executeInternal(JobExecutionContext context) {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
-        log.info("准备循环开始执行定时任务, traceID: {}", TraceIDUtil.getTraceId());
+        log.info("准备循环开始执行定时任务,线程名:{}, traceID: {}",Thread.currentThread().getName(), TraceIDUtil.getTraceId());
         context.getJobDetail().getJobDataMap().forEach(
                 (k, v) -> {
                     for (int i = 0; i < 3; i++) {
@@ -62,9 +56,9 @@ public class SpringQuartzJob extends QuartzJobBean {
     private void extracted(SysJobLog jobLog, String k, Object v) {
         try {
             Thread.sleep(1000L);
-            log.info("单个定时任务参数 - 名称：{} 方法：{}", jobLog.getJobName(), jobLog.getMethodName());
+            log.info("单个定时任务参数 - 线程{} 名称：{} 方法：{}", Thread.currentThread().getName(), jobLog.getJobName(), jobLog.getMethodName());
             ScheduleRunnable task = new ScheduleRunnable(jobLog.getJobName(), jobLog.getMethodName(), jobLog.getMethodParams());
-            executor.execute(task);
+            threadPoolTaskExecutor.execute(task);
             log.info("单个定时任务执行结束 param, key:{}, value:{}", k, v);
         } catch (Exception e) {
             throw new RuntimeException(e);

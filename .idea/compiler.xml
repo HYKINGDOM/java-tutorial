@@ -15,6 +15,7 @@
         <module name="spring-boot-project-bean" />
         <module name="spring-boot-project-websocket" />
         <module name="java-vavr" />
+        <module name="spring-boot-project-thread" />
         <module name="spring-boot-mysql" />
         <module name="business-data" />
         <module name="spring-boot-project-drools" />
@@ -141,6 +142,7 @@
       <module name="spring-boot-project-security" options="" />
       <module name="spring-boot-project-sse" options="" />
       <module name="spring-boot-project-template" options="" />
+      <module name="spring-boot-project-thread" options="" />
       <module name="spring-boot-project-webflux" options="" />
       <module name="spring-boot-project-websocket" options="" />
       <module name="spring-boot-transactional" options="" />

@@ -50,12 +50,9 @@ public class AsyncTask {
                 e.printStackTrace();
             }
             return userParam;
-        }, asyncTaskExecutor).exceptionally(new Function<Throwable, List<User>>() {
-            @Override
-            public List<User> apply(Throwable throwable) {
-                log.info("异常：{}", throwable.getMessage());
-                return Lists.newArrayList();
-            }
+        }, asyncTaskExecutor).exceptionally(throwable -> {
+            log.info("异常：{}", throwable.getMessage());
+            return Lists.newArrayList();
         });
     }
 }

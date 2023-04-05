@@ -2,13 +2,7 @@ package com.java.tutorial.project;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.EnableAsync;
 
-
-/**
- * @author HY
- */
-@EnableAsync
 @SpringBootApplication
 public class SpringBootProjectApplication {
 
