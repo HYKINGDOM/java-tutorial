@@ -35,6 +35,7 @@
         <module name="spring-boot-project-batch" />
         <module name="spring-boot-project-security" />
         <module name="spring-boot-project-event" />
+        <module name="spring-boot-project-retry" />
         <module name="java-mapstruct" />
         <module name="java-patterns" />
         <module name="java-database" />
@@ -138,6 +139,7 @@
       <module name="spring-boot-project-mongodb-jpa" options="" />
       <module name="spring-boot-project-mq-kafka" options="" />
       <module name="spring-boot-project-mybatis-plus-dynamic-datasource" options="" />
+      <module name="spring-boot-project-retry" options="" />
       <module name="spring-boot-project-schedule-job" options="" />
       <module name="spring-boot-project-security" options="" />
       <module name="spring-boot-project-sse" options="" />

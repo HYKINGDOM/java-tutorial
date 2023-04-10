@@ -13,6 +13,8 @@ import org.springframework.scheduling.quartz.QuartzJobBean;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
+import java.util.concurrent.Executor;
+
 
 /**
  * @author HY
@@ -24,8 +26,8 @@ public class SpringQuartzJob extends QuartzJobBean {
 
 
     @Autowired
-    @Qualifier(value = "threadPoolTaskExecutor")
-    private ThreadPoolTaskExecutor threadPoolTaskExecutor;
+    @Qualifier(value = "ttlThreadPoolTaskExecutor")
+    private Executor threadPoolTaskExecutor;
 
 
     @Override

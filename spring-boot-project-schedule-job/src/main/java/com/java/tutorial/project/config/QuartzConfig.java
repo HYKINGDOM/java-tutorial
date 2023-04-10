@@ -27,8 +27,7 @@ public class QuartzConfig implements SchedulingConfigurer {
     @Autowired
     private ScheduledExecutorService defaultScheduledExecutorService;
 
-    @Autowired
-    private SchedulerFactoryBean schedulerFactoryBean;
+
 
     @Bean("springQuartzJob")
     public JobDetail springQuartzJob() {
@@ -50,11 +49,6 @@ public class QuartzConfig implements SchedulingConfigurer {
                 .build();
     }
 
-
-    @Bean
-    public Scheduler scheduler() {
-        return schedulerFactoryBean.getScheduler();
-    }
 
 
     @Override
