@@ -1,7 +1,10 @@
 package com.java.func;
 
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+import java.util.StringJoiner;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -59,8 +62,6 @@ public interface Seq<T> {
     }
 
 
-
-
     default Seq<T> onEach(Consumer<T> consumer) {
         return c -> consume(consumer.andThen(c));
     }
@@ -92,5 +93,19 @@ public interface Seq<T> {
                 }
             });
         };
+    }
+
+
+    default String join(String sep) {
+        StringJoiner joiner = new StringJoiner(sep);
+        consume(t -> joiner.add(t.toString()));
+        return joiner.toString();
+    }
+
+
+    default List<T> toList() {
+        List<T> list = new ArrayList<>();
+        consume(list::add);
+        return list;
     }
 }

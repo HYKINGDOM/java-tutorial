@@ -17,21 +17,17 @@ public class CustomizeRetryService {
 
     @Retryable(value = Exception.class, maxAttempts = 3, backoff = @Backoff(delay = 2000, multiplier = 1.5))
     public String testRetry(int code) throws Exception {
-
         if (0 == code) {
             throw new Exception("失败调用");
         }
         log.info("方法执行成功");
-
         return "success";
     }
 
 
     @Recover
     public String recover(Exception e, int code) {
-
         log.info("recover 方法执行");
-
         return "500";
     }
 }
