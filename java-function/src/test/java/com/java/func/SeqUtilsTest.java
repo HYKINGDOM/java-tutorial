@@ -1,14 +1,9 @@
 package com.java.func;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.function.Function;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 public class SeqUtilsTest {
-
-
 
 
     @Test
@@ -18,8 +13,7 @@ public class SeqUtilsTest {
 
         String underscoreToCamel = SeqUtils.underscoreToCamel(str);
 
-        System.out.println(underscoreToCamel);
-
+        Assertions.assertEquals("aeDcYgAaaaOooo", underscoreToCamel);
     }
 
 }
