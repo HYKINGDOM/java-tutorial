@@ -20,7 +20,7 @@ import java.util.Map;
 public class JdbcUtils {
 
 
-    @Value("${spring.datasource.driverClassName}")
+    @Value("${spring.datasource.driver-class-name}")
     private String jdbcDriver;
 
     @Value("${spring.datasource.url}")
@@ -33,6 +33,12 @@ public class JdbcUtils {
     private String getMasterDataPassword;
 
 
+    /**
+     *
+     * @param dataList
+     * @param typeSortList
+     * @param insertSql
+     */
     public void batchGenerateMysqlUtil(List<Map<String, Object>> dataList, List<String> typeSortList, String insertSql) {
         PreparedStatement stat = null;
         Connection conn = null;
@@ -64,6 +70,7 @@ public class JdbcUtils {
                 assert conn != null;
                 conn.rollback();
             } catch (SQLException ex) {
+                log.error(ex.getMessage());
                 throw new RuntimeException(ex);
             }
         } finally {
