@@ -49,6 +49,7 @@
         <module>spring-boot-project-manifold-extensions</module>
         <module>spring-boot-project-thread</module>
         <module>spring-boot-project-retry</module>
+        <module>spring-boot-project-freemarker</module>
     </modules>
 
     <properties>

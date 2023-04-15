@@ -41,6 +41,7 @@
         <module name="java-database" />
         <module name="spring-boot-mongodb" />
         <module name="spring-boot-project-graphql" />
+        <module name="spring-boot-project-freemarker" />
         <module name="java-validate" />
       </profile>
       <profile name="Annotation profile for spring-boot-project-mybatis-plus-dynamic-datasource" enabled="true">
@@ -134,6 +135,7 @@
       <module name="spring-boot-project-eureka-server" options="" />
       <module name="spring-boot-project-event" options="" />
       <module name="spring-boot-project-excel" options="" />
+      <module name="spring-boot-project-freemarker" options="" />
       <module name="spring-boot-project-graphql" options="" />
       <module name="spring-boot-project-manifold-extensions" options="&quot;-Xplugin:Manifold no-bootstrap&quot;" />
       <module name="spring-boot-project-mongodb-jpa" options="" />
