@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import javax.annotation.Resources;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -35,17 +36,52 @@ public class GenerateImageUtil {
      * @throws TemplateException
      * @throws IOException
      */
-    public void createSizeTableImage(Map<String, List<String>> contentMap, String desc, String path) throws TemplateException, IOException {
+    public void createSizeTableImage(Map<String, List<String>> contentMap, String desc, String path){
         Map<String, List<String>> descMap = new HashMap<>();
         List<String> descList = Lists.newArrayList(desc);
         descMap.put("desc", descList);
         Map<String, Map<String, List<String>>> map = new HashMap<>();
         map.put("contentMap", contentMap);
         map.put("desc", descMap);
-        byte[] bytes = htmlConvertImgHelper.htmlConvertImg("sizeImageTemplate.ftl", map, "jpg");
-        OutputStream os = new FileOutputStream(path);
-        os.write(bytes, 0, bytes.length);
-        os.flush();
-        os.close();
+        byte[] bytes = new byte[0];
+        OutputStream os = null;
+        try {
+            bytes = htmlConvertImgHelper.htmlConvertImg("sizeImageTemplate.ftl", map, "jpg");
+            os = new FileOutputStream(path);
+            os.write(bytes, 0, bytes.length);
+            os.flush();
+            os.close();
+        } catch (IOException | TemplateException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
+    /**
+     *
+     * @param contentMap
+     * @param titleTime
+     * @param path
+     */
+    public void createTableImage(Map<String, List<String>> contentMap,String titleTime, String path){
+        Map<String, List<String>> descMap = new HashMap<>();
+        List<String> descList = Lists.newArrayList(titleTime);
+        descMap.put("desc", descList);
+        Map<String, Map<String, List<String>>> map = new HashMap<>();
+        map.put("contentMap", contentMap);
+        map.put("desc", descMap);
+        byte[] bytes = new byte[0];
+        OutputStream os = null;
+        try {
+            bytes = htmlConvertImgHelper.htmlConvertImg("personal-pronouns.ftl", map, "jpg");
+            os = new FileOutputStream(path);
+            os.write(bytes, 0, bytes.length);
+            os.flush();
+            os.close();
+        } catch (IOException | TemplateException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<table style="border: 1px solid black;text-align:center;border-collapse: collapse;">
+
+<caption align="top">客户跟进情况个人</caption>
+    <caption align="left">2023-04-15</caption>
+
+    <tr>
+        <th rowspan="2" style="border:1px solid black;height:40px;width: 80px">部门名称</th>
+        <th rowspan="2" style="border:1px solid black;height:40px;width: 80px">员工名称</th>
+
+        <th colspan="3" style="border:1px solid black;height:40px;width: 180px">单日跟进情况(次数)</th>
+
+        <th colspan="2" style="border:1px solid black;height:40px;width: 180px">月累计首次沟通客户数</th>
+
+        <th rowspan="2" style="border:1px solid black;height:40px;width: 160px">月累计跟进老客户数</th>
+
+        <th colspan="3" style="border:1px solid black;height:40px;width: 120px">月跟进情况(次数)</th>
+
+        <th colspan="4" style="border:1px solid black;height:40px;width: 330px">月累计待开发跟进客户数</th>
+    </tr>
+
+
+    <tr>
+        <th style="border:1px solid black;height:40px;width: 80px">电话/微信</th>
+        <th style="border:1px solid black;height:40px;width: 50px">拜访</th>
+        <th style="border:1px solid black;height:40px;width: 50px">总计</th>
+
+        <th style="border:1px solid black;height:40px;width: 50px">40%</th>
+        <th style="border:1px solid black;height:40px;width: 50px">60%</th>
+
+        <th style="border:1px solid black;height:40px;width: 80px">电话/微信</th>
+        <th style="border:1px solid black;height:40px;width: 50px">拜访</th>
+        <th style="border:1px solid black;height:40px;width: 50px">总计</th>
+
+        <th style="border:1px solid black;height:40px;width: 90px">0%、20%</th>
+        <th style="border:1px solid black;height:40px;width: 90px">40%、60%</th>
+        <th style="border:1px solid black;height:40px;width: 100px">80%、100%</th>
+        <th style="border:1px solid black;height:40px;width: 50px">总计</th>
+
+    </tr>
+
+
+    <#list contentMap?keys as key>
+        <tr>
+            <#list (contentMap[key]) as field>
+                <td style="border:1px solid black;height:40px;width: 40px">${field}</td>
+            </#list>
+        </tr>
+    </#list>
+
+</table>
+
+</body>
+</html>
