@@ -59,7 +59,7 @@ public class HtmlConvertImgHelper {
         ImageRenderer imageRenderer = html2Image.getImageRenderer();
         BufferedImage grayPicture = imageRenderer.getBufferedImage(BufferedImage.TYPE_INT_ARGB_PRE);
 
-        BufferedImage newImage = ImageUtils.resizeImage(grayPicture,1500,800);
+        BufferedImage newImage = ImageUtils.resizeImage(grayPicture,1500,350);
         ImageIO.write(newImage, formatType, byteArrayOutputStream);
         return byteArrayOutputStream.toByteArray();
     }

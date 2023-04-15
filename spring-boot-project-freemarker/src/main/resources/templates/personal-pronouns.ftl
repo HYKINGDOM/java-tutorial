@@ -5,10 +5,16 @@
     <title></title>
 </head>
 <body>
+
 <table style="border: 1px solid black;text-align:center;border-collapse: collapse;">
 
-<caption align="top">客户跟进情况个人</caption>
-    <caption align="left">2023-04-15</caption>
+    <caption>
+        <b style="font-size:20px;text-align:center">客户跟进情况个人</b>
+    </caption>
+
+    <tr>
+        <th colspan="18" style="border:1px solid black;text-align:right">2023-04-15</th>
+    </tr>
 
     <tr>
         <th rowspan="2" style="border:1px solid black;height:40px;width: 80px">部门名称</th>
