@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -96,6 +97,47 @@ class GenerateImageUtilTest {
         map1.put("title15", title15);
 
         generateImageUtil.createTableImage(map1, "2023-04-15", "E:\\sqlite\\test2.jpg");
+    }
+
+
+    @Test
+    public void create_02() {
+
+        Map<String, List<String>> map1 = new LinkedHashMap<>();
+        List<String> title1 = Lists.newArrayList("新开一组", "张三无1", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
+        List<String> title2 = Lists.newArrayList("新开二组", "三无2", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
+        List<String> title3 = Lists.newArrayList("新开三组", "李四3", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
+        List<String> title4 = Lists.newArrayList("新开四组", "张三4", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
+        List<String> title5 = Lists.newArrayList("合计", "-", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
+        List<String> title6 = Lists.newArrayList("新开一组", "张三无6", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
+        List<String> title7 = Lists.newArrayList("新开二组", "三无7", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
+        List<String> title8 = Lists.newArrayList("新开三组", "李四8", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
+        List<String> title9 = Lists.newArrayList("合计", "-", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
+        List<String> title10 = Lists.newArrayList("新开五组", "张无10", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
+        List<String> title11 = Lists.newArrayList("新开一组", "张三无11", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
+        List<String> title12 = Lists.newArrayList("新开二组", "三无12", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
+        List<String> title13 = Lists.newArrayList("新开三组", "李四13", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
+        List<String> title14 = Lists.newArrayList("新开四组", "张三14", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
+        List<String> title15 = Lists.newArrayList("合计", "-", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
+        List<String> title16 = Lists.newArrayList("总计", "-", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
+        map1.put("title1", title1);
+        map1.put("title2", title2);
+        map1.put("title3", title3);
+        map1.put("title4", title4);
+        map1.put("合计5", title5);
+        map1.put("title6", title6);
+        map1.put("title7", title7);
+        map1.put("title8", title8);
+        map1.put("合计9", title9);
+        map1.put("title10", title10);
+        map1.put("title11", title11);
+        map1.put("title12", title12);
+        map1.put("title13", title13);
+        map1.put("title14", title14);
+        map1.put("合计15", title15);
+        map1.put("总计16", title16);
+
+        generateImageUtil.createImageByTable(map1, "2023-04-18", "E:\\sqlite\\test3.jpg", "personal-pronouns.ftl");
     }
 
 }

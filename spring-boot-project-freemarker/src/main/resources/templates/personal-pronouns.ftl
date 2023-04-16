@@ -13,10 +13,14 @@
     </caption>
 
     <caption style="text-align:right">
-        <small>2023-04-15</small>
+        <#list dateTime?keys as key>
+            <#list (dateTime[key]) as field>
+                <small>${field}</small>
+            </#list>
+        </#list>
     </caption>
 
-    <tr>
+    <tr style="background: #b7bbbb">
         <th rowspan="2" style="border:1px solid black;height:40px;width: 80px">部门名称</th>
         <th rowspan="2" style="border:1px solid black;height:40px;width: 80px">员工名称</th>
 
@@ -32,7 +36,7 @@
     </tr>
 
 
-    <tr>
+    <tr style="background: #b7bbbb">
         <th style="border:1px solid black;height:40px;width: 80px">电话/微信</th>
         <th style="border:1px solid black;height:40px;width: 50px">拜访</th>
         <th style="border:1px solid black;height:40px;width: 50px">总计</th>
@@ -53,11 +57,28 @@
 
 
     <#list contentMap?keys as key>
-        <tr>
-            <#list (contentMap[key]) as field>
-                <td style="border:1px solid black;height:40px;width: 40px">${field}</td>
-            </#list>
-        </tr>
+
+        <#if key?starts_with("合计")>
+            <tr>
+                <#list (contentMap[key]) as field>
+                    <td style="background: #b7bbbb;border:1px solid black;height:40px;width: 40px">${field}</td>
+                </#list>
+            </tr>
+        <#elseif key?starts_with("总计")>
+            <tr>
+                <#list (contentMap[key]) as field>
+                    <td style="background: #b7bbbb;border:1px solid black;height:40px;width: 40px">${field}</td>
+                </#list>
+            </tr>
+        <#else>
+            <tr>
+                <#list (contentMap[key]) as field>
+                    <td style="border:1px solid black;height:40px;width: 40px">${field}</td>
+                </#list>
+            </tr>
+
+        </#if>
+
     </#list>
 
 </table>
