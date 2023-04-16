@@ -12,9 +12,9 @@
         <b style="font-size:20px;text-align:center">客户跟进情况个人</b>
     </caption>
 
-    <tr>
-        <th colspan="18" style="border:1px solid black;text-align:right">2023-04-15</th>
-    </tr>
+    <caption style="text-align:right">
+        <small>2023-04-15</small>
+    </caption>
 
     <tr>
         <th rowspan="2" style="border:1px solid black;height:40px;width: 80px">部门名称</th>
