@@ -15,6 +15,7 @@ import javax.annotation.Resource;
 
 /**
  * Security配置
+ * @author yihur
  */
 @Configuration
 @EnableWebSecurity

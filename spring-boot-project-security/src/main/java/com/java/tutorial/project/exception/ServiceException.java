@@ -1,11 +1,7 @@
 package com.java.tutorial.project.exception;
 
 /**
- * 描述：
- * <p>
- *
- * @author: 赵新国
- * @date: 2018/4/11 23:06
+ * @author yihur
  */
 public class ServiceException extends RuntimeException {
 

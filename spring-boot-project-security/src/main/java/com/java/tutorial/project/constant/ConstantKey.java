@@ -1,8 +1,7 @@
 package com.java.tutorial.project.constant;
 
 /**
- * 描述：
- * <p>
+ * @author yihur
  */
 public class ConstantKey {
 

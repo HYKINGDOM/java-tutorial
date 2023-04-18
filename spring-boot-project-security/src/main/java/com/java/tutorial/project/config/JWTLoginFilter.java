@@ -34,7 +34,7 @@ import java.util.Map;
  * 该类继承自UsernamePasswordAuthenticationFilter，重写了其中的2个方法
  * attemptAuthentication ：接收并解析用户凭证。
  * successfulAuthentication ：用户成功登录后，这个方法会被调用，我们在这个方法里生成token。
- * @author zhaoxinguo on 2017/9/12.
+ * @author yihur
  */
 public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
 

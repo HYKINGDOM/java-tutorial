@@ -1,7 +1,7 @@
 package com.java.tutorial.project.exception;
 
 /**
- * @author zhaoxinguo on 2017/9/13.
+ * @author yihur
  */
 public class UsernameIsExitedException extends ServiceException {
 

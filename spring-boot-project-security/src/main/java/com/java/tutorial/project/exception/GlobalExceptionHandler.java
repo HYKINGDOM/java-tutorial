@@ -21,7 +21,7 @@ import java.net.ConnectException;
 /**
  * @ClassName GlobalExceptionHandler
  * @Description 全局处理自定义的业务异常
- *
+ * @author yihur
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {

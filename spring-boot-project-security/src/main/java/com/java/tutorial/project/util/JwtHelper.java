@@ -12,10 +12,7 @@ import java.security.Key;
 import java.util.Date;
 
 /**
- * @FileName: JwtHelper
- * @Author: zhaoxinguo
- * @Date: 2018/12/10 19:39
- * @Description: 实现Jwt
+ * @author yihur
  */
 public class JwtHelper {
 
