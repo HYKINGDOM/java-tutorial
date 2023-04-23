@@ -1,3 +1,7 @@
+
+server:
+  port: 8980
+
 spring:
   application:
     name: spring-boot-project-cqrs-es
