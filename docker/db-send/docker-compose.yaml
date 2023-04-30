@@ -1,0 +1,51 @@
+version: "3"
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: app
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql:/var/lib/mysql
+  zookeeper:
+    image: bitnami/zookeeper:3.6.2
+    container_name: zookeeper
+    ports:
+      - 2181:2181
+    volumes:
+      - zookeeper:/bitnami
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+  kafka:
+    image: bitnami/kafka:2.7.0
+    container_name: kafka
+    ports:
+      - 9092:9092
+    volumes:
+      - kafka:/bitnami
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    depends_on:
+      - zookeeper
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.0
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+    volumes:
+      - elasticsearch:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+volumes:
+  mysql:
+    driver: local
+  zookeeper:
+    driver: local
+  kafka:
+    driver: local
+  elasticsearch:
+    driver: local

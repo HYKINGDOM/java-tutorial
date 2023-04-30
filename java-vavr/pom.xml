@@ -29,6 +29,15 @@
             <version>0.10.4</version>
         </dependency>
 
+
+        <!-- https://mvnrepository.com/artifact/org.functionaljava/functionaljava -->
+        <dependency>
+            <groupId>org.functionaljava</groupId>
+            <artifactId>functionaljava</artifactId>
+            <version>5.0</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>

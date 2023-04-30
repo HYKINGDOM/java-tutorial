@@ -24,7 +24,7 @@ public class ThreadNameQueryPID {
 
         List<String> stringList1 = threadNameQueryPID.byThreadNameQueryPID(cmd02);
 
-        for (String s : stringList1) {
+        for (String s : stringList) {
             System.out.println(s);
         }
     }
