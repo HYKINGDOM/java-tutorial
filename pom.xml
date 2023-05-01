@@ -50,6 +50,7 @@
         <module>spring-boot-project-thread</module>
         <module>spring-boot-project-retry</module>
         <module>spring-boot-project-freemarker</module>
+        <module>spring-boot-project-http</module>
     </modules>
 
     <properties>

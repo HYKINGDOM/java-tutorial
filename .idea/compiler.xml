@@ -24,6 +24,7 @@
         <module name="spring-boot-transactional" />
         <module name="java-unit-test" />
         <module name="interview-code" />
+        <module name="spring-boot-project-http" />
         <module name="spring-boot-h2" />
         <module name="spring-boot-project-mq-kafka" />
         <module name="spring-boot-project-eureka-server" />
@@ -137,6 +138,7 @@
       <module name="spring-boot-project-excel" options="" />
       <module name="spring-boot-project-freemarker" options="" />
       <module name="spring-boot-project-graphql" options="" />
+      <module name="spring-boot-project-http" options="" />
       <module name="spring-boot-project-manifold-extensions" options="&quot;-Xplugin:Manifold no-bootstrap&quot;" />
       <module name="spring-boot-project-mongodb-jpa" options="" />
       <module name="spring-boot-project-mq-kafka" options="" />
