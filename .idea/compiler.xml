@@ -39,6 +39,7 @@
         <module name="spring-boot-project-retry" />
         <module name="java-mapstruct" />
         <module name="java-patterns" />
+        <module name="spring-boot-project-qlexpress" />
         <module name="java-database" />
         <module name="spring-boot-mongodb" />
         <module name="spring-boot-project-graphql" />
@@ -50,7 +51,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="E:/apache-maven-3.6.2/repostory/org/mapstruct/mapstruct-processor/${org.mapstruct.version}/mapstruct-processor-${org.mapstruct.version}.jar" />
+          <entry name="E:/apache-maven-3.6.2/repostory/org/mapstruct/mapstruct-processor/1.5.3.Final/mapstruct-processor-1.5.3.Final.jar" />
+          <entry name="E:/apache-maven-3.6.2/repostory/org/mapstruct/mapstruct/1.5.3.Final/mapstruct-1.5.3.Final.jar" />
           <entry name="E:/apache-maven-3.6.2/repostory/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar" />
         </processorPath>
         <module name="spring-boot-project-mybatis-plus-dynamic-datasource" />
@@ -143,6 +145,7 @@
       <module name="spring-boot-project-mongodb-jpa" options="" />
       <module name="spring-boot-project-mq-kafka" options="" />
       <module name="spring-boot-project-mybatis-plus-dynamic-datasource" options="" />
+      <module name="spring-boot-project-qlexpress" options="" />
       <module name="spring-boot-project-retry" options="" />
       <module name="spring-boot-project-schedule-job" options="" />
       <module name="spring-boot-project-security" options="" />

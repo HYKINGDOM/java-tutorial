@@ -51,6 +51,7 @@
         <module>spring-boot-project-retry</module>
         <module>spring-boot-project-freemarker</module>
         <module>spring-boot-project-http</module>
+        <module>spring-boot-project-qlexpress</module>
     </modules>
 
     <properties>
@@ -61,6 +62,7 @@
         <spring-boot-devtools>2.7.5</spring-boot-devtools>
         <spring-boot-starter-test>2.7.5</spring-boot-starter-test>
         <lombok.version>1.18.26</lombok.version>
+        <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
     </properties>
 
     <dependencies>
