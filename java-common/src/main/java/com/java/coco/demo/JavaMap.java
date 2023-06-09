@@ -156,6 +156,21 @@ public class JavaMap {
 
     public void mapComputeIfPresent() {
 
+        // 创建一个 HashMap
+        HashMap<String, Integer> prices = new HashMap<>();
+
+        // 往HashMap中添加映射关系
+        prices.put("Shoes", 200);
+        prices.put("Bag", 300);
+        prices.put("Pant", 150);
+        System.out.println("HashMap: " + prices);
+
+        // 重新计算鞋加上10%的增值税后的价值
+        int shoesPrice = prices.computeIfPresent("Shoes", (key, value) -> value + value * 10/100);
+        System.out.println("Price of Shoes after VAT: " + shoesPrice);
+
+        // 输出更新后的HashMap
+        System.out.println("Updated HashMap: " + prices);
     }
 
 }
