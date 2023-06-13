@@ -3,7 +3,11 @@ package com.java.tutorial.project.http;
 import java.io.File;
 import java.io.IOException;
 import java.net.Authenticator;
+import java.net.InetSocketAddress;
 import java.net.PasswordAuthentication;
+import java.net.Proxy;
+import java.net.ProxySelector;
+import java.net.SocketAddress;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
@@ -13,10 +17,12 @@ import java.net.http.WebSocket;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -29,6 +35,7 @@ import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 /**
  * jdk11--HttpClient实现
@@ -38,12 +45,14 @@ class HttpClientUtilTest {
     @Test
     public void testTimeout() throws IOException, InterruptedException {
         // 1.set connect timeout
-        HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofMillis(5000))
-            .followRedirects(HttpClient.Redirect.NORMAL).build();
+        HttpClient client =
+            HttpClient.newBuilder().connectTimeout(Duration.ofMillis(5000)).followRedirects(HttpClient.Redirect.NORMAL)
+                .build();
 
         // 2.set read timeout
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create("http://openjdk.java.net/"))
-            .timeout(Duration.ofMillis(5009)).build();
+        HttpRequest request =
+            HttpRequest.newBuilder().version(HttpClient.Version.HTTP_2).uri(URI.create("http://openjdk" + ".java.net/"))
+                .timeout(Duration.ofMillis(5009)).build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
@@ -61,8 +70,9 @@ class HttpClientUtilTest {
                 }
             }).build();
 
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create("http://localhost:8080/json/info"))
-            .timeout(Duration.ofMillis(5009)).build();
+        HttpRequest request =
+            HttpRequest.newBuilder().uri(URI.create("http://localhost:8080/json/info")).timeout(Duration.ofMillis(5009))
+                .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
@@ -124,14 +134,15 @@ class HttpClientUtilTest {
         HttpRequest request = HttpRequest.newBuilder(URI.create("http://localhost:8080/json/demo"))
             .header("Content-Type", "application/json").POST(HttpRequest.BodyPublishers.ofString(requestBody)).build();
 
-        CompletableFuture<StockDto> result = HttpClient.newHttpClient()
-            .sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenApply(HttpResponse::body).thenApply(body -> {
-                try {
-                    return objectMapper.readValue(body, StockDto.class);
-                } catch (IOException e) {
-                    return new StockDto();
-                }
-            });
+        CompletableFuture<StockDto> result =
+            HttpClient.newHttpClient().sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenApply(HttpResponse::body).thenApply(body -> {
+                    try {
+                        return objectMapper.readValue(body, StockDto.class);
+                    } catch (IOException e) {
+                        return new StockDto();
+                    }
+                });
         System.out.println(result.get());
     }
 
@@ -142,9 +153,10 @@ class HttpClientUtilTest {
         File file = path.toFile();
 
         String multipartFormDataBoundary = "Java11HttpClientFormBoundary";
-        HttpEntity multipartEntity = MultipartEntityBuilder.create()
-            .addPart("file", new FileBody(file, ContentType.DEFAULT_BINARY)).setBoundary(multipartFormDataBoundary) // 要设置，否则阻塞
-            .build();
+        HttpEntity multipartEntity =
+            MultipartEntityBuilder.create().addPart("file", new FileBody(file, ContentType.DEFAULT_BINARY))
+                .setBoundary(multipartFormDataBoundary) // 要设置，否则阻塞
+                .build();
 
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create("http://localhost:8080/file/upload"))
             .header("Content-Type", "multipart/form-data; boundary=" + multipartFormDataBoundary)
@@ -177,8 +189,9 @@ class HttpClientUtilTest {
     public void testConcurrentRequests() {
         HttpClient client = HttpClient.newHttpClient();
         List<String> urls = List.of("http://www.baidu.com", "http://www.alibaba.com/", "http://www.tencent.com");
-        List<HttpRequest> requests = urls.stream().map(url -> HttpRequest.newBuilder(URI.create(url)))
-            .map(reqBuilder -> reqBuilder.build()).collect(Collectors.toList());
+        List<HttpRequest> requests =
+            urls.stream().map(url -> HttpRequest.newBuilder(URI.create(url))).map(reqBuilder -> reqBuilder.build())
+                .collect(Collectors.toList());
 
         List<CompletableFuture<HttpResponse<String>>> futures =
             requests.stream().map(request -> client.sendAsync(request, HttpResponse.BodyHandlers.ofString()))
@@ -219,8 +232,7 @@ class HttpClientUtilTest {
     public void testHttp2() throws URISyntaxException {
         HttpClient.newBuilder().followRedirects(HttpClient.Redirect.NEVER).version(HttpClient.Version.HTTP_2).build()
             .sendAsync(HttpRequest.newBuilder().uri(new URI("https://http2.akamai.com/demo")).GET().build(),
-                HttpResponse.BodyHandlers.ofString())
-            .whenComplete((resp, t) -> {
+                HttpResponse.BodyHandlers.ofString()).whenComplete((resp, t) -> {
                 if (t != null) {
                     t.printStackTrace();
                 } else {
@@ -229,6 +241,91 @@ class HttpClientUtilTest {
                 }
             }).join();
     }
+
+    @Test
+    public void test_execute_Http2() throws URISyntaxException {
+        HttpClient.newBuilder()
+            .followRedirects(HttpClient.Redirect.NEVER)
+            .executor(rulerExecutor())
+            .version(HttpClient.Version.HTTP_2).build()
+            .sendAsync(HttpRequest.newBuilder().uri(new URI("https://http2.akamai.com/demo")).GET().build(),
+                HttpResponse.BodyHandlers.ofString()).whenComplete((resp, t) -> {
+                if (t != null) {
+                    t.printStackTrace();
+                } else {
+                    System.out.println(resp.version());
+                    System.out.println(resp.statusCode());
+                }
+            }).join();
+    }
+
+
+    public ThreadPoolTaskExecutor rulerExecutor(){
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(1);
+        executor.setMaxPoolSize(3);
+        executor.setQueueCapacity(3);
+        executor.setKeepAliveSeconds(300);
+        executor.setThreadNamePrefix("test_execute_Http2");
+
+        // 线程池对拒绝任务的处理策略
+        // CallerRunsPolicy：由调用线程（提交任务的线程）处理该任务
+        executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+        // 初始化
+        executor.initialize();
+        return executor;
+    }
+
+
+    @Test
+    public void test_execute_Http2_proxy_01() throws URISyntaxException {
+
+        ProxySelector myProxySelector = new ProxySelector() {
+            @Override
+            public List<Proxy> select(URI uri) {
+                // return a list of proxies to use for the given URI
+                return List.of(new Proxy(Proxy.Type.HTTP, new InetSocketAddress("www.google.com", 7890)));
+            }
+
+            /**
+             * Called to indicate that a connection could not be established to a proxy/socks server. An
+             * implementation of this method can temporarily remove the proxies or reorder the sequence
+             * of proxies returned by {@link #select(URI)}, using the address and the IOException caught
+             * when trying to connect.
+             *
+             * @param uri The URI that the proxy at sa failed to serve.
+             * @param sa  The socket address of the proxy/SOCKS server
+             * @param ioe The I/O exception thrown when the connect failed.
+             * @throws IllegalArgumentException if either argument is null
+             */
+            @Override
+            public void connectFailed(URI uri, SocketAddress sa, IOException ioe) {
+
+            }
+
+        };
+
+        // set the custom ProxySelector as the default for HTTP requests
+        ProxySelector.setDefault(myProxySelector);
+
+
+        HttpClient.newBuilder()
+            .followRedirects(HttpClient.Redirect.NEVER)
+            .executor(rulerExecutor())
+            .proxy(myProxySelector)
+            .version(HttpClient.Version.HTTP_2).build()
+            .sendAsync(HttpRequest.newBuilder().uri(new URI("https://http2.akamai.com/demo")).GET().build(),
+                HttpResponse.BodyHandlers.ofString()).whenComplete((resp, t) -> {
+                if (t != null) {
+                    t.printStackTrace();
+                } else {
+                    System.out.println(resp.version());
+                    System.out.println(resp.statusCode());
+                }
+            }).join();
+    }
+
+
 
     @Test
     public void testWebSocket() throws InterruptedException {
