@@ -16,3 +16,7 @@
 https://juejin.cn/post/7133469059898671112
 
 https://github.com/trunks2008/double-cache
+
+
+枚举优化
+https://mp.weixin.qq.com/s/CLr5bcxsG7C8v6qSsagEbw
