@@ -1,0 +1,10 @@
+version: '3'
+services:
+  app:
+    image: chenzhaoyu94/chatgpt-web
+    ports:
+      - "3002:3002"
+    environment:
+      OPENAI_API_KEY: sk-789IFSGrQhJ4gErZACxFY9T3BlbkFJgzUCCXmtxyPt0P2oE91OKSCS
+      TIMEOUT_MS: "60000"
+      OPENAI_API_MODEL: gpt-3.5-turbo
