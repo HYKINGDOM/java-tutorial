@@ -1,24 +1,24 @@
 package com.java.tutorial.project.http;
 
-import cn.hutool.core.exceptions.ExceptionUtil;
-import cn.hutool.core.util.ObjectUtil;
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
+
+import cn.hutool.core.exceptions.ExceptionUtil;
+import cn.hutool.core.util.ObjectUtil;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author kscs
@@ -26,14 +26,12 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class HttpClientUtils {
 
-
-    private ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("thread-dspAdvertiserCost-%d").build();
-
+    private ThreadFactory threadFactory =
+        new ThreadFactoryBuilder().setNameFormat("thread-dspAdvertiserCost-%d").build();
 
     private RejectedExecutionHandler handler = new ThreadPoolExecutor.DiscardPolicy();
-    private HttpClient HTTP_CLIENT =
-        HttpClient.newBuilder().executor(rulerExecutor()).version(HttpClient.Version.HTTP_2)
-            .connectTimeout(Duration.ofMillis(5000)).build();
+    private HttpClient HTTP_CLIENT = HttpClient.newBuilder().executor(rulerExecutor())
+        .version(HttpClient.Version.HTTP_2).connectTimeout(Duration.ofMillis(5000)).build();
 
     private static ThreadPoolTaskExecutor rulerExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
@@ -76,6 +74,30 @@ public class HttpClientUtils {
             });
 
         return result.join();
+    }
+
+    public List<String> sendBatchHttpAsync(List<String> urls) {
+
+        List<HttpRequest> requests = urls.stream().map(url -> HttpRequest.newBuilder(URI.create(url)))
+            .map(HttpRequest.Builder::build).collect(Collectors.toList());
+
+        List<CompletableFuture<HttpResponse<String>>> futures =
+            requests.stream().map(request -> HTTP_CLIENT.sendAsync(request, HttpResponse.BodyHandlers.ofString()))
+                .collect(Collectors.toList());
+
+        futures.forEach(e -> e.whenComplete((resp, throwable) -> {
+            if (ObjectUtil.isNotEmpty(throwable)) {
+                log.error("sendHttpAsync: {}", (Object)throwable.getStackTrace());
+            }
+        }).thenApply(HttpResponse::body).exceptionally(err -> {
+            log.error("sendHttpAsync: {}", (Object)err.getStackTrace());
+            return ExceptionUtil.getRootCauseMessage(err);
+        }));
+        // CompletableFuture.allOf(futures.toArray(CompletableFuture<?>[]::new)).join();
+
+
+        return futures.stream().map(CompletableFuture::join).map(HttpResponse::body).collect(Collectors.toList());
+
     }
 
 }
