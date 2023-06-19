@@ -81,6 +81,8 @@ public class HttpClientUtils {
             requests.stream().map(request -> HTTP_CLIENT.sendAsync(request, HttpResponse.BodyHandlers.ofString()))
                 .collect(Collectors.toList());
 
+        CompletableFuture.allOf(futures.toArray(new CompletableFuture[futures.size()])).join();
+
         futures.forEach(e -> e.whenComplete((resp, throwable) -> {
             if (ObjectUtil.isNotEmpty(throwable)) {
                 log.error("sendHttpAsync: {}", (Object)throwable.getStackTrace());
@@ -94,5 +96,4 @@ public class HttpClientUtils {
         return futures.stream().map(CompletableFuture::join).map(HttpResponse::body).collect(Collectors.toList());
 
     }
-
 }
