@@ -225,6 +225,7 @@ class HttpClientUtilTest {
     @Test
     public void testHandleException() throws ExecutionException, InterruptedException {
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofMillis(5000)).build();
+
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://twitter.com")).build();
 
         CompletableFuture<String> result = client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
