@@ -1,4 +1,6 @@
 package com.java.tutorial.project.http;
 
-public class HttpClientUtil {
+public class HttpClientUtils {
+
+
 }

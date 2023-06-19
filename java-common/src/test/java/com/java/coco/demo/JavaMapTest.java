@@ -64,9 +64,6 @@ public class JavaMapTest {
 
 
         List<String> computeIfPresent = stringListMap.computeIfPresent("Shoes", (key, value) -> {
-            if (CollectionUtil.isEmpty(value)) {
-                value = Lists.newArrayList();
-            }
 
             value.add(RandomUtil.randomString(100));
 

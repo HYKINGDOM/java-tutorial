@@ -31,6 +31,10 @@ import org.apache.hc.client5.http.entity.mime.MultipartEntityBuilder;
 import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.HttpEntity;
 import org.assertj.core.api.Assertions;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -39,6 +43,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 /**
  * jdk11--HttpClient实现
+ * @author HY
  */
 class HttpClientUtilTest {
 
@@ -78,6 +83,9 @@ class HttpClientUtilTest {
 
         System.out.println(response.statusCode());
         System.out.println(response.body());
+
+        Document document = Jsoup.parseBodyFragment(response.body());
+
     }
 
     @Test
@@ -99,7 +107,14 @@ class HttpClientUtilTest {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        System.out.println(response.body());
+        //System.out.println(response.body());
+
+
+        Document document = Jsoup.parseBodyFragment(response.body());
+
+
+        System.out.println(document.body());
+
     }
 
     @Test
@@ -187,10 +202,10 @@ class HttpClientUtilTest {
 
     @Test
     public void testConcurrentRequests() {
-        HttpClient client = HttpClient.newHttpClient();
-        List<String> urls = List.of("http://www.baidu.com", "http://www.alibaba.com/", "http://www.tencent.com");
+        HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofMillis(5000)).executor(rulerExecutor()).build();
+        List<String> urls = List.of("http://www.baidu.com", "https://juejin.cn/post/7181713105490018341", "https://juejin.cn/post/7160554181156306958");
         List<HttpRequest> requests =
-            urls.stream().map(url -> HttpRequest.newBuilder(URI.create(url))).map(reqBuilder -> reqBuilder.build())
+            urls.stream().map(url -> HttpRequest.newBuilder(URI.create(url))).map(HttpRequest.Builder::build)
                 .collect(Collectors.toList());
 
         List<CompletableFuture<HttpResponse<String>>> futures =
