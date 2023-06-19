@@ -61,11 +61,7 @@ public class HttpClientUtils {
 
                     log.error("sendHttpAsync: {}", (Object)throwable.getStackTrace());
 
-                } else {
-                    log.info("http status code: {}", resp.statusCode());
-                    log.info("http body: {}", resp.body());
                 }
-
             }).thenApply(HttpResponse::body).exceptionally(err -> {
 
                 log.error("sendHttpAsync: {}", (Object)err.getStackTrace());
@@ -94,7 +90,6 @@ public class HttpClientUtils {
             return ExceptionUtil.getRootCauseMessage(err);
         }));
         // CompletableFuture.allOf(futures.toArray(CompletableFuture<?>[]::new)).join();
-
 
         return futures.stream().map(CompletableFuture::join).map(HttpResponse::body).collect(Collectors.toList());
 
