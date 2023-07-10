@@ -53,7 +53,7 @@ public class JsoupTest {
 
     @Test
     public void test_jsoup_demo_02() throws IOException {
-        String url = "https://mp.weixin.qq.com/s/U4ooFnNyLrFDjSil8UxsBA";
+        String url = "https://www.javsee.work/forum/forum.php?mod=viewthread&tid=120330&extra=page%3D1";
 
         String sendHttpAsync = HTTP_CLIENT_UTIL.sendHttpAsync(url);
 
@@ -64,8 +64,8 @@ public class JsoupTest {
         List<String> imgUrls = Lists.newArrayList();
 
         for (Element element : imgElements) {
-            String imgUrl = element.attr("data-src");
-            if (StrUtil.isNotEmpty(imgUrl)) {
+            String imgUrl = element.attr("src");
+            if (StrUtil.isNotEmpty(imgUrl) && imgUrl.startsWith("https")) {
                 imgUrls.add(imgUrl);
                 System.out.println("imgUrls: " + imgUrl);
                 downloadImage(imgUrl);

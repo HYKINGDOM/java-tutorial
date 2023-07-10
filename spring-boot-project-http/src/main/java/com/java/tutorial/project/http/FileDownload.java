@@ -1,5 +1,7 @@
 package com.java.tutorial.project.http;
 
+import com.google.common.collect.Lists;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -13,11 +15,20 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * @author kscs
  */
 public class FileDownload {
+
+
+    public static final List<String> IMAGE_EXTENSION_LOW = Lists.newArrayList("jpeg", "jpg", "tiff", "gif", "bmp", "png", "bpg", "svg", "heif", "psd");
+
+
+    public static final List<String> IMAGE_EXTENSION_TOP = Lists.newArrayList("JPEG", "JPG", "TIFF", "GIF", "BMP", "PNG", "BPG", "SVG", "HEIF", "PSD");
+
+
 
     /**
      * 下载并保存图片
@@ -29,7 +40,7 @@ public class FileDownload {
 
         URL url = new URL(imgUrl);
 
-        File file = new File("d:" + File.separator + Calendar.getInstance().getTimeInMillis() + ".jpeg");
+        File file = new File("K:" + File.separator + Calendar.getInstance().getTimeInMillis() + ".jpeg");
 
         try (BufferedInputStream in = new BufferedInputStream(url.openStream());
             FileOutputStream fileOutputStream = new FileOutputStream(file)) {

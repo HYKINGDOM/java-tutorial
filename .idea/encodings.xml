@@ -61,6 +61,8 @@
     <file url="file://$PROJECT_DIR$/spring-boot-project-graphql/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-project-http/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-project-http/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot-project-jsoup/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot-project-jsoup/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-project-manifold-extensions/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-project-manifold-extensions/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-project-mongodb-jpa/src/main/java" charset="UTF-8" />

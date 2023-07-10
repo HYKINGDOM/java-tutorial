@@ -20,6 +20,7 @@
         <module name="business-data" />
         <module name="spring-boot-project-drools" />
         <module name="java-benchmark" />
+        <module name="spring-boot-project-jsoup" />
         <module name="spring-boot-project-excel" />
         <module name="spring-boot-transactional" />
         <module name="java-unit-test" />
@@ -141,6 +142,7 @@
       <module name="spring-boot-project-freemarker" options="" />
       <module name="spring-boot-project-graphql" options="" />
       <module name="spring-boot-project-http" options="" />
+      <module name="spring-boot-project-jsoup" options="" />
       <module name="spring-boot-project-manifold-extensions" options="&quot;-Xplugin:Manifold no-bootstrap&quot;" />
       <module name="spring-boot-project-mongodb-jpa" options="" />
       <module name="spring-boot-project-mq-kafka" options="" />
