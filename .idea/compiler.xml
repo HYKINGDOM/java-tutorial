@@ -14,6 +14,7 @@
         <module name="spring-boot-project-webflux" />
         <module name="spring-boot-project-bean" />
         <module name="spring-boot-project-websocket" />
+        <module name="spring-boot-project-cqrs" />
         <module name="java-vavr" />
         <module name="spring-boot-project-thread" />
         <module name="spring-boot-mysql" />
@@ -52,34 +53,20 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="E:/apache-maven-3.6.2/repostory/org/mapstruct/mapstruct-processor/1.5.3.Final/mapstruct-processor-1.5.3.Final.jar" />
-          <entry name="E:/apache-maven-3.6.2/repostory/org/mapstruct/mapstruct/1.5.3.Final/mapstruct-1.5.3.Final.jar" />
-          <entry name="E:/apache-maven-3.6.2/repostory/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar" />
+          <entry name="$PROJECT_DIR$/../../../maven/apache-maven-3.8.5/repository/org/mapstruct/mapstruct-processor/1.5.3.Final/mapstruct-processor-1.5.3.Final.jar" />
+          <entry name="$PROJECT_DIR$/../../../maven/apache-maven-3.8.5/repository/org/mapstruct/mapstruct/1.5.3.Final/mapstruct-1.5.3.Final.jar" />
+          <entry name="$PROJECT_DIR$/../../../maven/apache-maven-3.8.5/repository/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar" />
         </processorPath>
         <module name="spring-boot-project-mybatis-plus-dynamic-datasource" />
-      </profile>
-      <profile name="Annotation profile for spring-boot-project-manifold-extensions" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="E:/apache-maven-3.6.2/repostory/org/projectlombok/lombok/1.18.26/lombok-1.18.26.jar" />
-          <entry name="E:/apache-maven-3.6.2/repostory/systems/manifold/manifold-ext/2023.1.3/manifold-ext-2023.1.3.jar" />
-          <entry name="E:/apache-maven-3.6.2/repostory/systems/manifold/manifold/2023.1.3/manifold-2023.1.3.jar" />
-          <entry name="E:/apache-maven-3.6.2/repostory/systems/manifold/manifold-rt/2023.1.3/manifold-rt-2023.1.3.jar" />
-          <entry name="E:/apache-maven-3.6.2/repostory/systems/manifold/manifold-util/2023.1.3/manifold-util-2023.1.3.jar" />
-          <entry name="E:/apache-maven-3.6.2/repostory/systems/manifold/manifold-ext-rt/2023.1.3/manifold-ext-rt-2023.1.3.jar" />
-        </processorPath>
-        <module name="spring-boot-project-manifold-extensions" />
       </profile>
       <profile name="Annotation profile for spring-boot-project-cache" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="E:/apache-maven-3.6.2/repostory/org/mapstruct/mapstruct-processor/1.5.3.Final/mapstruct-processor-1.5.3.Final.jar" />
-          <entry name="E:/apache-maven-3.6.2/repostory/org/mapstruct/mapstruct/1.5.3.Final/mapstruct-1.5.3.Final.jar" />
-          <entry name="E:/apache-maven-3.6.2/repostory/org/projectlombok/lombok/1.18.26/lombok-1.18.26.jar" />
+          <entry name="$PROJECT_DIR$/../../../maven/apache-maven-3.8.5/repository/org/mapstruct/mapstruct-processor/1.5.3.Final/mapstruct-processor-1.5.3.Final.jar" />
+          <entry name="$PROJECT_DIR$/../../../maven/apache-maven-3.8.5/repository/org/mapstruct/mapstruct/1.5.3.Final/mapstruct-1.5.3.Final.jar" />
+          <entry name="$PROJECT_DIR$/../../../maven/apache-maven-3.8.5/repository/org/projectlombok/lombok/1.18.26/lombok-1.18.26.jar" />
         </processorPath>
         <module name="spring-boot-project-cache" />
       </profile>
@@ -88,9 +75,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="E:/apache-maven-3.6.2/repostory/org/mapstruct/mapstruct-processor/1.5.3.Final/mapstruct-processor-1.5.3.Final.jar" />
-          <entry name="E:/apache-maven-3.6.2/repostory/org/mapstruct/mapstruct/1.5.3.Final/mapstruct-1.5.3.Final.jar" />
-          <entry name="E:/apache-maven-3.6.2/repostory/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar" />
+          <entry name="$PROJECT_DIR$/../../../maven/apache-maven-3.8.5/repository/org/mapstruct/mapstruct-processor/1.5.3.Final/mapstruct-processor-1.5.3.Final.jar" />
+          <entry name="$PROJECT_DIR$/../../../maven/apache-maven-3.8.5/repository/org/mapstruct/mapstruct/1.5.3.Final/mapstruct-1.5.3.Final.jar" />
+          <entry name="$PROJECT_DIR$/../../../maven/apache-maven-3.8.5/repository/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar" />
         </processorPath>
         <module name="spring-boot-project-mongodb-jpa" />
       </profile>
@@ -99,12 +86,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="E:/apache-maven-3.6.2/repostory/org/mapstruct/mapstruct-processor/1.5.3.Final/mapstruct-processor-1.5.3.Final.jar" />
-          <entry name="E:/apache-maven-3.6.2/repostory/org/mapstruct/mapstruct/1.5.3.Final/mapstruct-1.5.3.Final.jar" />
-          <entry name="E:/apache-maven-3.6.2/repostory/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar" />
-          <entry name="E:/apache-maven-3.6.2/repostory/com/chinadaas/platform/dflow/0.1-SNAPSHOT/dflow-0.1-SNAPSHOT.jar" />
+          <entry name="$PROJECT_DIR$/../../../maven/apache-maven-3.8.5/repository/org/projectlombok/lombok/1.18.26/lombok-1.18.26.jar" />
+          <entry name="$PROJECT_DIR$/../../../maven/apache-maven-3.8.5/repository/systems/manifold/manifold-ext/2023.1.3/manifold-ext-2023.1.3.jar" />
+          <entry name="$PROJECT_DIR$/../../../maven/apache-maven-3.8.5/repository/systems/manifold/manifold/2023.1.3/manifold-2023.1.3.jar" />
+          <entry name="$PROJECT_DIR$/../../../maven/apache-maven-3.8.5/repository/systems/manifold/manifold-rt/2023.1.3/manifold-rt-2023.1.3.jar" />
+          <entry name="$PROJECT_DIR$/../../../maven/apache-maven-3.8.5/repository/systems/manifold/manifold-util/2023.1.3/manifold-util-2023.1.3.jar" />
+          <entry name="$PROJECT_DIR$/../../../maven/apache-maven-3.8.5/repository/systems/manifold/manifold-ext-rt/2023.1.3/manifold-ext-rt-2023.1.3.jar" />
         </processorPath>
-        <module name="spring-boot-project-cqrs" />
+        <module name="spring-boot-project-manifold-extensions" />
       </profile>
     </annotationProcessing>
   </component>
