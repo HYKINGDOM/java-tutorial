@@ -3,8 +3,9 @@ services:
   app:
     image: chenzhaoyu94/chatgpt-web
     ports:
-      - "3002:3002"
+      - "3003:3002"
     environment:
-      OPENAI_API_KEY: sk-789IFSGrQhJ4gErZACxFY9T3BlbkFJgzUCCXmtxyPt0P2oE91OKSCS
+      OPENAI_API_KEY: sk-dStxMtwheUOE3No0EBuob7XG1gUHKCI0L1nFlKrB
       TIMEOUT_MS: "60000"
-      OPENAI_API_MODEL: gpt-3.5-turbo
+      OPENAI_API_MODEL: gpt-3.5-turbo-16k
+      OPENAI_API_BASE_URL: https://gptgod.site/api
