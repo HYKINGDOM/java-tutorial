@@ -8,7 +8,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@Import({MongoPlusAutoConfiguration.class})
+//@Import({MongoPlusAutoConfiguration.class})
 public @interface EnableMongoPlus {
 
 }
