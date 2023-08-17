@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author kscs
+ * @author hy
  */
 @Configuration
 public class SimpleSchedule {
