@@ -3,7 +3,7 @@ package com.java.tutorial.project.util;
 import lombok.Data;
 
 /**
- * @author kscs
+ * @author hy
  */
 @Data
 public class Result<T> {

@@ -8,7 +8,7 @@ import com.java.tutorial.project.util.ErrorCode;
 
 /**
  * 库存校验处理器
- * @author kscs
+ * @author hy
  */
 @Component
 public class StockCheckHandler extends AbstractCheckHandler {

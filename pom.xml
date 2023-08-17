@@ -55,6 +55,7 @@
         <module>spring-boot-project-jsoup</module>
         <module>spring-boot-project-chain-res</module>
         <module>spring-boot-project-quartz</module>
+        <module>spring-boot-project-webmagic</module>
     </modules>
 
     <properties>
@@ -128,7 +129,13 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-validation</artifactId>
-                <version>2.7.5</version>
+                <version>${spring-boot-starter-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-jdbc</artifactId>
+                <version>${spring-boot-starter-version}</version>
             </dependency>
 
             <dependency>
@@ -147,6 +154,15 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-devtools</artifactId>
+                <version>${spring-boot-devtools}</version>
+                <scope>runtime</scope>
+                <optional>true</optional>
+            </dependency>
+
 
             <!-- 测试依赖 -->
             <dependency>
@@ -194,58 +210,9 @@
                 </exclusions>
             </dependency>
 
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-devtools</artifactId>
-                <version>${spring-boot-devtools}</version>
-                <scope>runtime</scope>
-                <optional>true</optional>
-            </dependency>
-
         </dependencies>
 
     </dependencyManagement>
-
-    <!--        <repositories>-->
-    <!--            <repository>-->
-    <!--                <id>alimaven</id>-->
-    <!--                <name>aliyun maven</name>-->
-    <!--                <url>http://maven.aliyun.com/nexus/content/groups/public/</url>-->
-    <!--            </repository>-->
-
-    <!--            <repository>-->
-    <!--                <id>activiti-repos2</id>-->
-    <!--                <name>Activiti Repository 2</name>-->
-    <!--                <url>https://app.camunda.com/nexus/content/groups/public</url>-->
-    <!--            </repository>-->
-    <!--            <repository>-->
-    <!--                <id>springsource-repos</id>-->
-    <!--                <name>SpringSource Repository</name>-->
-    <!--                <url>http://repo.spring.io/release/</url>-->
-    <!--            </repository>-->
-
-
-    <!--            <repository>-->
-    <!--                <id>central-repos</id>-->
-    <!--                <name>Central Repository</name>-->
-    <!--                <url>http://repo.maven.apache.org/maven2</url>-->
-    <!--            </repository>-->
-
-
-    <!--            <repository>-->
-    <!--                <id>activiti-repos</id>-->
-    <!--                <name>Activiti Repository</name>-->
-    <!--                <url>https://maven.alfresco.com/nexus/content/groups/public</url>-->
-    <!--            </repository>-->
-
-    <!--            <repository>-->
-    <!--                <id>oschina-repos</id>-->
-    <!--                <name>Oschina Releases</name>-->
-    <!--                <url>http://maven.oschina.net/content/groups/public</url>-->
-    <!--            </repository>-->
-
-
-    <!--        </repositories>-->
 
 
     <build>

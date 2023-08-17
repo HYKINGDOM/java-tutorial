@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * @author kscs
+ * @author hy
  */
 @DisallowConcurrentExecution
 public class Job1 extends QuartzJobBean {

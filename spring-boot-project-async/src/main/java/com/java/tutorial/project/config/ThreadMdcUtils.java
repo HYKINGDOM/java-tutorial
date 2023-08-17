@@ -6,7 +6,7 @@ import org.slf4j.MDC;
 import java.util.Map;
 
 /**
- * @author kscs
+ * @author hy
  */
 public class ThreadMdcUtils {
     public static Runnable wrapAsync(Runnable task, Map<String, String> context) {
