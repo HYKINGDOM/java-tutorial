@@ -56,6 +56,7 @@
         <module>spring-boot-project-chain-res</module>
         <module>spring-boot-project-quartz</module>
         <module>spring-boot-project-webmagic</module>
+        <module>spring-boot-project-spring-plugin</module>
     </modules>
 
     <properties>
