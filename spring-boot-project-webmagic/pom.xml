@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>11</java.version>
-        <webmagic.version>0.7.5</webmagic.version>
+        <webmagic.version>0.9.0</webmagic.version>
     </properties>
 
     <dependencies>
