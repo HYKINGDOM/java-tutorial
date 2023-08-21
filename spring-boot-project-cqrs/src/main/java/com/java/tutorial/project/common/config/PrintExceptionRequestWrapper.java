@@ -66,6 +66,7 @@ public final class PrintExceptionRequestWrapper extends HttpServletRequestWrappe
                 throw new UnsupportedOperationException();
             }
 
+            @Override
             public int read() throws IOException {
                 int data = stream.read();
                 if (data == -1) {
