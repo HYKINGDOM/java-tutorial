@@ -1,5 +1,6 @@
 package com.java.tutorial.project.domain.businessobject.area;
 
+import com.java.tutorial.project.domain.persistantobject.area.AreaPO;
 import io.github.linpeilie.annotations.AutoMapper;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
