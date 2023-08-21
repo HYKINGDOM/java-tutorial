@@ -11,6 +11,7 @@
         <module name="spring-boot-project-quartz" />
         <module name="java-domain-driver-design" />
         <module name="spring-boot-project-sse" />
+        <module name="spring-boot-project-spring-plugin" />
         <module name="java-function" />
         <module name="spring-boot-project-webflux" />
         <module name="spring-boot-project-bean" />
@@ -18,6 +19,7 @@
         <module name="java-vavr" />
         <module name="spring-boot-project-thread" />
         <module name="spring-boot-mysql" />
+        <module name="spring-boot-project-webmagic" />
         <module name="business-data" />
         <module name="spring-boot-project-drools" />
         <module name="java-benchmark" />
@@ -89,6 +91,11 @@
         <processorPath useClasspath="false">
           <entry name="$PROJECT_DIR$/../../../maven/apache-maven-3.8.5/repository/org/mapstruct/mapstruct-processor/1.5.3.Final/mapstruct-processor-1.5.3.Final.jar" />
           <entry name="$PROJECT_DIR$/../../../maven/apache-maven-3.8.5/repository/org/mapstruct/mapstruct/1.5.3.Final/mapstruct-1.5.3.Final.jar" />
+          <entry name="$PROJECT_DIR$/../../../maven/apache-maven-3.8.5/repository/io/github/linpeilie/mapstruct-plus-processor/1.3.5/mapstruct-plus-processor-1.3.5.jar" />
+          <entry name="$PROJECT_DIR$/../../../maven/apache-maven-3.8.5/repository/io/github/linpeilie/mapstruct-plus/1.3.5/mapstruct-plus-1.3.5.jar" />
+          <entry name="$PROJECT_DIR$/../../../maven/apache-maven-3.8.5/repository/cn/hutool/hutool-core/5.8.15/hutool-core-5.8.15.jar" />
+          <entry name="$PROJECT_DIR$/../../../maven/apache-maven-3.8.5/repository/com/baidu/lbsyun/javapoet/1.9.0/javapoet-1.9.0.jar" />
+          <entry name="$PROJECT_DIR$/../../../maven/apache-maven-3.8.5/repository/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar" />
           <entry name="$PROJECT_DIR$/../../../maven/apache-maven-3.8.5/repository/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar" />
           <entry name="$PROJECT_DIR$/../../../maven/apache-maven-3.8.5/repository/com/chinadaas/platform/dflow/0.1-SNAPSHOT/dflow-0.1-SNAPSHOT.jar" />
         </processorPath>
@@ -109,6 +116,9 @@
         <module name="spring-boot-project-manifold-extensions" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="spring-boot-project" target="11" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_STRING" value="-Xplugin:Manifold " />
@@ -132,6 +142,7 @@
       <module name="spring-boot-h2" options="" />
       <module name="spring-boot-mongodb" options="" />
       <module name="spring-boot-mysql" options="" />
+      <module name="spring-boot-project" options="" />
       <module name="spring-boot-project-async" options="" />
       <module name="spring-boot-project-batch" options="" />
       <module name="spring-boot-project-bean" options="" />
@@ -155,10 +166,12 @@
       <module name="spring-boot-project-retry" options="" />
       <module name="spring-boot-project-schedule-job" options="" />
       <module name="spring-boot-project-security" options="" />
+      <module name="spring-boot-project-spring-plugin" options="" />
       <module name="spring-boot-project-sse" options="" />
       <module name="spring-boot-project-template" options="" />
       <module name="spring-boot-project-thread" options="" />
       <module name="spring-boot-project-webflux" options="" />
+      <module name="spring-boot-project-webmagic" options="" />
       <module name="spring-boot-project-websocket" options="" />
       <module name="spring-boot-transactional" options="" />
     </option>

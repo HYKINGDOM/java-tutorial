@@ -1,7 +1,7 @@
 package com.java.tutorial.project.domain;
 
-
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.java.tutorial.project.common.constant.DateFormatConstant;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -10,10 +10,12 @@ import java.util.Date;
 
 /**
  * 基础类
+ *
  * @author HY
  */
 @Data
 public class BaseEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -26,7 +28,6 @@ public class BaseEntity implements Serializable {
      */
     private String delFlag;
 
-
     /**
      * 创建者
      */
@@ -35,12 +36,9 @@ public class BaseEntity implements Serializable {
     /**
      * 创建时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = DateFormatConstant.DEFAULT_DATE, timezone = DateFormatConstant.TIMEZONE)
+    @DateTimeFormat(pattern = DateFormatConstant.DEFAULT_DATE)
     private Date createTime;
-
-
-
 
     /**
      * 更新者
@@ -50,11 +48,9 @@ public class BaseEntity implements Serializable {
     /**
      * 更新时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = DateFormatConstant.DEFAULT_DATE, timezone = DateFormatConstant.TIMEZONE)
+    @DateTimeFormat(pattern = DateFormatConstant.DEFAULT_DATE)
     private Date updateTime;
-
-
 
 }
 
