@@ -9,28 +9,34 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 @Configuration
 public class DataSourceConfiguration {
 
+
+    @Resource
+    private DataSourceProperties sourceProperties;
+
     /**
      * 创建 user 数据源的配置对象
+     * 读取 spring.datasource.user 配置到 DataSourceProperties 对象
      */
     @Primary
-    @Bean(name = "userDataSourceProperties")
-    @ConfigurationProperties(prefix = "spring.datasource.user") // 读取 spring.datasource.user 配置到 DataSourceProperties 对象
+    @Bean
+    @ConfigurationProperties(prefix = "spring.datasource")
     public DataSourceProperties userDataSourceProperties() {
-        return new DataSourceProperties();
+        DataSourceProperties dataSourceProperties = new DataSourceProperties();
+        return dataSourceProperties;
     }
 
     /**
      * 创建 user 数据源
      */
     @Primary
-    @Bean(name = "userDataSource")
-    @ConfigurationProperties(prefix = "spring.datasource.user.hikari")
-    // 读取 spring.datasource.user 配置到 HikariDataSource 对象
+    @Bean
+    @ConfigurationProperties(prefix = "spring.datasource.hikari")
     public DataSource userDataSource() {
         // 获得 DataSourceProperties 对象
         DataSourceProperties properties = this.userDataSourceProperties();

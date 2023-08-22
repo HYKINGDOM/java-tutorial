@@ -16,8 +16,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 @DisallowConcurrentExecution
 public class Job1 extends QuartzJobBean {
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
-    private static SimpleDateFormat fullDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+    private static final SimpleDateFormat fullDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private final AtomicInteger count = new AtomicInteger();
 
     private String k1;

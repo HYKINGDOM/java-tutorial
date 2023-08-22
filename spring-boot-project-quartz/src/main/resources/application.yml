@@ -4,9 +4,16 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/ptc_job?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/ptc_job?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&tinyInt1isBit=false
     username: root
     password: root
+    hikari:
+      minimum-idle: 10
+      idle-timeout: 30000
+      maximum-pool-size: 20
+      max-lifetime: 120000
+      connection-timeout: 30000
+
   # Quartz 的配置，对应 QuartzProperties 配置类
   quartz:
     scheduler-name: clusteredScheduler # Scheduler 名字。默认为 schedulerName
