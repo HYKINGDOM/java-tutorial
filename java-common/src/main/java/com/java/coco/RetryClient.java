@@ -26,15 +26,21 @@ public class RetryClient {
      */
     private static final int ATTEMPT_NUMBER = 3;
 
+    /**
+     * 方法重试
+     * @param param 请求参数
+     * @param objectFunction 方法
+     * @param attemptNumber 重试次数
+     * @return
+     */
+    public boolean retryUploadOss(Object param, Function<Object,Object> objectFunction, int attemptNumber) {
 
-    public boolean retryUploadOss(Object request, Function<Object,Object> objectFunction) {
-
-        Retryer<Boolean> retryer = getBooleanRetryV2();
+        Retryer<Boolean> retryer = getBooleanRetryV2(attemptNumber);
 
         try {
             retryer.call(() -> {
 
-                Object apply = objectFunction.apply(request);
+                Object apply = objectFunction.apply(param);
 
                 return !ObjectUtil.isEmpty(apply);
             });
@@ -45,10 +51,7 @@ public class RetryClient {
     }
 
 
-
-
-
-    private static Retryer<Boolean> getBooleanRetryV2() {
+    private static Retryer<Boolean> getBooleanRetryV2(int attemptNumber) {
         return RetryerBuilder.<Boolean>newBuilder()
             // 设置异常重试源
             .retryIfExceptionOfType(Exception.class)
@@ -57,7 +60,7 @@ public class RetryClient {
             // 设置等待间隔时间，使用指数退避策略
             .withWaitStrategy(WaitStrategies.exponentialWait(1000, 2, TimeUnit.SECONDS))
             // 设置最大重试次数
-            .withStopStrategy(StopStrategies.stopAfterAttempt(ATTEMPT_NUMBER))
+            .withStopStrategy(StopStrategies.stopAfterAttempt(attemptNumber))
             // 当发生重试之后记录日志
             .withRetryListener(new RetryListener() {
                 @Override
