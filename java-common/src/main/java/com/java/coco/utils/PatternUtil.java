@@ -18,7 +18,11 @@ public class PatternUtil {
     public static String MOR_CONTAINS_HA = "[\\u54c8]{1,}$";
 
 
+    public static final String EXPORT_SYMBOL = "/[^-|^（|^）|^\\d|^\\[a-zA-Z\\]|^\\[\\u4e00-\\u9fa5\\]]/g";
 
+    public static boolean isOnlyExportSymbol(String str){
+        return str.matches(EXPORT_SYMBOL);
+    }
 
 
     public boolean isOnlyCONTAINSNUMANDLETTER(String str){

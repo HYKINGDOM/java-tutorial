@@ -1,4 +1,4 @@
-package com.java.coco.utils;
+package com.java.coco.utils.ip;
 
 import lombok.extern.slf4j.Slf4j;
 
