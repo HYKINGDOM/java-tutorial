@@ -1,5 +1,6 @@
 package com.java.coco;
 
+import com.java.coco.demo.DemoTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

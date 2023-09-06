@@ -1,4 +1,4 @@
-package com.java.coco;
+package com.java.coco.utils;
 
 import cn.hutool.core.exceptions.ExceptionUtil;
 import cn.hutool.core.util.ObjectUtil;
