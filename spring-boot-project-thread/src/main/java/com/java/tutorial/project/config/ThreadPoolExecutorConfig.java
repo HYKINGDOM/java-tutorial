@@ -5,10 +5,13 @@ import com.alibaba.ttl.threadpool.TtlExecutors;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
+import org.slf4j.MDC;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.util.ConcurrentReferenceHashMap;
 
+import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
@@ -157,6 +160,11 @@ public class ThreadPoolExecutorConfig {
     }
 
 
+
+    private final Map<Runnable, Object> decoratedTaskMap =
+        new ConcurrentReferenceHashMap<>(16, ConcurrentReferenceHashMap.ReferenceType.WEAK);
+
+
     /**
      * 执行周期性任务或定时任务
      *
@@ -164,9 +172,29 @@ public class ThreadPoolExecutorConfig {
      */
     @Bean(name = "ttlScheduledExecutorService")
     public ScheduledExecutorService ttlScheduledExecutorService() {
-        ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(CORE_POOL_SIZE, new BasicThreadFactory.Builder().namingPattern("ttl-Scheduled-Executor-Service-%d").daemon(true).build());
+
+        ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(CORE_POOL_SIZE,
+            new BasicThreadFactory.Builder().namingPattern("ttl-Scheduled-Executor-Service-%d").daemon(true).build()){
+            @Override
+            public void execute(Runnable command) {
+
+                TaskDecorator taskDecorator = able -> ThreadMdcUtils.wrapAsync(able, MDC.getCopyOfContextMap());
+                Runnable decorated = taskDecorator.decorate(command);
+                if (decorated != command) {
+                    decoratedTaskMap.put(decorated, command);
+                }
+                super.execute(decorated);
+            }
+        };
+
+
+
         return TtlExecutors.getTtlScheduledExecutorService(scheduledThreadPoolExecutor);
     }
+
+
+
+
 
 
     private BlockingQueue<Runnable> createQueue(int queueCapacity) {
