@@ -13,7 +13,7 @@ import static com.java.tutorial.project.common.Constant.FULL_DATE_FORMAT;
 @Slf4j
 public class SchedulerJob1 implements Job {
 
-    private AtomicInteger count = new AtomicInteger(1);
+    private static final AtomicInteger count = new AtomicInteger(0);
 
     private String k1;
 

@@ -12,7 +12,7 @@ import static com.java.tutorial.project.common.Constant.FULL_DATE_FORMAT;
 
 @Slf4j
 public class SchedulerJob5 implements Job {
-    private final AtomicInteger count = new AtomicInteger();
+    private static final AtomicInteger count = new AtomicInteger(0);
 
     private String k1;
 
@@ -21,7 +21,14 @@ public class SchedulerJob5 implements Job {
     }
 
     @Override
-    public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+    public void execute(JobExecutionContext jobExecutionContext) {
+
+        try {
+            Thread.sleep(5000L);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
         log.info("[SchedulerJob5的执行了，时间: {}, k1={}, count={}]", FULL_DATE_FORMAT.format(new Date()), k1,
             count.incrementAndGet());
     }

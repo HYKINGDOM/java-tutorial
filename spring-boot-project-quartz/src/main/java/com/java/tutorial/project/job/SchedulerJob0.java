@@ -16,7 +16,7 @@ import static com.java.tutorial.project.common.Constant.FULL_DATE_FORMAT;
 @Slf4j
 @DisallowConcurrentExecution
 public class SchedulerJob0 extends QuartzJobBean {
-    private final AtomicInteger count = new AtomicInteger();
+    private static final AtomicInteger count = new AtomicInteger(0);
 
     private String k1;
 
