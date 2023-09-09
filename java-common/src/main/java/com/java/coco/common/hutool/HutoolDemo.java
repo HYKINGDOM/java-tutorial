@@ -20,10 +20,6 @@ public class HutoolDemo {
 
         System.out.println(parse);
 
-        int year = date.year();
-        int month = date.month();
-        int day = date.getDay();
-
         DateTime dateTime = DateUtil.beginOfDay(date);
         DateTime dateTime1 = DateUtil.endOfDay(date);
 

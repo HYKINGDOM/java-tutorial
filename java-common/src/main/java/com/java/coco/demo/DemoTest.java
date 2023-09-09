@@ -1,4 +1,4 @@
-package com.java.coco;
+package com.java.coco.demo;
 
 public class DemoTest {
 

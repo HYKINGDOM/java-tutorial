@@ -1,24 +1,22 @@
 package com.java.tutorial.project.job;
 
+import lombok.extern.slf4j.Slf4j;
 import org.quartz.DisallowConcurrentExecution;
 import org.quartz.JobExecutionContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import static com.java.tutorial.project.common.Constant.FULL_DATE_FORMAT;
 
 /**
  * @author hy
  */
+@Slf4j
 @DisallowConcurrentExecution
-public class Job1 extends QuartzJobBean {
-
-    private Logger logger = LoggerFactory.getLogger(getClass());
-    private static SimpleDateFormat fullDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    private final AtomicInteger count = new AtomicInteger();
+public class SchedulerJob0 extends QuartzJobBean {
+    private static final AtomicInteger count = new AtomicInteger(0);
 
     private String k1;
 
@@ -28,7 +26,7 @@ public class Job1 extends QuartzJobBean {
 
     @Override
     protected void executeInternal(JobExecutionContext context) {
-        logger.info("[job1的执行了，时间: {}, k1={}, count={}]", fullDateFormat.format(new Date()), k1,
+        log.info("[SchedulerJob0的执行了，时间: {}, k1={}, count={}]", FULL_DATE_FORMAT.format(new Date()), k1,
             count.incrementAndGet());
     }
 

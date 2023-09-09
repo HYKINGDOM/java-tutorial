@@ -1,4 +1,4 @@
-package com.java.coco.utils;
+package com.java.coco.utils.ip;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,10 +19,11 @@ public class IPUtil {
         try {
             Enumeration<NetworkInterface> b = NetworkInterface.getNetworkInterfaces();
             while (b.hasMoreElements()) {
-                for (InterfaceAddress f : b.nextElement().getInterfaceAddresses())
+                for (InterfaceAddress f : b.nextElement().getInterfaceAddresses()) {
                     if (f.getAddress().isSiteLocalAddress()) {
                         return f.getAddress().getHostAddress();
                     }
+                }
             }
         } catch (SocketException e) {
             log.error(e.getMessage());

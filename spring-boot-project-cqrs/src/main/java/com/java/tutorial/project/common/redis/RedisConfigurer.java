@@ -44,6 +44,25 @@ public class RedisConfigurer implements CachingConfigurer {
 
 	@Bean
 	public RedisConnectionFactory connectionFactory(RedisProperties properties) {
+		JedisPoolConfig poolConfig = getJedisPoolConfig();
+		JedisClientConfiguration clientConfig = JedisClientConfiguration
+				.builder()
+				.usePooling()
+				.poolConfig(poolConfig)
+				.and()
+				.readTimeout(Duration.ofSeconds(2))
+				.connectTimeout(Duration.ofSeconds(2))
+				.build();
+		RedisStandaloneConfiguration standaloneConfig = new RedisStandaloneConfiguration();
+		standaloneConfig.setHostName(properties.getHost());
+		standaloneConfig.setPort(properties.getPort());
+		standaloneConfig.setDatabase(properties.getDatabase());
+		standaloneConfig.setPassword(properties.getPassword());
+
+		return new JedisConnectionFactory(standaloneConfig, clientConfig);
+	}
+
+	private static JedisPoolConfig getJedisPoolConfig() {
 		JedisPoolConfig poolConfig = new JedisPoolConfig();
 		// 连接池中最大连接数
 		poolConfig.setMaxTotal(30);
@@ -65,21 +84,7 @@ public class RedisConfigurer implements CachingConfigurer {
 		poolConfig.setTestOnReturn(false);
 		// 当连接池用尽后, 调用者是否要等待
 		poolConfig.setBlockWhenExhausted(false);
-		JedisClientConfiguration clientConfig = JedisClientConfiguration
-				.builder()
-				.usePooling()
-				.poolConfig(poolConfig)
-				.and()
-				.readTimeout(Duration.ofSeconds(2))
-				.connectTimeout(Duration.ofSeconds(2))
-				.build();
-		RedisStandaloneConfiguration standaloneConfig = new RedisStandaloneConfiguration();
-		standaloneConfig.setHostName(properties.getHost());
-		standaloneConfig.setPort(properties.getPort());
-		standaloneConfig.setDatabase(properties.getDatabase());
-		standaloneConfig.setPassword(properties.getPassword());
-
-		return new JedisConnectionFactory(standaloneConfig, clientConfig);
+		return poolConfig;
 	}
 
 	@Bean

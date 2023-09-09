@@ -1,4 +1,4 @@
-package com.java.coco;
+package com.java.coco.utils;
 
 import java.util.ArrayList;
 import java.util.List;
