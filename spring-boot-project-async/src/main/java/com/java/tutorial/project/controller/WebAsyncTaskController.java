@@ -21,6 +21,7 @@ public class WebAsyncTaskController {
     @GetMapping(value = "/async/click")
     public WebAsyncTask<String> webAsyncClick() {
         log.info("外部线程：" + Thread.currentThread().getName());
+
         Callable<String> result = () -> {
             log.info("副线程返回,内部线程开始：" + Thread.currentThread().getName());
             try {
@@ -39,6 +40,20 @@ public class WebAsyncTaskController {
             public String call() throws Exception {
                 // TODO Auto-generated method stub
                 return "超时";
+            }
+        });
+        wat.onCompletion(new Runnable() {
+            @Override
+            public void run() {
+                log.info("异步任务执行完毕");
+            }
+        });
+
+        wat.onError(new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                log.error("异步任务执行出错");
+                return null;
             }
         });
         return wat;
