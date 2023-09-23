@@ -36,7 +36,7 @@ public class FileDownload {
      * @param imgUrl
      * @throws IOException
      */
-    public static void downloadImage(String imgUrl) throws IOException {
+    public static void wdownloadImage(String imgUrl) throws IOException {
 
         URL url = new URL(imgUrl);
 
