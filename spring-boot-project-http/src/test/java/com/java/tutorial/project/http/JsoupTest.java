@@ -1,6 +1,14 @@
 package com.java.tutorial.project.http;
 
-import cn.hutool.core.util.StrUtil;
+import static com.java.tutorial.project.http.FileDownload.saveVideoFile;
+import static com.java.tutorial.project.http.FileDownload.saveVideoFileProgress;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.http.HttpResponse;
+import java.util.List;
+
 import org.assertj.core.util.Lists;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -9,23 +17,7 @@ import org.jsoup.select.Elements;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.http.HttpHeaders;
-import java.net.http.HttpResponse;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static com.java.tutorial.project.http.FileDownload.downloadImage;
-import static com.java.tutorial.project.http.FileDownload.saveVideoFile;
-import static com.java.tutorial.project.http.FileDownload.saveVideoFileProgress;
+import cn.hutool.core.util.StrUtil;
 
 public class JsoupTest {
 
@@ -68,7 +60,7 @@ public class JsoupTest {
             if (StrUtil.isNotEmpty(imgUrl) && imgUrl.startsWith("https")) {
                 imgUrls.add(imgUrl);
                 System.out.println("imgUrls: " + imgUrl);
-                downloadImage(imgUrl);
+                FileDownload.wdownloadImage(imgUrl);
             }
         }
 
