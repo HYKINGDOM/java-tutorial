@@ -57,6 +57,7 @@
         <module>spring-boot-project-quartz</module>
         <module>spring-boot-project-webmagic</module>
         <module>spring-boot-project-spring-plugin</module>
+        <module>spring-boot-project-elasticsearch</module>
     </modules>
 
     <properties>
@@ -132,6 +133,14 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot-starter-web}</version>
+            </dependency>
+
+
+            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-elasticsearch -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
                 <version>${spring-boot-starter-web}</version>
             </dependency>
 
