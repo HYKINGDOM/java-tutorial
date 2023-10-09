@@ -21,6 +21,8 @@
 
 	<dependencies>
 
+
+
 		<dependency>
 			<groupId>com.java.tutorial.project</groupId>
 			<artifactId>java-common</artifactId>
@@ -71,6 +73,22 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<version>2.7.5</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- 测试套件  -->
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-suite-api</artifactId>
+			<version>1.10.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- 运行测试套件的测试引擎-->
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-suite-engine</artifactId>
+			<version>1.10.0</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
