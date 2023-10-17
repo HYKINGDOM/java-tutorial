@@ -1,6 +1,5 @@
 package com.java.tutorial.project.async.wrapper;
 
-
 import com.java.tutorial.project.async.callback.DefaultCallback;
 import com.java.tutorial.project.async.callback.ICallback;
 import com.java.tutorial.project.async.callback.IWorker;
@@ -9,7 +8,6 @@ import com.java.tutorial.project.async.executor.timer.SystemClock;
 import com.java.tutorial.project.async.worker.DependWrapper;
 import com.java.tutorial.project.async.worker.ResultState;
 import com.java.tutorial.project.async.worker.WorkResult;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -25,7 +23,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * 对每个worker及callback进行包装，一对一
  *
- * @author wuweifeng wrote on 2019-11-19.
+ *  @author hy
  */
 public class WorkerWrapper<T, V> {
     /**

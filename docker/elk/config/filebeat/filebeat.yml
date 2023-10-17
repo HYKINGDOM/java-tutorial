@@ -4,7 +4,7 @@ filebeat.inputs:
     paths:
       - /usr/share/filebeat/logs/*.log
     fields:
-       type: kscs-crm #输出的index索引
+       type: ks_cs-crm #输出的index索引
     multiline.type: pattern
     multiline.pattern: '^\d{4}'
     multiline.negate: true
@@ -15,9 +15,9 @@ filebeat.inputs:
 #  - type: log
 #    enabled: true
 #    paths:
-#      - /usr/share/filebeat/logs/kscs-system/*.log
+#      - /usr/share/filebeat/logs/ks_cs-system/*.log
 #    fields:
-#       type: kscs-system #输出的index索引
+#       type: ks_cs-system #输出的index索引
 #    multiline.type: pattern
 #    multiline.pattern: '^\d{4}'
 #    multiline.negate: true

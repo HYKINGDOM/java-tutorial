@@ -2,7 +2,7 @@ package com.java.tutorial.project.async.worker;
 
 /**
  * 结果状态
- * @author wuweifeng wrote on 2019-11-19.
+ *  @author hy
  */
 public enum ResultState {
     SUCCESS,

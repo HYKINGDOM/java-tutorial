@@ -1,4 +1,4 @@
-package com.java.tutorial.project.util;
+package com.java.coco.common;
 
 import lombok.Getter;
 

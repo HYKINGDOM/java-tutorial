@@ -1,19 +1,14 @@
 package com.java.data.config;
 
+import java.util.regex.Pattern;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.validation.ClockProvider;
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
-import javax.validation.ConstraintViolation;
-import javax.validation.metadata.ConstraintDescriptor;
-import java.util.Set;
-import java.util.regex.Pattern;
-
 /**
- * @author yi.hu
+ * @author hy
  */
 @Slf4j
 @AllArgsConstructor

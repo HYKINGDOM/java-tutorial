@@ -154,7 +154,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:9200/kscs-java-7.13.4-2022.11.24/_settings",
+			"name": "localhost:9200/ks_cs-java-7.13.4-2022.11.24/_settings",
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -168,13 +168,13 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:9200/kscs-java-7.13.4-2022.11.24/_settings",
+					"raw": "localhost:9200/ks_cs-java-7.13.4-2022.11.24/_settings",
 					"host": [
 						"localhost"
 					],
 					"port": "9200",
 					"path": [
-						"kscs-java-7.13.4-2022.11.24",
+						"ks_cs-java-7.13.4-2022.11.24",
 						"_settings"
 					]
 				}
