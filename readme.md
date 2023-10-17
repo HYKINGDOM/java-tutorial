@@ -1,17 +1,24 @@
 ## Base Java Utils Method
 
-测试学习代码项目
 
+#### learn project
 
+component
 * Test Demo
 * Lambda Demo
 * database
 * mapstruct
 * vavr
 * async
-* thread
-
-##### xml
-
-
-    "dynamic.classpath": "true",
+* thread async
+* spring batch
+* mongodb
+* junit and mockito
+* drools
+* graphql
+* kafka
+* sse
+* webflux
+* freemarker
+* quartz
+* cache

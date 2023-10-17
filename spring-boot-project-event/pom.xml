@@ -24,7 +24,7 @@
 
 
 		<dependency>
-			<groupId>com.java.tutorial.project</groupId>
+			<groupId>com.java.coco</groupId>
 			<artifactId>java-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>

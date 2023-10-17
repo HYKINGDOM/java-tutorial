@@ -51,6 +51,8 @@
     <file url="file://$PROJECT_DIR$/spring-boot-project-cqrs/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-project-drools/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-project-drools/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot-project-elasticsearch/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot-project-elasticsearch/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-project-eureka-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-project-eureka-server/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-project-event/src/main/java" charset="UTF-8" />
