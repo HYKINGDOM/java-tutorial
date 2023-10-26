@@ -58,6 +58,7 @@
         <module>spring-boot-project-webmagic</module>
         <module>spring-boot-project-spring-plugin</module>
         <module>spring-boot-project-elasticsearch</module>
+        <module>spring-boot-project-util</module>
     </modules>
 
     <properties>
