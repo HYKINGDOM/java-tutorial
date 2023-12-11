@@ -1,0 +1,10 @@
+'.jpeg', '.jpg', '.tiff', '.gif', '.bmp', '.png', '.bpg', '.svg', '.heif', '.psd'
+
+
+
+'.mp4', '.swf', '.flv', '.mp3', '.wav', '.wma', '.wmv', '.mid', '.avi', '.mpg', '.asf', '.rm', '.rmvb', '.mkv', '.mov', '.ts', '.mpeg', '.mts', '.3gp', '.m4a', '.m4b', '.m4p'
+
+'.torrent'
+
+
+'.html', '.htm', '.mhtml', '.torrent'
