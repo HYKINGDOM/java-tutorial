@@ -27,7 +27,7 @@ import lombok.RequiredArgsConstructor;
 /**
  * 多线程事务一致性管理 <br>
  * 声明式事务管理无法完成,此时我们只能采用初期的编程式事务管理才行
- * 
+ *
  * @author hy
  */
 @Component
@@ -40,7 +40,7 @@ public class MultiplyThreadTransactionManager {
 
     /**
      * 执行的是无返回值的任务
-     * 
+     *
      * @param tasks 异步执行的任务列表
      * @param executor 异步执行任务需要用到的线程池,考虑到线程池需要隔离,这里强制要求传
      */
@@ -134,15 +134,15 @@ public class MultiplyThreadTransactionManager {
 
         public static TransactionResource copyTransactionResource() {
             return TransactionResource.builder()
-                // 返回的是不可变集合
-                .resources(TransactionSynchronizationManager.getResourceMap())
-                // 如果需要注册事务监听者,这里记得修改--我们这里不需要,就采用默认负责--spring事务内部默认也是这个值
-                .synchronizations(new LinkedHashSet<>())
-                .currentTransactionName(TransactionSynchronizationManager.getCurrentTransactionName())
-                .currentTransactionReadOnly(TransactionSynchronizationManager.isCurrentTransactionReadOnly())
-                .currentTransactionIsolationLevel(
-                    TransactionSynchronizationManager.getCurrentTransactionIsolationLevel())
-                .actualTransactionActive(TransactionSynchronizationManager.isActualTransactionActive()).build();
+                    // 返回的是不可变集合
+                    .resources(TransactionSynchronizationManager.getResourceMap())
+                    // 如果需要注册事务监听者,这里记得修改--我们这里不需要,就采用默认负责--spring事务内部默认也是这个值
+                    .synchronizations(new LinkedHashSet<>())
+                    .currentTransactionName(TransactionSynchronizationManager.getCurrentTransactionName())
+                    .currentTransactionReadOnly(TransactionSynchronizationManager.isCurrentTransactionReadOnly())
+                    .currentTransactionIsolationLevel(
+                            TransactionSynchronizationManager.getCurrentTransactionIsolationLevel())
+                    .actualTransactionActive(TransactionSynchronizationManager.isActualTransactionActive()).build();
         }
 
         public void autoWiredTransactionResource() {
