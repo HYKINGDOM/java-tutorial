@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="10 seconds">
+	<property name="log.path" value="../logs"/>
+	<property name="app.name" value="sse-center"/>
+	<property name="log.queueSize" value="1024" />
+	<property name="log.neverBlock" value="true" />
+
+	<property name="CONSOLE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [%X{traceId}] %logger{50}.%method:%L - %msg%n" />
+	<property name="FILE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [%X{traceId}] %logger{50}.%method:%L - %msg%n" />
+
+	<!--输出到控制台-->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<!--此日志appender是为开发使用，只配置最底级别，控制台输出的日志级别是大于或等于此级别的日志信息-->
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>DEBUG</level>
+		</filter>
+		<encoder>
+			<Pattern>${CONSOLE_LOG_PATTERN}</Pattern>
+			<!-- 设置字符集 -->
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+
+	<!--输出到文件-->
+	<!-- activity 模块 -->
+	<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>INFO</level>
+		</filter>
+		<!--日志文件输出格式-->
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+		<!-- 日志记录器的滚动策略，按日期，按大小记录 -->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- 每天日志归档路径以及格式 -->
+			<fileNamePattern>${log.path}/info-%d{yyyy-MM-dd_HH}.%i.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>512MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<!--日志文件保留天数-->
+			<maxHistory>15</maxHistory>
+		</rollingPolicy>
+	</appender>
+
+	<appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.path}/error-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>512MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<maxHistory>15</maxHistory>
+		</rollingPolicy>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<appender name="asyncInfo" class="ch.qos.logback.classic.AsyncAppender">
+		<!-- 默认情况下，当BlockingQueue还有20%容量，
+        他将丢弃TRACE、DEBUG和INFO级别的event，只保留WARN和ERROR级别的event。
+        为了保持所有的events，设置该值为0。-->
+		<discardingThreshold>0</discardingThreshold>
+		<!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+		<queueSize>${log.queueSize}</queueSize>
+		<!--如果设置了neverBlock=true则写日志队列时候会调用ArrayBlockingQueue对的offer方法而不是put,而offer是非阻塞的-->
+		<neverBlock>${log.neverBlock}</neverBlock>
+		<!-- 添加附加的appender,最多只能添加一个 -->
+		<appender-ref ref="file"/>
+	</appender>
+
+	<appender name="asyncError" class="ch.qos.logback.classic.AsyncAppender">
+		<discardingThreshold>0</discardingThreshold>
+		<queueSize>${log.queueSize}</queueSize>
+		<neverBlock>${log.neverBlock}</neverBlock>
+		<appender-ref ref="error"/>
+	</appender>
+
+	<root level="INFO">
+		<appender-ref ref="console"/>
+		<appender-ref ref="asyncInfo"/>
+		<appender-ref ref="asyncError"/>
+	</root>
+
+	<logger name="com .product.dao.mapper" level="DEBUG" additivity="false">
+		<appender-ref ref="console" />
+		<appender-ref ref="asyncInfo"/>
+	</logger>
+</configuration>

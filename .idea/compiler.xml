@@ -22,6 +22,7 @@
         <module name="spring-boot-project-webmagic" />
         <module name="business-data" />
         <module name="spring-boot-project-drools" />
+        <module name="spring-boot-project-elasticsearch" />
         <module name="java-benchmark" />
         <module name="spring-boot-project-jsoup" />
         <module name="spring-boot-project-excel" />
@@ -151,6 +152,7 @@
       <module name="spring-boot-project-chain-res" options="" />
       <module name="spring-boot-project-cqrs" options="" />
       <module name="spring-boot-project-drools" options="" />
+      <module name="spring-boot-project-elasticsearch" options="" />
       <module name="spring-boot-project-eureka-server" options="" />
       <module name="spring-boot-project-event" options="" />
       <module name="spring-boot-project-excel" options="" />

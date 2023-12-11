@@ -5,7 +5,7 @@ import com.java.tutorial.project.async.worker.WorkResult;
 
 /**
  * 默认回调类，如果不设置的话，会默认给这个回调
- * @author wuweifeng wrote on 2019-11-19.
+ *  @author hy
  */
 public class DefaultCallback<T, V> implements ICallback<T, V> {
     @Override

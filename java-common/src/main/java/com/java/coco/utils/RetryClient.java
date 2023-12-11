@@ -8,15 +8,14 @@ import com.github.rholder.retry.Retryer;
 import com.github.rholder.retry.RetryerBuilder;
 import com.github.rholder.retry.StopStrategies;
 import com.github.rholder.retry.WaitStrategies;
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 重试操作
  *
- * @author kscs
+ * @author hy
  */
 @Slf4j
 public class RetryClient {

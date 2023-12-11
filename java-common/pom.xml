@@ -9,7 +9,9 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+    <groupId>com.java.coco</groupId>
     <artifactId>java-common</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
 
     <properties>
         <java.version>11</java.version>
@@ -18,6 +20,11 @@
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.github.rholder</groupId>
@@ -36,13 +43,6 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpmime</artifactId>
             <version>4.5.14</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.12.0</version>
             <scope>compile</scope>
         </dependency>
 
@@ -137,5 +137,20 @@
         </dependency>
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

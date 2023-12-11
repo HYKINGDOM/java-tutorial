@@ -1,15 +1,12 @@
 package com.java.tutorial.project.async.callback;
 
-
-
 import com.java.tutorial.project.async.wrapper.WorkerWrapper;
-
 import java.util.Map;
 
 /**
  * 每个最小执行单元需要实现该接口
  *
- * @author wuweifeng wrote on 2019-11-19.
+ *  @author hy
  */
 @FunctionalInterface
 public interface IWorker<T, V> {

@@ -25,6 +25,10 @@
         </dependency>
 
 
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
         <dependency>

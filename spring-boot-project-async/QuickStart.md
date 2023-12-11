@@ -45,7 +45,7 @@ T，V两个泛型，分别是入参和出参类型。
 ```
 /**
  * 每个最小执行单元需要实现该接口
- * @author wuweifeng wrote on 2019-11-19.
+ *  @author hy
  */
 public interface IWorker<T, V> {
     /**
@@ -71,7 +71,7 @@ callBack：对每个worker的回调。worker执行完毕后，会回调该接口
 /**
  * 每个执行单元执行完毕后，会回调该接口</p>
  * 需要监听执行结果的，实现该接口即可
- * @author wuweifeng wrote on 2019-11-19.
+ *  @author hy
  */
 public interface ICallback<T, V> {
 

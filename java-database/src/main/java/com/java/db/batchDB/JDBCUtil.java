@@ -1,7 +1,12 @@
 package com.java.db.batchDB;
 
 import java.lang.reflect.Field;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -10,7 +15,7 @@ import java.util.List;
 /**
  * 单连接 JDBC工具类 重复创建连接会关闭原来的连接
  *
- * @author colagy 王旭
+ * @author hy
  */
 public abstract class JDBCUtil {
     private static final String driverClass = "com.mysql.jdbc.Driver";

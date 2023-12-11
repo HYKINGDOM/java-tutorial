@@ -1,13 +1,12 @@
 package com.java.tutorial.project.util;
 
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.ttl.TransmittableThreadLocal;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.MDC;
-
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
 import java.util.UUID;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 
 @Slf4j
 public class TraceIDUtil {
@@ -50,15 +49,15 @@ public class TraceIDUtil {
         String traceId = MDC.get(DEFAULT_TRACE_ID);
 
         log.info("current thread of ttlTraceId: {}, traceId: {}", ttlTraceId, traceId);
-        if (StringUtils.isEmpty(traceId) && StringUtils.isEmpty(ttlTraceId)) {
+        if (StrUtil.isEmpty(traceId) && StrUtil.isEmpty(ttlTraceId)) {
             traceId = createTraceId();
             ttlTraceId = traceId;
             setTraceIdToMdc(traceId);
             setTraceIdToTtl(ttlTraceId);
-        } else if (!StringUtils.isEmpty(traceId) && StringUtils.isEmpty(ttlTraceId)) {
+        } else if (!StrUtil.isEmpty(traceId) && StrUtil.isEmpty(ttlTraceId)) {
             ttlTraceId = traceId;
             setTraceIdToTtl(traceId);
-        } else if (StringUtils.isEmpty(traceId) && !StringUtils.isEmpty(ttlTraceId)) {
+        } else if (StrUtil.isEmpty(traceId) && !StrUtil.isEmpty(ttlTraceId)) {
             traceId = ttlTraceId;
             setTraceIdToMdc(ttlTraceId);
         }
