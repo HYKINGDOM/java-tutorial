@@ -1,0 +1,86 @@
+server:
+  port: 8087
+
+
+
+# 数据源及mybatis、mybatis-flex配置
+mybatis-flex:
+  # 搜索指定包别名
+  typeAliasesPackage: com.java.tutorial.project.domain
+  # 不支持多包, 如有需要可在注解配置 或 提升扫包等级：com.**.**.mapper
+  mapperPackage: com.java.tutorial.project.mapper
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapperLocations: classpath*:mapper/**/*Mapper.xml
+
+  #本部分（Configuration）的配置都为 MyBatis 原生支持的配置，有关配置请参考:https://mybatis.org/mybatis-3/zh/configuration.html#%E8%AE%BE%E7%BD%AE%EF%BC%88settings%EF%BC%89
+  configuration:
+    # 自动驼峰命名规则（camel case）映射
+    mapUnderscoreToCamelCase: true
+    # MyBatis 自动映射策略
+    # NONE：不启用 PARTIAL：只对非嵌套 resultMap 自动映射 FULL：对所有 resultMap 自动映射
+    autoMappingBehavior: FULL
+    # MyBatis 自动映射时未知列或未知属性处理策
+    # NONE：不做处理 WARNING：打印相关警告 FAILING：抛出异常和详细信息
+    autoMappingUnknownColumnBehavior: NONE
+    # 更详细的日志输出 会有性能损耗 org.apache.ibatis.logging.stdout.StdOutImpl
+    # 关闭日志记录  org.apache.ibatis.logging.nologging.NoLoggingImpl
+    # 默认日志输出 org.apache.ibatis.logging.slf4j.Slf4jImpl
+    logImpl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+    cacheEnabled: true
+
+  # MyBatis-Flex全局配置
+  global-config:
+    # 是否控制台打印 MyBatis-Flex 的 LOGO 及版本号
+    print-banner: false
+    # 逻辑删除数据存在标记值
+    normal-value-of-logic-delete: 0
+    # 逻辑删除数据存在标记值
+    deleted-value-of-logic-delete: 1
+
+  datasource:
+    # 数据源-1
+    PrimaryDS:
+      # 指定为HDataSource
+      url: jdbc:mysql://localhost:3306/meta_sys?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT%2B8&autoReconnect=true&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
+      username: root
+      password: root
+      type: druid
+      max-active: 20
+      min-idle: 5
+      max-wait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 30000
+      validationQuery: select 1
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: false
+      maxPoolPreparedStatementPerConnectionSize: -1
+      filters: stat
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=20000
+      useGlobalDataSourceStat: true
+
+
+
+spring:
+  quartz:
+    scheduler-name: userSchedule
+    job-store-type: memory
+    auto-startup: true
+    startup-delay: 1s
+    wait-for-jobs-to-complete-on-shutdown: true
+    overwrite-existing-jobs: false
+    properties:
+      org:
+        quartz:
+          threadPool:
+            threadCount: 2
+            threadPriority: 5
+            class: org.quartz.simpl.SimpleThreadPool
+
+
+
+logging:
+  level:
+    web: info
+    org: info

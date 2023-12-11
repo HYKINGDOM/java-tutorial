@@ -59,6 +59,7 @@
         <module>spring-boot-project-spring-plugin</module>
         <module>spring-boot-project-elasticsearch</module>
         <module>spring-boot-project-util</module>
+        <module>spring-boot-project-quartz-two</module>
     </modules>
 
     <properties>
