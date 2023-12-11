@@ -88,6 +88,21 @@
     <dependencyManagement>
         <dependencies>
 
+            <!-- https://mvnrepository.com/artifact/com.mybatis-flex/mybatis-flex-spring-boot-starter -->
+            <dependency>
+                <groupId>com.mybatis-flex</groupId>
+                <artifactId>mybatis-flex-spring-boot-starter</artifactId>
+                <version>1.7.5</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.mybatis-flex/mybatis-flex-processor -->
+            <dependency>
+                <groupId>com.mybatis-flex</groupId>
+                <artifactId>mybatis-flex-processor</artifactId>
+                <version>1.7.5</version>
+            </dependency>
+
+
             <dependency>
                 <groupId>com.github.ben-manes.caffeine</groupId>
                 <artifactId>caffeine</artifactId>
