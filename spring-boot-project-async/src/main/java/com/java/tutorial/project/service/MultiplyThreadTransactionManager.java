@@ -41,22 +41,22 @@ public class MultiplyThreadTransactionManager {
     /**
      * 执行的是无返回值的任务
      *
-     * @param tasks    异步执行的任务列表
+     * @param runAbleTasks    异步执行的任务列表
      * @param executor 异步执行任务需要用到的线程池,考虑到线程池需要隔离,这里强制要求传
      */
-    public void runAsyncButWaitUntilAllDown(List<Runnable> tasks, Executor executor) {
+    public void runAsyncButWaitUntilAllDown(List<Runnable> runAbleTasks, Executor executor) {
         if (executor == null) {
             throw new IllegalArgumentException("线程池不能为空");
         }
         DataSourceTransactionManager transactionManager = getTransactionManager();
         // 是否发生了异常
-        AtomicBoolean ex = new AtomicBoolean();
+        AtomicBoolean atomicBoolean = new AtomicBoolean();
 
-        List<CompletableFuture<Void>> taskFutureList = new ArrayList<>(tasks.size());
-        List<TransactionStatus> transactionStatusList = new ArrayList<>(tasks.size());
-        List<TransactionResource> transactionResources = new ArrayList<>(tasks.size());
+        List<CompletableFuture<Void>> taskFutureList = new ArrayList<>(runAbleTasks.size());
+        List<TransactionStatus> transactionStatusList = new ArrayList<>(runAbleTasks.size());
+        List<TransactionResource> transactionResources = new ArrayList<>(runAbleTasks.size());
 
-        tasks.forEach(task ->
+        runAbleTasks.forEach(task ->
                 taskFutureList.add(CompletableFuture.runAsync(() -> {
                     try {
                         // 1.开启新事务
@@ -69,7 +69,7 @@ public class MultiplyThreadTransactionManager {
                         // 打印异常
                         log.error(throwable.getMessage(), throwable);
                         // 其中某个异步任务执行出现了异常,进行标记
-                        ex.set(Boolean.TRUE);
+                        atomicBoolean.set(Boolean.TRUE);
                         // 其他任务还没执行的不需要执行了
                         taskFutureList.forEach(completableFuture -> completableFuture.cancel(true));
                     }
@@ -83,16 +83,16 @@ public class MultiplyThreadTransactionManager {
         }
 
         // 发生了异常则进行回滚操作,否则提交
-        if (ex.get()) {
+        if (atomicBoolean.get()) {
             log.error("发生异常,全部事务回滚");
-            for (int i = 0; i < tasks.size(); i++) {
+            for (int i = 0; i < runAbleTasks.size(); i++) {
                 transactionResources.get(i).autoWiredTransactionResource();
                 transactionManager.rollback(transactionStatusList.get(i));
                 transactionResources.get(i).removeTransactionResource();
             }
         } else {
             log.info("全部事务正常提交");
-            for (int i = 0; i < tasks.size(); i++) {
+            for (int i = 0; i < runAbleTasks.size(); i++) {
                 transactionResources.get(i).autoWiredTransactionResource();
                 transactionManager.commit(transactionStatusList.get(i));
                 transactionResources.get(i).removeTransactionResource();
