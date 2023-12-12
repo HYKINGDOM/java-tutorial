@@ -40,6 +40,7 @@
         <module name="java-common" />
         <module name="spring-boot-project-async" />
         <module name="spring-boot-project-batch" />
+        <module name="spring-boot-project-util" />
         <module name="spring-boot-project-security" />
         <module name="spring-boot-project-event" />
         <module name="spring-boot-project-retry" />
@@ -174,6 +175,7 @@
       <module name="spring-boot-project-sse" options="" />
       <module name="spring-boot-project-template" options="" />
       <module name="spring-boot-project-thread" options="" />
+      <module name="spring-boot-project-util" options="" />
       <module name="spring-boot-project-webflux" options="" />
       <module name="spring-boot-project-webmagic" options="" />
       <module name="spring-boot-project-websocket" options="" />
