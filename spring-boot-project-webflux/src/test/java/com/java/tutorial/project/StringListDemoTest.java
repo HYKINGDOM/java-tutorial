@@ -1,11 +1,18 @@
 package com.java.tutorial.project;
 
+
 import cn.hutool.core.util.RandomUtil;
+import com.google.common.hash.BloomFilter;
+
+import com.github.mgunlogson.cuckoofilter4j.CuckooFilter;
+import com.google.common.hash.Funnels;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.StopWatch;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -98,4 +105,44 @@ public class StringListDemoTest {
         System.out.println(stopWatch.getTotalTimeSeconds() + " :test_demo_04: " + aDemo.size());
     }
 
+
+
+    @Test
+    public void test_demo_05() {
+
+
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+
+        BloomFilter<String> bloomFilter = BloomFilter.create(Funnels.stringFunnel(StandardCharsets.UTF_8), bDemo.size());
+        for (String num : bDemo) {
+            bloomFilter.put(num);
+        }
+
+        aDemo.removeIf(o -> bloomFilter.mightContain(o));
+        stopWatch.stop();
+
+        System.out.println(stopWatch.getTotalTimeSeconds() + " :test_demo_05: " + aDemo.size());
+    }
+
+
+    @Test
+    public void test_demo_06() {
+
+
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+
+        // 创建布谷鸟过滤器
+        // create
+        CuckooFilter<CharSequence> cuckooFilter = new CuckooFilter.Builder<>(Funnels.stringFunnel(StandardCharsets.UTF_8), bDemo.size()).build();
+        for (String num : bDemo) {
+            cuckooFilter.put(num);
+        }
+
+        aDemo.removeIf(o -> cuckooFilter.mightContain(o));
+        stopWatch.stop();
+
+        System.out.println(stopWatch.getTotalTimeSeconds() + " :test_demo_06: " + aDemo.size());
+    }
 }
