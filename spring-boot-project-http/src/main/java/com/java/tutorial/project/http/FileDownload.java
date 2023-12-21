@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * @author hy
  */
-public class FileDownload {
+public class  FileDownload {
 
 
     public static final List<String> IMAGE_EXTENSION_LOW = Lists.newArrayList("jpeg", "jpg", "tiff", "gif", "bmp", "png", "bpg", "svg", "heif", "psd");

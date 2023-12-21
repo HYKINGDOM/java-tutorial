@@ -1,6 +1,5 @@
 package com.java.tutorial.project.aspect;
 
-import com.google.protobuf.ServiceException;
 import com.java.tutorial.project.annotation.RateLimiter;
 import com.java.tutorial.project.common.LimitType;
 import lombok.extern.slf4j.Slf4j;
@@ -8,6 +7,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.hibernate.service.spi.ServiceException;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
