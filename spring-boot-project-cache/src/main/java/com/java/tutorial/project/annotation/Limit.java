@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author huyi
+ * @author meta
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD})
