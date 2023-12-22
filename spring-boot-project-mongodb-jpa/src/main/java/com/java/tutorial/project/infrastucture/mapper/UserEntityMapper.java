@@ -15,8 +15,8 @@ import org.mapstruct.ReportingPolicy;
 public interface UserEntityMapper {
 
 
-    @Mappings({
-            @Mapping(target = "emailAddress", source = "userEmail")
-    })
+//    @Mappings({
+//            @Mapping(target = "emailAddress", source = "userEmail")
+//    })
     UserEntity toUserEntity(User user);
 }

@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-
-
 /**
  * 单元测试
  */
@@ -15,14 +13,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class SpringBootProjectApplicationTests {
 
-	@Autowired
-	private MyHandlerChain handlerChain;
+    @Autowired
+    private MyHandlerChain handlerChain;
 
-	@Test
-	public void handleChain() {
-		String result = handlerChain.handleChain("zzzzbw");
-		log.info("handleChain result: {}", result);
-	}
-
+    @Test
+    public void handleChain() {
+        String result = handlerChain.handleChain("zzzzbw");
+        log.info("handleChain result: {}", result);
+    }
 
 }

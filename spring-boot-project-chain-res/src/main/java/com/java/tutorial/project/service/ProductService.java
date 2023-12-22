@@ -1,11 +1,11 @@
 package com.java.tutorial.project.service;
 
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
 import com.java.tutorial.project.config.AbstractCheckHandler;
 import com.java.tutorial.project.config.ProductCheckHandlerConfig;
 import com.java.tutorial.project.domian.ProductVO;
 import com.java.tutorial.project.util.Result;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -86,7 +86,7 @@ public class ProductService {
         }
         //配置错误
         String handler = config.getHandler();
-        if (StringUtils.isBlank(handler)) {
+        if (StrUtil.isBlank(handler)) {
             return null;
         }
         //配置了不存在的处理器

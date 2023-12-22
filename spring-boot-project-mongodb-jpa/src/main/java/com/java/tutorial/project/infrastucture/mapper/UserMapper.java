@@ -1,4 +1,4 @@
-package com.java.tutorial.project.mapper;
+package com.java.tutorial.project.infrastucture.mapper;
 
 
 import com.java.tutorial.project.controller.response.UserResponse;

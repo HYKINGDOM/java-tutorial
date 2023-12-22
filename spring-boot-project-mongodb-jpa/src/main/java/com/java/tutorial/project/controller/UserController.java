@@ -10,7 +10,7 @@ import com.java.tutorial.project.controller.validator.annotation.UserSequenceDes
 import com.java.tutorial.project.controller.validator.annotation.UserSequenceExcludeDefault;
 import com.java.tutorial.project.controller.validator.annotation.UserUpdate;
 import com.java.tutorial.project.infrastucture.entity.UserEntity;
-import com.java.tutorial.project.mapper.UserMapper;
+import com.java.tutorial.project.infrastucture.mapper.UserMapper;
 import com.java.tutorial.project.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
