@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author meta
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

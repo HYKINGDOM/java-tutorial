@@ -536,20 +536,28 @@ public class HttpClientUtil {
             requestConfig = configBuilder.build();
         }
         httpPatch.setConfig(requestConfig);
-        CloseableHttpClient httpclient = HttpClients.createDefault();
         String response = EMPTY_BODY;
-        if (StrUtil.isNotEmpty(body)) {
-            StringEntity stringEntity = new StringEntity(body, StandardCharsets.UTF_8);
-            stringEntity.setContentEncoding(DEFAULT_CHARSET);
-            stringEntity.setContentType(CONTENT_TYPE_JSON);
-            httpPatch.setEntity(stringEntity);
-        }
-        try (CloseableHttpResponse responseDto = httpclient.execute(httpPatch)) {
+        try(CloseableHttpClient httpclient = HttpClients.createDefault())  {
+            if (StrUtil.isNotEmpty(body)) {
+                StringEntity stringEntity = new StringEntity(body, StandardCharsets.UTF_8);
+                stringEntity.setContentEncoding(DEFAULT_CHARSET);
+                stringEntity.setContentType(CONTENT_TYPE_JSON);
+                httpPatch.setEntity(stringEntity);
+            }
+
             clock.stop();
-            response = EntityUtils.toString(responseDto.getEntity(), StandardCharsets.UTF_8);
-        } catch (Exception e) {
-            log.error("请求异常：", e);
+            try (CloseableHttpResponse responseDto = httpclient.execute(httpPatch)) {
+                clock.stop();
+                response = EntityUtils.toString(responseDto.getEntity(), StandardCharsets.UTF_8);
+            } catch (Exception e) {
+                log.error("请求异常：", e);
+            }
+
+        }catch (IOException ioException){
+            log.error("请求异常：", ioException);
         }
+
+
         log.info("url:{},costs:{}ms, response: {}", realUrl, clock.getTotalTimeMillis(), response);
         return response;
     }

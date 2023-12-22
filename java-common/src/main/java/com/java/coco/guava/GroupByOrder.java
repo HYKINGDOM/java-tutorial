@@ -1,6 +1,9 @@
 package com.java.coco.guava;
 
 import com.google.common.collect.ArrayListMultimap;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
 
 import java.time.Instant;
 import java.util.*;
@@ -55,6 +58,8 @@ public class GroupByOrder {
     }
 
 
+    @Data
+    @AllArgsConstructor
     public static class Order {
 
         private String userId;
@@ -62,64 +67,5 @@ public class GroupByOrder {
         private Double price;
         private Date createTime;
         private Date updateTime;
-
-        public Order(String userId, String orderId, Double price, Date createTime, Date updateTime) {
-            this.userId = userId;
-            this.orderId = orderId;
-            this.price = price;
-            this.createTime = createTime;
-            this.updateTime = updateTime;
-        }
-
-        @Override
-        public String toString() {
-            return "Order{" +
-                    "userId='" + userId + '\'' +
-                    ", orderId='" + orderId + '\'' +
-                    ", price=" + price +
-                    ", createTime=" + createTime +
-                    ", updateTime=" + updateTime +
-                    '}';
-        }
-
-        public String getUserId() {
-            return userId;
-        }
-
-        public void setUserId(String userId) {
-            this.userId = userId;
-        }
-
-        public String getOrderId() {
-            return orderId;
-        }
-
-        public void setOrderId(String orderId) {
-            this.orderId = orderId;
-        }
-
-        public Double getPrice() {
-            return price;
-        }
-
-        public void setPrice(Double price) {
-            this.price = price;
-        }
-
-        public Date getCreateTime() {
-            return createTime;
-        }
-
-        public void setCreateTime(Date createTime) {
-            this.createTime = createTime;
-        }
-
-        public Date getUpdateTime() {
-            return updateTime;
-        }
-
-        public void setUpdateTime(Date updateTime) {
-            this.updateTime = updateTime;
-        }
     }
 }

@@ -1,13 +1,14 @@
 package com.java.tutorial.project.util;
 
-import static com.java.tutorial.project.util.Constant.DB_PATH;
-import static com.java.tutorial.project.util.Constant.LOCAL_IP;
-
 import jakarta.servlet.http.HttpServletRequest;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import lombok.extern.slf4j.Slf4j;
 import org.lionsoul.ip2region.xdb.Searcher;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+import static com.java.tutorial.project.util.Constant.DB_PATH;
+import static com.java.tutorial.project.util.Constant.LOCAL_IP;
 
 /**
  * @author coderJim
@@ -82,8 +83,7 @@ public class IpUtil {
         }
         // 3、查询
         try {
-            String region = searcher.search(ip);
-            return region;
+            return searcher.search(ip);
         } catch (Exception e) {
             log.info("failed to search(%s): %s\n", ip, e);
         }

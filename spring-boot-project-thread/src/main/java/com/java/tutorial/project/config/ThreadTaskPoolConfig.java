@@ -1,6 +1,5 @@
 package com.java.tutorial.project.config;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -11,21 +10,19 @@ import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
- * @Author WangZY
- * @Date 2020/2/13 15:51
- * @Description 线程池配置
+ * 线程池配置
+ *
+ * @author meta
  */
 @EnableConfigurationProperties({ToolProperties.class})
 @Configuration
 public class ThreadTaskPoolConfig {
 
-
     @Autowired
     private ToolProperties prop;
 
     /**
-     * 默认CPU密集型--所有参数均需要在压测下不断调整，根据实际的任务消耗时间来设置参数
-     * CPU密集型指的是高并发，相对短时间的计算型任务，这种会占用CPU执行计算处理
+     * 默认CPU密集型--所有参数均需要在压测下不断调整，根据实际的任务消耗时间来设置参数 CPU密集型指的是高并发，相对短时间的计算型任务，这种会占用CPU执行计算处理
      * 因此核心线程数设置为CPU核数+1，减少线程的上下文切换，同时做个大的队列，避免任务被饱和策略拒绝。
      */
     @Bean("cpuDenseExecutor")
@@ -56,9 +53,7 @@ public class ThreadTaskPoolConfig {
     }
 
     /**
-     * 默认io密集型
-     * IO密集型指的是有大量IO操作，比如远程调用、连接数据库
-     * 因为IO操作不占用CPU，所以设置核心线程数为CPU核数的两倍，保证CPU不闲下来，队列相应调小一些。
+     * 默认io密集型 IO密集型指的是有大量IO操作，比如远程调用、连接数据库 因为IO操作不占用CPU，所以设置核心线程数为CPU核数的两倍，保证CPU不闲下来，队列相应调小一些。
      */
     @Bean("ioDenseExecutor")
     public ThreadPoolTaskExecutor ioDense() {

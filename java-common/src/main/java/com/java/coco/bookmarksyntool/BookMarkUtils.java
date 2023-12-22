@@ -1,5 +1,7 @@
 package com.java.coco.bookmarksyntool;
 
+import cn.hutool.core.convert.Convert;
+import cn.hutool.core.lang.TypeReference;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.java.coco.utils.ReadFromFile;
@@ -30,13 +32,14 @@ public class BookMarkUtils {
 
         Map<String, Object> other = JSONUtil.parseObj(roots.get("other").toString());
 
-        List<Object> otherChildren = (List<Object>) JSONUtil.parse(other.get("children"));
+        List<Object> otherChildren = Convert.convert(new TypeReference<>() {
+        }, JSONUtil.parse(other.get("children")));
 
         convertJsonToBean(otherChildren);
 
         Map<String, Object> bookmarkBar = JSONUtil.parseObj(roots.get("bookmark_bar").toString());
-
-        List<Object> bookmarkBarChildren = (List<Object>) JSONUtil.parse(bookmarkBar.get("children"));
+        List<Object> bookmarkBarChildren = Convert.convert(new TypeReference<>() {
+        }, JSONUtil.parse(bookmarkBar.get("children")));
 
         convertJsonToBean(bookmarkBarChildren);
 
@@ -62,7 +65,6 @@ public class BookMarkUtils {
         return JSONUtil.toBean(object.toString(), BookMark.class);
     }
 
-
     public BookMark loopChekBookMark(List<BookMark> bookMark) {
         if (bookMark == null) {
             return null;
@@ -73,12 +75,10 @@ public class BookMarkUtils {
         return null;
     }
 
-
     private void boolMarkConvertWebUrl(BookMark bookMark) {
         WebUrl build = WebUrl.builder().urlName(bookMark.getName()).urlPath(bookMark.getUrl()).build();
         webUrlList.add(build);
     }
-
 
     public void repetitionType() {
         System.out.println("=================================================");
@@ -86,7 +86,8 @@ public class BookMarkUtils {
         Map<String, List<WebUrl>> urlPathMap = webUrlList.stream().collect(Collectors.groupingBy(WebUrl::getUrlPath));
         for (Map.Entry<String, List<WebUrl>> stringListEntry : urlPathMap.entrySet()) {
             if (stringListEntry.getValue().size() > 1) {
-                System.out.println("重复URL： " + stringListEntry.getValue().stream().map(WebUrl::getUrlName).collect(Collectors.toList()));
+                System.out.println("重复URL： " + stringListEntry.getValue().stream().map(WebUrl::getUrlName)
+                    .collect(Collectors.toList()));
             }
         }
 
@@ -95,7 +96,8 @@ public class BookMarkUtils {
         Map<String, List<WebUrl>> urlNameMap = webUrlList.stream().collect(Collectors.groupingBy(WebUrl::getUrlName));
         for (Map.Entry<String, List<WebUrl>> stringListEntry : urlNameMap.entrySet()) {
             if (stringListEntry.getValue().size() > 1) {
-                System.out.println("重复书签名： " + stringListEntry.getValue().stream().map(WebUrl::getUrlPath).collect(Collectors.toList()));
+                System.out.println("重复书签名： " + stringListEntry.getValue().stream().map(WebUrl::getUrlPath)
+                    .collect(Collectors.toList()));
             }
         }
 
