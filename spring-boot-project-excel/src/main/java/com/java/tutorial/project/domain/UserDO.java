@@ -6,7 +6,7 @@ import com.alibaba.excel.annotation.format.DateTimeFormat;
 import com.alibaba.excel.annotation.format.NumberFormat;
 import com.alibaba.excel.annotation.write.style.ColumnWidth;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.java.tutorial.project.config.GenderConverter;
+import com.java.tutorial.project.excel.convert.GenderConverter;
 import lombok.Data;
 
 import java.util.Date;
