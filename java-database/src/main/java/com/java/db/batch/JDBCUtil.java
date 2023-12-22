@@ -1,4 +1,8 @@
-package com.java.db.batchDB;
+package com.java.db.batch;
+
+import com.sun.org.slf4j.internal.Logger;
+import com.sun.org.slf4j.internal.LoggerFactory;
+import lombok.Getter;
 
 import java.lang.reflect.Field;
 import java.sql.Connection;
@@ -17,27 +21,60 @@ import java.util.List;
  *
  * @author hy
  */
+
 public abstract class JDBCUtil {
+
+    private static final Logger log = LoggerFactory.getLogger(JDBCUtil.class);
     private static final String driverClass = "com.mysql.jdbc.Driver";
 
-    // 静态代码块 初始化驱动
+    /**
+     * 静态代码块 初始化驱动
+     */
     static {
         try {
             Class.forName(driverClass);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            log.error("exception message", e);
         }
     }
 
-    // 连接状态  0 未连接 , 1 已连接 , 2 覆盖连接 , 3 重连 , 4 关闭中 , 5 连接中
+    /**
+     * 连接状态
+     */
+    @Getter
     public enum ConnectionStatus {
-        CLOSE(0), CONNECTIONED(1), OVERRIDE(2), RECONNECTING(3), CLOSING(4), CONNECTING(5);
+
+        /**
+         * 0 未连接
+         */
+        CLOSE(0),
+
+        /**
+         * 1 已连接
+         */
+        CONNECTIONED(1),
+
+        /**
+         * 2 覆盖连接
+         */
+        OVERRIDE(2),
+
+        /**
+         * 3 重连
+         */
+        RECONNECTING(3),
+
+        /**
+         * 4 关闭中
+         */
+        CLOSING(4),
+
+        /**
+         * 5 连接中
+         */
+        CONNECTING(5);
 
         private int status;
-
-        public int getStatus() {
-            return status;
-        }
 
         ConnectionStatus(int status) {
             this.status = status;
@@ -57,10 +94,14 @@ public abstract class JDBCUtil {
         }
     }
 
-    // 活跃连接
+    /**
+     * 活跃连接
+     */
     public static Connection connection;
 
-    // 连接状态  0 未连接 , 1 已连接 , 2 覆盖连接 , 3 重连 , 4 关闭中 , 5 连接中
+    /**
+     * 连接状态  0 未连接 , 1 已连接 , 2 覆盖连接 , 3 重连 , 4 关闭中 , 5 连接中
+     */
     public static int connectionStatus = ConnectionStatus.CLOSE.status;
 
     private static String host;
@@ -137,10 +178,8 @@ public abstract class JDBCUtil {
             connectionStatus = ConnectionStatus.CLOSE.status;
         }
 
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("jdbc:mysql://");
-        stringBuilder.append(url);
-        Connection conn = DriverManager.getConnection(stringBuilder.toString(), username, password);
+        String dbUrl = "jdbc:mysql://" + url;
+        Connection conn = DriverManager.getConnection(dbUrl, username, password);
         connection = conn;
 
         if (isOverride) {
@@ -178,8 +217,7 @@ public abstract class JDBCUtil {
         if (connection == null) {
             reconnect();
         }
-        Statement statement = connection.createStatement();
-        return statement;
+        return connection.createStatement();
     }
 
     /**
@@ -193,8 +231,7 @@ public abstract class JDBCUtil {
         if (connection == null) {
             reconnect();
         }
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        return preparedStatement;
+        return connection.prepareStatement(sql);
     }
 
     /**
@@ -210,7 +247,7 @@ public abstract class JDBCUtil {
         List<Object> paramList = new LinkedList<>();
 
         String sql = parseSql(SqlType.SELECT, null, wherePojo, paramList);
-        if (sql != null && !sql.contains("limit")) {
+        if (!sql.contains("limit")) {
             sql += " limit 1";
         }
 
@@ -220,6 +257,7 @@ public abstract class JDBCUtil {
         try {
             resultSet = doSelect(sql, statement, paramList.toArray());
             // 处理结果集 反射生成pojo
+            assert resultSet != null;
             ret = parseResultSet(resultSet, returnType);
         } catch (SQLException e) {
             throw e;
@@ -548,7 +586,7 @@ public abstract class JDBCUtil {
                     pl.add(sb.toString());
                     paramList.add(value);
                 } catch (IllegalAccessException e) {
-                    e.printStackTrace();
+                    log.error("exception message", e);
                 }
             }
             for (int i = 0; i < pl.size(); i++) {
@@ -589,34 +627,38 @@ public abstract class JDBCUtil {
             sql.append(tableName);
         }
 
-        // select name,age from user where name="colagy"
-        // delete from user where name="colagy"
-        // update user set name="colagy" where name="coalgy"
-        // 查询 修改 删除 处理where
-        if (wherePojo != null && (sqlType == SqlType.SELECT || sqlType == SqlType.UPDATE || sqlType == SqlType.DELETE)) {
-            sql.append(" where 1=1 ");
+        if (wherePojo != null) {
 
-            Class<?> wc = wherePojo.getClass();
-            Field[] wcfields = wc.getDeclaredFields();
+            // select name,age from user where name="colagy"
+            // delete from user where name="colagy"
+            // update user set name="colagy" where name="coalgy"
+            // 查询 修改 删除 处理where
+            if ((sqlType == SqlType.SELECT || sqlType == SqlType.UPDATE || sqlType == SqlType.DELETE)) {
+                sql.append(" where 1=1 ");
 
-            for (Field field : wcfields) {
-                field.setAccessible(true);
-                String key = field.getName();
-                Object value = null;
-                try {
-                    value = field.get(wherePojo);
-                    if (value == null) {
-                        continue;
+                Class<?> wc = wherePojo.getClass();
+                Field[] wcfields = wc.getDeclaredFields();
+
+                for (Field field : wcfields) {
+                    field.setAccessible(true);
+                    String key = field.getName();
+                    Object value = null;
+                    try {
+                        value = field.get(wherePojo);
+                        if (value == null) {
+                            continue;
+                        }
+                        sql.append(" and ");
+                        sql.append(key);
+                        sql.append(" = ?");
+                        paramList.add(value);
+                    } catch (IllegalAccessException e) {
+                        log.error("exception message", e);
                     }
-                    sql.append(" and ");
-                    sql.append(key);
-                    sql.append(" = ?");
-                    paramList.add(value);
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
                 }
             }
         }
+
         return sql.toString();
     }
 
@@ -705,17 +747,13 @@ public abstract class JDBCUtil {
             try {
                 list = (Collection<T>)collectionClass.newInstance();
             } catch (IllegalAccessException e) {
-                e.printStackTrace();
+                log.error("exception message", e);
                 return null;
             } catch (InstantiationException e) {
                 System.err.println("Interface or Abstract Class not allow here. 不要使用接口和抽象类接收结果列表");
-                e.printStackTrace();
+                log.error("exception message", e);
                 return null;
             }
-        }
-
-        if (list == null) {
-            return null;
         }
 
         while (resultSet.next()) {
@@ -735,11 +773,8 @@ public abstract class JDBCUtil {
         T ret = null;
         try {
             ret = (T)returnType.newInstance();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-            return null;
-        } catch (InstantiationException e) {
-            e.printStackTrace();
+        } catch (IllegalAccessException | InstantiationException e) {
+            log.error("exception message", e);
             return null;
         }
 
@@ -749,7 +784,7 @@ public abstract class JDBCUtil {
                 f.setAccessible(true);
                 f.set(ret, resultSet.getObject(f.getName(), f.getType()));
             } catch (IllegalAccessException | SQLException e) {
-                e.printStackTrace();
+                log.error("exception message", e);
             }
         }
         return ret;
@@ -777,7 +812,7 @@ public abstract class JDBCUtil {
         try {
             close(resultSet);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("exception message", e);
         } finally {
             close(statement);
         }
@@ -795,7 +830,7 @@ public abstract class JDBCUtil {
                 statement = null;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("exception message", e);
         } finally {
             closeConnection();
         }
