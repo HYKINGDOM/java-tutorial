@@ -44,16 +44,28 @@ public class ParallelStreamBenchmark {
     @Setup(Level.Trial)
     public void setup() {
         switch (type) {
-            case "ArrayList" -> list = new ArrayList<>(size);
-            case "LinkedList" -> list = new LinkedList<>();
-            default -> throw new AssertionError();
+            case "ArrayList":
+                list = new ArrayList<>(size);
+                break;
+            case "LinkedList":
+                list = new LinkedList<>();
+                break;
+            default:
+                throw new AssertionError();
         }
 
         switch (dataType) {
-            case "Long" -> list.addAll(randomDataUtils.generateRandomLongs(size));
-            case "Integer" -> list.addAll(randomDataUtils.generateRandomInts(size));
-            case "String" -> list.addAll(randomDataUtils.generateRandomChineseStrings(size, 8));
-            default -> throw new AssertionError();
+            case "Long":
+                list.addAll(randomDataUtils.generateRandomLongs(size));
+                break;
+            case "Integer":
+                list.addAll(randomDataUtils.generateRandomInts(size));
+                break;
+            case "String":
+                list.addAll(randomDataUtils.generateRandomChineseStrings(size, 8));
+                break;
+            default:
+                throw new AssertionError();
         }
 
     }

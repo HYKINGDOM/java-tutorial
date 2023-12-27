@@ -1,9 +1,24 @@
 package com.java.benchmark;
 
-import org.openjdk.jmh.annotations.*;
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.BenchmarkMode;
+import org.openjdk.jmh.annotations.Fork;
+import org.openjdk.jmh.annotations.Measurement;
+import org.openjdk.jmh.annotations.Mode;
+import org.openjdk.jmh.annotations.OutputTimeUnit;
+import org.openjdk.jmh.annotations.Param;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.Setup;
+import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.annotations.Threads;
+import org.openjdk.jmh.annotations.Warmup;
 import org.openjdk.jmh.infra.Blackhole;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 @Warmup(iterations = 5, time = 1) // 先预热5轮
@@ -25,12 +40,20 @@ public class ListBenchmark {
 
     @Setup
     public void setup() {
-        var list =
-                switch (type) {
-                    case "Array", "ArrayList" -> new ArrayList<>(size);
-                    case "LinkedList" -> new LinkedList<>();
-                    default -> throw new AssertionError();
-                };
+
+        switch (type) {
+            case "Array":
+                list = new ArrayList<>(size);
+                break;
+            case "ArrayList":
+                list = new ArrayList<>(size);
+                break;
+            case "LinkedList":
+                list = new LinkedList<>();
+                break;
+            default:
+                throw new AssertionError();
+        }
 
         Random random = new Random(0);
         for (int i = 0; i < size; i++) {

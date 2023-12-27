@@ -6,6 +6,8 @@ import com.google.common.hash.BloomFilter;
 
 import com.github.mgunlogson.cuckoofilter4j.CuckooFilter;
 import com.google.common.hash.Funnels;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.util.RamUsageEstimator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
