@@ -93,14 +93,14 @@
             <dependency>
                 <groupId>com.mybatis-flex</groupId>
                 <artifactId>mybatis-flex-spring-boot-starter</artifactId>
-                <version>1.7.5</version>
+                <version>1.7.6</version>
             </dependency>
 
             <!-- https://mvnrepository.com/artifact/com.mybatis-flex/mybatis-flex-processor -->
             <dependency>
                 <groupId>com.mybatis-flex</groupId>
                 <artifactId>mybatis-flex-processor</artifactId>
-                <version>1.7.5</version>
+                <version>1.7.6</version>
             </dependency>
 
 
@@ -125,7 +125,7 @@
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>32.1.3-jre</version>
+                <version>33.0.0-jre</version>
             </dependency>
 
             <dependency>
@@ -145,7 +145,7 @@
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
-                <version>5.8.22</version>
+                <version>5.8.24</version>
             </dependency>
 
             <dependency>

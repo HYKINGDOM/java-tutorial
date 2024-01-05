@@ -1,9 +1,11 @@
 package com.java.coco.utils.http;
 
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.java.coco.utils.StopWatch;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpEntityEnclosingRequest;
 import org.apache.http.HttpRequest;
 import org.apache.http.NoHttpResponseException;
@@ -32,7 +34,6 @@ import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 import javax.net.ssl.SSLException;
 import javax.net.ssl.SSLHandshakeException;
 import java.io.File;
@@ -42,7 +43,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
@@ -51,8 +51,7 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * http 封装工具类
- * JDK8 起
+ * http 封装工具类 JDK8 起
  *
  * @author hy
  */
@@ -64,18 +63,43 @@ public class HttpClientUtil {
     public static final int PERIOD = 5 * 1000;
     public static final String CONTENT_TYPE_JSON = "application/json";
     public static final String MIME_TYPE = "text/plain";
+
+    /**
+     * 连接池最大连接数 默认值：20
+     */
+    private final static int MAX_TOTAL = 50;
+
+    /**
+     * 每个路由最大连接数 默认值：2
+     */
+    private final static int MAX_PRE_ROUTE = 4;
+
+    /**
+     * 从线程池中获取线程超时时间
+     */
     private static final int CONNECTION_REQUEST_TIMEOUT = 3000;
+
+    /**
+     * 连接超时时间
+     */
     private static final int CONNECT_TIMEOUT = 3000;
+
+    /**
+     * 设置数据超时时间
+     */
     private static final int SOCKET_TIMEOUT = 10000;
     private static final String DEFAULT_CHARSET = "UTF-8";
     private static final String EMPTY_BODY = "";
     public static final int SO_TIMEOUT = 5000;
     public static final int CORE_POOL_SIZE = 1;
     public static final int IDLE_TIMEOUT = 30;
+    public static final String CLOSE_EXPIRED_CONNECTIONS_SCHEDULE_POOL = "close-expired-connections-schedule-pool-%d";
+    public static final String STRING = "?";
+    public static final char CHAR = '?';
+    public static final String FORMAT_NAME_VALUE = "'%s'='%s'";
+
     private static PoolingHttpClientConnectionManager connectionManager = null;
     private static RequestConfig requestConfig;
-    private static final Map<String, Object> EMPTY_PARAMS = new HashMap<>();
-    private static final Map<String, String> EMPTY_HEADERS = new HashMap<>();
     private static CloseableHttpClient client;
 
     /**
@@ -84,10 +108,15 @@ public class HttpClientUtil {
     public static class MyRetryHandle implements HttpRequestRetryHandler {
         Logger logger = LoggerFactory.getLogger(MyRetryHandle.class);
 
+        /**
+         * 重试策略的重试次数
+         */
+        public static final int RETRY_LIMIT = 3;
+
         //请求失败时,进行请求重试
         @Override
         public boolean retryRequest(IOException e, int i, HttpContext httpContext) {
-            if (i > 3) {
+            if (i > RETRY_LIMIT) {
                 //重试超过3次,放弃请求
                 logger.error("retry has more than 3 time, give up request");
                 return false;
@@ -124,11 +153,15 @@ public class HttpClientUtil {
         }
     }
 
-    //单例模式创建
+    /**
+     * 单例模式创建连接池
+     */
     private static void init() {
         synchronized (HttpClientUtil.class) {
             if (client == null) {
                 connectionManager = new PoolingHttpClientConnectionManager();
+                connectionManager.setMaxTotal(MAX_TOTAL);
+                connectionManager.setDefaultMaxPerRoute(MAX_PRE_ROUTE);
                 // http请求线程池，最大连接数
                 ConnectionConfig connConfig = ConnectionConfig.custom().setCharset(StandardCharsets.UTF_8).build();
                 SocketConfig socketConfig = SocketConfig.custom().setSoTimeout(SO_TIMEOUT).build();
@@ -139,13 +172,8 @@ public class HttpClientUtil {
                 // 默认设置route最大连接数
                 connectionManager.setDefaultMaxPerRoute(REQUEST_MAX_NUM);
                 //设置请求参数
-                //连接超时时间
-                //从线程池中获取线程超时时间
-                //设置数据超时时间
-                RequestConfig config = RequestConfig.custom().setConnectTimeout(CONNECT_TIMEOUT) //连接超时时间
-                    .setConnectionRequestTimeout(CONNECTION_REQUEST_TIMEOUT) //从线程池中获取线程超时时间
-                    .setSocketTimeout(SOCKET_TIMEOUT) //设置数据超时时间
-                    .build();
+                RequestConfig config = RequestConfig.custom().setConnectTimeout(CONNECT_TIMEOUT)
+                    .setConnectionRequestTimeout(CONNECTION_REQUEST_TIMEOUT).setSocketTimeout(SOCKET_TIMEOUT).build();
                 // 创建builder
                 HttpClientBuilder builder = HttpClients.custom();
                 //管理器是共享的，它的生命周期将由调用者管理，并且不会关闭
@@ -157,8 +185,8 @@ public class HttpClientUtil {
                 client = builder.setDefaultRequestConfig(config).setRetryHandler(new MyRetryHandle()).build();
                 // 启动定时器，定时回收过期的连接
                 ScheduledExecutorService executorService = new ScheduledThreadPoolExecutor(CORE_POOL_SIZE,
-                    new BasicThreadFactory.Builder().namingPattern("close-expired-connections-schedule-pool-%d")
-                        .daemon(true).build());
+                    new BasicThreadFactory.Builder().namingPattern(CLOSE_EXPIRED_CONNECTIONS_SCHEDULE_POOL).daemon(true)
+                        .build());
                 executorService.scheduleAtFixedRate(() -> {
                     // 关闭过期的链接
                     connectionManager.closeExpiredConnections();
@@ -175,116 +203,6 @@ public class HttpClientUtil {
             init();
         }
         return client;
-    }
-
-    /**
-     * 发送 GET 请求（HTTP），不带输入数据
-     *
-     * @param url 请求url
-     * @return 返回报文
-     */
-    public static String doGet(String url) {
-        return doGet(url, EMPTY_PARAMS, EMPTY_HEADERS, SOCKET_TIMEOUT);
-    }
-
-    public static String doGet(String url, int timeout) {
-        return doGet(url, EMPTY_PARAMS, EMPTY_HEADERS, timeout);
-    }
-
-    public static String doGetWithParams(String url, Map<String, Object> params) {
-        return doGet(url, params, EMPTY_HEADERS, SOCKET_TIMEOUT);
-    }
-
-    public static String doGetWithParams(String url, Map<String, Object> params, int timeout) {
-        return doGet(url, params, EMPTY_HEADERS, timeout);
-    }
-
-    public static String doGetWithHeader(String url, Map<String, String> headers) {
-        return doGet(url, EMPTY_PARAMS, headers, SOCKET_TIMEOUT);
-    }
-
-    public static String doGetWithHeader(String url, Map<String, String> headers, int timeout) {
-        return doGet(url, EMPTY_PARAMS, headers, timeout);
-    }
-
-    public static String doPost(String url) {
-        return doPost(url, EMPTY_PARAMS, EMPTY_BODY, EMPTY_HEADERS, SOCKET_TIMEOUT);
-    }
-
-    public static String doPost(String url, int socketTimeout) {
-        return doPost(url, EMPTY_PARAMS, EMPTY_BODY, EMPTY_HEADERS, socketTimeout);
-    }
-
-    public static String doPost(String rootUrl, Map<String, Object> params, String body, Map<String, String> headers) {
-        return doPost(rootUrl, params, body, headers, SOCKET_TIMEOUT);
-    }
-
-    public static String doPostWithBodyAndHeader(String rootUrl, String body, Map<String, String> headers) {
-        return doPost(rootUrl, EMPTY_PARAMS, body, headers, SOCKET_TIMEOUT);
-    }
-
-    public static String doPostWithParams(String rootUrl, Map<String, Object> params) {
-        return doPost(rootUrl, params, EMPTY_BODY, EMPTY_HEADERS, SOCKET_TIMEOUT);
-    }
-
-    public static String doPostWithParams(String rootUrl, Map<String, Object> params, int socketTimeout) {
-        return doPost(rootUrl, params, EMPTY_BODY, EMPTY_HEADERS, socketTimeout);
-    }
-
-    public static String doPostWithHeaders(String url, Map<String, String> headers) {
-        return doPost(url, EMPTY_PARAMS, EMPTY_BODY, headers, SOCKET_TIMEOUT);
-    }
-
-    public static String doPostWithHeaders(String url, Map<String, String> headers, int socketTimeout) {
-        return doPost(url, EMPTY_PARAMS, EMPTY_BODY, headers, socketTimeout);
-    }
-
-    public static String doPostWithBody(String url, String body) {
-        return doPost(url, EMPTY_PARAMS, body, EMPTY_HEADERS, SOCKET_TIMEOUT);
-    }
-
-    public static String doPostWithBody(String url, String body, int socketTimeout) {
-        return doPost(url, EMPTY_PARAMS, body, EMPTY_HEADERS, socketTimeout);
-    }
-
-    public static String doDelete(String url) {
-        return doDelete(url, EMPTY_HEADERS, SOCKET_TIMEOUT);
-    }
-
-    public static String doDelete(String url, int socketTimeout) {
-        return doDelete(url, EMPTY_HEADERS, socketTimeout);
-    }
-
-    public static String doDeleteWithHeaders(String url, Map<String, String> headers) {
-        return doDelete(url, headers, SOCKET_TIMEOUT);
-    }
-
-    public static String doPutWithHeaders(String url, Map<String, String> headers) {
-        return doPut(url, EMPTY_BODY, headers, SOCKET_TIMEOUT);
-    }
-
-    public static String doPutWithBodyAndHeaders(String url, Map<String, String> headers, String body) {
-        return doPut(url, body, headers, SOCKET_TIMEOUT);
-    }
-
-    public static String doPutWithHeaders(String url, Map<String, String> headers, int socketTimeout) {
-        return doPut(url, EMPTY_BODY, headers, socketTimeout);
-    }
-
-    public static String doPatch(String rootUrl, Map<String, Object> params, String body, Map<String, String> headers) {
-        return doPatch(rootUrl, params, body, headers, SOCKET_TIMEOUT);
-    }
-
-    public static String doPatchWithParams(String rootUrl, Map<String, Object> params) {
-        return doPatch(rootUrl, params, EMPTY_BODY, EMPTY_HEADERS, SOCKET_TIMEOUT);
-    }
-
-    public static String doPatchWithBody(String rootUrl, String body) {
-        return doPatch(rootUrl, EMPTY_PARAMS, body, EMPTY_HEADERS, SOCKET_TIMEOUT);
-    }
-
-    public static String doPatchWithBodyAndHeader(String url, String body, Map<String, String> headers) {
-        return doPatch(url, EMPTY_PARAMS, body, headers, SOCKET_TIMEOUT);
     }
 
     public static String doPostWithForm(String rootUrl, Map<String, Object> params, Map<String, Object> forms,
@@ -307,23 +225,23 @@ public class HttpClientUtil {
             requestConfig = configBuilder.build();
         }
         httpPost.setConfig(requestConfig);
-        CloseableHttpClient httpclient = HttpClients.createDefault();
-        String response = "";
+        CloseableHttpClient httpclient = getClientFromPool();
+        String response = EMPTY_BODY;
         if (Objects.nonNull(forms)) {
             //创建 MultipartEntityBuilder,以此来构建我们的参数
-            MultipartEntityBuilder EntityBuilder = MultipartEntityBuilder.create();
+            MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
             //设置字符编码，防止乱码
             ContentType contentType = ContentType.create(MIME_TYPE, StandardCharsets.UTF_8);
             for (Map.Entry<String, Object> entry : forms.entrySet()) {
                 if (entry.getValue().getClass().isInstance(EMPTY_BODY)) {
                     //填充我们的文本内容，这里相当于input 框中的 name 与value
-                    EntityBuilder.addPart(entry.getKey(), new StringBody(entry.getValue().toString(), contentType));
+                    entityBuilder.addPart(entry.getKey(), new StringBody(entry.getValue().toString(), contentType));
                 } else {
                     //上传我们的文件
-                    EntityBuilder.addBinaryBody(entry.getKey(), (File)entry.getValue());
+                    entityBuilder.addBinaryBody(entry.getKey(), (File)entry.getValue());
                 }
                 //参数组装
-                httpPost.setEntity(EntityBuilder.build());
+                httpPost.setEntity(entityBuilder.build());
             }
         }
         try (CloseableHttpResponse responseDto = httpclient.execute(httpPost)) {
@@ -364,7 +282,7 @@ public class HttpClientUtil {
             requestConfig = configBuilder.build();
         }
         httpPost.setConfig(requestConfig);
-        CloseableHttpClient httpclient = HttpClients.createDefault();
+        CloseableHttpClient httpclient = getClientFromPool();
         String response = EMPTY_BODY;
         if (StrUtil.isNotEmpty(body)) {
             StringEntity stringEntity = new StringEntity(body, StandardCharsets.UTF_8);
@@ -379,6 +297,57 @@ public class HttpClientUtil {
             log.error("请求异常：", e);
         }
         log.info("url:{},costs:{}ms, response: {}", realUrl, clock.getTotalTimeMillis(), response);
+        return response;
+    }
+
+    /**
+     * 文件发送Post请求
+     *
+     * @param rootUrl       根路径
+     * @param params        请求参数
+     * @param headers       请求header
+     * @param socketTimeout 超时时间
+     * @param file          文件
+     * @return 返回报文
+     */
+    public static String doPostFile(String rootUrl, Map<String, Object> params, Map<String, String> headers,
+        int socketTimeout, File file) {
+        StopWatch clock = new StopWatch();
+        clock.start();
+        rootUrl = handleUrl(rootUrl, params);
+        String realUrl = rootUrl + generatorParamString(params);
+        log.info("http post file url:{},params:{}", realUrl, params);
+        HttpPost httpPost = new HttpPost(realUrl);
+        for (String key : headers.keySet()) {
+            httpPost.setHeader(key, headers.get(key));
+        }
+        if (socketTimeout != SOCKET_TIMEOUT) {
+            RequestConfig.Builder configBuilder = RequestConfig.custom();
+            // 设置连接超时
+            configBuilder.setConnectTimeout(CONNECT_TIMEOUT);
+            // 设置读取超时
+            configBuilder.setSocketTimeout(socketTimeout);
+            // 设置从连接池获取连接实例的超时
+            configBuilder.setConnectionRequestTimeout(CONNECTION_REQUEST_TIMEOUT);
+            requestConfig = configBuilder.build();
+        }
+        httpPost.setConfig(requestConfig);
+        CloseableHttpClient httpclient = getClientFromPool();
+        MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
+        multipartEntityBuilder.setCharset(StandardCharsets.UTF_8);
+        multipartEntityBuilder.addBinaryBody("file", file);
+
+        HttpEntity httpEntity = multipartEntityBuilder.build();
+        httpPost.setEntity(httpEntity);
+
+        String response = EMPTY_BODY;
+        try (CloseableHttpResponse responseDto = httpclient.execute(httpPost)) {
+            clock.stop();
+            response = EntityUtils.toString(responseDto.getEntity(), DEFAULT_CHARSET);
+        } catch (Exception e) {
+            log.error("文件上传请求异常：", e);
+        }
+        log.info("file post url: {}, costs: {} ms, response: {}", realUrl, clock.getTotalTimeMillis(), response);
         return response;
     }
 
@@ -449,7 +418,7 @@ public class HttpClientUtil {
             requestConfig = configBuilder.build();
         }
         httpDelete.setConfig(requestConfig);
-        CloseableHttpClient httpclient = HttpClients.createDefault();
+        CloseableHttpClient httpclient = getClientFromPool();
         String response = EMPTY_BODY;
         try (CloseableHttpResponse responseDto = httpclient.execute(httpDelete)) {
             clock.stop();
@@ -488,7 +457,7 @@ public class HttpClientUtil {
             requestConfig = configBuilder.build();
         }
         httpPut.setConfig(requestConfig);
-        CloseableHttpClient httpclient = HttpClients.createDefault();
+        CloseableHttpClient httpclient = getClientFromPool();
         String response = EMPTY_BODY;
         if (StrUtil.isNotEmpty(body)) {
             StringEntity stringEntity = new StringEntity(body, StandardCharsets.UTF_8);
@@ -537,7 +506,7 @@ public class HttpClientUtil {
         }
         httpPatch.setConfig(requestConfig);
         String response = EMPTY_BODY;
-        try(CloseableHttpClient httpclient = HttpClients.createDefault())  {
+        try (CloseableHttpClient httpclient = getClientFromPool()) {
             if (StrUtil.isNotEmpty(body)) {
                 StringEntity stringEntity = new StringEntity(body, StandardCharsets.UTF_8);
                 stringEntity.setContentEncoding(DEFAULT_CHARSET);
@@ -553,10 +522,9 @@ public class HttpClientUtil {
                 log.error("请求异常：", e);
             }
 
-        }catch (IOException ioException){
+        } catch (IOException ioException) {
             log.error("请求异常：", ioException);
         }
-
 
         log.info("url:{},costs:{}ms, response: {}", realUrl, clock.getTotalTimeMillis(), response);
         return response;
@@ -565,8 +533,8 @@ public class HttpClientUtil {
     public static String generatorParamString(Map<String, Object> parameters) {
         StringBuilder params = new StringBuilder();
         if (parameters != null) {
-            for (Iterator<String> iter = parameters.keySet().iterator(); iter.hasNext(); ) {
-                String name = iter.next();
+            for (Iterator<String> inter = parameters.keySet().iterator(); inter.hasNext(); ) {
+                String name = inter.next();
                 String value = parameters.get(name).toString();
                 params.append(name).append("=");
                 try {
@@ -574,15 +542,25 @@ public class HttpClientUtil {
                 } catch (UnsupportedEncodingException e) {
                     throw new RuntimeException(e.getMessage(), e);
                 } catch (Exception e) {
-                    String message = String.format("'%s'='%s'", name, value);
+                    String message = String.format(FORMAT_NAME_VALUE, name, value);
                     throw new RuntimeException(message, e);
                 }
-                if (iter.hasNext()) {
+                if (inter.hasNext()) {
                     params.append("&");
                 }
             }
         }
         return params.toString();
+    }
+
+    private static String handleUrl(String rootUrl, Map<String, Object> params) {
+        if (rootUrl.contains(STRING)) {
+            return rootUrl;
+        }
+        if (!Objects.equals(rootUrl.charAt(rootUrl.length() - 1), CHAR) && ObjectUtil.isNotEmpty(params)) {
+            rootUrl = rootUrl + STRING;
+        }
+        return rootUrl;
     }
 
 }
