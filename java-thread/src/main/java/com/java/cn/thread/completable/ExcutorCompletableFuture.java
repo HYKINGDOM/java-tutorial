@@ -3,7 +3,6 @@ package com.java.cn.thread.completable;
 import cn.hutool.core.util.RandomUtil;
 import com.google.common.collect.Lists;
 import lombok.val;
-import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
