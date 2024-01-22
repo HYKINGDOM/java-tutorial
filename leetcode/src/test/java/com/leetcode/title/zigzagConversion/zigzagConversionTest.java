@@ -1,17 +1,15 @@
 package com.leetcode.title.zigzagConversion;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class zigzagConversionTest {
 
-
     private zigzagConversion zigzagConversion;
 
-
-    @Before
+    @BeforeEach
     public void init_test() {
         zigzagConversion = new zigzagConversion();
     }
@@ -30,9 +28,8 @@ public class zigzagConversionTest {
     }
 
     @Test
-    public void testZigzag_second(){
-        System.out.println(2%4);
+    public void testZigzag_second() {
+        System.out.println(2 % 4);
     }
-
 
 }

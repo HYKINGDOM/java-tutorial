@@ -1,15 +1,16 @@
 package com.leetcode.title.reverseString;
 
-import org.junit.Before;
-import org.junit.Test;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ReverseStringTest {
 
     private ReverseString reverseString;
 
-    @Before
+    @BeforeEach
     public void init_method() {
         reverseString = new ReverseString();
     }

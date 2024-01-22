@@ -1,15 +1,15 @@
 package com.leetcode.title;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StringToIntTest {
 
     private StringToInt stringToInt;
 
-    @Before
+    @BeforeEach
     public void init_class() {
         stringToInt = new StringToInt();
     }
@@ -76,7 +76,6 @@ public class StringToIntTest {
         int num = stringToInt.myAtoi(caseString);
         assertEquals(0, num);
     }
-
 
     @Test
     public void test_case_contain_zero_and_minus_001() {

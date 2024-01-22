@@ -19,6 +19,9 @@ import java.time.LocalDateTime;
 
 
 
+/**
+ * @author meta
+ */
 @Entity
 @Builder
 @AllArgsConstructor

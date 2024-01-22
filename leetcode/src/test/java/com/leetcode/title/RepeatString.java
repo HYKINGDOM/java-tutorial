@@ -1,12 +1,16 @@
 package com.leetcode.title;
 
-import org.junit.Assert;
-import org.junit.Test;
+
+
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RepeatString {
 
@@ -15,7 +19,7 @@ public class RepeatString {
     public void test_repeat_string() {
 
         int i = lengthOfLongestSubstring("pwwkew");
-        Assert.assertEquals(1, i);
+        assertEquals(1, i);
     }
 
     /**
@@ -44,7 +48,7 @@ public class RepeatString {
     @Test
     public void check_uvaName_and_coordinate_is_number_or_string_or_int() {
 
-        Assert.assertTrue("UAV is breakdown status", uavException("plant..456", -1, -3, 4));
+        assertTrue(uavException("plant..456", -1, -3, 4));
 
     }
 
