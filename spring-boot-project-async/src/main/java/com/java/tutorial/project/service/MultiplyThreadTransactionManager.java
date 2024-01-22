@@ -12,8 +12,6 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -24,8 +22,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * 多线程事务一致性管理 <br>
- * 声明式事务管理无法完成,此时我们只能采用初期的编程式事务管理才行
+ * 多线程事务一致性管理 <br> 声明式事务管理无法完成,此时我们只能采用初期的编程式事务管理才行
  *
  * @author hy
  */
@@ -41,8 +38,8 @@ public class MultiplyThreadTransactionManager {
     /**
      * 执行的是无返回值的任务
      *
-     * @param runAbleTasks    异步执行的任务列表
-     * @param executor 异步执行任务需要用到的线程池,考虑到线程池需要隔离,这里强制要求传
+     * @param runAbleTasks 异步执行的任务列表
+     * @param executor     异步执行任务需要用到的线程池,考虑到线程池需要隔离,这里强制要求传
      */
     public void runAsyncButWaitUntilAllDown(List<Runnable> runAbleTasks, Executor executor) {
         if (executor == null) {
@@ -56,28 +53,27 @@ public class MultiplyThreadTransactionManager {
         List<TransactionStatus> transactionStatusList = new ArrayList<>(runAbleTasks.size());
         List<TransactionResource> transactionResources = new ArrayList<>(runAbleTasks.size());
 
-        runAbleTasks.forEach(task ->
-                taskFutureList.add(CompletableFuture.runAsync(() -> {
-                    try {
-                        // 1.开启新事务
-                        transactionStatusList.add(openNewTransaction(transactionManager));
-                        // 2.copy事务资源
-                        transactionResources.add(TransactionResource.copyTransactionResource());
-                        // 3.异步任务执行
-                        task.run();
-                    } catch (Throwable throwable) {
-                        // 打印异常
-                        log.error(throwable.getMessage(), throwable);
-                        // 其中某个异步任务执行出现了异常,进行标记
-                        atomicBoolean.set(Boolean.TRUE);
-                        // 其他任务还没执行的不需要执行了
-                        taskFutureList.forEach(completableFuture -> completableFuture.cancel(true));
-                    }
-                }, executor)));
+        runAbleTasks.forEach(task -> taskFutureList.add(CompletableFuture.runAsync(() -> {
+            try {
+                // 1.开启新事务
+                transactionStatusList.add(openNewTransaction(transactionManager));
+                // 2.copy事务资源
+                transactionResources.add(TransactionResource.copyTransactionResource());
+                // 3.异步任务执行
+                task.run();
+            } catch (Throwable throwable) {
+                // 打印异常
+                log.error(throwable.getMessage(), throwable);
+                // 其中某个异步任务执行出现了异常,进行标记
+                atomicBoolean.set(Boolean.TRUE);
+                // 其他任务还没执行的不需要执行了
+                taskFutureList.forEach(completableFuture -> completableFuture.cancel(true));
+            }
+        }, executor)));
 
         try {
             // 阻塞直到所有任务全部执行结束---如果有任务被取消,这里会抛出异常滴,需要捕获
-            CompletableFuture.allOf(taskFutureList.toArray(new CompletableFuture[]{})).get();
+            CompletableFuture.allOf(taskFutureList.toArray(new CompletableFuture[] {})).get();
         } catch (InterruptedException | ExecutionException e) {
             log.error(e.getMessage(), e);
         }
@@ -133,15 +129,15 @@ public class MultiplyThreadTransactionManager {
 
         public static TransactionResource copyTransactionResource() {
             return TransactionResource.builder()
-                    // 返回的是不可变集合
-                    .resources(TransactionSynchronizationManager.getResourceMap())
-                    // 如果需要注册事务监听者,这里记得修改--我们这里不需要,就采用默认负责--spring事务内部默认也是这个值
-                    .synchronizations(new LinkedHashSet<>())
-                    .currentTransactionName(TransactionSynchronizationManager.getCurrentTransactionName())
-                    .currentTransactionReadOnly(TransactionSynchronizationManager.isCurrentTransactionReadOnly())
-                    .currentTransactionIsolationLevel(
-                            TransactionSynchronizationManager.getCurrentTransactionIsolationLevel())
-                    .actualTransactionActive(TransactionSynchronizationManager.isActualTransactionActive()).build();
+                // 返回的是不可变集合
+                .resources(TransactionSynchronizationManager.getResourceMap())
+                // 如果需要注册事务监听者,这里记得修改--我们这里不需要,就采用默认负责--spring事务内部默认也是这个值
+                .synchronizations(new LinkedHashSet<>())
+                .currentTransactionName(TransactionSynchronizationManager.getCurrentTransactionName())
+                .currentTransactionReadOnly(TransactionSynchronizationManager.isCurrentTransactionReadOnly())
+                .currentTransactionIsolationLevel(
+                    TransactionSynchronizationManager.getCurrentTransactionIsolationLevel())
+                .actualTransactionActive(TransactionSynchronizationManager.isActualTransactionActive()).build();
         }
 
         public void autoWiredTransactionResource() {

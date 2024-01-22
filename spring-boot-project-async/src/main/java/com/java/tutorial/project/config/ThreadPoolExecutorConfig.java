@@ -1,14 +1,13 @@
 package com.java.tutorial.project.config;
 
-
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -19,7 +18,6 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Configuration
 public class ThreadPoolExecutorConfig {
-
 
     /**
      * cpu 核心数
@@ -58,17 +56,18 @@ public class ThreadPoolExecutorConfig {
         threadPoolTaskExecutor.setKeepAliveSeconds(KEEP_ALIVE_TIME);
         // 线程池对拒绝任务(无线程可用)的处理策略
         threadPoolTaskExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+        //线程装饰器设置traceID
+        threadPoolTaskExecutor.setTaskDecorator(
+            runnable -> ThreadMdcUtils.wrapAsync(runnable, MDC.getCopyOfContextMap()));
         threadPoolTaskExecutor.initialize();
         return threadPoolTaskExecutor;
     }
 
-
     @Bean(name = "defaultThreadPoolExecutor", destroyMethod = "shutdown")
     public ThreadPoolExecutor systemCheckPoolExecutorService() {
-        return new ThreadPoolExecutor(3, 10, 60, TimeUnit.SECONDS,
-                new LinkedBlockingQueue<Runnable>(10000),
-                new ThreadFactoryBuilder().setNameFormat("default-executor-%d").build(),
-                (r, executor) -> log.error("system pool is full! "));
+        return new ThreadPoolExecutor(3, 10, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(10000),
+            new ThreadFactoryBuilder().setNameFormat("default-executor-%d").build(),
+            (r, executor) -> log.error("system pool is full! "));
     }
 
 }
