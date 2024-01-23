@@ -2,7 +2,7 @@ package com.java.tutorial.project.service;
 
 import cn.hutool.core.util.RandomUtil;
 import com.google.common.collect.Lists;
-import com.java.tutorial.project.domain.User;
+import com.java.tutorial.project.infrastructure.domain.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

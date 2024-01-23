@@ -1,8 +1,8 @@
 package com.java.tutorial.project.config;
 
 import com.google.common.collect.Lists;
-import com.java.tutorial.project.domain.User;
-import com.java.tutorial.project.mapper.UserRepository;
+import com.java.tutorial.project.infrastructure.domain.User;
+import com.java.tutorial.project.infrastructure.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
-import java.util.function.Function;
 
 /**
  * @author HY
@@ -25,12 +24,11 @@ public class AsyncTask {
     private Executor asyncTaskExecutor;
 
     public CompletableFuture<List<User>> getUsername(List<Integer> ids) {
-        return CompletableFuture
-                .supplyAsync(() -> userRepository.getUsers(ids), asyncTaskExecutor)
-                .exceptionally(throwable -> {
-                    log.info("异常：{}", throwable.getMessage());
-                    return Lists.newArrayList();
-                });
+        return CompletableFuture.supplyAsync(() -> userRepository.getUsers(ids), asyncTaskExecutor)
+            .exceptionally(throwable -> {
+                log.info("异常：{}", throwable.getMessage());
+                return Lists.newArrayList();
+            });
     }
 
     /**

@@ -22,9 +22,8 @@ public class DataSourceConfiguration {
      *
      * @return
      */
-    @Primary
     @Bean("userDatasourceProperties")
-    @ConfigurationProperties(prefix = "spring.datasource.user")
+    @ConfigurationProperties(prefix = "spring.datasource")
     public DataSourceProperties userDataSourceProperties() {
         return new DataSourceProperties();
     }
@@ -34,7 +33,6 @@ public class DataSourceConfiguration {
      *
      * @return
      */
-    @Primary
     @Bean("userDataSource")
     @ConfigurationProperties(prefix = "spring.datasource.hikari")
     public DataSource userDataSource() {
