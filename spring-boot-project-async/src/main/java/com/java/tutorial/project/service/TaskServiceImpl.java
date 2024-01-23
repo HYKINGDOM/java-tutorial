@@ -10,24 +10,19 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-
 @Slf4j
 @Service
 public class TaskServiceImpl implements TaskService {
 
-
     @Override
     public List<String> combindStrList(String str) {
 
-
         CompletableFuture<List<String>> future1 = CompletableFuture.supplyAsync(() -> taskStringList01(str));
 
-
-        CompletableFuture<List<String>> future2 = CompletableFuture.supplyAsync(() -> taskStringList02(Long.valueOf(str)));
-
+        CompletableFuture<List<String>> future2 =
+            CompletableFuture.supplyAsync(() -> taskStringList02(Long.valueOf(str)));
 
         List<String> stringList = Lists.newArrayList();
-
 
         CompletableFuture<List<String>> result = future1.thenCombine(future2, (t, u) -> {
             stringList.addAll(t);
@@ -48,7 +43,6 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<String> serialStrList(String str) {
-
 
         List<String> strings = taskStringList01(str);
 
@@ -116,6 +110,7 @@ public class TaskServiceImpl implements TaskService {
         List<String> strings = Lists.newArrayList();
         strings.add(str);
 
+        log.info("taskStringList04:{}", strings.toString());
         return strings;
     }
 
