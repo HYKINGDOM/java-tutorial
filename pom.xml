@@ -62,6 +62,7 @@
         <module>spring-boot-project-quartz-two</module>
         <module>spring-boot-project-phone-number</module>
         <module>spring-boot-project-gateway</module>
+        <module>spring-boot-project-valid-helper</module>
     </modules>
 
     <properties>
@@ -255,7 +256,6 @@
                 <version>1.5.5.Final</version>
                 <scope>compile</scope>
             </dependency>
-
 
 
             <!-- 测试依赖 -->
