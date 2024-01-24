@@ -1,6 +1,7 @@
-package com.meta.quartz.task;
+package com.java.tutorial.project.task;
 
-import com.meta.common.core.utils.StringUtils;
+
+import com.java.tutorial.project.util.StringUtils;
 import org.springframework.stereotype.Component;
 
 /**
