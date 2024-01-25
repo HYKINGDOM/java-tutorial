@@ -1,15 +1,12 @@
 package com.java.tutorial.project.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 import com.java.tutorial.project.util.CronUtils;
 import com.java.tutorial.project.util.ScheduleConstants;
 import com.java.tutorial.project.util.StringUtils;
 import com.mybatisflex.annotation.Table;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -25,7 +22,6 @@ import java.util.Date;
 @Table(value = "sys_job")
 @EqualsAndHashCode(callSuper = true)
 public class SysJob extends BaseEntity {
-
 
     private static final long serialVersionUID = 1L;
 
@@ -54,6 +50,15 @@ public class SysJob extends BaseEntity {
     /** 任务状态（0正常 1暂停） */
     private String status;
 
+    private String remark;
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
 
     @NotBlank(message = "调用目标字符串不能为空")
     @Size(min = 0, max = 500, message = "调用目标字符串长度不能超过500个字符")

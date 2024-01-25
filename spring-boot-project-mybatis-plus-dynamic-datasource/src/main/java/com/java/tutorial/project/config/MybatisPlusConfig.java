@@ -3,9 +3,7 @@ package com.java.tutorial.project.config;
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.pagination.optimize.JsqlParserCountOptimize;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
-import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.transaction.SpringManagedTransactionFactory;
@@ -16,10 +14,12 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import javax.sql.DataSource;
 import java.util.Collections;
 
+/**
+ * @author meta
+ */
 @Configuration
-@MapperScan("mappper所在包")
+@MapperScan("com.java.tutorial.project.infrastructure.mapper")
 public class MybatisPlusConfig {
-
 
     /**
      * 分页插件
@@ -36,7 +36,7 @@ public class MybatisPlusConfig {
     }
 
     @Bean
-    public MybatisPlusInterceptor mybatisPlusInterceptor(){
+    public MybatisPlusInterceptor mybatisPlusInterceptor() {
         MybatisPlusInterceptor mybatisPlusInterceptor = new MybatisPlusInterceptor();
         mybatisPlusInterceptor.setInterceptors(Collections.singletonList(paginationInnerInterceptor()));
         return mybatisPlusInterceptor;
@@ -46,10 +46,10 @@ public class MybatisPlusConfig {
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
         MybatisSqlSessionFactoryBean sqlSessionFactoryBean = new MybatisSqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource);
-        sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:mapper/*/*.xml"));
+        sqlSessionFactoryBean.setMapperLocations(
+            new PathMatchingResourcePatternResolver().getResources("classpath*:mapper/*/*.xml"));
         sqlSessionFactoryBean.setTransactionFactory(new SpringManagedTransactionFactory());
         return sqlSessionFactoryBean.getObject();
     }
-
 
 }

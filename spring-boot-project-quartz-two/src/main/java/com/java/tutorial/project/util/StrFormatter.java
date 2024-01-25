@@ -4,7 +4,7 @@ package com.java.tutorial.project.util;
 /**
  * 字符串格式化
  *
- * @author ruoyi
+ * @author meta
  */
 public class StrFormatter {
     public static final String EMPTY_JSON = "{}";

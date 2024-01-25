@@ -30,6 +30,7 @@ public class SysUserInfoRepositoryImpl implements SysUserInfoRepository {
      * @param id 主键
      * @return 实例对象
      */
+    @Override
     public SysUserInfo queryById(Integer id) {
         SysUserInfoEntity sysUserInfoEntity = sysUserInfoDao.selectById(id);
         return sysUserInfoMapping.toSysUserInfo(sysUserInfoEntity);
@@ -41,6 +42,7 @@ public class SysUserInfoRepositoryImpl implements SysUserInfoRepository {
      * @param sysUserInfo 实例对象
      * @return 实例对象
      */
+    @Override
     public SysUserInfo insert(SysUserInfo sysUserInfo) {
         SysUserInfoEntity sysUserInfoEntity = sysUserInfoMapping.toSysUserInfoEntity(sysUserInfo);
         sysUserInfoDao.insert(sysUserInfoEntity);
@@ -53,6 +55,7 @@ public class SysUserInfoRepositoryImpl implements SysUserInfoRepository {
      * @param sysUserInfo 实例对象
      * @return 实例对象
      */
+    @Override
     public SysUserInfo update(SysUserInfo sysUserInfo) {
         SysUserInfoEntity sysUserInfoEntity = sysUserInfoMapping.toSysUserInfoEntity(sysUserInfo);
         //1. 根据条件动态更新
@@ -122,6 +125,7 @@ public class SysUserInfoRepositoryImpl implements SysUserInfoRepository {
      * @param id 主键
      * @return 是否成功
      */
+    @Override
     public boolean deleteById(Integer id) {
         int total = sysUserInfoDao.deleteById(id);
         return total > 0;

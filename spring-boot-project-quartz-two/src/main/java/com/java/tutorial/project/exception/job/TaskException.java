@@ -5,13 +5,13 @@ import lombok.Getter;
 /**
  * 计划策略异常
  *
- * @author ruoyi
+ * @author meta
  */
 @Getter
 public class TaskException extends Exception {
     private static final long serialVersionUID = 1L;
 
-    private Code code;
+    private final Code code;
 
     public TaskException(String msg, Code code) {
         this(msg, code, null);

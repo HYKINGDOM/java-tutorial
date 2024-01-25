@@ -3,7 +3,7 @@ package com.java.tutorial.project.exception;
 /**
  * 检查异常
  *
- * @author ruoyi
+ * @author meta
  */
 public class CheckedException extends RuntimeException {
     private static final long serialVersionUID = 1L;

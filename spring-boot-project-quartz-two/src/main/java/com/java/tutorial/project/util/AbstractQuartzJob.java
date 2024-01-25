@@ -1,6 +1,5 @@
 package com.java.tutorial.project.util;
 
-
 import com.java.coco.utils.ExceptionUtil;
 import com.java.tutorial.project.domain.SysJob;
 import com.java.tutorial.project.domain.SysJobLog;

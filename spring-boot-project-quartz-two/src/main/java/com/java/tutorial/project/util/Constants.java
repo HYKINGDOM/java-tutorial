@@ -3,7 +3,7 @@ package com.java.tutorial.project.util;
 /**
  * 通用常量信息
  *
- * @author ruoyi
+ * @author meta
  */
 public class Constants {
     /**

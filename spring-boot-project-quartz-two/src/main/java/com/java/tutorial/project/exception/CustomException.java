@@ -3,7 +3,7 @@ package com.java.tutorial.project.exception;
 /**
  * 自定义异常
  *
- * @author ruoyi
+ * @author meta
  */
 public class CustomException extends RuntimeException {
     private static final long serialVersionUID = 1L;

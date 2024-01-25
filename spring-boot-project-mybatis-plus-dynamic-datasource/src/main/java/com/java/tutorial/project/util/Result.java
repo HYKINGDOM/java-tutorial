@@ -5,6 +5,7 @@ import java.util.Map;
 
 /**
  * 返回数据
+ * @author meta
  */
 public class Result extends HashMap<String, Object> {
 	private static final long serialVersionUID = 1L;
@@ -62,8 +63,7 @@ public class Result extends HashMap<String, Object> {
 		return this;
 	}
 	
-	public Result put(Object value) {
+	public void put(Object value) {
 		super.put("data", value);
-		return this;
 	}
 }
