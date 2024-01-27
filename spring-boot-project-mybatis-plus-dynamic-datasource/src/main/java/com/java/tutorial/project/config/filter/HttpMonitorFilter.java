@@ -29,9 +29,11 @@ import java.io.IOException;
  */
 public class HttpMonitorFilter implements Filter {
 
+    private final Logger log = LoggerFactory.getLogger(HttpMonitorFilter.class);
+
+
     public static final String UN_KNOWN = "unknown";
 
-    private final Logger log = LoggerFactory.getLogger(HttpMonitorFilter.class);
 
     private final MonitorProperties properties;
 

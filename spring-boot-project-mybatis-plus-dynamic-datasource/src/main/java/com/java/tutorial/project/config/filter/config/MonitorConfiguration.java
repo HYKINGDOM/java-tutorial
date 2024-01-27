@@ -12,16 +12,19 @@ import javax.annotation.Resource;
 
 @Configuration
 public class MonitorConfiguration {
+    private static final Log log = LogFactory.getLog(MonitorConfiguration.class);
+
+
     @Resource
     private MonitorProperties monitorProperties;
-    private static final Log log = LogFactory.getLog(MonitorConfiguration.class);
 
     /**
      * 注入过滤器管理
+     *
      * @return
      */
     @Bean
-    public FilterRegistrationBean httpMonitorFilterRegistration() {
+    public FilterRegistrationBean<HttpMonitorFilter> httpMonitorFilterRegistration() {
         FilterRegistrationBean<HttpMonitorFilter> registration = new FilterRegistrationBean<>();
         registration.setFilter(new HttpMonitorFilter(monitorProperties));
         registration.addUrlPatterns("/*");

@@ -15,7 +15,7 @@ public class HttpResponseWrapper extends HttpServletResponseWrapper {
 
     private ByteArrayOutputStream bytes = new ByteArrayOutputStream();
     private HttpServletResponse response;
-    private PrintWriter pwrite;
+    private PrintWriter printWriter;
 
     public HttpResponseWrapper(HttpServletResponse response) {
         super(response);
@@ -29,8 +29,8 @@ public class HttpResponseWrapper extends HttpServletResponseWrapper {
 
     @Override
     public PrintWriter getWriter() {
-        pwrite = new PrintWriter(new OutputStreamWriter(bytes, StandardCharsets.UTF_8));
-        return pwrite;
+        printWriter = new PrintWriter(new OutputStreamWriter(bytes, StandardCharsets.UTF_8));
+        return printWriter;
     }
 
     /**
@@ -39,8 +39,8 @@ public class HttpResponseWrapper extends HttpServletResponseWrapper {
      * @return
      */
     public byte[] getBytes() {
-        if (null != pwrite) {
-            pwrite.close();
+        if (null != printWriter) {
+            printWriter.close();
             return bytes.toByteArray();
         }
 
@@ -56,8 +56,8 @@ public class HttpResponseWrapper extends HttpServletResponseWrapper {
     }
 
     public String getContent() throws UnsupportedEncodingException {
-        if (null != pwrite) {
-            pwrite.close();
+        if (null != printWriter) {
+            printWriter.close();
             return bytes.toString(StandardCharsets.UTF_8);
         }
 
@@ -73,16 +73,16 @@ public class HttpResponseWrapper extends HttpServletResponseWrapper {
     }
 
     class MyServletOutputStream extends ServletOutputStream {
-        private ByteArrayOutputStream ostream;
+        private ByteArrayOutputStream outputStream;
 
-        public MyServletOutputStream(ByteArrayOutputStream ostream) {
-            this.ostream = ostream;
+        public MyServletOutputStream(ByteArrayOutputStream outputStream) {
+            this.outputStream = outputStream;
         }
 
         @Override
         public void write(int b) {
             // 将数据写到 stream　中
-            ostream.write(b);
+            outputStream.write(b);
         }
 
         @Override
