@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.java.coco.utils.http.HttpClientUtil;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.java.coco.utils.http.HttpUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -29,7 +31,7 @@ public class MsgClient {
         params.put("appCode", 8);
         params.put("linkUrl", "");
         params.put("schedule", "");
-        String response = HttpClientUtil.doPostWithBody(groupUrl, JSON.toJSONString(params));
+        String response = HttpUtils.doPostWithBody(groupUrl, JSON.toJSONString(params));
         log.info("response = {}", response);
     }
 
@@ -43,7 +45,7 @@ public class MsgClient {
         params.put("appCode", 8);
         params.put("linkUrl", "");
         params.put("schedule", "");
-        String response = HttpClientUtil.doPostWithBody(personUrl, JSON.toJSONString(params));
+        String response = HttpUtils.doPostWithBody(personUrl, JSON.toJSONString(params));
         log.info("response = {}", response);
     }
 }
