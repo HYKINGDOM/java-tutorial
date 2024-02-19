@@ -17,11 +17,10 @@ class DirectorUtilTest {
     @Test
     void test_clearNullFileDir() throws IOException {
 
-//        createMoreFiles();
-//
-//        clearNullFileDir("I:\\data");
+        //        createMoreFiles();
+        //
+        //        clearNullFileDir("I:\\data");
     }
-
 
     @Test
     void test_create_file() {
@@ -38,8 +37,5 @@ class DirectorUtilTest {
 
         createMoreFiles();
     }
-
-
-
 
 }

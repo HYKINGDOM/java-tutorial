@@ -28,27 +28,24 @@ public class UserProjector {
 
         for (Event event : events) {
             if (event instanceof UserAddressAddedEvent)
-                apply(userId, (UserAddressAddedEvent) event);
+                apply(userId, (UserAddressAddedEvent)event);
             if (event instanceof UserAddressRemovedEvent)
-                apply(userId, (UserAddressRemovedEvent) event);
+                apply(userId, (UserAddressRemovedEvent)event);
             if (event instanceof UserContactAddedEvent)
-                apply(userId, (UserContactAddedEvent) event);
+                apply(userId, (UserContactAddedEvent)event);
             if (event instanceof UserContactRemovedEvent)
-                apply(userId, (UserContactRemovedEvent) event);
+                apply(userId, (UserContactRemovedEvent)event);
         }
 
     }
 
     public void apply(String userId, UserAddressAddedEvent event) {
         Address address = new Address(event.getCity(), event.getState(), event.getPostCode());
-        UserAddress userAddress = Optional.ofNullable(readRepository.getUserAddress(userId))
-            .orElse(new UserAddress());
-        Set<Address> addresses = Optional.ofNullable(userAddress.getAddressByRegion()
-            .get(address.getState()))
-            .orElse(new HashSet<>());
+        UserAddress userAddress = Optional.ofNullable(readRepository.getUserAddress(userId)).orElse(new UserAddress());
+        Set<Address> addresses =
+            Optional.ofNullable(userAddress.getAddressByRegion().get(address.getState())).orElse(new HashSet<>());
         addresses.add(address);
-        userAddress.getAddressByRegion()
-            .put(address.getState(), addresses);
+        userAddress.getAddressByRegion().put(address.getState(), addresses);
         readRepository.addUserAddress(userId, userAddress);
     }
 
@@ -56,8 +53,7 @@ public class UserProjector {
         Address address = new Address(event.getCity(), event.getState(), event.getPostCode());
         UserAddress userAddress = readRepository.getUserAddress(userId);
         if (userAddress != null) {
-            Set<Address> addresses = userAddress.getAddressByRegion()
-                .get(address.getState());
+            Set<Address> addresses = userAddress.getAddressByRegion().get(address.getState());
             if (addresses != null)
                 addresses.remove(address);
             readRepository.addUserAddress(userId, userAddress);
@@ -66,14 +62,11 @@ public class UserProjector {
 
     public void apply(String userId, UserContactAddedEvent event) {
         Contact contact = new Contact(event.getContactType(), event.getContactDetails());
-        UserContact userContact = Optional.ofNullable(readRepository.getUserContact(userId))
-            .orElse(new UserContact());
-        Set<Contact> contacts = Optional.ofNullable(userContact.getContactByType()
-            .get(contact.getType()))
-            .orElse(new HashSet<>());
+        UserContact userContact = Optional.ofNullable(readRepository.getUserContact(userId)).orElse(new UserContact());
+        Set<Contact> contacts =
+            Optional.ofNullable(userContact.getContactByType().get(contact.getType())).orElse(new HashSet<>());
         contacts.add(contact);
-        userContact.getContactByType()
-            .put(contact.getType(), contacts);
+        userContact.getContactByType().put(contact.getType(), contacts);
         readRepository.addUserContact(userId, userContact);
     }
 
@@ -81,8 +74,7 @@ public class UserProjector {
         Contact contact = new Contact(event.getContactType(), event.getContactDetails());
         UserContact userContact = readRepository.getUserContact(userId);
         if (userContact != null) {
-            Set<Contact> contacts = userContact.getContactByType()
-                .get(contact.getType());
+            Set<Contact> contacts = userContact.getContactByType().get(contact.getType());
             if (contacts != null)
                 contacts.remove(contact);
             readRepository.addUserContact(userId, userContact);

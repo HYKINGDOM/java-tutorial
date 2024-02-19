@@ -2,6 +2,7 @@ package com.java.tutorial.project.dependnew;
 
 /**
  * 一个包装类
+ *
  * @author wuweifeng wrote on 2019-12-26
  * @version 1.0
  */
@@ -22,8 +23,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                '}';
+        return "User{" + "name='" + name + '\'' + '}';
     }
 }

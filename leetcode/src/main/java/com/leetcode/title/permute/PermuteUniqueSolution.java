@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Stack;
-import java.util.stream.Collectors;
 
 public class PermuteUniqueSolution {
 
@@ -27,13 +26,13 @@ public class PermuteUniqueSolution {
         return new ArrayList<>(result);
     }
 
-    private void addList(HashSet<List<Integer>> result, Stack<Integer> path, boolean[] flag, int[] nums, int startFlag, int deep) {
+    private void addList(HashSet<List<Integer>> result, Stack<Integer> path, boolean[] flag, int[] nums, int startFlag,
+        int deep) {
 
         if (startFlag == deep) {
             result.add(new ArrayList<>(path));
             return;
         }
-
 
         for (int i = 0; i < startFlag; i++) {
             if (!flag[i]) {

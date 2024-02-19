@@ -6,16 +6,13 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class SolveNQueensSolutionTest {
 
-
     private SolveNQueensSolution solveNQueensSolution;
-
 
     private char[][] chars;
 
@@ -31,15 +28,13 @@ class SolveNQueensSolutionTest {
         }
     }
 
-
     @Test
     public void test_main_1() {
         int n = 10;
         List<List<String>> profit = solveNQueensSolution.solveNQueens(n);
 
-        List<List<String>> result = Lists.newArrayList(
-                Lists.newArrayList(".Q..", "...Q", "Q...", "..Q.")
-                , Lists.newArrayList("..Q.", "Q...", "...Q", ".Q.."));
+        List<List<String>> result = Lists.newArrayList(Lists.newArrayList(".Q..", "...Q", "Q...", "..Q."),
+            Lists.newArrayList("..Q.", "Q...", "...Q", ".Q.."));
 
         assertThat(profit.size()).isEqualTo(1);
         assertThat(profit).isEqualTo(result);
@@ -57,7 +52,6 @@ class SolveNQueensSolutionTest {
         assertThat(profit.size()).isEqualTo(1);
         assertThat(profit).isEqualTo(result);
     }
-
 
     @Test
     public void test_judgeDiagonalLeftLine_1() {

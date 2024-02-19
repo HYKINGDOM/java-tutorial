@@ -11,7 +11,6 @@ public class RunProcessA implements RunProcess {
             exception.printStackTrace();
         }
 
-
         return a + 3;
     }
 }

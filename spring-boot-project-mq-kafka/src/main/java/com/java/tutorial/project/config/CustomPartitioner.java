@@ -10,7 +10,6 @@ import org.springframework.util.StringUtils;
 import java.util.List;
 import java.util.Map;
 
-
 @Slf4j
 @Service
 public class CustomPartitioner implements Partitioner {

@@ -14,12 +14,11 @@ import java.util.Map;
 @Builder
 public class SmsRequest implements Serializable {
 
-    private Map<String,Object> metaDatas;
+    private Map<String, Object> metaDatas;
 
     private String to;
 
     private String message;
-
 
     private SmsType smsType;
 

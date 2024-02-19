@@ -19,9 +19,9 @@ public final class PrintExceptionFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-            throws IOException, ServletException {
+        throws IOException, ServletException {
 
-        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletRequest req = (HttpServletRequest)request;
         if ("POST".equals(req.getMethod())) {
             chain.doFilter(new PrintExceptionRequestWrapper(req), response);
             // 解密请求信息

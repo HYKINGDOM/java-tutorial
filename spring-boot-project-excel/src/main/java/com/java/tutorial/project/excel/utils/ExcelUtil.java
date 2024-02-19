@@ -1,6 +1,5 @@
 package com.java.tutorial.project.excel.utils;
 
-
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.io.resource.ClassPathResource;
 import cn.hutool.core.util.IdUtil;
@@ -48,7 +47,6 @@ public class ExcelUtil {
     public static <T> List<T> importExcel(InputStream is, Class<T> clazz) {
         return EasyExcel.read(is).head(clazz).autoCloseStream(false).sheet().doReadSync();
     }
-
 
     /**
      * 使用校验监听器 异步导入 同步返回
@@ -104,7 +102,8 @@ public class ExcelUtil {
      * @param response  响应体
      * @param options   级联下拉选
      */
-    public static <T> void exportExcel(List<T> list, String sheetName, Class<T> clazz, HttpServletResponse response, List<DropDownOptions> options) {
+    public static <T> void exportExcel(List<T> list, String sheetName, Class<T> clazz, HttpServletResponse response,
+        List<DropDownOptions> options) {
         try {
             resetResponse(sheetName, response);
             ServletOutputStream os = response.getOutputStream();
@@ -123,7 +122,8 @@ public class ExcelUtil {
      * @param merge     是否合并单元格
      * @param response  响应体
      */
-    public static <T> void exportExcel(List<T> list, String sheetName, Class<T> clazz, boolean merge, HttpServletResponse response) {
+    public static <T> void exportExcel(List<T> list, String sheetName, Class<T> clazz, boolean merge,
+        HttpServletResponse response) {
         try {
             resetResponse(sheetName, response);
             ServletOutputStream os = response.getOutputStream();
@@ -143,7 +143,8 @@ public class ExcelUtil {
      * @param response  响应体
      * @param options   级联下拉选
      */
-    public static <T> void exportExcel(List<T> list, String sheetName, Class<T> clazz, boolean merge, HttpServletResponse response, List<DropDownOptions> options) {
+    public static <T> void exportExcel(List<T> list, String sheetName, Class<T> clazz, boolean merge,
+        HttpServletResponse response, List<DropDownOptions> options) {
         try {
             resetResponse(sheetName, response);
             ServletOutputStream os = response.getOutputStream();
@@ -174,7 +175,8 @@ public class ExcelUtil {
      * @param os        输出流
      * @param options   级联下拉选内容
      */
-    public static <T> void exportExcel(List<T> list, String sheetName, Class<T> clazz, OutputStream os, List<DropDownOptions> options) {
+    public static <T> void exportExcel(List<T> list, String sheetName, Class<T> clazz, OutputStream os,
+        List<DropDownOptions> options) {
         exportExcel(list, sheetName, clazz, false, os, options);
     }
 
@@ -187,15 +189,13 @@ public class ExcelUtil {
      * @param merge     是否合并单元格
      * @param os        输出流
      */
-    public static <T> void exportExcel(List<T> list, String sheetName, Class<T> clazz, boolean merge,
-                                       OutputStream os, List<DropDownOptions> options) {
-        ExcelWriterSheetBuilder builder = EasyExcel.write(os, clazz)
-            .autoCloseStream(false)
+    public static <T> void exportExcel(List<T> list, String sheetName, Class<T> clazz, boolean merge, OutputStream os,
+        List<DropDownOptions> options) {
+        ExcelWriterSheetBuilder builder = EasyExcel.write(os, clazz).autoCloseStream(false)
             // 自动适配
             .registerWriteHandler(new LongestMatchColumnWidthStyleStrategy())
             // 大数值自动转换 防止失真
-            .registerConverter(new ExcelBigNumberConvert())
-            .sheet(sheetName);
+            .registerConverter(new ExcelBigNumberConvert()).sheet(sheetName);
         if (merge) {
             // 合并处理器
             builder.registerWriteHandler(new CellMergeStrategy(list, true));
@@ -209,13 +209,12 @@ public class ExcelUtil {
      * 单表多数据模板导出 模板格式为 {.属性}
      *
      * @param filename     文件名
-     * @param templatePath 模板路径 resource 目录下的路径包括模板文件名
-     *                     例如: excel/temp.xlsx
-     *                     重点: 模板文件必须放置到启动类对应的 resource 目录下
+     * @param templatePath 模板路径 resource 目录下的路径包括模板文件名 例如: excel/temp.xlsx 重点: 模板文件必须放置到启动类对应的 resource 目录下
      * @param data         模板需要的数据
      * @param response     响应体
      */
-    public static void exportTemplate(List<Object> data, String filename, String templatePath, HttpServletResponse response) {
+    public static void exportTemplate(List<Object> data, String filename, String templatePath,
+        HttpServletResponse response) {
         try {
             resetResponse(filename, response);
             ServletOutputStream os = response.getOutputStream();
@@ -228,20 +227,15 @@ public class ExcelUtil {
     /**
      * 单表多数据模板导出 模板格式为 {.属性}
      *
-     * @param templatePath 模板路径 resource 目录下的路径包括模板文件名
-     *                     例如: excel/temp.xlsx
-     *                     重点: 模板文件必须放置到启动类对应的 resource 目录下
+     * @param templatePath 模板路径 resource 目录下的路径包括模板文件名 例如: excel/temp.xlsx 重点: 模板文件必须放置到启动类对应的 resource 目录下
      * @param data         模板需要的数据
      * @param os           输出流
      */
     public static void exportTemplate(List<Object> data, String templatePath, OutputStream os) {
         ClassPathResource templateResource = new ClassPathResource(templatePath);
-        ExcelWriter excelWriter = EasyExcel.write(os)
-            .withTemplate(templateResource.getStream())
-            .autoCloseStream(false)
+        ExcelWriter excelWriter = EasyExcel.write(os).withTemplate(templateResource.getStream()).autoCloseStream(false)
             // 大数值自动转换 防止失真
-            .registerConverter(new ExcelBigNumberConvert())
-            .build();
+            .registerConverter(new ExcelBigNumberConvert()).build();
         WriteSheet writeSheet = EasyExcel.writerSheet().build();
         if (CollUtil.isEmpty(data)) {
             throw new IllegalArgumentException("数据为空");
@@ -257,13 +251,12 @@ public class ExcelUtil {
      * 多表多数据模板导出 模板格式为 {key.属性}
      *
      * @param filename     文件名
-     * @param templatePath 模板路径 resource 目录下的路径包括模板文件名
-     *                     例如: excel/temp.xlsx
-     *                     重点: 模板文件必须放置到启动类对应的 resource 目录下
+     * @param templatePath 模板路径 resource 目录下的路径包括模板文件名 例如: excel/temp.xlsx 重点: 模板文件必须放置到启动类对应的 resource 目录下
      * @param data         模板需要的数据
      * @param response     响应体
      */
-    public static void exportTemplateMultiList(Map<String, Object> data, String filename, String templatePath, HttpServletResponse response) {
+    public static void exportTemplateMultiList(Map<String, Object> data, String filename, String templatePath,
+        HttpServletResponse response) {
         try {
             resetResponse(filename, response);
             ServletOutputStream os = response.getOutputStream();
@@ -276,20 +269,15 @@ public class ExcelUtil {
     /**
      * 多表多数据模板导出 模板格式为 {key.属性}
      *
-     * @param templatePath 模板路径 resource 目录下的路径包括模板文件名
-     *                     例如: excel/temp.xlsx
-     *                     重点: 模板文件必须放置到启动类对应的 resource 目录下
+     * @param templatePath 模板路径 resource 目录下的路径包括模板文件名 例如: excel/temp.xlsx 重点: 模板文件必须放置到启动类对应的 resource 目录下
      * @param data         模板需要的数据
      * @param os           输出流
      */
     public static void exportTemplateMultiList(Map<String, Object> data, String templatePath, OutputStream os) {
         ClassPathResource templateResource = new ClassPathResource(templatePath);
-        ExcelWriter excelWriter = EasyExcel.write(os)
-            .withTemplate(templateResource.getStream())
-            .autoCloseStream(false)
+        ExcelWriter excelWriter = EasyExcel.write(os).withTemplate(templateResource.getStream()).autoCloseStream(false)
             // 大数值自动转换 防止失真
-            .registerConverter(new ExcelBigNumberConvert())
-            .build();
+            .registerConverter(new ExcelBigNumberConvert()).build();
         WriteSheet writeSheet = EasyExcel.writerSheet().build();
         if (CollUtil.isEmpty(data)) {
             throw new IllegalArgumentException("数据为空");
@@ -299,7 +287,7 @@ public class ExcelUtil {
             FillConfig fillConfig = FillConfig.builder().forceNewRow(Boolean.TRUE).build();
             if (map.getValue() instanceof Collection) {
                 // 多表导出必须使用 FillWrapper
-                excelWriter.fill(new FillWrapper(map.getKey(), (Collection<?>) map.getValue()), fillConfig, writeSheet);
+                excelWriter.fill(new FillWrapper(map.getKey(), (Collection<?>)map.getValue()), fillConfig, writeSheet);
             } else {
                 excelWriter.fill(map.getValue(), writeSheet);
             }
@@ -310,7 +298,8 @@ public class ExcelUtil {
     /**
      * 重置响应体
      */
-    private static void resetResponse(String sheetName, HttpServletResponse response) throws UnsupportedEncodingException {
+    private static void resetResponse(String sheetName, HttpServletResponse response)
+        throws UnsupportedEncodingException {
         String filename = encodingFilename(sheetName);
         FileUtils.setAttachmentResponseHeader(response, filename);
         response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8");

@@ -30,11 +30,7 @@ public class WorkResult<V> {
 
     @Override
     public String toString() {
-        return "WorkResult{" +
-                "result=" + result +
-                ", resultState=" + resultState +
-                ", ex=" + ex +
-                '}';
+        return "WorkResult{" + "result=" + result + ", resultState=" + resultState + ", ex=" + ex + '}';
     }
 
     public Exception getEx() {

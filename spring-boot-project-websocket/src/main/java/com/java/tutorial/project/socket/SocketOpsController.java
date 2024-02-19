@@ -23,7 +23,6 @@ public class SocketOpsController {
     }
 
     /**
-     *  
      * 变更数据
      */
     @GetMapping(path = "publish")

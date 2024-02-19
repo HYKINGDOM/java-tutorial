@@ -1,6 +1,5 @@
 package com.java.tutorial.project;
 
-
 import cn.hutool.core.util.RandomUtil;
 import com.google.common.hash.BloomFilter;
 
@@ -23,12 +22,9 @@ import java.util.Set;
 
 public class StringListDemoTest {
 
-
     private static List<String> aDemo;
 
-
     private static List<String> bDemo;
-
 
     @BeforeEach
     public void ini_data() {
@@ -48,7 +44,6 @@ public class StringListDemoTest {
         }
     }
 
-
     @Test
     public void test_demo_01() {
 
@@ -60,7 +55,6 @@ public class StringListDemoTest {
         System.out.println(stopWatch.getTotalTimeSeconds() + " :test_demo_01: " + aDemo.size());
     }
 
-
     @Test
     public void test_demo_02() {
         StopWatch stopWatch = new StopWatch();
@@ -71,10 +65,8 @@ public class StringListDemoTest {
         System.out.println(stopWatch.getTotalTimeSeconds() + " :test_demo_02: " + aDemo.size());
     }
 
-
     @Test
     public void test_demo_03() {
-
 
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
@@ -92,10 +84,8 @@ public class StringListDemoTest {
         System.out.println(stopWatch.getTotalTimeSeconds() + " :test_demo_03: " + aDemo.size());
     }
 
-
     @Test
     public void test_demo_04() {
-
 
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
@@ -107,16 +97,14 @@ public class StringListDemoTest {
         System.out.println(stopWatch.getTotalTimeSeconds() + " :test_demo_04: " + aDemo.size());
     }
 
-
-
     @Test
     public void test_demo_05() {
-
 
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
 
-        BloomFilter<String> bloomFilter = BloomFilter.create(Funnels.stringFunnel(StandardCharsets.UTF_8), bDemo.size());
+        BloomFilter<String> bloomFilter =
+            BloomFilter.create(Funnels.stringFunnel(StandardCharsets.UTF_8), bDemo.size());
         for (String num : bDemo) {
             bloomFilter.put(num);
         }
@@ -127,17 +115,16 @@ public class StringListDemoTest {
         System.out.println(stopWatch.getTotalTimeSeconds() + " :test_demo_05: " + aDemo.size());
     }
 
-
     @Test
     public void test_demo_06() {
-
 
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
 
         // 创建布谷鸟过滤器
         // create
-        CuckooFilter<CharSequence> cuckooFilter = new CuckooFilter.Builder<>(Funnels.stringFunnel(StandardCharsets.UTF_8), bDemo.size()).build();
+        CuckooFilter<CharSequence> cuckooFilter =
+            new CuckooFilter.Builder<>(Funnels.stringFunnel(StandardCharsets.UTF_8), bDemo.size()).build();
         for (String num : bDemo) {
             cuckooFilter.put(num);
         }

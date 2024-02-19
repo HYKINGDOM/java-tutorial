@@ -6,7 +6,6 @@ import java.util.Optional;
 
 public class OptionalDemoTest {
 
-
     @Test
     public void test_Optional_Demo_Test_01() {
         Integer value1 = null;
@@ -43,7 +42,6 @@ public class OptionalDemoTest {
         }
     }
 
-
     @Test
     public void test_Optional_Demo_Test_02() {
         Integer value1 = null;
@@ -63,7 +61,6 @@ public class OptionalDemoTest {
             System.out.println("optional2的值获取失败,原因:" + e.getMessage());
         }
     }
-
 
     @Test
     public void test_Optional_Demo_Test_03() {
@@ -91,7 +88,6 @@ public class OptionalDemoTest {
             System.out.println("optional2的isPresent判空失败,原因:" + e.getMessage());
         }
 
-
         optional1.ifPresent(t -> {
             int i = t + 1;
             System.out.println("optional1处理后的值是" + i);
@@ -101,19 +97,15 @@ public class OptionalDemoTest {
             System.out.println("optional2处理后的值是" + i);
         });
 
-
         Integer value3 = 2;
         Integer result = optional1.orElse(value3);
         System.out.println("optional1执行orElse处理后的值是" + result);
 
-
         result = optional2.orElse(value3);
         System.out.println("optional2执行orElse处理后的值是" + result);
 
-
         result = optional1.orElseGet(() -> -1);
         System.out.println("optional1执行orElseGet处理后的值是" + result);
-
 
         result = optional2.orElseGet(() -> -1);
         System.out.println("optional2执行orElseGet处理后的值是" + result);
@@ -132,7 +124,6 @@ public class OptionalDemoTest {
 
     }
 
-
     @Test
     public void test_Optional_Demo_Test_04() {
 
@@ -141,13 +132,11 @@ public class OptionalDemoTest {
         Optional<Integer> optional1 = Optional.ofNullable(value1);
         Optional<Integer> optional2 = Optional.of(value2);
 
-
         Optional<Integer> result = optional1.filter(t -> t > 5);
         System.out.println("optional1的filter后的值:" + result);
         result = optional2.filter(t -> t > 5);
         System.out.println("optional2的filter后的值:" + result);
     }
-
 
     @Test
     public void test_Optional_Demo_Test_05() {
@@ -160,35 +149,28 @@ public class OptionalDemoTest {
         Optional<String> result = optional1.map(User::getName);
         System.out.println("optional1的map后的值:" + result);
 
-
         System.out.println("optional2的map前的值:" + optional2);
         result = optional2.map(User::getName);
         System.out.println("optional2的map后的值:" + result);
 
-
         System.out.println("===========flatMap========");
-
 
         System.out.println("optional1的flatMap前的值:" + optional1);
         Optional<Integer> result2 = optional1.flatMap(t -> Optional.ofNullable(t.getAge()));
         System.out.println("optional1的flatMap后的值:" + result2);
-
 
         System.out.println("optional2的flatMap前的值:" + optional2);
         result2 = optional2.flatMap(t -> Optional.ofNullable(t.getAge()));
         System.out.println("optional2的flatMap后的值:" + result2);
     }
 
-
     @Test
     public void test_Optional_Demo_Test_06() {
     }
 
-
     @Test
     public void test_Optional_Demo_Test_07() {
     }
-
 
     public class User {
         String name;
@@ -199,11 +181,9 @@ public class OptionalDemoTest {
             this.age = age;
         }
 
-
         public String getName() {
             return name;
         }
-
 
         public Integer getAge() {
             return age;

@@ -16,7 +16,6 @@ class SpringBootProjectApplicationTests {
     @Autowired
     private KieBase kieBase;
 
-
     @Test
     public void people() {
 

@@ -1,6 +1,5 @@
 package com.java.tutorial.project.controller.validator;
 
-
 import com.java.tutorial.project.controller.request.UserRequest;
 import com.java.tutorial.project.controller.validator.annotation.UserValid;
 import org.hibernate.validator.internal.engine.constraintvalidation.ConstraintValidatorContextImpl;
@@ -20,7 +19,7 @@ public class UserValidHandle implements ConstraintValidator<UserValid, UserReque
     @Override
     public boolean isValid(UserRequest value, ConstraintValidatorContext context) {
 
-        ConstraintValidatorContextImpl cvc = (ConstraintValidatorContextImpl) context;
+        ConstraintValidatorContextImpl cvc = (ConstraintValidatorContextImpl)context;
         Set<Class<? extends Payload>> payload = cvc.getConstraintDescriptor().getPayload();
         for (Class<? extends Payload> aClass : payload) {
             System.out.println(aClass.toString());

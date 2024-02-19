@@ -6,6 +6,5 @@ public interface TypeService {
 
     boolean isTypeBoolean(String type);
 
-
     String getDataByDataBase(String type, Function<String, String> function);
 }

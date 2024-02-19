@@ -1,6 +1,5 @@
 package com.java.coco.bookmarksyntool;
 
-
 import lombok.Builder;
 import lombok.Data;
 

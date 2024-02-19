@@ -18,11 +18,11 @@ public class HandleResult<R> {
     }
 
     /**
-     * 执行这个方法的handle将会停止执行接下来的方法
-     * 可以通过调整由县级的额方式放到最后
+     * 执行这个方法的handle将会停止执行接下来的方法 可以通过调整由县级的额方式放到最后
+     *
      * @param r
-     * @return
      * @param <R>
+     * @return
      */
     public static <R> HandleResult<R> doCurrentResult(R r) {
         return new HandleResult<>(r, false);

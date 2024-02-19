@@ -1,9 +1,9 @@
 package com.java.coco.utils;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 自定义split工具

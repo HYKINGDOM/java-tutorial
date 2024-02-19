@@ -8,12 +8,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 class MyPowSolutionTest {
     private MyPowSolution myPowSolution;
 
-
     @BeforeEach
     public void init() {
         myPowSolution = new MyPowSolution();
     }
-
 
     @Test
     public void test_main_1() {
@@ -39,7 +37,6 @@ class MyPowSolutionTest {
         assertThat(profit).isEqualTo(0.25000);
     }
 
-
     @Test
     public void test_main_4() {
         double x = 0.44528;
@@ -47,7 +44,6 @@ class MyPowSolutionTest {
         double profit = myPowSolution.myPow(x, n);
         assertThat(profit).isEqualTo(1.0);
     }
-
 
     @Test
     public void test_main_5() {

@@ -3,10 +3,14 @@ package com.java.coco.guava;
 import com.google.common.collect.ArrayListMultimap;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 
 import java.time.Instant;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author HY
@@ -16,13 +20,17 @@ public class GroupByOrder {
     public static void main(String[] args) {
 
         List<Order> orderList = new ArrayList<>();
-        orderList.add(new Order("001", "0002", Double.valueOf("1.0"), Date.from(Instant.now()), Date.from(Instant.now())));
+        orderList.add(
+            new Order("001", "0002", Double.valueOf("1.0"), Date.from(Instant.now()), Date.from(Instant.now())));
 
-        orderList.add(new Order("002", "0003", Double.valueOf("1.1"), Date.from(Instant.now()), Date.from(Instant.now())));
+        orderList.add(
+            new Order("002", "0003", Double.valueOf("1.1"), Date.from(Instant.now()), Date.from(Instant.now())));
 
-        orderList.add(new Order("003", "0004", Double.valueOf("1.2"), Date.from(Instant.now()), Date.from(Instant.now())));
+        orderList.add(
+            new Order("003", "0004", Double.valueOf("1.2"), Date.from(Instant.now()), Date.from(Instant.now())));
 
-        orderList.add(new Order("003", "0005", Double.valueOf("1.3"), Date.from(Instant.now()), Date.from(Instant.now())));
+        orderList.add(
+            new Order("003", "0005", Double.valueOf("1.3"), Date.from(Instant.now()), Date.from(Instant.now())));
         GroupByOrder groupByOrder = new GroupByOrder();
         Map<String, List<Order>> stringListMap = groupByOrder.normalOrder(orderList);
         for (Map.Entry<String, List<Order>> stringListEntry : stringListMap.entrySet()) {
@@ -56,7 +64,6 @@ public class GroupByOrder {
         orderList.forEach(e -> arrayListMultimap.put(e.getUserId(), e));
         return arrayListMultimap;
     }
-
 
     @Data
     @AllArgsConstructor

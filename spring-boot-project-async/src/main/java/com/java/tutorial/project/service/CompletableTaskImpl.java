@@ -3,8 +3,7 @@ package com.java.tutorial.project.service;
 /**
  * @author meta
  */
-public class CompletableTaskImpl implements CompletableTask{
-
+public class CompletableTaskImpl implements CompletableTask {
 
     @Override
     public Object execute(Object task) {

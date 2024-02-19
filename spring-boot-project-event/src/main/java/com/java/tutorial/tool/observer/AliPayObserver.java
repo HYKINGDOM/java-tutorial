@@ -7,7 +7,6 @@ import com.java.tutorial.tool.event.OrderEvent;
 
 /**
  * 支付宝观察者
- *
  */
 public class AliPayObserver {
     // 标记当前订阅者是线程安全的，支持并发接收消息

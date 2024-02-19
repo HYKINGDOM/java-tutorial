@@ -9,10 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class BankServiceImpl implements BankService {
 
-
     @Autowired
     private MongoTemplate mongoTemplate;
-
 
     @Override
     public BankEntity updateByBankEntity(BankEntity bankEntity) {

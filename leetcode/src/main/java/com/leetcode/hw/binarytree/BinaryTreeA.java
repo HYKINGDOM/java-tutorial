@@ -24,11 +24,11 @@ public class BinaryTreeA {
         return dp[n];
 
         //递归
-//         if (n <= 1) return 1;
-//         int res = 0;
-//         for (int i = 1; i <= n; i++) {
-//             res += numOfMethods(i - 1) * numOfMethods(n - i);
-//         }
-//         return res;
+        //         if (n <= 1) return 1;
+        //         int res = 0;
+        //         for (int i = 1; i <= n; i++) {
+        //             res += numOfMethods(i - 1) * numOfMethods(n - i);
+        //         }
+        //         return res;
     }
 }

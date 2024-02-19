@@ -13,6 +13,7 @@ public class SimplePooledObjectFactory extends BasePooledObjectFactory<ComplexOb
         String name = "test" + ThreadLocalRandom.current().nextInt(100);
         return new ComplexObject(name);
     }
+
     @Override
     public PooledObject<ComplexObject> wrap(ComplexObject obj) {
         // 使用默认池化对象包装ComplexObject

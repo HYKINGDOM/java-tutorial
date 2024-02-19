@@ -1,6 +1,5 @@
 package com.java.coco.utils.file;
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,14 +11,13 @@ class TXTRenameTest {
 
     private TXTRename txtRename;
 
-
     @BeforeEach
-    public void init_class(){
+    public void init_class() {
         txtRename = new TXTRename();
     }
 
     @Test
-    public void test_rename_01(){
+    public void test_rename_01() {
         File file = new File("J:\\小说");
         TXTRename txtRename = new TXTRename();
         txtRename.txtRenamed(file);

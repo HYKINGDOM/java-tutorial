@@ -35,7 +35,6 @@ public class TreeTestDemo {
      * 所有节点
      *
      * @param
-     *
      * @return java.util.List<java.util.Map < java.lang.String, java.lang.Object>>
      * @author yihur
      * @date 2019/4/4
@@ -95,7 +94,6 @@ public class TreeTestDemo {
      * 根节点 或 起始节点
      *
      * @param
-     *
      * @return java.util.List<java.util.Map < java.lang.String, java.lang.Object>>
      * @author yihur
      * @date 2019/4/4
@@ -116,7 +114,6 @@ public class TreeTestDemo {
         return resultReturn;
     }
 
-
     @Test
     public void test_tree_node_by_current_node() {
         List<Map<String, Object>> rootList = selectRootTreeNode();
@@ -136,27 +133,23 @@ public class TreeTestDemo {
      *
      * @param beanTree
      * @param map
-     *
      * @return void
      * @author yihur
      * @date 2019/4/4
      */
     private void getChild(Map<String, Object> beanTree, Map<String, String> map) {
         List<Map<String, Object>> childList = Lists.newArrayList();
-        bodyList.stream()
-                .filter(c -> !map.containsKey(c.get("id").toString()))
-                .filter(c -> c.get("parentID").toString().equals(beanTree.get("id").toString()))
-                .forEach(c -> {
-                    map.put(c.get("id").toString(), c.get("parentID").toString());
-                    getChild(c, map);
-                    childList.add(c);
-                });
+        bodyList.stream().filter(c -> !map.containsKey(c.get("id").toString()))
+            .filter(c -> c.get("parentID").toString().equals(beanTree.get("id").toString())).forEach(c -> {
+                map.put(c.get("id").toString(), c.get("parentID").toString());
+                getChild(c, map);
+                childList.add(c);
+            });
         // 所有叶子结点不加childList参数,避免叶子节点带有该参数下,前端控件依然显示加号
         if (childList.size() != 0) {
             beanTree.put("childList", childList);
             beanList.addAll(childList);
         }
     }
-
 
 }

@@ -1,6 +1,5 @@
 package com.java.tutorial.project.config.annotations;
 
-
 import com.java.tutorial.project.config.PasswordValidHandle;
 
 import javax.validation.Constraint;

@@ -13,11 +13,10 @@ class MessageDtoBuilderTest {
     }
 
     @Test
-    public void test_MessageDtoBuilderTest(){
+    public void test_MessageDtoBuilderTest() {
 
-        MessageDto messageDto = MessageDtoBuilder.builderMessageDto(12L, RandomUtil.randomString(5), RandomUtil.randomString(5));
-
-
+        MessageDto messageDto =
+            MessageDtoBuilder.builderMessageDto(12L, RandomUtil.randomString(5), RandomUtil.randomString(5));
 
     }
 }

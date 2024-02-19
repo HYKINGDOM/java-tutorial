@@ -45,5 +45,4 @@ public class GroupAnagramsSolution {
         return listArrayList;
     }
 
-
 }

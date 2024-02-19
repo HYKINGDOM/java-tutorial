@@ -1,6 +1,5 @@
 package com.java.tutorial.project.async.executor;
 
-
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.java.tutorial.project.async.callback.DefaultGroupCallback;
 import com.java.tutorial.project.async.callback.IGroupCallback;
@@ -44,6 +43,10 @@ public class Async {
      */
     private static final int MAX_POOL_SIZE = CPU_COUNT * 2 + 1;
     /**
+     * 默认不定长线程池
+     */
+    private static final ThreadPoolExecutor COMMON_POOL = getThreadPoolExecutor();
+    /**
      * 阻塞队列
      */
     private static final int WORK_QUEUE = 20;
@@ -51,29 +54,25 @@ public class Async {
      * 线程空闲后的存活时长
      */
     private static final long KEEP_ALIVE_TIME = 300L;
-
-
-    /**
-     * 默认不定长线程池
-     */
-    private static final ThreadPoolExecutor COMMON_POOL = getThreadPoolExecutor();
     /**
      * 注意，这里是个static，也就是只能有一个线程池。用户自定义线程池时，也只能定义一个
      */
     private static ExecutorService executorService;
 
-
     private static ThreadPoolExecutor getThreadPoolExecutor() {
-        ThreadFactory writeThreadFactory = new ThreadFactoryBuilder().setNameFormat("Thread-ExecutorService-Pool-%d").build();
+        ThreadFactory writeThreadFactory =
+            new ThreadFactoryBuilder().setNameFormat("Thread-ExecutorService-Pool-%d").build();
         BlockingQueue<Runnable> queue = new LinkedBlockingQueue<>(WORK_QUEUE);
         ThreadPoolExecutor.CallerRunsPolicy callerRunsPolicy = new ThreadPoolExecutor.CallerRunsPolicy();
-        return new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.SECONDS, queue, writeThreadFactory, callerRunsPolicy);
+        return new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.SECONDS, queue,
+            writeThreadFactory, callerRunsPolicy);
     }
 
     /**
      * 出发点
      */
-    public static boolean beginWork(long timeout, ExecutorService executorService, List<WorkerWrapper> workerWrappers) throws ExecutionException, InterruptedException {
+    public static boolean beginWork(long timeout, ExecutorService executorService, List<WorkerWrapper> workerWrappers)
+        throws ExecutionException, InterruptedException {
         if (workerWrappers == null || workerWrappers.size() == 0) {
             return false;
         }
@@ -84,7 +83,8 @@ public class Async {
         CompletableFuture[] futures = new CompletableFuture[workerWrappers.size()];
         for (int i = 0; i < workerWrappers.size(); i++) {
             WorkerWrapper wrapper = workerWrappers.get(i);
-            futures[i] = CompletableFuture.runAsync(() -> wrapper.work(executorService, timeout, forParamUseWrappers), executorService);
+            futures[i] = CompletableFuture.runAsync(() -> wrapper.work(executorService, timeout, forParamUseWrappers),
+                executorService);
         }
         try {
             CompletableFuture.allOf(futures).get(timeout, TimeUnit.MILLISECONDS);
@@ -102,7 +102,8 @@ public class Async {
     /**
      * 如果想自定义线程池，请传pool。不自定义的话，就走默认的COMMON_POOL
      */
-    public static boolean beginWork(long timeout, ExecutorService executorService, WorkerWrapper... workerWrapper) throws ExecutionException, InterruptedException {
+    public static boolean beginWork(long timeout, ExecutorService executorService, WorkerWrapper... workerWrapper)
+        throws ExecutionException, InterruptedException {
         if (workerWrapper == null || workerWrapper.length == 0) {
             return false;
         }
@@ -113,7 +114,8 @@ public class Async {
     /**
      * 同步阻塞,直到所有都完成,或失败
      */
-    public static boolean beginWork(long timeout, WorkerWrapper... workerWrapper) throws ExecutionException, InterruptedException {
+    public static boolean beginWork(long timeout, WorkerWrapper... workerWrapper)
+        throws ExecutionException, InterruptedException {
         return beginWork(timeout, COMMON_POOL, workerWrapper);
     }
 
@@ -124,7 +126,8 @@ public class Async {
     /**
      * 异步执行,直到所有都完成,或失败后，发起回调
      */
-    public static void beginWorkAsync(long timeout, ExecutorService executorService, IGroupCallback groupCallback, WorkerWrapper... workerWrapper) {
+    public static void beginWorkAsync(long timeout, ExecutorService executorService, IGroupCallback groupCallback,
+        WorkerWrapper... workerWrapper) {
         if (groupCallback == null) {
             groupCallback = new DefaultGroupCallback();
         }
@@ -196,8 +199,6 @@ public class Async {
     }
 
     public static String getThreadCount() {
-        return "activeCount=" + COMMON_POOL.getActiveCount() +
-                "  completedCount " + COMMON_POOL.getCompletedTaskCount() +
-                "  largestCount " + COMMON_POOL.getLargestPoolSize();
+        return "activeCount=" + COMMON_POOL.getActiveCount() + "  completedCount " + COMMON_POOL.getCompletedTaskCount() + "  largestCount " + COMMON_POOL.getLargestPoolSize();
     }
 }

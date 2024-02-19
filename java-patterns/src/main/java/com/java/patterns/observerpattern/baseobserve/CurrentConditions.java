@@ -2,6 +2,7 @@ package com.java.patterns.observerpattern.baseobserve;
 
 /**
  * 当前使用者
+ *
  * @author yihur
  */
 public class CurrentConditions {

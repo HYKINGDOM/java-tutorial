@@ -1,6 +1,5 @@
 package com.java.h2.service.impl;
 
-
 import com.java.h2.domain.Account;
 import com.java.h2.infrastucture.dao.AccountRepository;
 import com.java.h2.service.DbService;

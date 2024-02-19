@@ -1,6 +1,5 @@
 package com.java.patterns.strategypattern.funcmodel;
 
-
 import cn.hutool.core.util.RandomUtil;
 
 public class EmployeeAccountServiceImpl implements AccountService {

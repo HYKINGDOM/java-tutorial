@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-
 /**
  * Benchmark                                    (size)  Mode  Cnt           Score           Error  Units
  * ParallelBenchmark.forEachByForEach               10  avgt   40      181751.134 ±      6163.860  ns/op
@@ -58,12 +57,10 @@ import java.util.concurrent.TimeUnit;
 @State(Scope.Benchmark) // 每个Benchmark分配一个实例
 public class ParallelIOBenchmark {
 
+    private final RandomDataUtils randomDataUtils = new RandomDataUtils();
     @Param({"10", "100", "1000", "10000", "100000", "1000000", "10000000", "20000000"})
     int size;
-
     private List<String> list;
-
-    private final RandomDataUtils randomDataUtils = new RandomDataUtils();
 
     @Setup(Level.Trial)
     public void setup() {

@@ -1,6 +1,5 @@
 package com.java.patterns.strategypattern.advancedduck.flybehavior;
 
-
 /**
  * 描述不能飞行的状态
  *

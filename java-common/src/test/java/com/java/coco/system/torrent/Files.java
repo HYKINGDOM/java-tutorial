@@ -11,15 +11,15 @@ public class Files {
     }
     //getter and setter  and tostring
 
-    public long getLength() {
-        return length;
-    }
-
     public Files(long length, String md5sum, List<String> path) {
         super();
         this.length = length;
         this.md5sum = md5sum;
         this.path = path;
+    }
+
+    public long getLength() {
+        return length;
     }
 
     public void setLength(long length) {

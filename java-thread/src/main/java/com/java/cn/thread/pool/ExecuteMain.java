@@ -3,8 +3,6 @@ package com.java.cn.thread.pool;
 import org.apache.commons.pool2.impl.GenericObjectPool;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 
-
-
 public class ExecuteMain {
     public static void main(String[] args) throws Exception {
         // 创建配置对象

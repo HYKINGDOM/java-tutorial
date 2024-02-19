@@ -5,8 +5,6 @@ import lombok.Data;
 
 import java.util.Date;
 
-
-
 @Builder
 @Data
 public class Account {

@@ -1,8 +1,5 @@
 package com.java.tutorial.project.dependnew;
 
-
-
-
 import com.java.tutorial.project.async.callback.ICallback;
 import com.java.tutorial.project.async.callback.IWorker;
 import com.java.tutorial.project.async.worker.WorkResult;
@@ -25,7 +22,7 @@ public class DeWorker2 implements IWorker<User, String>, ICallback<User, String>
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        User user1 = (User) allWrappers.get("second").getWorkResult().getResult();
+        User user1 = (User)allWrappers.get("second").getWorkResult().getResult();
         return user1.getName() + " worker2 add";
     }
 

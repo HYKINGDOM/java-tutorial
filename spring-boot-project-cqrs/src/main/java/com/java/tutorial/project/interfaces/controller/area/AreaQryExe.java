@@ -10,14 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import lombok.RequiredArgsConstructor;
 
 /**
- *
  * 行政区划表
- *
- *
  */
 @RestController
 @RequiredArgsConstructor

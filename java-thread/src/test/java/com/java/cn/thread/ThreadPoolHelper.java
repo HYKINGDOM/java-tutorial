@@ -9,7 +9,6 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-
 public class ThreadPoolHelper {
     private static final Logger logger = LoggerFactory.getLogger(ThreadPoolHelper.class);
 
@@ -17,8 +16,7 @@ public class ThreadPoolHelper {
 
     //订单任务线程池
     private static ThreadPoolExecutor comitTaskPool = new ScheduledThreadPoolExecutor(POOL_SIZE,
-            new BasicThreadFactory.Builder().namingPattern("example-schedule-pool-%d").daemon(true).build());
-
+        new BasicThreadFactory.Builder().namingPattern("example-schedule-pool-%d").daemon(true).build());
 
     public static void main(String[] args) {
         MainThread mainThread = new MainThread();
@@ -27,11 +25,6 @@ public class ThreadPoolHelper {
         executeTask(mainThread::test_thread_2_new);
         executeTask(mainThread::test_thread_3_new);
     }
-
-
-
-
-
 
     /**
      * 执行订单任务
@@ -44,7 +37,6 @@ public class ThreadPoolHelper {
         logger.debug("【线程池任务】队列中等待执行的任务数：" + comitTaskPool.getQueue().size());
         logger.debug("【线程池任务】已执行完任务数：" + comitTaskPool.getCompletedTaskCount());
     }
-
 
     /**
      * 关闭线程池

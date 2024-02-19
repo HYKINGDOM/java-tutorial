@@ -1,8 +1,10 @@
 package com.java.tutorial.project.client;
 
 import com.java.tutorial.project.service.ConnectionInfoService;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

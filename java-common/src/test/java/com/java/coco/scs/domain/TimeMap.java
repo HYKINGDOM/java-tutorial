@@ -7,7 +7,7 @@ public class TimeMap {
     private LocalDateTime localDateTime;
     private Integer sortNum;
 
-    public TimeMap(){
+    public TimeMap() {
 
     }
 

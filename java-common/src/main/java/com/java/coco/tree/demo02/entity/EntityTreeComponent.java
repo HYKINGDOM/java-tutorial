@@ -20,11 +20,11 @@ public abstract class EntityTreeComponent {
         throw new UnsupportedOperationException();
     }
 
-    public Integer getId(){
+    public Integer getId() {
         throw new UnsupportedOperationException();
     }
 
-    public Integer getParentId(){
+    public Integer getParentId() {
         throw new UnsupportedOperationException();
     }
 
@@ -36,9 +36,9 @@ public abstract class EntityTreeComponent {
         throw new UnsupportedOperationException();
     }
 
-
     /**
      * 加上迭代器，这里直接使用 JDK 的迭代器
+     *
      * @return
      */
     public abstract Iterator createIterator();

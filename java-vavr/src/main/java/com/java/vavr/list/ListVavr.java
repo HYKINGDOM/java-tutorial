@@ -10,16 +10,11 @@ public class ListVavr {
 
     public static void main(String[] args) {
 
-
-
     }
 
     private static void vavrListConvertJavaList() {
         var javaList = java.util.List.of(1, 2, 3, 4);
-        java.util.List<Integer> javaList2 = List.ofAll(javaList)
-                .filter(i -> i > 1)
-                .map(i -> i * 2)
-                .toJavaList();
+        java.util.List<Integer> javaList2 = List.ofAll(javaList).filter(i -> i > 1).map(i -> i * 2).toJavaList();
     }
 
     private static void vavrFindList(java.util.List<Integer> javaList) {
@@ -34,16 +29,14 @@ public class ListVavr {
     }
 
     public java.util.Map<Integer, java.util.List<String>> userStatistic(java.util.List<User> users) {
-        return users.stream()
-                .filter(u -> u.getAge() >= 18)
-                .collect(Collectors.groupingBy(User::getAge, Collectors.mapping(User::getName, Collectors.toList())));
+        return users.stream().filter(u -> u.getAge() >= 18)
+            .collect(Collectors.groupingBy(User::getAge, Collectors.mapping(User::getName, Collectors.toList())));
     }
 
-
-    public io.vavr.collection.Map<Integer, io.vavr.collection.List<String>> userStatistic(io.vavr.collection.List<User> users) {
-        return users.filter(u -> u.getAge() >= 18)
-                .groupBy(User::getAge)
-                .mapValues(usersGroup -> usersGroup.map(User::getName));
+    public io.vavr.collection.Map<Integer, io.vavr.collection.List<String>> userStatistic(
+        io.vavr.collection.List<User> users) {
+        return users.filter(u -> u.getAge() >= 18).groupBy(User::getAge)
+            .mapValues(usersGroup -> usersGroup.map(User::getName));
     }
 
     @Data

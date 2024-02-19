@@ -5,10 +5,6 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ConditionTest {
-    static class NumberWrapper {
-        public int value = 1;
-    }
-
     public static void main(String[] args) {
         //初始化可重入锁
         final Lock lock = new ReentrantLock();
@@ -92,5 +88,9 @@ public class ConditionTest {
         //启动两个线程
         threadB.start();
         threadA.start();
+    }
+
+    static class NumberWrapper {
+        public int value = 1;
     }
 }

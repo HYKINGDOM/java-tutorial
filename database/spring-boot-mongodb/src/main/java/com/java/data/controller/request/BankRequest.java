@@ -1,6 +1,5 @@
 package com.java.data.controller.request;
 
-
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;

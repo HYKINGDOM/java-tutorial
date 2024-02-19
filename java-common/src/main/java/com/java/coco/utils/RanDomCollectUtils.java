@@ -2,9 +2,7 @@ package com.java.coco.utils;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import org.checkerframework.checker.nullness.qual.Nullable;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +14,6 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
  * @author HY
  */
 public class RanDomCollectUtils {
-
 
     /**
      * 随机数据集
@@ -38,7 +35,6 @@ public class RanDomCollectUtils {
         return randomStrings;
     }
 
-
     /**
      * 随机生成Map数据
      *
@@ -54,7 +50,6 @@ public class RanDomCollectUtils {
         }
         return objectObjectHashMap;
     }
-
 
     public static List<Map<String, String>> randomCollectListMap(int strLength, int listSize, int mapSize) {
         List<Map<String, String>> listMap = Lists.newArrayList();

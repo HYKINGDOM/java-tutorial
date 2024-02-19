@@ -13,21 +13,19 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-
 @SpringBootTest
 @Slf4j
 class GenerateImageUtilTest {
 
-
     @Resource
     private GenerateImageUtil generateImageUtil;
-
 
     @Test
     public void ccc() throws IOException, TemplateException {
 
         Map<String, List<String>> map1 = new HashMap<>();
-        List<String> title1 = Lists.newArrayList("Size", "Length", "Sleeve Length", "Bust", "Waist Size", "Hip Size", "Cuff");
+        List<String> title1 =
+            Lists.newArrayList("Size", "Length", "Sleeve Length", "Bust", "Waist Size", "Hip Size", "Cuff");
         List<String> title2 = Lists.newArrayList("XS", "44.1", "4.3", "20.5-45.7", "21.3-45.7", "49.6", "9.4-22.4");
         List<String> title3 = Lists.newArrayList("S", "44.9", "4.5", "22-47.2", "22.8-47.2", "51.2", "9.8-22.8");
         List<String> title4 = Lists.newArrayList("M", "45.7", "4.7", "23.6-48.8", "24.4-48.8", "52.8", "10.3-23.3");
@@ -38,19 +36,30 @@ class GenerateImageUtilTest {
         map1.put("title4", title4);
         map1.put("title5", title5);
 
-        generateImageUtil.createSizeTableImage(map1, "*This data was obtained from manually measuring the product, it may be off by 1-2 IN.", "E:\\sqlite\\test1.jpg");
+        generateImageUtil.createSizeTableImage(map1,
+            "*This data was obtained from manually measuring the product, it may be off by 1-2 IN.",
+            "E:\\sqlite\\test1.jpg");
     }
-
 
     @Test
     public void create() {
 
         Map<String, List<String>> map1 = new HashMap<>();
-        List<String> title1 = Lists.newArrayList("新开一组", "张三无", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title2 = Lists.newArrayList("新开二组", "三无", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title3 = Lists.newArrayList("新开三组", "李四", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title4 = Lists.newArrayList("新开四组", "张三", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title5 = Lists.newArrayList("新开五组", "张无", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
+        List<String> title1 =
+            Lists.newArrayList("新开一组", "张三无", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title2 =
+            Lists.newArrayList("新开二组", "三无", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title3 =
+            Lists.newArrayList("新开三组", "李四", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title4 =
+            Lists.newArrayList("新开四组", "张三", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title5 =
+            Lists.newArrayList("新开五组", "张无", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
         map1.put("title1", title1);
         map1.put("title2", title2);
         map1.put("title3", title3);
@@ -60,26 +69,55 @@ class GenerateImageUtilTest {
         generateImageUtil.createTableImage(map1, "2023-04-15", "E:\\sqlite\\test2.jpg");
     }
 
-
     @Test
     public void create_01() {
 
         Map<String, List<String>> map1 = new HashMap<>();
-        List<String> title1 = Lists.newArrayList("新开一组", "张三无", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title2 = Lists.newArrayList("新开二组", "三无", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title3 = Lists.newArrayList("新开三组", "李四", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title4 = Lists.newArrayList("新开四组", "张三", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title5 = Lists.newArrayList("新开五组", "张无", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title6 = Lists.newArrayList("新开一组", "张三无", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title7 = Lists.newArrayList("新开二组", "三无", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title8 = Lists.newArrayList("新开三组", "李四", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title9 = Lists.newArrayList("新开四组", "张三", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title10 = Lists.newArrayList("新开五组", "张无", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title11 = Lists.newArrayList("新开一组", "张三无", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title12 = Lists.newArrayList("新开二组", "三无", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title13 = Lists.newArrayList("新开三组", "李四", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title14 = Lists.newArrayList("新开四组", "张三", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title15 = Lists.newArrayList("新开五组", "张无", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
+        List<String> title1 =
+            Lists.newArrayList("新开一组", "张三无", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title2 =
+            Lists.newArrayList("新开二组", "三无", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title3 =
+            Lists.newArrayList("新开三组", "李四", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title4 =
+            Lists.newArrayList("新开四组", "张三", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title5 =
+            Lists.newArrayList("新开五组", "张无", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title6 =
+            Lists.newArrayList("新开一组", "张三无", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title7 =
+            Lists.newArrayList("新开二组", "三无", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title8 =
+            Lists.newArrayList("新开三组", "李四", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title9 =
+            Lists.newArrayList("新开四组", "张三", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title10 =
+            Lists.newArrayList("新开五组", "张无", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title11 =
+            Lists.newArrayList("新开一组", "张三无", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title12 =
+            Lists.newArrayList("新开二组", "三无", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title13 =
+            Lists.newArrayList("新开三组", "李四", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title14 =
+            Lists.newArrayList("新开四组", "张三", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title15 =
+            Lists.newArrayList("新开五组", "张无", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
         map1.put("title1", title1);
         map1.put("title2", title2);
         map1.put("title3", title3);
@@ -99,27 +137,58 @@ class GenerateImageUtilTest {
         generateImageUtil.createTableImage(map1, "2023-04-15", "E:\\sqlite\\test2.jpg");
     }
 
-
     @Test
     public void create_02() {
 
         Map<String, List<String>> map1 = new LinkedHashMap<>();
-        List<String> title1 = Lists.newArrayList("新开一组", "张三无1", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title2 = Lists.newArrayList("新开二组", "三无2", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title3 = Lists.newArrayList("新开三组", "李四3", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title4 = Lists.newArrayList("新开四组", "张三4", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title5 = Lists.newArrayList("合计", "-", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title6 = Lists.newArrayList("新开一组", "张三无6", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title7 = Lists.newArrayList("新开二组", "三无7", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title8 = Lists.newArrayList("新开三组", "李四8", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title9 = Lists.newArrayList("合计", "-", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title10 = Lists.newArrayList("新开五组", "张无10", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title11 = Lists.newArrayList("新开一组", "张三无11", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title12 = Lists.newArrayList("新开二组", "三无12", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title13 = Lists.newArrayList("新开三组", "李四13", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title14 = Lists.newArrayList("新开四组", "张三14", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title15 = Lists.newArrayList("合计", "-", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
-        List<String> title16 = Lists.newArrayList("总计", "-", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30");
+        List<String> title1 =
+            Lists.newArrayList("新开一组", "张三无1", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title2 =
+            Lists.newArrayList("新开二组", "三无2", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title3 =
+            Lists.newArrayList("新开三组", "李四3", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title4 =
+            Lists.newArrayList("新开四组", "张三4", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title5 =
+            Lists.newArrayList("合计", "-", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30");
+        List<String> title6 =
+            Lists.newArrayList("新开一组", "张三无6", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title7 =
+            Lists.newArrayList("新开二组", "三无7", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title8 =
+            Lists.newArrayList("新开三组", "李四8", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title9 =
+            Lists.newArrayList("合计", "-", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30");
+        List<String> title10 =
+            Lists.newArrayList("新开五组", "张无10", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title11 =
+            Lists.newArrayList("新开一组", "张三无11", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title12 =
+            Lists.newArrayList("新开二组", "三无12", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title13 =
+            Lists.newArrayList("新开三组", "李四13", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title14 =
+            Lists.newArrayList("新开四组", "张三14", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30", "30");
+        List<String> title15 =
+            Lists.newArrayList("合计", "-", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30");
+        List<String> title16 =
+            Lists.newArrayList("总计", "-", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30", "30",
+                "30");
         map1.put("title1", title1);
         map1.put("title2", title2);
         map1.put("title3", title3);

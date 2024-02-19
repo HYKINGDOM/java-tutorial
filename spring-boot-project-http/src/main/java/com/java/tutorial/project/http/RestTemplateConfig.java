@@ -59,8 +59,9 @@ public class RestTemplateConfig {
         // 连接上服务器(握手成功)的时间，超出该时间抛出connect timeout
         // 从连接池中获取连接的超时时间，超过该时间未拿到可用连接，会抛出org.apache.http.conn.ConnectionPoolTimeoutException: Timeout waiting for
         // connection from pool
-        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(3000).setConnectTimeout(1000)
-            .setConnectionRequestTimeout(1000).build();
+        RequestConfig requestConfig =
+            RequestConfig.custom().setSocketTimeout(3000).setConnectTimeout(1000).setConnectionRequestTimeout(1000)
+                .build();
         // 重试处理器，StandardHttpRequestRetryHandler这个是官方提供的，看了下感觉比较挫，很多错误不能重试，可自己实现HttpRequestRetryHandler接口去做
         HttpRequestRetryHandler retryHandler = new StandardHttpRequestRetryHandler();
         return HttpClientBuilder.create().setDefaultRequestConfig(requestConfig).setConnectionManager(connectionManager)

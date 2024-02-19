@@ -3,12 +3,7 @@ package com.leetcode.title.rotate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.in;
-import static org.junit.jupiter.api.Assertions.*;
 
 class RotateSolutionTest {
 
@@ -19,24 +14,22 @@ class RotateSolutionTest {
         rotateSolution = new RotateSolution();
     }
 
-
     @Test
     public void test_main_A() {
-        int[][] test = new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        int[][] test = new int[][] {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
         rotateSolution.rotate(test);
 
-        int[][] result = new int[][]{{7, 4, 1}, {8, 5, 2}, {9, 6, 3}};
+        int[][] result = new int[][] {{7, 4, 1}, {8, 5, 2}, {9, 6, 3}};
 
         assertThat(test).isEqualTo(result);
     }
 
-
     @Test
     public void test_main_B() {
-        int[][] test = new int[][]{{5, 1, 9, 11}, {2, 4, 8, 10}, {13, 3, 6, 7}, {15, 14, 12, 16}};
+        int[][] test = new int[][] {{5, 1, 9, 11}, {2, 4, 8, 10}, {13, 3, 6, 7}, {15, 14, 12, 16}};
         rotateSolution.rotate(test);
 
-        int[][] result = new int[][]{{15, 13, 2, 5}, {14, 3, 4, 1}, {12, 6, 8, 9}, {16, 7, 10, 11}};
+        int[][] result = new int[][] {{15, 13, 2, 5}, {14, 3, 4, 1}, {12, 6, 8, 9}, {16, 7, 10, 11}};
 
         assertThat(test).isEqualTo(result);
     }

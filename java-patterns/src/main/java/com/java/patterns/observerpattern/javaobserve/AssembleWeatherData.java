@@ -2,6 +2,7 @@ package com.java.patterns.observerpattern.javaobserve;
 
 /**
  * 气象站返回组装数据类
+ *
  * @author yihur
  */
 public class AssembleWeatherData {

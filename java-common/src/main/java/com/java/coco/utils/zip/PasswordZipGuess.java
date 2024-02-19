@@ -11,15 +11,10 @@ import static com.java.coco.utils.zip.TestUnzipDirWithPassword.unzip;
 
 public class PasswordZipGuess {
 
-
-    public static Stack<String> stackStr = new Stack<>();
-
-    public static List<String> stringList = new ArrayList<>();
-
-    public static String password;
-
     private static final String PATH_ZIP = "F:\\test.zip";
-
+    public static Stack<String> stackStr = new Stack<>();
+    public static List<String> stringList = new ArrayList<>();
+    public static String password;
 
     public static void main(String[] args) throws ZipException {
         //String str = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()-_+=~`[]{}|\\\\:;\\\"'<>,.?/";
@@ -34,7 +29,6 @@ public class PasswordZipGuess {
         long timeMillis02 = System.currentTimeMillis();
         System.out.println("找到密码!!!,密码为" + password + ", 总共耗时: " + (timeMillis02 - timeMillis01));
     }
-
 
     public void funLoopStr(String[] shu, int targ, int cur) throws ZipException {
         if (cur == targ) {

@@ -1,5 +1,3 @@
-
-
 #### kibana 使用
 
 当kibana链接上ES之后, 打开Discover会看到对应的数据集,
@@ -13,14 +11,14 @@ message:"XNIO-1 task-8"
 
 就会检索message中包含'XNIO-1 task-8'的数据
 
-
 #### ES 配置修改
 
 * 试用完全版30天,可以链接数据库工具
-POST
-localhost:9200/_license/start_trial?acknowledge=true&pretty
+  POST
+  localhost:9200/_license/start_trial?acknowledge=true&pretty
 
 * 修改索引最大限制
+
 ```text
 
 PUT
@@ -39,6 +37,5 @@ body
 updating [index.highlight.max_analyzed_offset] from [1000000] to [999999999]
 
 ```
-
 
 ES yellow 状态 执行ES.postman_collection.json中的请求

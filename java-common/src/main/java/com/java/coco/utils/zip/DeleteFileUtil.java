@@ -2,7 +2,6 @@ package com.java.coco.utils.zip;
 
 import java.io.File;
 
-
 public class DeleteFileUtil {
 
     public static boolean delete(String fileName) {
@@ -19,7 +18,6 @@ public class DeleteFileUtil {
         }
     }
 
-
     public static boolean deleteFile(String fileName) {
         File file = new File(fileName);
 
@@ -33,7 +31,6 @@ public class DeleteFileUtil {
             return false;
         }
     }
-
 
     public static boolean deleteDirectory(String dir) {
         if (!dir.endsWith(File.separator)) {
@@ -51,10 +48,8 @@ public class DeleteFileUtil {
                 if (!flag) {
                     break;
                 }
-            }
-            else if (files[i].isDirectory()) {
-                flag = DeleteFileUtil.deleteDirectory(files[i]
-                        .getAbsolutePath());
+            } else if (files[i].isDirectory()) {
+                flag = DeleteFileUtil.deleteDirectory(files[i].getAbsolutePath());
                 if (!flag) {
                     break;
                 }
@@ -73,16 +68,16 @@ public class DeleteFileUtil {
 
     public static void main(String[] args) {
 
-//  String file = "c:/test/test.txt";
-//  DeleteFileUtil.deleteFile(file);
-//  System.out.println();
+        //  String file = "c:/test/test.txt";
+        //  DeleteFileUtil.deleteFile(file);
+        //  System.out.println();
 
         String dir = "D:/home/web/upload/upload/files";
         DeleteFileUtil.deleteDirectory(dir);
-//  System.out.println();
+        //  System.out.println();
 
-//  dir = "c:/test/test0";
-//  DeleteFileUtil.delete(dir);
+        //  dir = "c:/test/test0";
+        //  DeleteFileUtil.delete(dir);
 
     }
 

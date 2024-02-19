@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class StringMergeTest {
 
-
     @Test
     public void test_main_C() {
         String str = "dec fab";
@@ -37,14 +36,13 @@ class StringMergeTest {
         assertThat(result).isEqualTo("CDab");
     }
 
-
     @Test
     public void test_main_merge() {
         int odd = 7;
         int even = 6;
 
-        System.out.println(odd%2);
-        System.out.println(even%2);
+        System.out.println(odd % 2);
+        System.out.println(even % 2);
     }
 
 }

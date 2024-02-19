@@ -1,6 +1,5 @@
 package com.java.tutorial.tool.producer;
 
-
 import com.java.coco.utils.TraceIDUtil;
 import com.java.tutorial.tool.domain.MessageDto;
 import com.java.tutorial.tool.event.OrderEvent;
@@ -20,7 +19,7 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class OrderProducer {
 
-//    private final ApplicationContext applicationContext;
+    //    private final ApplicationContext applicationContext;
 
     private final ApplicationEventPublisher applicationEventPublisher;
 

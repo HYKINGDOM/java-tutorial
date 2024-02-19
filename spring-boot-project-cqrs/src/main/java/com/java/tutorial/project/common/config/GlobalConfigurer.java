@@ -12,37 +12,32 @@ import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
 import lombok.RequiredArgsConstructor;
 
-
 /**
- *
  * 全局配置信息
- *
  */
 @Configuration
 @RequiredArgsConstructor
 public class GlobalConfigurer implements WebMvcConfigurer {
 
-	private final IdempotentInterceptor idempotentInterceptor;
+    private final IdempotentInterceptor idempotentInterceptor;
 
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(idempotentInterceptor)
-				.addPathPatterns("/cmd/**");
-	}
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(idempotentInterceptor).addPathPatterns("/cmd/**");
+    }
 
-	@Bean
-	public Validator validator() {
-		ValidatorFactory validatorFactory = Validation.byProvider(HibernateValidator.class)
-				.configure().failFast(true)
-				.buildValidatorFactory();
-		Validator validator = validatorFactory.getValidator();
+    @Bean
+    public Validator validator() {
+        ValidatorFactory validatorFactory =
+            Validation.byProvider(HibernateValidator.class).configure().failFast(true).buildValidatorFactory();
+        Validator validator = validatorFactory.getValidator();
 
-		return validator;
-	}
+        return validator;
+    }
 
-	@Bean
-	public HttpMessageConverters snackHttpMessageConverters() {
-		return new HttpMessageConverters(new SnackHttpMessageConverter<>());
-	}
+    @Bean
+    public HttpMessageConverters snackHttpMessageConverters() {
+        return new HttpMessageConverters(new SnackHttpMessageConverter<>());
+    }
 
 }

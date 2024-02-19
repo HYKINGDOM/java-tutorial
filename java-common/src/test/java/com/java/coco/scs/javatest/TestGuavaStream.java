@@ -1,6 +1,5 @@
 package com.java.coco.scs.javatest;
 
-import cn.hutool.core.bean.BeanUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.java.coco.domian.Person;
@@ -9,17 +8,11 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 /**
  * @author yihur
@@ -28,13 +21,11 @@ import java.util.stream.Collectors;
  */
 public class TestGuavaStream {
 
-
     private List<Map<String, Object>> lists;
 
     private List<Map<String, Object>> listCopy;
 
     private Map<String, Object> map;
-
 
     private List<TimeMap> timeMapList;
 
@@ -154,23 +145,13 @@ public class TestGuavaStream {
         LocalDateTime localDateTime3 = localDateTime0.plusDays(7);
         LocalDateTime localDateTime4 = localDateTime0.plusDays(4);
 
-        timeMapList = Lists.newArrayList(
-                new TimeMap(0, localDateTime0, 5),
-                new TimeMap(1, localDateTime1, 3),
-                new TimeMap(2, localDateTime2, null),
-                new TimeMap(3, null, 3),
-                new TimeMap(4, localDateTime4, 5));
+        timeMapList = Lists.newArrayList(new TimeMap(0, localDateTime0, 5), new TimeMap(1, localDateTime1, 3),
+            new TimeMap(2, localDateTime2, null), new TimeMap(3, null, 3), new TimeMap(4, localDateTime4, 5));
 
-
-        persons =
-                Arrays.asList(
-                        new Person("Max", 18),
-                        new Person("Peter", 23),
-                        new Person("Pamela", 23),
-                        new Person("David", 12));
+        persons = Arrays.asList(new Person("Max", 18), new Person("Peter", 23), new Person("Pamela", 23),
+            new Person("David", 12));
 
     }
-
 
     /**
      * 基于Lamada表达式的list和map的遍历
@@ -180,13 +161,10 @@ public class TestGuavaStream {
 
         ArrayList<@Nullable Object> objects = Lists.newArrayList();
 
-
         String sortName = "name";
 
         boolean desc = Boolean.FALSE;
 
     }
-
-
 
 }

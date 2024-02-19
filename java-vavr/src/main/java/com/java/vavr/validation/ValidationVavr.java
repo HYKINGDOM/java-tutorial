@@ -7,6 +7,9 @@ import lombok.Data;
 
 public class ValidationVavr {
 
+    String NAME_ERR = "Invalid characters in name: ";
+    String AGE_ERR = "Age must be at least 0";
+
     public static void main(String[] args) {
         ValidationVavr validationVavr = new ValidationVavr();
         Validation<Seq<String>, Person> personValidation = validationVavr.validatePerson("eqweqw", 12);
@@ -15,9 +18,6 @@ public class ValidationVavr {
         Seq<String> error = personValidation.getError();
         Person per = validationVavr.validatePerson("eqweqw", 12).get();
     }
-
-    String NAME_ERR = "Invalid characters in name: ";
-    String AGE_ERR = "Age must be at least 0";
 
     public Validation<Seq<String>, Person> validatePerson(String name, int age) {
         Function2<String, Integer, Person> function2 = (a, b) -> new Person();
@@ -32,7 +32,6 @@ public class ValidationVavr {
     private Validation<String, Integer> validateAge(int age) {
         return age < 0 ? Validation.invalid(AGE_ERR) : Validation.valid(age);
     }
-
 
     @Data
     public static class Person {

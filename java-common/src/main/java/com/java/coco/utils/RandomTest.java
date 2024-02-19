@@ -8,31 +8,8 @@ import java.util.concurrent.TimeUnit;
 
 public class RandomTest {
 
-    private static Random random = new Random();
-
     private static final int N = 100000;
-
-    //    Random from java.util.concurrent.
-    private static class TLRandom implements Runnable {
-        @Override
-        public void run() {
-            double x = 0;
-            for (int i = 0; i < N; i++) {
-                x += ThreadLocalRandom.current().nextDouble();
-            }
-        }
-    }
-
-    //    Random from java.util
-    private static class URandom implements Runnable {
-        @Override
-        public void run() {
-            double x = 0;
-            for (int i = 0; i < N; i++) {
-                x += random.nextDouble();
-            }
-        }
-    }
+    private static Random random = new Random();
 
     public static void main(String[] args) {
         System.out.println("threadNum,Random,ThreadLocalRandom");
@@ -62,6 +39,28 @@ public class RandomTest {
                 e.printStackTrace();
             }
             System.out.println(str + (System.currentTimeMillis() - TLRStartTime));
+        }
+    }
+
+    //    Random from java.util.concurrent.
+    private static class TLRandom implements Runnable {
+        @Override
+        public void run() {
+            double x = 0;
+            for (int i = 0; i < N; i++) {
+                x += ThreadLocalRandom.current().nextDouble();
+            }
+        }
+    }
+
+    //    Random from java.util
+    private static class URandom implements Runnable {
+        @Override
+        public void run() {
+            double x = 0;
+            for (int i = 0; i < N; i++) {
+                x += random.nextDouble();
+            }
         }
     }
 }

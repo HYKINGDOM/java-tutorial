@@ -9,9 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
- *
  * 日期工具类
- *
  */
 public final class DateKit {
 
@@ -81,20 +79,6 @@ public final class DateKit {
     }
 
     /**
-     * 日期格式化 yyyy-MM-dd
-     */
-    public String time2tf(LocalDateTime time) {
-        return TF.format(time);
-    }
-
-    /**
-     * 日期格式化 yyyy-MM-dd
-     */
-    public String date2tf(LocalDate date) {
-        return TF.format(date);
-    }
-
-    /**
      * 字符串转LocalDateTime
      */
     public static LocalDateTime parseTime(String time, String pattern) {
@@ -114,6 +98,20 @@ public final class DateKit {
      */
     public static LocalDate parseDate(String date) {
         return LocalDate.from(TF.parse(date));
+    }
+
+    /**
+     * 日期格式化 yyyy-MM-dd
+     */
+    public String time2tf(LocalDateTime time) {
+        return TF.format(time);
+    }
+
+    /**
+     * 日期格式化 yyyy-MM-dd
+     */
+    public String date2tf(LocalDate date) {
+        return TF.format(date);
     }
 
 }

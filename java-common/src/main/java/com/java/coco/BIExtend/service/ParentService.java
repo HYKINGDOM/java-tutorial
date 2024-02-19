@@ -1,6 +1,5 @@
 package com.java.coco.BIExtend.service;
 
-
 import cn.hutool.core.bean.BeanUtil;
 import com.java.coco.BIExtend.domain.ParentDomain;
 import com.java.coco.BIExtend.entity.EntityA;
@@ -27,7 +26,6 @@ public class ParentService {
         parentEntityMap.put(5, new EntityE());
     }
 
-
     public List<? extends ParentEntity> convertList(List<ParentDomain> parentDomainList) {
 
         List<ParentEntity> parentEntities = new ArrayList<>();
@@ -39,7 +37,6 @@ public class ParentService {
 
         return parentEntities;
     }
-
 
     public List<ParentEntity> convertDomainToEntity(List<ParentDomain> parentDomainList) {
         List<ParentEntity> parentEntities = new ArrayList<>();
@@ -54,11 +51,11 @@ public class ParentService {
 
     public List<ParentEntity> convertDomainToEntityByEnum(List<ParentDomain> parentDomainList) {
         List<ParentEntity> parentEntities = new ArrayList<>();
-//        for (ParentDomain parentDomain : parentDomainList) {
-//            ParentEntity entity = DomainEnum.getEntity(parentDomain.typeCode());
-//            BeanUtils.copyProperties(parentDomain, Objects.requireNonNull(entity));
-//            parentEntities.add(entity);
-//        }
+        //        for (ParentDomain parentDomain : parentDomainList) {
+        //            ParentEntity entity = DomainEnum.getEntity(parentDomain.typeCode());
+        //            BeanUtils.copyProperties(parentDomain, Objects.requireNonNull(entity));
+        //            parentEntities.add(entity);
+        //        }
         return parentEntities;
     }
 }

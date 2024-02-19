@@ -3,7 +3,6 @@ package com.java.patterns.observerpattern.javaobserve;
 import java.util.Observable;
 import java.util.Observer;
 
-
 /**
  * 天气看板
  *
@@ -23,9 +22,9 @@ public class ForecastConditions implements Observer {
      */
     @Override
     public void update(Observable arg0, Object arg1) {
-        this.mTemperate = ((AssembleWeatherData) (arg1)).mTemperate;
-        this.mPressure = ((AssembleWeatherData) (arg1)).mPressure;
-        this.mHumidity = ((AssembleWeatherData) (arg1)).mHumidity;
+        this.mTemperate = ((AssembleWeatherData)(arg1)).mTemperate;
+        this.mPressure = ((AssembleWeatherData)(arg1)).mPressure;
+        this.mHumidity = ((AssembleWeatherData)(arg1)).mHumidity;
         display();
     }
 
@@ -37,6 +36,5 @@ public class ForecastConditions implements Observer {
         System.out.println("**明天气压:" + (mPressure + 10 * Math.random()) + "**");
         System.out.println("**明天湿度:" + (mHumidity + Math.random()) + "**");
     }
-
 
 }

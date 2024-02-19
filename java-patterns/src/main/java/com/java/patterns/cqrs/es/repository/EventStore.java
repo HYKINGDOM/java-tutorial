@@ -1,7 +1,5 @@
 package com.java.patterns.cqrs.es.repository;
 
-
-
 import com.java.patterns.cqrs.es.events.Event;
 
 import java.util.ArrayList;

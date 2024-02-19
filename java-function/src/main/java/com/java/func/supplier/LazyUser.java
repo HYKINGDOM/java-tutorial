@@ -16,7 +16,6 @@ public class LazyUser {
     // 需要远程调用 权限系统 获得
     private Lazy<Set<String>> permission;
 
-
     public Long getUid() {
         return uid;
     }

@@ -25,6 +25,11 @@ public class JUnitTest {
         System.out.println("我是AfterAll，我最后执行。");
     }
 
+    static Stream<Arguments> stringProvider() {
+        return Stream.of(Arguments.arguments(12, "李四"), Arguments.arguments(18, "王五"),
+            Arguments.arguments(20, "小红"));
+    }
+
     @BeforeEach
     void beforeEach() {
         System.out.println("我是BeforeEach，我在每个 Test 前执行。");
@@ -68,25 +73,17 @@ public class JUnitTest {
         System.out.println(name + ":" + id);
     }
 
-
     @ParameterizedTest
     @CsvFileSource(resources = "/test.csv")
-    void csvFile(String name,int id){
+    void csvFile(String name, int id) {
         System.out.println(name + ": " + id);
     }
 
-
     @ParameterizedTest
-    @MethodSource("stringProvider") //指定方法
-    void methodSource(int age,String name){
+    @MethodSource("stringProvider")
+        //指定方法
+    void methodSource(int age, String name) {
         System.out.println(age + ": " + name);
-    }
-    static Stream<Arguments> stringProvider() {
-        return Stream.of(
-            Arguments.arguments(12,"李四"),
-            Arguments.arguments(18,"王五"),
-            Arguments.arguments(20,"小红")
-        );
     }
 
 }

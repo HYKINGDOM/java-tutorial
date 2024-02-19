@@ -28,18 +28,15 @@ import java.util.concurrent.TimeUnit;
 @State(Scope.Benchmark) // 每个Benchmark分配一个实例
 public class ParallelStreamBenchmark {
 
-    @Param({"10", "100", "200", "500", "1000", "10000", "50000", "75000", "100000", "1000000", "5000000", "10000000", "20000000"})
+    private final RandomDataUtils randomDataUtils = new RandomDataUtils();
+    @Param({"10", "100", "200", "500", "1000", "10000", "50000", "75000", "100000", "1000000", "5000000", "10000000",
+        "20000000"})
     int size;
-
     @Param({"ArrayList", "LinkedList"})
     String type;
-
     @Param({"Long", "Integer", "String"})
     String dataType;
-
     private List<Object> list;
-
-    private final RandomDataUtils randomDataUtils = new RandomDataUtils();
 
     @Setup(Level.Trial)
     public void setup() {

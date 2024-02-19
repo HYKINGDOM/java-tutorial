@@ -18,7 +18,7 @@ public class PriceCheckHandler extends AbstractCheckHandler {
         System.out.println("价格校验 Handler 开始...");
 
         //非法价格校验
-        boolean illegalPrice =  param.getPrice().compareTo(BigDecimal.ZERO) <= 0;
+        boolean illegalPrice = param.getPrice().compareTo(BigDecimal.ZERO) <= 0;
         if (illegalPrice) {
             return Result.failure(ErrorCode.PARAM_PRICE_ILLEGAL_ERROR);
         }

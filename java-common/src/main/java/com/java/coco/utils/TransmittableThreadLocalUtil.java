@@ -8,6 +8,14 @@ import com.alibaba.ttl.TransmittableThreadLocal;
 public class TransmittableThreadLocalUtil {
     public static final TransmittableThreadLocal<String> THREAD_LOCAL = new TransmittableThreadLocal<>();
 
+    /**
+     * 获取线程中保存的值
+     *
+     * @return
+     */
+    public static String getValue() {
+        return THREAD_LOCAL.get();
+    }
 
     /**
      * 设置线程需要保存的值
@@ -16,15 +24,6 @@ public class TransmittableThreadLocalUtil {
      */
     public static void setValue(String str) {
         THREAD_LOCAL.set(str);
-    }
-
-    /**
-     * 获取线程中保存的值
-     *
-     * @return
-     */
-    public static String getValue() {
-        return THREAD_LOCAL.get();
     }
 
     /**

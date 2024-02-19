@@ -1,6 +1,5 @@
 package com.java.patterns.decoratorpattern.coffeebar.coffee;
 
-
 import com.java.patterns.decoratorpattern.coffeebar.BaseDrink;
 
 /**
@@ -14,6 +13,5 @@ public class CoffeeBase extends BaseDrink {
     public float cost() {
         return super.getPrice();
     }
-
 
 }

@@ -48,7 +48,6 @@ public class HutoolDemo {
         System.out.println(zodiac);
         System.out.println(chineseZodiac);
 
-
         //年龄
         int ageOfNow = DateUtil.ageOfNow("1990-01-30");
         //是否闰年
@@ -58,20 +57,17 @@ public class HutoolDemo {
 
         System.out.println(leapYear);
 
-
-//        Integer[] a = {1,2,3,4,5,6};
-//        Integer[] filter = ArrayUtil.filter(a, new Editor<Integer>(){
-//            @Override
-//            public Integer edit(Integer t) {
-//                return (t % 2 == 0) ? t : null;
-//            }});
-//
-//
-
+        //        Integer[] a = {1,2,3,4,5,6};
+        //        Integer[] filter = ArrayUtil.filter(a, new Editor<Integer>(){
+        //            @Override
+        //            public Integer edit(Integer t) {
+        //                return (t % 2 == 0) ? t : null;
+        //            }});
+        //
+        //
 
         String decode = QrCodeUtil.decode(FileUtil.file("img.png"));
         System.out.println(decode);
-
 
     }
 }

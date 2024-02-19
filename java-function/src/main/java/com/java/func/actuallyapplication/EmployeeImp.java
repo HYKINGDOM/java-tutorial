@@ -5,7 +5,6 @@ import java.util.function.Function;
 public interface EmployeeImp {
 
     /**
-     *
      * @param empId
      * @param employeeId
      */

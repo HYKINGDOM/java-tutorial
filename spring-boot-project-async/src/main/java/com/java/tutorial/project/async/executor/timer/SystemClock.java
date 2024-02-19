@@ -7,6 +7,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * 用于解决高并发下System.currentTimeMillis卡顿
+ *
  * @author lry
  */
 public class SystemClock {
@@ -14,10 +15,6 @@ public class SystemClock {
     private final int period;
 
     private final AtomicLong now;
-
-    private static class InstanceHolder {
-        private static final SystemClock INSTANCE = new SystemClock(1);
-    }
 
     private SystemClock(int period) {
         this.period = period;
@@ -27,6 +24,13 @@ public class SystemClock {
 
     private static SystemClock instance() {
         return InstanceHolder.INSTANCE;
+    }
+
+    /**
+     * 用来替换原来的System.currentTimeMillis()
+     */
+    public static long now() {
+        return instance().currentTimeMillis();
     }
 
     private void scheduleClockUpdating() {
@@ -42,10 +46,7 @@ public class SystemClock {
         return now.get();
     }
 
-    /**
-     * 用来替换原来的System.currentTimeMillis()
-     */
-    public static long now() {
-        return instance().currentTimeMillis();
+    private static class InstanceHolder {
+        private static final SystemClock INSTANCE = new SystemClock(1);
     }
 }

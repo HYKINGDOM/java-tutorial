@@ -1,6 +1,5 @@
 package com.java.tutorial.project.controller;
 
-
 import com.java.tutorial.project.domain.User;
 import com.java.tutorial.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +25,9 @@ public class MongoDBController {
         user.setPassWord("weadawdawdaw456451@@@");
         userService.saveUser(user);
     }
+
     @GetMapping
-    public void getUser(){
+    public void getUser() {
         userService.findUserByUserName("User.builder().build()");
     }
 }

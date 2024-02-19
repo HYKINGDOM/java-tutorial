@@ -21,7 +21,6 @@ public class CrmConfigController {
 
         IResult result = ValidHelper.failFast(crmConfig);
 
-
         return Result.success();
     }
 }

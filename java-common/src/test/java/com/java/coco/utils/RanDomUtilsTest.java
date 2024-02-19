@@ -72,7 +72,6 @@ public class RanDomUtilsTest {
         System.out.println(randomString);
         assertEquals(100, randomString.length());
 
-
         randomString = ranDomUtils.randomByUpString(100);
         System.out.println(randomString);
         assertEquals(100, randomString.length());
@@ -80,7 +79,8 @@ public class RanDomUtilsTest {
 
     @Test
     public void test_random_input_string_by_length() {
-        String randomString = ranDomUtils.randomByInputString(100,"我打算电话卡还是看到hi安徽芜湖嗲话就能看4561wasdawQA");
+        String randomString =
+            ranDomUtils.randomByInputString(100, "我打算电话卡还是看到hi安徽芜湖嗲话就能看4561wasdawQA");
         System.out.println(randomString);
         assertEquals(100, randomString.length());
     }

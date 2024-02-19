@@ -2,6 +2,7 @@ package com.java.tutorial.project.common;
 
 /**
  * 缓存操作类型
+ *
  * @author HY
  */
 public enum CacheType {

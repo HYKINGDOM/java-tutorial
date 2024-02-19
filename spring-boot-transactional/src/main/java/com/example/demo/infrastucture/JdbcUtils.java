@@ -11,14 +11,12 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
-
 /**
  * @author HY
  */
 @Slf4j
 @Component
 public class JdbcUtils {
-
 
     @Value("${spring.datasource.driver-class-name}")
     private String jdbcDriver;
@@ -32,14 +30,13 @@ public class JdbcUtils {
     @Value("${spring.datasource.password}")
     private String getMasterDataPassword;
 
-
     /**
-     *
      * @param dataList
      * @param typeSortList
      * @param insertSql
      */
-    public void batchGenerateMysqlUtil(List<Map<String, Object>> dataList, List<String> typeSortList, String insertSql) {
+    public void batchGenerateMysqlUtil(List<Map<String, Object>> dataList, List<String> typeSortList,
+        String insertSql) {
         PreparedStatement stat = null;
         Connection conn = null;
         if (dataList == null) {

@@ -1,6 +1,5 @@
 package com.java.tutorial.project;
 
-
 import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
@@ -20,11 +19,6 @@ public final class SpringUtils implements BeanFactoryPostProcessor {
      */
     private static ConfigurableListableBeanFactory beanFactory;
 
-    @Override
-    public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        SpringUtils.beanFactory = beanFactory;
-    }
-
     /**
      * 获取对象
      *
@@ -34,7 +28,7 @@ public final class SpringUtils implements BeanFactoryPostProcessor {
      */
     @SuppressWarnings("unchecked")
     public static <T> T getBean(String name) throws BeansException {
-        return (T) beanFactory.getBean(name);
+        return (T)beanFactory.getBean(name);
     }
 
     /**
@@ -45,7 +39,7 @@ public final class SpringUtils implements BeanFactoryPostProcessor {
      * @throws BeansException
      */
     public static <T> T getBean(Class<T> clz) throws BeansException {
-        T result = (T) beanFactory.getBean(clz);
+        T result = (T)beanFactory.getBean(clz);
         return result;
     }
 
@@ -98,6 +92,11 @@ public final class SpringUtils implements BeanFactoryPostProcessor {
      */
     @SuppressWarnings("unchecked")
     public static <T> T getAopProxy(T invoker) {
-        return (T) AopContext.currentProxy();
+        return (T)AopContext.currentProxy();
+    }
+
+    @Override
+    public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
+        SpringUtils.beanFactory = beanFactory;
     }
 }

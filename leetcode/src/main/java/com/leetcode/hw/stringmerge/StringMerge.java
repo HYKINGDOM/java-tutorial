@@ -6,11 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class StringMerge {
-
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -33,7 +31,7 @@ public class StringMerge {
         List<String> stringList = new ArrayList<>(objectHashMap.values());
         for (String item : stringList) {
             //转换为二进制
-            int asc = (int) item.charAt(0);
+            int asc = (int)item.charAt(0);
             if ((asc >= 48 && asc <= 57) || (asc >= 97 && asc <= 102) || (asc >= 65 && asc <= 70)) {
                 String num = Integer.toBinaryString(Integer.valueOf(item, 16));
                 //在前面补0

@@ -18,11 +18,6 @@ import java.util.Map;
 public class HttpRequestWrapper extends HttpServletRequestWrapper {
 
     private final Map<String, String> headers = new HashMap<>();
-
-    public void addHeader(String name, String value) {
-        headers.put(name, value);
-    }
-
     private final String body;
 
     public HttpRequestWrapper(HttpServletRequest request) {
@@ -51,6 +46,10 @@ public class HttpRequestWrapper extends HttpServletRequestWrapper {
             }
         }
         body = stringBuilder.toString();
+    }
+
+    public void addHeader(String name, String value) {
+        headers.put(name, value);
     }
 
     @Override

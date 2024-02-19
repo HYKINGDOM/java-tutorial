@@ -1,6 +1,5 @@
 package com.java.tutorial.project.service;
 
-
 import com.java.tutorial.project.common.CacheType;
 import com.java.tutorial.project.annotation.DoubleCache;
 import com.java.tutorial.project.entity.Order;
@@ -15,32 +14,27 @@ import org.springframework.stereotype.Service;
 public class OrderServiceImpl implements OrderService {
 
     @Override
-    @DoubleCache(cacheName = "order", key = "#id",
-            type = CacheType.FULL)
+    @DoubleCache(cacheName = "order", key = "#id", type = CacheType.FULL)
     public Order getOrderById(Long id) {
         return Order.builder().id(id).build();
     }
 
     @Override
-    @DoubleCache(cacheName = "order", key = "#order.id",
-            type = CacheType.PUT)
+    @DoubleCache(cacheName = "order", key = "#order.id", type = CacheType.PUT)
     public Order updateOrder(Order order) {
 
         return order;
     }
 
-
     @Override
-    @DoubleCache(cacheName = "order", key = "#order.id",
-            type = CacheType.PUT)
+    @DoubleCache(cacheName = "order", key = "#order.id", type = CacheType.PUT)
     public Order updatePutOrder(Order order) {
 
         return order;
     }
 
     @Override
-    @DoubleCache(cacheName = "order", key = "#id",
-            type = CacheType.DELETE)
+    @DoubleCache(cacheName = "order", key = "#id", type = CacheType.DELETE)
     public void deleteOrder(Long id) {
 
     }

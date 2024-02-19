@@ -22,7 +22,6 @@ import java.util.concurrent.ThreadPoolExecutor;
 @EnableAsync
 public class AsyncConfig implements AsyncConfigurer {
 
-
     @Bean
     protected WebMvcConfigurer webMvcConfigurer() {
         return new WebMvcConfigurerAdapter() {
@@ -37,9 +36,6 @@ public class AsyncConfig implements AsyncConfigurer {
     protected ConcurrentTaskExecutor getTaskExecutor() {
         return new ConcurrentTaskExecutor(getAsyncExecutor());
     }
-
-
-
 
     @Bean
     @Override

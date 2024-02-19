@@ -1,10 +1,10 @@
 package com.java.patterns.commandpattern.recommend.command;
 
-
 import com.java.patterns.commandpattern.recommend.device.Stereo;
 
 /**
  * 音响减少
+ *
  * @author yihur
  */
 public class StereoSubVolCommand implements Command {

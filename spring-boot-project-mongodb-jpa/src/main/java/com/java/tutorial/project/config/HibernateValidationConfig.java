@@ -9,7 +9,6 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
-
 //@Configuration
 //public class HibernateValidationConfig {
 //

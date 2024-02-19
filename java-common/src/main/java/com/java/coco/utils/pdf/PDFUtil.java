@@ -1,6 +1,5 @@
 package com.java.coco.utils.pdf;
 
-
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
@@ -23,7 +22,7 @@ public class PDFUtil {
             //pdf文本路径
             String path = "G:\\empRequest\\Test.pdf";
             //输出txt文本路径
-            String target="G:\\empRequest\\Test.txt";
+            String target = "G:\\empRequest\\Test.txt";
             PDDocument document = PDDocument.load(new File(path));
             PDFTextStripper pts = new PDFTextStripper();
             endPage = document.getNumberOfPages();

@@ -28,11 +28,11 @@ public class StartImportPersonJob {
     private JobLauncher jobLauncher;
 
     @PostConstruct
-    public void startJob() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
+    public void startJob()
+        throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException,
+        JobRestartException {
         String formatDate = LocalDate.of(2022, 9, 20).format(DateTimeFormatter.ofPattern("yyyyMMdd"));
-        JobParameters jobParameters = new JobParametersBuilder()
-                .addString("importDate", formatDate)
-                .toJobParameters();
+        JobParameters jobParameters = new JobParametersBuilder().addString("importDate", formatDate).toJobParameters();
         JobExecution execution = jobLauncher.run(importPersonJob, jobParameters);
         boolean stopping = execution.isStopping();
         log.info("job invoked");

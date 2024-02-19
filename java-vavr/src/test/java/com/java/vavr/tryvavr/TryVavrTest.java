@@ -16,17 +16,11 @@ class TryVavrTest {
     }
 
     private String testTryWithRecover(Exception e) {
-        return (String) Try.of(() -> {
-                    throw e;
-                })
-                .recoverWith(NullPointerException.class, Try.of(() -> "NPE"))
-                .recoverWith(IllegalStateException.class, Try.of(() -> "IllegalState"))
-                .recoverWith(RuntimeException.class, Try.of(() -> "Unknown"))
-                .get();
+        return (String)Try.of(() -> {
+                throw e;
+            }).recoverWith(NullPointerException.class, Try.of(() -> "NPE"))
+            .recoverWith(IllegalStateException.class, Try.of(() -> "IllegalState"))
+            .recoverWith(RuntimeException.class, Try.of(() -> "Unknown")).get();
     }
-
-
-
-
 
 }

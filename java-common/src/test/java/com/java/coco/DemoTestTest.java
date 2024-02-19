@@ -16,7 +16,6 @@ public class DemoTestTest {
         demoTest = new DemoTest();
     }
 
-
     @Test
     public void test_init_method_01_is_null() {
         long timeMillis = System.currentTimeMillis();
@@ -26,7 +25,6 @@ public class DemoTestTest {
         Date date = new Date(Optional.ofNullable(timeMillis).orElse(timeMillis));
         System.out.println();
     }
-
 
     @Test
     public void test_init_method_01_not_null() {

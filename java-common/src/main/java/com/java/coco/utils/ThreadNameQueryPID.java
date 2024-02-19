@@ -12,7 +12,8 @@ public class ThreadNameQueryPID {
 
         String processName = "MEmuHeadless.exe";
         //根据程序名获取PID
-        String[] cmd01 = {"cmd", "/c", "FOR /F \"tokens=2,3*\"; %i  in ('tasklist /nh ^| find \"" + processName + "\"') do @echo %i"};
+        String[] cmd01 = {"cmd", "/c",
+            "FOR /F \"tokens=2,3*\"; %i  in ('tasklist /nh ^| find \"" + processName + "\"') do @echo %i"};
 
         ThreadNameQueryPID threadNameQueryPID = new ThreadNameQueryPID();
         List<String> stringList = threadNameQueryPID.byThreadNameQueryPID(cmd01);
@@ -44,6 +45,5 @@ public class ThreadNameQueryPID {
         }
         return stringList;
     }
-
 
 }

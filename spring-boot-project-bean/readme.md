@@ -12,6 +12,5 @@
 4. 使用 Bean：在程序中使用 Bean 对象；
 5. 销毁 Bean：将 Bean 对象进行销毁操作。
 
-
 链接：https://juejin.cn/post/7139876540741287950
 

@@ -1,6 +1,5 @@
 package com.java.patterns.strategypattern.advancedduck.ducks;
 
-
 import com.java.patterns.strategypattern.advancedduck.flybehavior.BadFlyBehavior;
 import com.java.patterns.strategypattern.advancedduck.quackbehavior.GaGaQuackBehavior;
 import com.java.patterns.strategypattern.advancedduck.swimbehavior.GoodSwimBehavior;
@@ -30,6 +29,5 @@ public class GreenHeadBaseDuck extends BaseDuck {
     public String getDuckName() {
         return this.getClass().getSimpleName();
     }
-
 
 }

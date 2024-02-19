@@ -16,7 +16,7 @@ public class ComplexObject {
             ThreadLocalRandom tlr = ThreadLocalRandom.current();
             Thread.sleep(4000 + tlr.nextInt(2000));
             long t2 = System.currentTimeMillis();
-            System.out.println(name + " 创建耗时: " + (t2-t1) + "ms");
+            System.out.println(name + " 创建耗时: " + (t2 - t1) + "ms");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

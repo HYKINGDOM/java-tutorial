@@ -1,15 +1,13 @@
 package com.java.coco.utils;
 
-
 import java.text.NumberFormat;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-
 /**
- * Simple stop watch, allowing for timing of a number of tasks, exposing total
- * running time and running time for each named task.
+ * Simple stop watch, allowing for timing of a number of tasks, exposing total running time and running time for each
+ * named task.
  *
  * <p>Conceals use of {@link System#nanoTime()}, improving the readability of
  * application code and reducing the likelihood of calculation errors.
@@ -36,11 +34,8 @@ public class StopWatch {
      * distinguish between them in log or console output.
      */
     private final String id;
-
-    private boolean keepTaskList = true;
-
     private final List<TaskInfo> taskList = new LinkedList<>();
-
+    private boolean keepTaskList = true;
     /** Start time of the current task. */
     private long startTimeNanos;
 
@@ -53,7 +48,6 @@ public class StopWatch {
 
     /** Total running time. */
     private long totalTimeNanos;
-
 
     /**
      * Construct a new {@code StopWatch}.
@@ -68,18 +62,27 @@ public class StopWatch {
      * <p>The ID is handy when we have output from multiple stop watches and need
      * to distinguish between them.
      * <p>Does not start any task.
+     *
      * @param id identifier for this stop watch
      */
     public StopWatch(String id) {
         this.id = id;
     }
 
+    private static long nanosToMillis(long duration) {
+        return TimeUnit.NANOSECONDS.toMillis(duration);
+    }
+
+    private static double nanosToSeconds(long duration) {
+        return duration / 1_000_000_000.0;
+    }
 
     /**
      * Get the ID of this {@code StopWatch}, as specified on construction.
+     *
      * @return the ID (empty String by default)
-     * @since 4.2.2
      * @see #StopWatch(String)
+     * @since 4.2.2
      */
     public String getId() {
         return this.id;
@@ -88,19 +91,18 @@ public class StopWatch {
     /**
      * Configure whether the {@link TaskInfo} array is built over time.
      * <p>Set this to {@code false} when using a {@code StopWatch} for millions
-     * of intervals; otherwise, the {@code TaskInfo} structure will consume
-     * excessive memory.
+     * of intervals; otherwise, the {@code TaskInfo} structure will consume excessive memory.
      * <p>Default is {@code true}.
      */
     public void setKeepTaskList(boolean keepTaskList) {
         this.keepTaskList = keepTaskList;
     }
 
-
     /**
      * Start an unnamed task.
      * <p>The results are undefined if {@link #stop()} or timing methods are
      * called without invoking this method first.
+     *
      * @see #start(String)
      * @see #stop()
      */
@@ -112,6 +114,7 @@ public class StopWatch {
      * Start a named task.
      * <p>The results are undefined if {@link #stop()} or timing methods are
      * called without invoking this method first.
+     *
      * @param taskName the name of the task to start
      * @see #start()
      * @see #stop()
@@ -128,6 +131,7 @@ public class StopWatch {
      * Stop the current task.
      * <p>The results are undefined if timing methods are called without invoking
      * at least one pair of {@code start()} / {@code stop()} methods.
+     *
      * @see #start()
      * @see #start(String)
      */
@@ -147,6 +151,7 @@ public class StopWatch {
 
     /**
      * Determine whether this {@code StopWatch} is currently running.
+     *
      * @see #currentTaskName()
      */
     public boolean isRunning() {
@@ -155,8 +160,9 @@ public class StopWatch {
 
     /**
      * Get the name of the currently running task, if any.
-     * @since 4.2.2
+     *
      * @see #isRunning()
+     * @since 4.2.2
      */
     public String currentTaskName() {
         return this.currentTaskName;
@@ -164,8 +170,9 @@ public class StopWatch {
 
     /**
      * Get the time taken by the last task in nanoseconds.
-     * @since 5.2
+     *
      * @see #getLastTaskTimeMillis()
+     * @since 5.2
      */
     public long getLastTaskTimeNanos() throws IllegalStateException {
         if (this.lastTaskInfo == null) {
@@ -176,6 +183,7 @@ public class StopWatch {
 
     /**
      * Get the time taken by the last task in milliseconds.
+     *
      * @see #getLastTaskTimeNanos()
      */
     public long getLastTaskTimeMillis() throws IllegalStateException {
@@ -205,12 +213,12 @@ public class StopWatch {
         return this.lastTaskInfo;
     }
 
-
     /**
      * Get the total time in nanoseconds for all tasks.
-     * @since 5.2
+     *
      * @see #getTotalTimeMillis()
      * @see #getTotalTimeSeconds()
+     * @since 5.2
      */
     public long getTotalTimeNanos() {
         return this.totalTimeNanos;
@@ -218,6 +226,7 @@ public class StopWatch {
 
     /**
      * Get the total time in milliseconds for all tasks.
+     *
      * @see #getTotalTimeNanos()
      * @see #getTotalTimeSeconds()
      */
@@ -227,6 +236,7 @@ public class StopWatch {
 
     /**
      * Get the total time in seconds for all tasks.
+     *
      * @see #getTotalTimeNanos()
      * @see #getTotalTimeMillis()
      */
@@ -251,7 +261,6 @@ public class StopWatch {
         return this.taskList.toArray(new TaskInfo[0]);
     }
 
-
     /**
      * Get a short description of the total running time.
      */
@@ -269,8 +278,7 @@ public class StopWatch {
         sb.append('\n');
         if (!this.keepTaskList) {
             sb.append("No task info kept");
-        }
-        else {
+        } else {
             sb.append("---------------------------------------------\n");
             sb.append("ns         %     Task name\n");
             sb.append("---------------------------------------------\n");
@@ -282,7 +290,7 @@ public class StopWatch {
             pf.setGroupingUsed(false);
             for (TaskInfo task : getTaskInfo()) {
                 sb.append(nf.format(task.getTimeNanos())).append("  ");
-                sb.append(pf.format((double) task.getTimeNanos() / getTotalTimeNanos())).append("  ");
+                sb.append(pf.format((double)task.getTimeNanos() / getTotalTimeNanos())).append("  ");
                 sb.append(task.getTaskName()).append("\n");
             }
         }
@@ -303,22 +311,11 @@ public class StopWatch {
                 long percent = Math.round(100.0 * task.getTimeNanos() / getTotalTimeNanos());
                 sb.append(" = ").append(percent).append("%");
             }
-        }
-        else {
+        } else {
             sb.append("; no task info kept");
         }
         return sb.toString();
     }
-
-
-    private static long nanosToMillis(long duration) {
-        return TimeUnit.NANOSECONDS.toMillis(duration);
-    }
-
-    private static double nanosToSeconds(long duration) {
-        return duration / 1_000_000_000.0;
-    }
-
 
     /**
      * Nested class to hold data about one task executed within the {@code StopWatch}.
@@ -343,9 +340,10 @@ public class StopWatch {
 
         /**
          * Get the time in nanoseconds this task took.
-         * @since 5.2
+         *
          * @see #getTimeMillis()
          * @see #getTimeSeconds()
+         * @since 5.2
          */
         public long getTimeNanos() {
             return this.timeNanos;
@@ -353,6 +351,7 @@ public class StopWatch {
 
         /**
          * Get the time in milliseconds this task took.
+         *
          * @see #getTimeNanos()
          * @see #getTimeSeconds()
          */
@@ -362,6 +361,7 @@ public class StopWatch {
 
         /**
          * Get the time in seconds this task took.
+         *
          * @see #getTimeMillis()
          * @see #getTimeNanos()
          */

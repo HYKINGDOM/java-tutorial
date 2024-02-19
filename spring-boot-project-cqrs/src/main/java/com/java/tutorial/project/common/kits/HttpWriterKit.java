@@ -10,9 +10,7 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- *
  * Response输出信息封装
- *
  */
 public final class HttpWriterKit {
 
@@ -31,7 +29,7 @@ public final class HttpWriterKit {
     }
 
     public static void text(ServletResponse response, String str, HttpStatus status) {
-        writer((HttpServletResponse) response, str, status);
+        writer((HttpServletResponse)response, str, status);
     }
 
     private static void writer(HttpServletResponse response, Object data, HttpStatus status) {
@@ -39,7 +37,7 @@ public final class HttpWriterKit {
         response.setStatus(status.value());
         try (final PrintWriter writer = response.getWriter()) {
             if (data instanceof String) {
-                String str =  (String) data;
+                String str = (String)data;
                 writer.write(str);
             } else {
                 writer.write(ONode.stringify(data));

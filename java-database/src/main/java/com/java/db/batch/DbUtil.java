@@ -13,10 +13,7 @@ public class DbUtil {
 
         Connection connection = JDBCUtil.createConnection("10.0.220.30:3306/talent_admin", "platform", "Platform_1314");
 
-
-
         System.out.println(loadDriver1);
-
 
     }
 }

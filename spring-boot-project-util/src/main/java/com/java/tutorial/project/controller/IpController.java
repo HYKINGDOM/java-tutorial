@@ -16,12 +16,12 @@ public class IpController {
 
     @ResponseBody
     @GetMapping("/realAddress")
-    public String realAddress(HttpServletRequest request){
+    public String realAddress(HttpServletRequest request) {
         String ip = IpUtil.getIpAddr(request);
         //在线获取
         //       String realAddress = AddressUtils.getRealAddressByIP(ip);
         //离线获取
         String realAddress = IpUtil.getAddr(ip);
-        return "您的ip所在地为:"+ realAddress;
+        return "您的ip所在地为:" + realAddress;
     }
 }

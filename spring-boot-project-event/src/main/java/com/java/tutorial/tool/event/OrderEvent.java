@@ -26,8 +26,6 @@ public class OrderEvent extends ApplicationEvent {
 
     private LocalDateTime currentDateTime;
 
-
-
     public OrderEvent(String traceId, Object payload, String version, LocalDateTime currentDateTime, Object source) {
         super(source);
         this.traceId = traceId;
@@ -36,7 +34,8 @@ public class OrderEvent extends ApplicationEvent {
         this.currentDateTime = currentDateTime;
     }
 
-    public OrderEvent(Long businessId, String traceId, Object payload, String version, LocalDateTime currentDateTime, Object source) {
+    public OrderEvent(Long businessId, String traceId, Object payload, String version, LocalDateTime currentDateTime,
+        Object source) {
         super(source);
         this.businessId = businessId;
         this.traceId = traceId;
@@ -45,7 +44,8 @@ public class OrderEvent extends ApplicationEvent {
         this.currentDateTime = currentDateTime;
     }
 
-    public OrderEvent(Long businessId, String traceId, Object payload, String version, LocalDateTime currentDateTime, Object source, Clock clock) {
+    public OrderEvent(Long businessId, String traceId, Object payload, String version, LocalDateTime currentDateTime,
+        Object source, Clock clock) {
         super(source, clock);
         this.businessId = businessId;
         this.traceId = traceId;

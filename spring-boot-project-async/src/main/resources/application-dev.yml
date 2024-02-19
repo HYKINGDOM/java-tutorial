@@ -1,5 +1,3 @@
-
-
 upload:
-    file:
-        url: http://10.0.220.31:8090/file
+  file:
+    url: http://10.0.220.31:8090/file

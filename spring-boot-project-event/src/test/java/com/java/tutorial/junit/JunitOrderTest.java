@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestMethodOrder;
 
-
 /**
  * 为了允许隔离执行单个的测试方法，JUnit在执行每个测试方法之前会创建每个测试类的新实例。
  * 如果想改变策略，就要用@TestInstance，在类上添加@TestInstance(TestInstance.Lifecycle.PER_CLASS)。

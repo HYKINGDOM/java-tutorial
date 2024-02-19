@@ -1,7 +1,6 @@
 package com.leetcode.title.permute;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Stack;
 
@@ -24,13 +23,13 @@ public class PermuteUniqueSolutionA {
         return result;
     }
 
-    private void addList(List<List<Integer>> result, Stack<Integer> path, boolean[] flag, int[] nums, int startFlag, int deep) {
+    private void addList(List<List<Integer>> result, Stack<Integer> path, boolean[] flag, int[] nums, int startFlag,
+        int deep) {
 
         if (startFlag == deep) {
             result.add(new ArrayList<>(path));
             return;
         }
-
 
         for (int i = 0; i < startFlag; i++) {
 

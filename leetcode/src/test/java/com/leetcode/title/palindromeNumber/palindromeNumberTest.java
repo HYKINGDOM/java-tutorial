@@ -1,6 +1,5 @@
 package com.leetcode.title.palindromeNumber;
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +26,6 @@ public class palindromeNumberTest {
         boolean palindrome = palindromeNumber.isPalindrome(-121);
         assertFalse(palindrome);
     }
-
 
     @Test
     public void test_isPalindrome_02() {

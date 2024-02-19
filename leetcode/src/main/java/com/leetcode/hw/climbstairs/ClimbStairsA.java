@@ -5,11 +5,9 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.Scanner;
 
 /**
- * 3
- * 2 5 20
+ * 3 2 5 20
  */
 public class ClimbStairsA {
     public static void main(String[] args) throws IOException {

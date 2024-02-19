@@ -9,12 +9,10 @@ class StringToIntegerTest {
 
     private StringToInteger stringToInteger;
 
-
     @BeforeEach
     public void init() {
         stringToInteger = new StringToInteger();
     }
-
 
     @Test
     public void test_main_01() {
@@ -22,7 +20,6 @@ class StringToIntegerTest {
         int profit = stringToInteger.myAtoi(str);
         assertThat(profit).isEqualTo(42);
     }
-
 
     @Test
     public void test_main_02() {
@@ -45,14 +42,12 @@ class StringToIntegerTest {
         assertThat(profit).isEqualTo(0);
     }
 
-
     @Test
     public void test_main_05() {
         String str = "-91283472332";
         int profit = stringToInteger.myAtoi(str);
         assertThat(profit).isEqualTo(Integer.MIN_VALUE);
     }
-
 
     @Test
     public void test_main_06() {
@@ -62,7 +57,6 @@ class StringToIntegerTest {
         assertThat(profit).isEqualTo(3);
     }
 
-
     @Test
     public void test_main_07() {
 
@@ -70,7 +64,6 @@ class StringToIntegerTest {
         int profit = stringToInteger.myAtoi(str);
         assertThat(profit).isEqualTo(0);
     }
-
 
     @Test
     public void test_main_08() {
@@ -124,7 +117,6 @@ class StringToIntegerTest {
         int profit = stringToInteger.myAtoi(str);
         assertThat(profit).isEqualTo(Integer.MAX_VALUE);
     }
-
 
     @Test
     public void test_main_15() {

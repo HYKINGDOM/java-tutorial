@@ -1,13 +1,11 @@
 package com.java.tutorial.project.async.callback;
 
-
 import com.java.tutorial.project.async.worker.WorkResult;
 
 /**
- * 每个执行单元执行完毕后，会回调该接口</p>
- * 需要监听执行结果的，实现该接口即可
+ * 每个执行单元执行完毕后，会回调该接口</p> 需要监听执行结果的，实现该接口即可
  *
- *  @author hy
+ * @author hy
  */
 @FunctionalInterface
 public interface ICallback<T, V> {

@@ -6,8 +6,8 @@ spring security 系列框架变化太大，几乎每一个版本更新之后接�
 
 所以我觉得现阶段应该以学习基础为主，以及各个框架的设计思路
 
-
 ### Guides
+
 The following guides illustrate how to use some features concretely:
 
 * [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)

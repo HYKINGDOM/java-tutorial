@@ -15,9 +15,9 @@ public class ZipPassWord {
 
     public static List<String> stringList = new ArrayList<>();
 
-
     public static void main(String[] args) {
-        String str = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()-_+=~`[]{}|\\\\:;\\\"'<>,.?/";
+        String str =
+            "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()-_+=~`[]{}|\\\\:;\\\"'<>,.?/";
         List<String> stringList = Splitter.fixedLength(1).splitToList(str);
         String[] strArray = new String[stringList.size()];
         stringList.toArray(strArray);
@@ -30,14 +30,13 @@ public class ZipPassWord {
         txtExport.creatTxtFile("password");
         txtExport.writeTxtFile(passwordList);
 
-//        try {
-//            zipPassWord.crackZip(passwordList, pathZip);
-//        } catch (ZipException e) {
-//            e.printStackTrace();
-//        }
+        //        try {
+        //            zipPassWord.crackZip(passwordList, pathZip);
+        //        } catch (ZipException e) {
+        //            e.printStackTrace();
+        //        }
 
     }
-
 
     public void crackZip(List<String> stringList, String zipPath) throws ZipException {
 
@@ -56,7 +55,6 @@ public class ZipPassWord {
         System.out.println("找到密码!!!,密码为" + password + ", 总共耗时: " + (timeMillis02 - timeMillis01));
     }
 
-
     /**
      * @param str    密码集合
      * @param length 密码长度
@@ -74,7 +72,6 @@ public class ZipPassWord {
         }
         return passwordList;
     }
-
 
     public void funLoopStr(String[] shu, int targ, int cur) {
         if (cur == targ) {

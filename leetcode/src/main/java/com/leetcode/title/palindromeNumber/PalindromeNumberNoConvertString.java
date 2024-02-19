@@ -15,7 +15,6 @@ public class PalindromeNumberNoConvertString {
             return false;
         }
 
-
         int finInt = x;
         int i = 0;
         int n = 0;
@@ -30,7 +29,7 @@ public class PalindromeNumberNoConvertString {
         n = n - 1;
         while (x > 0) {
             i = x % 10;
-            num = (int) (num + Math.pow(10, n) * i);
+            num = (int)(num + Math.pow(10, n) * i);
             n--;
             x = x / 10;
         }

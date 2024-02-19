@@ -63,33 +63,6 @@ public class HttpClientUtil {
     public static final int PERIOD = 5 * 1000;
     public static final String CONTENT_TYPE_JSON = "application/json";
     public static final String MIME_TYPE = "text/plain";
-
-    /**
-     * 连接池最大连接数 默认值：20
-     */
-    private final static int MAX_TOTAL = 50;
-
-    /**
-     * 每个路由最大连接数 默认值：2
-     */
-    private final static int MAX_PRE_ROUTE = 4;
-
-    /**
-     * 从线程池中获取线程超时时间
-     */
-    private static final int CONNECTION_REQUEST_TIMEOUT = 3000;
-
-    /**
-     * 连接超时时间
-     */
-    private static final int CONNECT_TIMEOUT = 3000;
-
-    /**
-     * 设置数据超时时间
-     */
-    private static final int SOCKET_TIMEOUT = 10000;
-    private static final String DEFAULT_CHARSET = "UTF-8";
-    private static final String EMPTY_BODY = "";
     public static final int SO_TIMEOUT = 5000;
     public static final int CORE_POOL_SIZE = 1;
     public static final int IDLE_TIMEOUT = 30;
@@ -97,61 +70,31 @@ public class HttpClientUtil {
     public static final String STRING = "?";
     public static final char CHAR = '?';
     public static final String FORMAT_NAME_VALUE = "'%s'='%s'";
-
+    /**
+     * 连接池最大连接数 默认值：20
+     */
+    private final static int MAX_TOTAL = 50;
+    /**
+     * 每个路由最大连接数 默认值：2
+     */
+    private final static int MAX_PRE_ROUTE = 4;
+    /**
+     * 从线程池中获取线程超时时间
+     */
+    private static final int CONNECTION_REQUEST_TIMEOUT = 3000;
+    /**
+     * 连接超时时间
+     */
+    private static final int CONNECT_TIMEOUT = 3000;
+    /**
+     * 设置数据超时时间
+     */
+    private static final int SOCKET_TIMEOUT = 10000;
+    private static final String DEFAULT_CHARSET = "UTF-8";
+    private static final String EMPTY_BODY = "";
     private static PoolingHttpClientConnectionManager connectionManager = null;
     private static RequestConfig requestConfig;
     private static CloseableHttpClient client;
-
-    /**
-     * 请求连接池失败重试策略
-     */
-    public static class MyRetryHandle implements HttpRequestRetryHandler {
-        Logger logger = LoggerFactory.getLogger(MyRetryHandle.class);
-
-        /**
-         * 重试策略的重试次数
-         */
-        public static final int RETRY_LIMIT = 3;
-
-        //请求失败时,进行请求重试
-        @Override
-        public boolean retryRequest(IOException e, int i, HttpContext httpContext) {
-            if (i > RETRY_LIMIT) {
-                //重试超过3次,放弃请求
-                logger.error("retry has more than 3 time, give up request");
-                return false;
-            }
-            if (e instanceof NoHttpResponseException) {
-                //服务器没有响应,可能是服务器断开了连接,应该重试
-                logger.error("receive no response from server, retry");
-                return true;
-            }
-            if (e instanceof SSLHandshakeException) {
-                // SSL握手异常
-                logger.error("SSL hand shake exception");
-                return false;
-            }
-            if (e instanceof InterruptedIOException) {
-                //超时
-                logger.error("InterruptedIOException");
-                return false;
-            }
-            if (e instanceof UnknownHostException) {
-                // 服务器不可达
-                logger.error("server host unknown");
-                return false;
-            }
-            if (e instanceof SSLException) {
-                logger.error("SSLException");
-                return false;
-            }
-
-            HttpClientContext context = HttpClientContext.adapt(httpContext);
-            HttpRequest request = context.getRequest();
-            //如果请求不是关闭连接的请求
-            return !(request instanceof HttpEntityEnclosingRequest);
-        }
-    }
 
     /**
      * 单例模式创建连接池
@@ -561,6 +504,56 @@ public class HttpClientUtil {
             rootUrl = rootUrl + STRING;
         }
         return rootUrl;
+    }
+
+    /**
+     * 请求连接池失败重试策略
+     */
+    public static class MyRetryHandle implements HttpRequestRetryHandler {
+        /**
+         * 重试策略的重试次数
+         */
+        public static final int RETRY_LIMIT = 3;
+        Logger logger = LoggerFactory.getLogger(MyRetryHandle.class);
+
+        //请求失败时,进行请求重试
+        @Override
+        public boolean retryRequest(IOException e, int i, HttpContext httpContext) {
+            if (i > RETRY_LIMIT) {
+                //重试超过3次,放弃请求
+                logger.error("retry has more than 3 time, give up request");
+                return false;
+            }
+            if (e instanceof NoHttpResponseException) {
+                //服务器没有响应,可能是服务器断开了连接,应该重试
+                logger.error("receive no response from server, retry");
+                return true;
+            }
+            if (e instanceof SSLHandshakeException) {
+                // SSL握手异常
+                logger.error("SSL hand shake exception");
+                return false;
+            }
+            if (e instanceof InterruptedIOException) {
+                //超时
+                logger.error("InterruptedIOException");
+                return false;
+            }
+            if (e instanceof UnknownHostException) {
+                // 服务器不可达
+                logger.error("server host unknown");
+                return false;
+            }
+            if (e instanceof SSLException) {
+                logger.error("SSLException");
+                return false;
+            }
+
+            HttpClientContext context = HttpClientContext.adapt(httpContext);
+            HttpRequest request = context.getRequest();
+            //如果请求不是关闭连接的请求
+            return !(request instanceof HttpEntityEnclosingRequest);
+        }
     }
 
 }

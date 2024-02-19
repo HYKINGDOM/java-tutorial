@@ -15,19 +15,10 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public final class UUID implements java.io.Serializable, Comparable<UUID> {
     private static final long serialVersionUID = -1185015143654744140L;
-
-    /**
-     * SecureRandom 的单例
-     */
-    private static class Holder {
-        static final SecureRandom numberGenerator = getSecureRandom();
-    }
-
     /**
      * 此UUID的最高64有效位
      */
     private final long mostSigBits;
-
     /**
      * 此UUID的最低64有效位
      */
@@ -150,6 +141,40 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
     }
 
     /**
+     * 返回指定数字对应的hex值
+     *
+     * @param val    值
+     * @param digits 位
+     * @return 值
+     */
+    private static String digits(long val, int digits) {
+        long hi = 1L << (digits * 4);
+        return Long.toHexString(hi | (val & (hi - 1))).substring(1);
+    }
+
+    /**
+     * 获取{@link SecureRandom}，类提供加密的强随机数生成器 (RNG)
+     *
+     * @return {@link SecureRandom}
+     */
+    public static SecureRandom getSecureRandom() {
+        try {
+            return SecureRandom.getInstance("SHA1PRNG");
+        } catch (NoSuchAlgorithmException e) {
+            throw new UtilException(e);
+        }
+    }
+
+    /**
+     * 获取随机数生成器对象<br> ThreadLocalRandom是JDK 7之后提供并发产生随机数，能够解决多个线程发生的竞争争夺。
+     *
+     * @return {@link ThreadLocalRandom}
+     */
+    public static ThreadLocalRandom getRandom() {
+        return ThreadLocalRandom.current();
+    }
+
+    /**
      * 返回此 UUID 的 128 位值中的最低有效 64 位。
      *
      * @return 此 UUID 的 128 位值中的最低有效 64 位。
@@ -182,7 +207,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
      */
     public int version() {
         // Version is bits masked by 0x000000000000F000 in MS long
-        return (int) ((mostSigBits >> 12) & 0x0f);
+        return (int)((mostSigBits >> 12) & 0x0f);
     }
 
     /**
@@ -204,27 +229,26 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
         // 1 0 - The IETF aka Leach-Salz variant (used by this class)
         // 1 1 0 Reserved, Microsoft backward compatibility
         // 1 1 1 Reserved for future definition.
-        return (int) ((leastSigBits >>> (64 - (leastSigBits >>> 62))) & (leastSigBits >> 63));
+        return (int)((leastSigBits >>> (64 - (leastSigBits >>> 62))) & (leastSigBits >> 63));
     }
 
     /**
      * 与此 UUID 相关联的时间戳值。
      *
      * <p>
-     * 60 位的时间戳值根据此 {@code UUID} 的 time_low、time_mid 和 time_hi 字段构造。<br>
-     * 所得到的时间戳以 100 毫微秒为单位，从 UTC（通用协调时间） 1582 年 10 月 15 日零时开始。
+     * 60 位的时间戳值根据此 {@code UUID} 的 time_low、time_mid 和 time_hi 字段构造。<br> 所得到的时间戳以 100 毫微秒为单位，从 UTC（通用协调时间） 1582 年 10 月
+     * 15 日零时开始。
      *
      * <p>
-     * 时间戳值仅在在基于时间的 UUID（其 version 类型为 1）中才有意义。<br>
-     * 如果此 {@code UUID} 不是基于时间的 UUID，则此方法抛出 UnsupportedOperationException。
+     * 时间戳值仅在在基于时间的 UUID（其 version 类型为 1）中才有意义。<br> 如果此 {@code UUID} 不是基于时间的 UUID，则此方法抛出 UnsupportedOperationException。
      *
      * @throws UnsupportedOperationException 如果此 {@code UUID} 不是 version 为 1 的 UUID。
      */
     public long timestamp() throws UnsupportedOperationException {
         checkTimeBase();
         return (mostSigBits & 0x0FFFL) << 48//
-                | ((mostSigBits >> 16) & 0x0FFFFL) << 32//
-                | mostSigBits >>> 32;
+            | ((mostSigBits >> 16) & 0x0FFFFL) << 32//
+            | mostSigBits >>> 32;
     }
 
     /**
@@ -241,7 +265,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
      */
     public int clockSequence() throws UnsupportedOperationException {
         checkTimeBase();
-        return (int) ((leastSigBits & 0x3FFF000000000000L) >>> 48);
+        return (int)((leastSigBits & 0x3FFF000000000000L) >>> 48);
     }
 
     /**
@@ -250,8 +274,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
      * <p>
      * 48 位的节点值根据此 UUID 的 node 字段构造。此字段旨在用于保存机器的 IEEE 802 地址，该地址用于生成此 UUID 以保证空间唯一性。
      * <p>
-     * 节点值仅在基于时间的 UUID（其 version 类型为 1）中才有意义。<br>
-     * 如果此 UUID 不是基于时间的 UUID，则此方法抛出 UnsupportedOperationException。
+     * 节点值仅在基于时间的 UUID（其 version 类型为 1）中才有意义。<br> 如果此 UUID 不是基于时间的 UUID，则此方法抛出 UnsupportedOperationException。
      *
      * @return 此 {@code UUID} 的节点值
      * @throws UnsupportedOperationException 如果此 UUID 的 version 不为 1
@@ -342,6 +365,8 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
         return builder.toString();
     }
 
+    // Comparison Operations
+
     /**
      * 返回此 UUID 的哈希码。
      *
@@ -349,8 +374,11 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
      */
     public int hashCode() {
         long hilo = mostSigBits ^ leastSigBits;
-        return ((int) (hilo >> 32)) ^ (int) hilo;
+        return ((int)(hilo >> 32)) ^ (int)hilo;
     }
+
+    // -------------------------------------------------------------------------------------------------------------------
+    // Private method start
 
     /**
      * 将此对象与指定对象比较。
@@ -364,11 +392,9 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
         if ((null == obj) || (obj.getClass() != UUID.class)) {
             return false;
         }
-        UUID id = (UUID) obj;
+        UUID id = (UUID)obj;
         return (mostSigBits == id.mostSigBits && leastSigBits == id.leastSigBits);
     }
-
-    // Comparison Operations
 
     /**
      * 将此 UUID 与指定的 UUID 比较。
@@ -382,26 +408,8 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
     public int compareTo(UUID val) {
         // The ordering is intentionally set up so that the UUIDs
         // can simply be numerically compared as two numbers
-        return (this.mostSigBits < val.mostSigBits ? -1 :
-                (this.mostSigBits > val.mostSigBits ? 1 :
-                        (this.leastSigBits < val.leastSigBits ? -1 :
-                                (this.leastSigBits > val.leastSigBits ? 1 :
-                                        0))));
-    }
-
-    // -------------------------------------------------------------------------------------------------------------------
-    // Private method start
-
-    /**
-     * 返回指定数字对应的hex值
-     *
-     * @param val    值
-     * @param digits 位
-     * @return 值
-     */
-    private static String digits(long val, int digits) {
-        long hi = 1L << (digits * 4);
-        return Long.toHexString(hi | (val & (hi - 1))).substring(1);
+        return (this.mostSigBits < val.mostSigBits ? -1 : (this.mostSigBits > val.mostSigBits ? 1
+            : (this.leastSigBits < val.leastSigBits ? -1 : (this.leastSigBits > val.leastSigBits ? 1 : 0))));
     }
 
     /**
@@ -414,25 +422,9 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
     }
 
     /**
-     * 获取{@link SecureRandom}，类提供加密的强随机数生成器 (RNG)
-     *
-     * @return {@link SecureRandom}
+     * SecureRandom 的单例
      */
-    public static SecureRandom getSecureRandom() {
-        try {
-            return SecureRandom.getInstance("SHA1PRNG");
-        } catch (NoSuchAlgorithmException e) {
-            throw new UtilException(e);
-        }
-    }
-
-    /**
-     * 获取随机数生成器对象<br>
-     * ThreadLocalRandom是JDK 7之后提供并发产生随机数，能够解决多个线程发生的竞争争夺。
-     *
-     * @return {@link ThreadLocalRandom}
-     */
-    public static ThreadLocalRandom getRandom() {
-        return ThreadLocalRandom.current();
+    private static class Holder {
+        static final SecureRandom numberGenerator = getSecureRandom();
     }
 }

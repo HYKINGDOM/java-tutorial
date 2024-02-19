@@ -1,9 +1,6 @@
 package com.java.coco.scs.javatest;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -11,8 +8,12 @@ import java.util.concurrent.FutureTask;
 
 public class FutureCook {
 
+    //  用厨具烹饪食材
+    private static void cook(Chuju chuju, Shicai shicai) {
+    }
+
     @Test
-    public void test_future_cook(){
+    public void test_future_cook() {
         long startTime = System.currentTimeMillis();
         // 第一步 网购厨具
         Callable<Chuju> onlineShopping = () -> {
@@ -46,10 +47,6 @@ public class FutureCook {
         cook(chuju, shicai);
 
         System.out.println("总共用时" + (System.currentTimeMillis() - startTime) + "ms");
-    }
-
-    //  用厨具烹饪食材
-    private static void cook(Chuju chuju, Shicai shicai) {
     }
 
     // 厨具类

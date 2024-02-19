@@ -1,6 +1,5 @@
 package com.java.benchmark;
 
-
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Fork;
 import org.openjdk.jmh.annotations.Measurement;
@@ -21,6 +20,5 @@ import java.util.concurrent.TimeUnit;
 @OutputTimeUnit(TimeUnit.NANOSECONDS)// 结果所使用的时间单位
 @State(Scope.Benchmark) // 每个Benchmark分配一个实例
 public class CollectionsListBenchmark {
-
 
 }

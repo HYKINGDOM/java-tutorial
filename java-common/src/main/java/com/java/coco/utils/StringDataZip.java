@@ -8,11 +8,9 @@ import java.io.IOException;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
-import static javax.xml.crypto.dsig.Transform.BASE64;
-
 /**
- *
  * gzip字符串压缩
+ *
  * @author HY
  */
 public class StringDataZip {
@@ -46,8 +44,8 @@ public class StringDataZip {
 
         String decompressed = null;
         try (ByteArrayOutputStream out = new ByteArrayOutputStream();
-             ByteArrayInputStream in = new ByteArrayInputStream(compressed);
-             GZIPInputStream ginzip = new GZIPInputStream(in);) {
+            ByteArrayInputStream in = new ByteArrayInputStream(compressed);
+            GZIPInputStream ginzip = new GZIPInputStream(in);) {
             byte[] buffer = new byte[1024];
             int offset;
             while ((offset = ginzip.read(buffer)) != -1) {

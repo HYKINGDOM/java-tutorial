@@ -15,18 +15,19 @@ import java.util.List;
  */
 public class EasyExcelUtils {
 
-    private EasyExcelUtils(){}
-
-
-    @SuppressWarnings("rawtypes")
-	public static void webWriteExcel(HttpServletResponse response, List objects, Class clazz, String fileName) throws IOException {
-        String sheetName = fileName;
-        webWriteExcel(response,objects,clazz,fileName,sheetName);
+    private EasyExcelUtils() {
     }
 
-    
     @SuppressWarnings("rawtypes")
-	public static void webWriteExcel(HttpServletResponse response, List objects, Class clazz, String fileName, String sheetName) throws IOException {
+    public static void webWriteExcel(HttpServletResponse response, List objects, Class clazz, String fileName)
+        throws IOException {
+        String sheetName = fileName;
+        webWriteExcel(response, objects, clazz, fileName, sheetName);
+    }
+
+    @SuppressWarnings("rawtypes")
+    public static void webWriteExcel(HttpServletResponse response, List objects, Class clazz, String fileName,
+        String sheetName) throws IOException {
         response.setContentType("application/vnd.ms-excel");
         response.setCharacterEncoding("utf-8");
         response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xlsx");
@@ -37,17 +38,16 @@ public class EasyExcelUtils {
         // 内容的策略
         WriteCellStyle contentWriteCellStyle = new WriteCellStyle();
         HorizontalCellStyleStrategy horizontalCellStyleStrategy =
-                new HorizontalCellStyleStrategy(headWriteCellStyle, contentWriteCellStyle);
+            new HorizontalCellStyleStrategy(headWriteCellStyle, contentWriteCellStyle);
         ServletOutputStream outputStream = response.getOutputStream();
         try {
-            EasyExcelFactory.write(outputStream, clazz).registerWriteHandler(horizontalCellStyleStrategy).sheet(sheetName).doWrite(objects);
-        }catch (Exception e){
+            EasyExcelFactory.write(outputStream, clazz).registerWriteHandler(horizontalCellStyleStrategy)
+                .sheet(sheetName).doWrite(objects);
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             outputStream.close();
         }
     }
-
-
 
 }

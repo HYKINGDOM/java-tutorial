@@ -11,6 +11,5 @@ public interface UserMapper {
 
     UserResponse toUserResponse(User user);
 
-
     UserResponse toUserResponse(UserEntity userEntity);
 }

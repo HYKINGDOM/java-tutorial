@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.executable.ValidateOnExecution;
-
 @RestController
 @RequestMapping("/mongo")
 public class MongoDBController {
@@ -25,8 +23,9 @@ public class MongoDBController {
         user.setPassWord("weadawdawdaw456451@@@");
         userService.saveUser(user);
     }
+
     @GetMapping
-    public void getUser(){
+    public void getUser() {
         userService.findUserByUserName("User.builder().build()");
     }
 }

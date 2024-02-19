@@ -9,18 +9,16 @@ import com.java.coco.BIExtend.entity.ParentEntity;
 
 public enum DomainEnum {
 
-    Domain_A(1, new EntityA()),
-    DOMAIN_B(2, new EntityB()),
-    DOMAIN_C(3, new EntityC()),
-    DOMAIN_D(4, new EntityD()),
+    Domain_A(1, new EntityA()), DOMAIN_B(2, new EntityB()), DOMAIN_C(3, new EntityC()), DOMAIN_D(4, new EntityD()),
     DOMAIN_E(5, new EntityE());
 
+    private Integer typeCode;
+    private ParentEntity parentEntity;
 
     DomainEnum(Integer typeCode, ParentEntity parentEntity) {
         this.typeCode = typeCode;
         this.parentEntity = parentEntity;
     }
-
 
     public static ParentEntity getEntity(Integer typeCode) {
         for (DomainEnum domainEnum : DomainEnum.values()) {
@@ -30,11 +28,6 @@ public enum DomainEnum {
         }
         return null;
     }
-
-    private Integer typeCode;
-
-    private ParentEntity parentEntity;
-
 
     public Integer getTypeCode() {
         return typeCode;

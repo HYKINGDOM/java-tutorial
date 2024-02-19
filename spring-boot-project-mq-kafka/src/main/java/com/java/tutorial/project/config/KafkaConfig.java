@@ -1,6 +1,5 @@
 package com.java.tutorial.project.config;
 
-
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ser.std.StringSerializer;
 import org.apache.kafka.clients.admin.NewTopic;
@@ -18,21 +17,15 @@ import java.util.Map;
 @Configuration
 public class KafkaConfig {
 
-
     @Bean("myTopic")
     public NewTopic myTopic() {
-        return TopicBuilder.name("myTopic")
-                .partitions(10)
-                .compact()
-                .build();
+        return TopicBuilder.name("myTopic").partitions(10).compact().build();
     }
-
 
     @Bean
     public ProducerFactory<Integer, String> producerFactory() {
         return new DefaultKafkaProducerFactory<>(producerConfigs());
     }
-
 
     @Bean
     public Map<String, Object> producerConfigs() {

@@ -16,14 +16,14 @@ public class UpperCaseInputStream extends FilterInputStream {
     @Override
     public int read() throws IOException {
         int c = super.read();
-        return c == -1 ? c : Character.toUpperCase((char) (c));
+        return c == -1 ? c : Character.toUpperCase((char)(c));
     }
 
     @Override
     public int read(byte[] b, int offset, int len) throws IOException {
         int result = super.read(b, offset, len);
         for (int i = 0; i < result; i++) {
-            b[i] = (byte) Character.toUpperCase((char) (b[i]));
+            b[i] = (byte)Character.toUpperCase((char)(b[i]));
         }
         return result;
     }

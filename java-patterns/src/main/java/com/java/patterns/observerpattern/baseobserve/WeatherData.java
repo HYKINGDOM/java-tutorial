@@ -26,6 +26,7 @@ public class WeatherData {
 
     /**
      * 加入需要通知的看板
+     *
      * @param mCurrentConditions
      */
     public WeatherData(CurrentConditions mCurrentConditions) {

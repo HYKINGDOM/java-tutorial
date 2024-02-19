@@ -9,13 +9,11 @@ import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.transform.FieldSet;
 import org.springframework.validation.BindException;
 
-
 /**
  *
  */
 public class ReoportFieldSetMapper implements FieldSetMapper<Address> {
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
 
     /**
      * "address_id", "address", "address2", "district", "city_id", "postal_code", "phone", "last_update"
@@ -36,7 +34,6 @@ public class ReoportFieldSetMapper implements FieldSetMapper<Address> {
         String postalCode = fieldSet.readString("postal_code");
         String phone = fieldSet.readString("phone");
         String lastUpdateStr = fieldSet.readString("last_update");
-
 
         addressBuilder.addressId(Long.parseLong(addressId));
         addressBuilder.address(address);

@@ -24,7 +24,6 @@ public class GiveName {
         }
     }
 
-
     /**
      * @param str    密码集合
      * @param length 密码长度

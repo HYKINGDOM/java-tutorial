@@ -11,14 +11,13 @@ import javax.validation.ValidatorFactory;
 import java.util.Set;
 
 /**
- * @author HY
  * @param <T>
+ * @author HY
  */
 @Slf4j
 public class MyBeanValidator<T> implements Validator<T>, InitializingBean {
 
     private javax.validation.Validator validator;
-
 
     /**
      * 使用Validator的validate方法校验数据
@@ -38,7 +37,6 @@ public class MyBeanValidator<T> implements Validator<T>, InitializingBean {
 
     /**
      * 使用JSR-303的Validator来校验数据，在此进行JSR-303的Validator的初始化
-     *
      */
     @Override
     public void afterPropertiesSet() {

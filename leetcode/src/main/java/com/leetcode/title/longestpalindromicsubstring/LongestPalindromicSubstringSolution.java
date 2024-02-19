@@ -5,6 +5,10 @@ package com.leetcode.title.longestpalindromicsubstring;
  */
 public class LongestPalindromicSubstringSolution {
 
+    public static void main(String[] args) {
+        System.out.println(3 / 2);
+    }
+
     public String longestPalindrome(String s) {
         if (s.length() == 1) {
             return s;
@@ -32,7 +36,7 @@ public class LongestPalindromicSubstringSolution {
                             if (flag.length() < substring.length()) {
                                 flag = substring;
                             }
-                        }else {
+                        } else {
                             continue;
                         }
 
@@ -41,9 +45,5 @@ public class LongestPalindromicSubstringSolution {
             }
         }
         return output;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(3 / 2);
     }
 }

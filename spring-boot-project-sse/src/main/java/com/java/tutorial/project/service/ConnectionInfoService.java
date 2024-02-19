@@ -1,11 +1,13 @@
 package com.java.tutorial.project.service;
 
 import com.java.tutorial.project.common.entity.ConnectionInfo;
+
 import java.util.List;
 
 public interface ConnectionInfoService {
     /**
      * 添加连接
+     *
      * @param connectionInfo
      * @return
      */

@@ -1,10 +1,6 @@
 package com.leetcode.title.permute;
 
-import com.google.common.collect.Lists;
-
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
 import java.util.Stack;
 
@@ -25,9 +21,7 @@ public class PermuteSolution {
         return res;
     }
 
-    private void dfs(int[] nums, int len, int depth,
-                     Stack<Integer> path, boolean[] used,
-                     List<List<Integer>> res) {
+    private void dfs(int[] nums, int len, int depth, Stack<Integer> path, boolean[] used, List<List<Integer>> res) {
         if (depth == len) {
             res.add(new ArrayList<>(path));
             return;

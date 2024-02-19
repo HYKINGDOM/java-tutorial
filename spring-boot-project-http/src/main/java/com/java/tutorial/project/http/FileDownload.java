@@ -20,15 +20,13 @@ import java.util.List;
 /**
  * @author hy
  */
-public class  FileDownload {
+public class FileDownload {
 
+    public static final List<String> IMAGE_EXTENSION_LOW =
+        Lists.newArrayList("jpeg", "jpg", "tiff", "gif", "bmp", "png", "bpg", "svg", "heif", "psd");
 
-    public static final List<String> IMAGE_EXTENSION_LOW = Lists.newArrayList("jpeg", "jpg", "tiff", "gif", "bmp", "png", "bpg", "svg", "heif", "psd");
-
-
-    public static final List<String> IMAGE_EXTENSION_TOP = Lists.newArrayList("JPEG", "JPG", "TIFF", "GIF", "BMP", "PNG", "BPG", "SVG", "HEIF", "PSD");
-
-
+    public static final List<String> IMAGE_EXTENSION_TOP =
+        Lists.newArrayList("JPEG", "JPG", "TIFF", "GIF", "BMP", "PNG", "BPG", "SVG", "HEIF", "PSD");
 
     /**
      * 下载并保存图片
@@ -94,6 +92,7 @@ public class  FileDownload {
 
     /**
      * 保存视频文件
+     *
      * @param savePath
      * @param response
      * @throws IOException

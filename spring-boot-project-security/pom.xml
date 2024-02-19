@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -57,41 +57,41 @@
         </dependency>
 
 
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.security/spring-security-crypto &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.security</groupId>-->
-<!--            <artifactId>spring-security-crypto</artifactId>-->
-<!--            <version>6.0.1</version>-->
-<!--        </dependency>-->
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.security/spring-security-crypto &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.security</groupId>-->
+        <!--            <artifactId>spring-security-crypto</artifactId>-->
+        <!--            <version>6.0.1</version>-->
+        <!--        </dependency>-->
 
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.security/spring-security-test &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.security</groupId>-->
-<!--            <artifactId>spring-security-test</artifactId>-->
-<!--            <version>6.0.1</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.security/spring-security-test &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.security</groupId>-->
+        <!--            <artifactId>spring-security-test</artifactId>-->
+        <!--            <version>6.0.1</version>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
 
-<!--        &lt;!&ndash; https://www.jianshu.com/p/71745170d639  &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.security</groupId>-->
-<!--            <artifactId>spring-security-cas</artifactId>-->
-<!--            <version>5.8.1</version>-->
-<!--        </dependency>-->
+        <!--        &lt;!&ndash; https://www.jianshu.com/p/71745170d639  &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.security</groupId>-->
+        <!--            <artifactId>spring-security-cas</artifactId>-->
+        <!--            <version>5.8.1</version>-->
+        <!--        </dependency>-->
 
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.security/spring-security-rsa &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.security</groupId>-->
-<!--            <artifactId>spring-security-rsa</artifactId>-->
-<!--            <version>1.0.11.RELEASE</version>-->
-<!--        </dependency>-->
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.security/spring-security-rsa &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.security</groupId>-->
+        <!--            <artifactId>spring-security-rsa</artifactId>-->
+        <!--            <version>1.0.11.RELEASE</version>-->
+        <!--        </dependency>-->
 
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.security.oauth/spring-security-oauth2 &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.security.oauth</groupId>-->
-<!--            <artifactId>spring-security-oauth2</artifactId>-->
-<!--            <version>2.5.2.RELEASE</version>-->
-<!--        </dependency>-->
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.security.oauth/spring-security-oauth2 &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.security.oauth</groupId>-->
+        <!--            <artifactId>spring-security-oauth2</artifactId>-->
+        <!--            <version>2.5.2.RELEASE</version>-->
+        <!--        </dependency>-->
 
 
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-oauth2-client -->

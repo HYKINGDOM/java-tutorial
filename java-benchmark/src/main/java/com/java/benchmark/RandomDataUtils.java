@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 public class RandomDataUtils {
 
-
     public List<Long> generateRandomLongs(int number) {
         long[] longs = NumberSource.getInstance().randomLong(1L, 20000000001L, number);
         return Arrays.stream(longs).boxed().collect(Collectors.toList());

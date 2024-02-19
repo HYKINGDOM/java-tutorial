@@ -15,7 +15,6 @@ import org.springframework.util.StopWatch;
 
 import java.util.concurrent.Executor;
 
-
 /**
  * @author HY
  * @DisallowConcurrentExecution
@@ -24,28 +23,9 @@ import java.util.concurrent.Executor;
 @Component
 public class SpringQuartzJob extends QuartzJobBean {
 
-
     @Autowired
     @Qualifier(value = "ttlThreadPoolTaskExecutor")
     private Executor threadPoolTaskExecutor;
-
-
-    @Override
-    protected void executeInternal(JobExecutionContext context) {
-        StopWatch stopWatch = new StopWatch();
-        stopWatch.start();
-        log.info("准备循环开始执行定时任务,线程名:{}, traceID: {}",Thread.currentThread().getName(), TraceIDUtil.getTraceId());
-        context.getJobDetail().getJobDataMap().forEach(
-                (k, v) -> {
-                    for (int i = 0; i < 3; i++) {
-                        extracted(getSysJobLog(), k, v);
-                    }
-                }
-        );
-        stopWatch.stop();
-        log.info("循环定时任务执行结束，执行时间: " + stopWatch.getLastTaskTimeMillis());
-        TraceIDUtil.clearTraceId();
-    }
 
     private static SysJobLog getSysJobLog() {
         SysJobLog jobLog = new SysJobLog();
@@ -55,11 +35,29 @@ public class SpringQuartzJob extends QuartzJobBean {
         return jobLog;
     }
 
+    @Override
+    protected void executeInternal(JobExecutionContext context) {
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+        log.info("准备循环开始执行定时任务,线程名:{}, traceID: {}", Thread.currentThread().getName(),
+            TraceIDUtil.getTraceId());
+        context.getJobDetail().getJobDataMap().forEach((k, v) -> {
+            for (int i = 0; i < 3; i++) {
+                extracted(getSysJobLog(), k, v);
+            }
+        });
+        stopWatch.stop();
+        log.info("循环定时任务执行结束，执行时间: " + stopWatch.getLastTaskTimeMillis());
+        TraceIDUtil.clearTraceId();
+    }
+
     private void extracted(SysJobLog jobLog, String k, Object v) {
         try {
             Thread.sleep(1000L);
-            log.info("单个定时任务参数 - 线程{} 名称：{} 方法：{}", Thread.currentThread().getName(), jobLog.getJobName(), jobLog.getMethodName());
-            ScheduleRunnable task = new ScheduleRunnable(jobLog.getJobName(), jobLog.getMethodName(), jobLog.getMethodParams());
+            log.info("单个定时任务参数 - 线程{} 名称：{} 方法：{}", Thread.currentThread().getName(), jobLog.getJobName(),
+                jobLog.getMethodName());
+            ScheduleRunnable task =
+                new ScheduleRunnable(jobLog.getJobName(), jobLog.getMethodName(), jobLog.getMethodParams());
             threadPoolTaskExecutor.execute(task);
             log.info("单个定时任务执行结束 param, key:{}, value:{}", k, v);
         } catch (Exception e) {

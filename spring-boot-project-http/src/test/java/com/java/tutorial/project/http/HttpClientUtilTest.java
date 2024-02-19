@@ -43,6 +43,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 /**
  * jdk11--HttpClient实现
+ *
  * @author HY
  */
 class HttpClientUtilTest {
@@ -109,9 +110,7 @@ class HttpClientUtilTest {
 
         //System.out.println(response.body());
 
-
         Document document = Jsoup.parseBodyFragment(response.body());
-
 
         System.out.println(document.body());
 
@@ -202,8 +201,10 @@ class HttpClientUtilTest {
 
     @Test
     public void testConcurrentRequests() {
-        HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofMillis(5000)).executor(rulerExecutor()).build();
-        List<String> urls = List.of("http://www.baidu.com", "https://juejin.cn/post/7181713105490018341", "https://juejin.cn/post/7160554181156306958");
+        HttpClient client =
+            HttpClient.newBuilder().connectTimeout(Duration.ofMillis(5000)).executor(rulerExecutor()).build();
+        List<String> urls = List.of("http://www.baidu.com", "https://juejin.cn/post/7181713105490018341",
+            "https://juejin.cn/post/7160554181156306958");
         List<HttpRequest> requests =
             urls.stream().map(url -> HttpRequest.newBuilder(URI.create(url))).map(HttpRequest.Builder::build)
                 .collect(Collectors.toList());
@@ -260,9 +261,7 @@ class HttpClientUtilTest {
 
     @Test
     public void test_execute_Http2() throws URISyntaxException {
-        HttpClient.newBuilder()
-            .followRedirects(HttpClient.Redirect.NEVER)
-            .executor(rulerExecutor())
+        HttpClient.newBuilder().followRedirects(HttpClient.Redirect.NEVER).executor(rulerExecutor())
             .version(HttpClient.Version.HTTP_2).build()
             .sendAsync(HttpRequest.newBuilder().uri(new URI("https://http2.akamai.com/demo")).GET().build(),
                 HttpResponse.BodyHandlers.ofString()).whenComplete((resp, t) -> {
@@ -275,8 +274,7 @@ class HttpClientUtilTest {
             }).join();
     }
 
-
-    public ThreadPoolTaskExecutor rulerExecutor(){
+    public ThreadPoolTaskExecutor rulerExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(1);
         executor.setMaxPoolSize(3);
@@ -291,7 +289,6 @@ class HttpClientUtilTest {
         executor.initialize();
         return executor;
     }
-
 
     @Test
     public void test_execute_Http2_proxy_01() throws URISyntaxException {
@@ -324,12 +321,8 @@ class HttpClientUtilTest {
         // set the custom ProxySelector as the default for HTTP requests
         ProxySelector.setDefault(myProxySelector);
 
-
-        HttpClient.newBuilder()
-            .followRedirects(HttpClient.Redirect.NEVER)
-            .executor(rulerExecutor())
-            .proxy(myProxySelector)
-            .version(HttpClient.Version.HTTP_2).build()
+        HttpClient.newBuilder().followRedirects(HttpClient.Redirect.NEVER).executor(rulerExecutor())
+            .proxy(myProxySelector).version(HttpClient.Version.HTTP_2).build()
             .sendAsync(HttpRequest.newBuilder().uri(new URI("https://http2.akamai.com/demo")).GET().build(),
                 HttpResponse.BodyHandlers.ofString()).whenComplete((resp, t) -> {
                 if (t != null) {
@@ -340,8 +333,6 @@ class HttpClientUtilTest {
                 }
             }).join();
     }
-
-
 
     @Test
     public void testWebSocket() throws InterruptedException {

@@ -3,7 +3,6 @@ package com.java.tutorial.project.config;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-
 /**
  * @author hy
  */

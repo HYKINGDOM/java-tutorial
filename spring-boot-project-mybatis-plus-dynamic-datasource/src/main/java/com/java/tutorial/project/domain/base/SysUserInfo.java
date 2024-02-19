@@ -1,6 +1,5 @@
 package com.java.tutorial.project.domain.base;
 
-
 import lombok.Data;
 
 import java.util.Date;

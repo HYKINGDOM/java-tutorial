@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 public class SeqUtilsTest {
 
-
     @Test
     public void test_Function() {
 

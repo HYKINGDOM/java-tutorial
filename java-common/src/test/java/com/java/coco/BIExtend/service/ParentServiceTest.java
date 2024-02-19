@@ -68,7 +68,6 @@ public class ParentServiceTest {
         parentEntities.forEach(System.out::println);
     }
 
-
     @Test
     public void convert_domain_to_entity_by_enum() {
         List<ParentEntity> parentEntityList = parentService.convertDomainToEntityByEnum(parentDomainList);

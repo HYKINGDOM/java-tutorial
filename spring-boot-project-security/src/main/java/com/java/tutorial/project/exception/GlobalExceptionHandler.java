@@ -1,6 +1,5 @@
 package com.java.tutorial.project.exception;
 
-
 import com.java.tutorial.project.result.Result;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
@@ -19,9 +18,9 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 import java.net.ConnectException;
 
 /**
+ * @author yihur
  * @ClassName GlobalExceptionHandler
  * @Description 全局处理自定义的业务异常
- * @author yihur
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -35,37 +34,37 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(DuplicateKeyException.class)
-    public Result handleDuplicateKeyException(DuplicateKeyException e){
+    public Result handleDuplicateKeyException(DuplicateKeyException e) {
         logger.error(e.getMessage(), e);
         return Result.error("数据库中已存在该记录");
     }
 
     @ExceptionHandler(UsernameIsExitedException.class)
-    public Result usernameIsExitedException(UsernameIsExitedException e){
+    public Result usernameIsExitedException(UsernameIsExitedException e) {
         logger.error(e.getMessage(), e);
         return Result.error("用户已经存在");
     }
 
     @ExceptionHandler(Exception.class)
-    public Result handleException(Exception e){
+    public Result handleException(Exception e) {
         logger.error(e.getMessage(), e);
         return Result.error();
     }
 
     @ExceptionHandler(ServiceException.class)
-    public Result serviceException(ServiceException e){
+    public Result serviceException(ServiceException e) {
         logger.error(e.getMessage(), e);
         return Result.error();
     }
 
     @ExceptionHandler(ConnectException.class)
-    public Result connectException(ConnectException e){
+    public Result connectException(ConnectException e) {
         logger.error(e.getMessage(), e);
         return Result.error("系统调用异常");
     }
 
     @ExceptionHandler(ResourceAccessException.class)
-    public Result connectException(ResourceAccessException e){
+    public Result connectException(ResourceAccessException e) {
         logger.error(e.getMessage(), e);
         return Result.error("系统之间调用异常");
     }

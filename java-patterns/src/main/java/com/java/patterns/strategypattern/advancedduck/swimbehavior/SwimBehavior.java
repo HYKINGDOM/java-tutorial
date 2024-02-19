@@ -2,6 +2,7 @@ package com.java.patterns.strategypattern.advancedduck.swimbehavior;
 
 /**
  * 游泳的行为
+ *
  * @author Administrator
  */
 public interface SwimBehavior {

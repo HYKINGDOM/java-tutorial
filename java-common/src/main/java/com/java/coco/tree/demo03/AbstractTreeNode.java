@@ -1,11 +1,11 @@
 package com.java.coco.tree.demo03;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
  * Created by Ace on 2017/6/12.
+ *
  * @author hy852
  */
 public abstract class AbstractTreeNode {
@@ -17,12 +17,10 @@ public abstract class AbstractTreeNode {
     protected List<AbstractTreeNode> children = new ArrayList<>();
 
     /**
-     *
      * @param childrenNode 全部节点
      * @return 构建好的树结构
      */
     public abstract <T extends AbstractTreeNode> List<T> createTreeNode(List<AbstractTreeNode> childrenNode);
-
 
     public Integer getId() {
         return id;
@@ -48,10 +46,9 @@ public abstract class AbstractTreeNode {
         this.parentId = parentId;
     }
 
-    public void add(AbstractTreeNode node){
+    public void add(AbstractTreeNode node) {
         children.add(node);
     }
-
 
 }
 

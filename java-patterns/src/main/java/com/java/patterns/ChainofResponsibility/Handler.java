@@ -8,9 +8,9 @@ public abstract class Handler<T> {
         this.next = next;
     }
 
-
     /**
      * 执行方法
+     *
      * @param user
      */
     public abstract void doHandler(User user);

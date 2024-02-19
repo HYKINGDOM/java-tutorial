@@ -1,6 +1,5 @@
 package com.java.patterns.cqrs.cqrs.commands;
 
-
 import com.java.patterns.cqrs.domain.Address;
 import com.java.patterns.cqrs.domain.Contact;
 import lombok.AllArgsConstructor;

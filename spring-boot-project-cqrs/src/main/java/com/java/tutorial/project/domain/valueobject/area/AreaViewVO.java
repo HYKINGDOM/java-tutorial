@@ -1,6 +1,5 @@
 package com.java.tutorial.project.domain.valueobject.area;
 
-
 import com.java.tutorial.project.domain.persistantobject.area.AreaPO;
 import io.github.linpeilie.annotations.AutoMapper;
 import lombok.Getter;
@@ -8,10 +7,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 /**
- *
  * 行政区划表
- *
- *
  */
 @Getter
 @Setter

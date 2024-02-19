@@ -1,6 +1,5 @@
 package com.java.tutorial.tool.domain;
 
-
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,14 +20,6 @@ public class TestProperties {
     @Getter
     private List<Config> configs;
 
-    @Data
-    private static class Config {
-        private String name;
-        private Integer value;
-        private String msg;
-    }
-
-
     /**
      * 根据name获取配置
      */
@@ -39,5 +30,12 @@ public class TestProperties {
             }
         }
         return null;
+    }
+
+    @Data
+    private static class Config {
+        private String name;
+        private Integer value;
+        private String msg;
     }
 }

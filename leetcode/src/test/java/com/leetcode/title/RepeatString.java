@@ -1,7 +1,5 @@
 package com.leetcode.title;
 
-
-
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -13,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RepeatString {
-
 
     @Test
     public void test_repeat_string() {
@@ -36,7 +33,6 @@ public class RepeatString {
         }
         return treeList.size();
     }
-
 
     /***************** UAV ****************/
 
@@ -106,7 +102,6 @@ public class RepeatString {
         return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
     }
 
-
     @Test
     public void test2() {
         int a = 2;
@@ -119,7 +114,7 @@ public class RepeatString {
 
     @Test
     public void check_x_or() {
-        int[] arr = new int[]{5, 4, 8, 9, 5, 1, 2, 3, 5, 4, 8, 10};
+        int[] arr = new int[] {5, 4, 8, 9, 5, 1, 2, 3, 5, 4, 8, 10};
         System.out.println(Arrays.toString(arr));
         int length = arr.length;
         int half = length / 2;

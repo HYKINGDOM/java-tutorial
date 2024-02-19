@@ -5,7 +5,6 @@ package com.java.coco.tree.demo02.entity;
  */
 public class DepartmentInfo {
 
-
     private Integer depId;
 
     private Integer parentId;
@@ -27,7 +26,6 @@ public class DepartmentInfo {
     public void setParentId(Integer parentId) {
         this.parentId = parentId;
     }
-
 
     public String getDepName() {
         return depName;

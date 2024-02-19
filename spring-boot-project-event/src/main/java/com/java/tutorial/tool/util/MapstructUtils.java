@@ -5,8 +5,10 @@ import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import io.github.linpeilie.Converter;
+
 import java.util.List;
 import java.util.Map;
+
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -26,7 +28,6 @@ public class MapstructUtils {
      *
      * @param source 数据来源实体
      * @param desc   描述对象 转换后的对象
-     *
      * @return desc
      */
     public static <T, V> V convert(T source, Class<V> desc) {
@@ -44,7 +45,6 @@ public class MapstructUtils {
      *
      * @param source 数据来源实体
      * @param desc   转换后的对象
-     *
      * @return desc
      */
     public static <T, V> V convert(T source, V desc) {
@@ -62,7 +62,6 @@ public class MapstructUtils {
      *
      * @param sourceList 数据来源实体列表
      * @param desc       描述对象 转换后的对象
-     *
      * @return desc
      */
     public static <T, V> List<V> convert(List<T> sourceList, Class<V> desc) {
@@ -80,7 +79,6 @@ public class MapstructUtils {
      *
      * @param map       数据来源
      * @param beanClass bean类
-     *
      * @return bean对象
      */
     public static <T> T convert(Map<String, Object> map, Class<T> beanClass) {

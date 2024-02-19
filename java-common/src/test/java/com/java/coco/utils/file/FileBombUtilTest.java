@@ -8,9 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class FileBombUtilTest {
 
-
     @Test
-    public void test_demo_01(){
+    public void test_demo_01() {
 
         File bomb = new File("D:\\download\\zbsm.zip");
         File tempFile = new File("D:\\download\\3\\4");
@@ -26,7 +25,6 @@ public class FileBombUtilTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
     }
 

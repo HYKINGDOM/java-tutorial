@@ -2,15 +2,14 @@ package com.java.patterns.singletonpattern.java;
 
 /**
  * 单例模式基于多线程的优化
+ *
  * @author Administrator
  */
 public class ChocolateFactory {
 
-    private boolean empty;
-
-    private boolean boiled;
-
     private volatile static ChocolateFactory uniqueInstance = null;
+    private boolean empty;
+    private boolean boiled;
 
     private ChocolateFactory() {
         empty = true;
@@ -49,7 +48,6 @@ public class ChocolateFactory {
         }
     }
 
-
     /**
      * 产出巧克力动作
      */
@@ -59,6 +57,5 @@ public class ChocolateFactory {
             System.out.println("--产出巧克力动作--");
         }
     }
-
 
 }

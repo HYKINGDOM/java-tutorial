@@ -14,13 +14,13 @@ public class ExcelCheckResult<T> {
 
     private List<ExcelCheckErrDto<T>> errDtos;
 
-    public ExcelCheckResult(List<T> successDtos, List<ExcelCheckErrDto<T>> errDtos){
-        this.successDtos =successDtos;
+    public ExcelCheckResult(List<T> successDtos, List<ExcelCheckErrDto<T>> errDtos) {
+        this.successDtos = successDtos;
         this.errDtos = errDtos;
     }
 
-    public ExcelCheckResult(List<ExcelCheckErrDto<T>> errDtos){
-        this.successDtos =new ArrayList<>();
+    public ExcelCheckResult(List<ExcelCheckErrDto<T>> errDtos) {
+        this.successDtos = new ArrayList<>();
         this.errDtos = errDtos;
     }
 }

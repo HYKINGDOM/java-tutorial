@@ -1,16 +1,15 @@
 package com.java.coco.system.torrent;
 
-
 import java.util.Arrays;
 import java.util.List;
-
 
 public class BitTorrentInfo {
     public static List<String> keyList;
 
     static {
-        String[] keys = {"announce", "announce-list", "creation date", "comment", "created by",
-                "info", "length", "md5sum", "name", "piece length", "pieces", "files", "path"};
+        String[] keys =
+            {"announce", "announce-list", "creation date", "comment", "created by", "info", "length", "md5sum", "name",
+                "piece length", "pieces", "files", "path"};
         keyList = Arrays.asList(keys);
     }
 
@@ -27,7 +26,7 @@ public class BitTorrentInfo {
     //getter and setter  and tostring
 
     public BitTorrentInfo(String announce, List<String> announceList, long creationDate, String comment,
-                          String createBy, Info info) {
+        String createBy, Info info) {
         super();
         this.announce = announce;
         this.announceList = announceList;
@@ -105,11 +104,11 @@ public class BitTorrentInfo {
                     this.getAnnounceList().add(value.toString());
                     break;
                 case "creation date":
-//                    if (StringUtil.isNumeric(value.toString())) {
-//                        this.setCreationDate(Long.parseLong(value.toString()));
-//                    } else {
-//                        this.setCreationDate(0);
-//                    }
+                    //                    if (StringUtil.isNumeric(value.toString())) {
+                    //                        this.setCreationDate(Long.parseLong(value.toString()));
+                    //                    } else {
+                    //                        this.setCreationDate(0);
+                    //                    }
                     break;
                 case "comment":
                     this.setComment(value.toString());
@@ -142,11 +141,11 @@ public class BitTorrentInfo {
                     this.getInfo().setPiecesLength(Long.parseLong(value.toString()));
                     break;
                 case "pieces":
-//                    if (StringUtil.isNumeric(value.toString())) {
-//                        this.getInfo().setPieces(null);
-//                    } else {
-//                        this.getInfo().setPieces((byte[]) value);
-//                    }
+                    //                    if (StringUtil.isNumeric(value.toString())) {
+                    //                        this.getInfo().setPieces(null);
+                    //                    } else {
+                    //                        this.getInfo().setPieces((byte[]) value);
+                    //                    }
                     break;
                 case "path":
                     List<Files> filesList3 = this.getInfo().getFiles();

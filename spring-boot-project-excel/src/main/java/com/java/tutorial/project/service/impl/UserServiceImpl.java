@@ -28,15 +28,15 @@ public class UserServiceImpl implements UserService {
             //错误信息
             StringBuilder errMsg = new StringBuilder();
             //根据自己的业务去做判断
-            if (ERR_NAME.equals(userExcelDto.getName())) 
+            if (ERR_NAME.equals(userExcelDto.getName()))
                 errMsg.append("请输入正确的名字").append(";");
-            if (StringUtils.isEmpty(errMsg.toString())){
+            if (StringUtils.isEmpty(errMsg.toString())) {
                 //这里有两个选择，1、一个返回成功的对象信息，2、进行持久化操作
                 successList.add(userExcelDto);
-            }else{//添加错误信息
-                errList.add(new ExcelCheckErrDto(userExcelDto,errMsg.toString()));
+            } else {//添加错误信息
+                errList.add(new ExcelCheckErrDto(userExcelDto, errMsg.toString()));
             }
         }
-        return new ExcelCheckResult(successList,errList);
+        return new ExcelCheckResult(successList, errList);
     }
 }

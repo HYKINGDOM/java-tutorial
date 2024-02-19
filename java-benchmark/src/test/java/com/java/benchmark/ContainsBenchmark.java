@@ -36,19 +36,15 @@ import java.util.concurrent.TimeUnit;
 @State(Scope.Benchmark) // 每个Benchmark分配一个实例
 public class ContainsBenchmark {
 
+    private final RandomDataUtils randomDataUtils = new RandomDataUtils();
     @Param({"10", "100", "200", "500", "1000", "10000", "50000", "75000", "100000", "1000000"})
     int size;
-
     @Param({"ArrayList"})
     String type;
-
     @Param({"String"})
     String dataType;
-
     private List<String> list;
     private List<String> blist;
-
-    private final RandomDataUtils randomDataUtils = new RandomDataUtils();
 
     @Setup(Level.Trial)
     public void setup() {
@@ -112,13 +108,9 @@ public class ContainsBenchmark {
     public void test() {
     }
 
-
-
     @Test
     public void test_demo_01() throws RunnerException {
-        Options opt = new OptionsBuilder()
-                .include(ContainsBenchmark.class.getSimpleName())
-                .build();
+        Options opt = new OptionsBuilder().include(ContainsBenchmark.class.getSimpleName()).build();
         new Runner(opt).run();
     }
 }

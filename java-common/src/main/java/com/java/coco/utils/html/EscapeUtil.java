@@ -15,7 +15,7 @@ public class EscapeUtil {
 
     static {
         for (int i = 0; i < 64; i++) {
-            TEXT[i] = new char[]{(char) i};
+            TEXT[i] = new char[] {(char)i};
         }
 
         // special HTML characters
@@ -98,11 +98,11 @@ public class EscapeUtil {
             pos = content.indexOf("%", lastPos);
             if (pos == lastPos) {
                 if (content.charAt(pos + 1) == 'u') {
-                    ch = (char) Integer.parseInt(content.substring(pos + 2, pos + 6), 16);
+                    ch = (char)Integer.parseInt(content.substring(pos + 2, pos + 6), 16);
                     tmp.append(ch);
                     lastPos = pos + 6;
                 } else {
-                    ch = (char) Integer.parseInt(content.substring(pos + 1, pos + 3), 16);
+                    ch = (char)Integer.parseInt(content.substring(pos + 1, pos + 3), 16);
                     tmp.append(ch);
                     lastPos = pos + 3;
                 }

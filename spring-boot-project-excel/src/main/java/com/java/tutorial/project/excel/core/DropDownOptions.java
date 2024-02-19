@@ -24,6 +24,10 @@ import java.util.stream.Collectors;
 @SuppressWarnings("unused")
 public class DropDownOptions {
     /**
+     * 分隔符
+     */
+    private static final String DELIMITER = "_";
+    /**
      * 一级下拉所在列index，从0开始算
      */
     private int index = 0;
@@ -40,10 +44,6 @@ public class DropDownOptions {
      * <p>以每一个一级选项值为Key，每个一级选项对应的二级数据为Value</p>
      */
     private Map<String, List<String>> nextOptions = new HashMap<>();
-    /**
-     * 分隔符
-     */
-    private static final String DELIMITER = "_";
 
     /**
      * 创建只有一级的下拉选
@@ -102,21 +102,13 @@ public class DropDownOptions {
      * @param howToBuildEveryOption       如何生成下拉选内容
      * @return 级联下拉选项
      */
-    public static <T> DropDownOptions buildLinkedOptions(List<T> parentList,
-                                                         int parentIndex,
-                                                         List<T> sonList,
-                                                         int sonIndex,
-                                                         Function<T, Number> parentHowToGetIdFunction,
-                                                         Function<T, Number> sonHowToGetParentIdFunction,
-                                                         Function<T, String> howToBuildEveryOption) {
+    public static <T> DropDownOptions buildLinkedOptions(List<T> parentList, int parentIndex, List<T> sonList,
+        int sonIndex, Function<T, Number> parentHowToGetIdFunction, Function<T, Number> sonHowToGetParentIdFunction,
+        Function<T, String> howToBuildEveryOption) {
         DropDownOptions parentLinkSonOptions = new DropDownOptions();
         // 先创建父类的下拉
         parentLinkSonOptions.setIndex(parentIndex);
-        parentLinkSonOptions.setOptions(
-            parentList.stream()
-                .map(howToBuildEveryOption)
-                .collect(Collectors.toList())
-        );
+        parentLinkSonOptions.setOptions(parentList.stream().map(howToBuildEveryOption).collect(Collectors.toList()));
         // 提取父-子级联下拉
         Map<String, List<String>> sonOptions = new HashMap<>();
         // 父级依据自己的ID分组

@@ -31,11 +31,19 @@ public class UserRest extends BaseRest {
     @Autowired
     private UserService userService;
 
+    private static void exportErrorMsg(HttpServletResponse response, List<ExcelCheckErrDto<UserExcelDto>> errList)
+        throws IOException {
+        List<UserExcelErrDto> excelErrDtos = errList.stream().map(excelCheckErrDto -> {
+            UserExcelErrDto userExcelErrDto =
+                JSON.parseObject(JSON.toJSONString(excelCheckErrDto.getT()), UserExcelErrDto.class);
+            userExcelErrDto.setErrMsg(excelCheckErrDto.getErrMsg());
+            return userExcelErrDto;
+        }).collect(Collectors.toList());
+        EasyExcelUtils.webWriteExcel(response, excelErrDtos, UserExcelErrDto.class, "用户导入错误信息");
+    }
+
     /**
-     * easyexcel通过validation和正则实现excel导入校验
-     * 导入表头校验
-     * 导入数据校验
-     * 导入业务逻辑校验
+     * easyexcel通过validation和正则实现excel导入校验 导入表头校验 导入数据校验 导入业务逻辑校验
      */
     @PostMapping("/importExcel")
     public Result importExcel(HttpServletResponse response, @RequestParam MultipartFile file) throws IOException {
@@ -47,14 +55,5 @@ public class UserRest extends BaseRest {
             exportErrorMsg(response, errList);
         }
         return addSucResult();
-    }
-
-    private static void exportErrorMsg(HttpServletResponse response, List<ExcelCheckErrDto<UserExcelDto>> errList) throws IOException {
-        List<UserExcelErrDto> excelErrDtos = errList.stream().map(excelCheckErrDto -> {
-            UserExcelErrDto userExcelErrDto = JSON.parseObject(JSON.toJSONString(excelCheckErrDto.getT()), UserExcelErrDto.class);
-            userExcelErrDto.setErrMsg(excelCheckErrDto.getErrMsg());
-            return userExcelErrDto;
-        }).collect(Collectors.toList());
-        EasyExcelUtils.webWriteExcel(response, excelErrDtos, UserExcelErrDto.class, "用户导入错误信息");
     }
 }

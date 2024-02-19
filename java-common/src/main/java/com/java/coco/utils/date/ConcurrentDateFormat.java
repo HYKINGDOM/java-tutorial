@@ -13,18 +13,17 @@ import java.util.concurrent.ConcurrentMap;
 /**
  * 参考tomcat8中的并发DateFormat
  * <p>
- * {@link SimpleDateFormat}的线程安全包装器。
- * 不使用ThreadLocal，创建足够的SimpleDateFormat对象来满足并发性要求。
+ * {@link SimpleDateFormat}的线程安全包装器。 不使用ThreadLocal，创建足够的SimpleDateFormat对象来满足并发性要求。
  * </p>
  *
  * @author yihur
  */
 public class ConcurrentDateFormat {
+    private final static ConcurrentMap<String, ConcurrentDateFormat> CACHE = new ConcurrentHashMap<>(3);
     private final String pattern;
     private final Locale locale;
     private final TimeZone timezone;
     private final Queue<SimpleDateFormat> queue = new ConcurrentLinkedQueue<>();
-    private final static ConcurrentMap<String, ConcurrentDateFormat> CACHE = new ConcurrentHashMap<>(3);
 
     private ConcurrentDateFormat(String pattern, Locale locale, TimeZone timezone) {
         this.pattern = pattern;
@@ -36,7 +35,8 @@ public class ConcurrentDateFormat {
 
     public static ConcurrentDateFormat of(String pattern) {
         // 直接使用 pattern 格式化的场景比较多，每次 new 性能太差
-        return CACHE.computeIfAbsent(pattern, (key) -> new ConcurrentDateFormat(key, Locale.getDefault(), TimeZone.getDefault()));
+        return CACHE.computeIfAbsent(pattern,
+            (key) -> new ConcurrentDateFormat(key, Locale.getDefault(), TimeZone.getDefault()));
     }
 
     public static ConcurrentDateFormat of(String pattern, TimeZone timezone) {

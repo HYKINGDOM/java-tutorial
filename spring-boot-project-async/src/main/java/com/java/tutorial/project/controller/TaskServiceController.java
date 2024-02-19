@@ -46,7 +46,6 @@ public class TaskServiceController {
 
         log.info("getExecutor： {}", TraceIDUtil.getTraceId());
 
-
         for (int i = 0; i < 10; i++) {
             CompletableFuture.runAsync(() -> taskService.taskStringList04(str), asyncTaskExecutor);
         }

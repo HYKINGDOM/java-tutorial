@@ -1,6 +1,5 @@
 package com.java.demo.listener;
 
-
 import com.java.demo.dto.Address;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.ItemWriteListener;

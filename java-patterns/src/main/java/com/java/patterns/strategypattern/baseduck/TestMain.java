@@ -1,9 +1,8 @@
 package com.java.patterns.strategypattern.baseduck;
 
-
 /**
- *
  * 不利于扩展的的实践
+ *
  * @author Administrator
  */
 public class TestMain {

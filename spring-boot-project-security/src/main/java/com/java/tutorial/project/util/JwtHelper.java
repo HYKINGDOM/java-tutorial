@@ -16,7 +16,7 @@ import java.util.Date;
  */
 public class JwtHelper {
 
-	//token超时时间
+    //token超时时间
     @Value("${jwt.expiration}")
     public long expiration;
 
@@ -26,16 +26,19 @@ public class JwtHelper {
 
     /**
      * 解析token
+     *
      * @param jsonWebToken
      * @return
      */
     public Claims parseToken(String jsonWebToken) {
-        Claims claims = Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(base64Security)).parseClaimsJws(jsonWebToken).getBody();
+        Claims claims = Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(base64Security))
+            .parseClaimsJws(jsonWebToken).getBody();
         return claims;
     }
 
     /**
      * 新建token
+     *
      * @param audience
      * @param issuer
      * @return
@@ -52,7 +55,7 @@ public class JwtHelper {
 
         // 添加构成JWT的参数
         JwtBuilder builder = Jwts.builder().setHeaderParam("typ", "JWT").setIssuer(issuer).setAudience(audience)
-                .signWith(signatureAlgorithm, signingKey);
+            .signWith(signatureAlgorithm, signingKey);
 
         // 添加Token签发时间
         builder.setIssuedAt(now);
@@ -84,9 +87,8 @@ public class JwtHelper {
         Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
 
         // 添加构成JWT的参数
-        JwtBuilder builder = Jwts.builder().setHeaderParam("typ", "JWT")
-                .setIssuer((String) claims.get("iss")).setAudience((String) claims.get("aud"))
-                .signWith(signatureAlgorithm, signingKey);
+        JwtBuilder builder = Jwts.builder().setHeaderParam("typ", "JWT").setIssuer((String)claims.get("iss"))
+            .setAudience((String)claims.get("aud")).signWith(signatureAlgorithm, signingKey);
 
         // 添加Token签发时间
         builder.setIssuedAt(now);

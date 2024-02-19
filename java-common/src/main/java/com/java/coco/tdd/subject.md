@@ -7,8 +7,6 @@
 6, 当说是5的倍数又是7的倍数的时候说BuzzWhizz
 7, 当说到包含3同时又是5和7的倍数的时候说FizzBuzzWhizz
 
-
-
 stage 2
 
 1, 一个数字包含3也说Fizz

@@ -1,6 +1,5 @@
 package com.java.patterns.commandpattern.notrecommended;
 
-
 import com.java.patterns.commandpattern.recommend.device.Light;
 import com.java.patterns.commandpattern.recommend.device.Stereo;
 

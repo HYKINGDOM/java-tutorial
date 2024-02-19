@@ -1,6 +1,5 @@
 package com.java.coco.utils.file.util;
 
-
 import com.google.common.base.Charsets;
 import com.google.common.collect.FluentIterable;
 import com.google.common.collect.ImmutableList;
@@ -10,7 +9,6 @@ import com.google.common.io.Files;
 import com.google.common.io.LineProcessor;
 import com.google.common.io.MoreFiles;
 import org.junit.jupiter.api.Test;
-
 
 import javax.annotation.Nullable;
 import java.io.File;
@@ -28,18 +26,11 @@ import java.util.stream.Stream;
 /**
  * Guava的Files类中还提供了其他一些文件的简捷方法。比如
  *
- * touch方法创建或者更新文件的时间戳。
- * createTempDir()方法创建临时目录
- * Files.createParentDirs(File) 创建父级目录
- * getChecksum(File)获得文件的checksum
- * hash(File)获得文件的hash
- * map系列方法获得文件的内存映射
- * getFileExtension(String)获得文件的扩展名
- * getNameWithoutExtension(String file)获得不带扩展名的文件名
+ * touch方法创建或者更新文件的时间戳。 createTempDir()方法创建临时目录 Files.createParentDirs(File) 创建父级目录 getChecksum(File)获得文件的checksum
+ * hash(File)获得文件的hash map系列方法获得文件的内存映射 getFileExtension(String)获得文件的扩展名 getNameWithoutExtension(String file)获得不带扩展名的文件名
  * Guava的方法都提供了一些重载，这些重载可以扩展基本用法，我们也有必要去多了解一下，这些重载的方法。
  */
 public class FilesGuavaUtilTest {
-
 
     private static String from = "D:\\自定义代码\\Guava\\guava\\src\\1.txt";
     private static String to = "D:\\自定义代码\\Guava\\guava\\src\\2.txt";
@@ -49,9 +40,7 @@ public class FilesGuavaUtilTest {
 
         Files.copy(new File(from), new File(to));
 
-
         Files.move(new File(from), new File(to));
-
 
         File file = new File(from);
         //读取文件第一行
@@ -76,12 +65,10 @@ public class FilesGuavaUtilTest {
             }
         });
 
-
         //计算文件hashcode (可对比两个文件是否一样)
         //Hashing.md5();Hashing.sha256()
         HashCode hash = Files.asByteSource(new File(to)).hash(Hashing.sha512());
     }
-
 
     @Test
     public void file_find() {
@@ -95,7 +82,6 @@ public class FilesGuavaUtilTest {
 
     }
 
-
     @Test
     public void file_find_path() {
         String path = "D:\\Program Files\\stable-diffusion-webui-1.0.0-pre";
@@ -108,7 +94,6 @@ public class FilesGuavaUtilTest {
         }
 
     }
-
 
     @Test
     public void file_find_path_02() throws IOException {
@@ -141,10 +126,6 @@ public class FilesGuavaUtilTest {
         //创建或者更新文件的时间戳
         File configPath = new File("F:/app-release.apk");
         Files.touch(configPath);
-
-
-
-
 
     }
 }

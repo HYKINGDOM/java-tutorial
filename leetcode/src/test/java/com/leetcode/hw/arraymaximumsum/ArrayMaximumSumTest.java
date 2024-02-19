@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ArrayMaximumSumTest {
 
-
     private ArrayMaximumSum arrayMaximumSum;
 
     @BeforeEach
@@ -21,7 +20,7 @@ class ArrayMaximumSumTest {
     public void test_demo_01() {
 
         int first = 5;
-        int[] ints = new int[]{-2, -8, -1, -5, -9};
+        int[] ints = new int[] {-2, -8, -1, -5, -9};
         int initMethod = initMethod(first, ints);
         assertThat(initMethod).isEqualTo(-1);
     }
@@ -30,7 +29,7 @@ class ArrayMaximumSumTest {
     public void test_demo_02() {
 
         int first = 8;
-        int[] ints = new int[]{1, -2, 3, 10, -4, 7, 2, -5};
+        int[] ints = new int[] {1, -2, 3, 10, -4, 7, 2, -5};
         int initMethod = initMethod(first, ints);
         assertThat(initMethod).isEqualTo(18);
     }
@@ -39,7 +38,7 @@ class ArrayMaximumSumTest {
     public void test_demo_03() {
 
         int first = 5;
-        int[] ints = new int[]{-1, -2, -3, -4, 5};
+        int[] ints = new int[] {-1, -2, -3, -4, 5};
         int initMethod = initMethod(first, ints);
         assertThat(initMethod).isEqualTo(5);
     }

@@ -76,7 +76,6 @@ public class EasyExcelListener<T> extends AnalysisEventListener<T> {
         list.clear();
     }
 
-
     /**
      * @param headMap 传入excel的头部（第一行数据）数据的index,name
      * @description: 校验excel头部格式，必须完全匹配
@@ -103,7 +102,6 @@ public class EasyExcelListener<T> extends AnalysisEventListener<T> {
         }
     }
 
-
     @SuppressWarnings("rawtypes")
     public Map<Integer, String> getIndexNameMap(Class clazz) throws NoSuchFieldException {
         Map<Integer, String> result = new HashMap<>();
@@ -125,6 +123,5 @@ public class EasyExcelListener<T> extends AnalysisEventListener<T> {
         }
         return result;
     }
-
 
 }

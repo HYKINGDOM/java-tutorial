@@ -1,8 +1,8 @@
 package com.java.cn.thread.aboutYield;
 
-public class YieldTest implements Runnable{
+public class YieldTest implements Runnable {
 
-    YieldTest(){
+    YieldTest() {
         Thread thread = new Thread(this);
         thread.start();
     }
@@ -10,7 +10,7 @@ public class YieldTest implements Runnable{
     @Override
     public void run() {
         for (int i = 0; i < 5; i++) {
-            if ((i % 5) == 0){
+            if ((i % 5) == 0) {
                 System.out.println(Thread.currentThread() + "yield cpu");
                 //Thread.yield();
             }

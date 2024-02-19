@@ -13,16 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class SmsDemoController {
 
-
     @Autowired
     @Qualifier(value = "propagationRequiredTransactionServiceImpl")
     private TransactionService transactionService;
 
-
     @Autowired
     @Qualifier(value = "propagationRequiredNewTransactionServiceImpl")
     private TransactionService transactionService02new;
-
 
     @GetMapping("/sms/demo1/{transactionType}")
     public String executeTransactionalAction01(@PathVariable String transactionType) {

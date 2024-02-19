@@ -58,7 +58,8 @@ public class CellMergeStrategy extends AbstractMergeStrategy {
         if (CollUtil.isEmpty(list)) {
             return cellList;
         }
-        Field[] fields = ReflectUtil.getFields(list.get(0).getClass(), field -> !"serialVersionUID".equals(field.getName()));
+        Field[] fields =
+            ReflectUtil.getFields(list.get(0).getClass(), field -> !"serialVersionUID".equals(field.getName()));
 
         // 有注解的字段
         List<Field> mergeFields = new ArrayList<>();
@@ -95,12 +96,15 @@ public class CellMergeStrategy extends AbstractMergeStrategy {
                     }
                     if (!cellValue.equals(val)) {
                         if (i - repeatCell.getCurrent() > 1) {
-                            cellList.add(new CellRangeAddress(repeatCell.getCurrent() + rowIndex, i + rowIndex - 1, colNum, colNum));
+                            cellList.add(
+                                new CellRangeAddress(repeatCell.getCurrent() + rowIndex, i + rowIndex - 1, colNum,
+                                    colNum));
                         }
                         map.put(field, new RepeatCell(val, i));
                     } else if (i == list.size() - 1) {
                         if (i > repeatCell.getCurrent()) {
-                            cellList.add(new CellRangeAddress(repeatCell.getCurrent() + rowIndex, i + rowIndex, colNum, colNum));
+                            cellList.add(
+                                new CellRangeAddress(repeatCell.getCurrent() + rowIndex, i + rowIndex, colNum, colNum));
                         }
                     }
                 }

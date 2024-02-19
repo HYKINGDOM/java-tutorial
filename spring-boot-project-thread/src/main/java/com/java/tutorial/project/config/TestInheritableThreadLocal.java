@@ -1,12 +1,10 @@
 package com.java.tutorial.project.config;
 
-
 /**
  * @author HY
  */
 public class TestInheritableThreadLocal implements Runnable {
     private static final InheritableThreadLocal<String> threadLocal = new InheritableThreadLocal<>();
-
 
     @Override
     public void run() {

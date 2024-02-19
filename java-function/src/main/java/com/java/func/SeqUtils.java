@@ -10,12 +10,9 @@ import java.util.function.UnaryOperator;
  */
 public class SeqUtils {
 
-
     /**
-     * 字符串下划线转驼峰-
-     * 首字母小写
-     * 替换掉下划线
-     * 下划线后一个字符大写
+     * 字符串下划线转驼峰- 首字母小写 替换掉下划线 下划线后一个字符大写
+     *
      * @param str
      * @return
      */

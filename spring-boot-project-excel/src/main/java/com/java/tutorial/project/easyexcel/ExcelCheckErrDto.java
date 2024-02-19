@@ -11,7 +11,7 @@ public class ExcelCheckErrDto<T> {
 
     private String errMsg;
 
-    public ExcelCheckErrDto(T t, String errMsg){
+    public ExcelCheckErrDto(T t, String errMsg) {
         this.t = t;
         this.errMsg = errMsg;
     }

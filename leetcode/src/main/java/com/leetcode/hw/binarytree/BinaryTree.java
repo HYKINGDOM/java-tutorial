@@ -10,7 +10,6 @@ public class BinaryTree {
         int n = Integer.parseInt(line);
         System.out.println(numTrees(n));
 
-
     }
 
     public static int numTrees(int n) {

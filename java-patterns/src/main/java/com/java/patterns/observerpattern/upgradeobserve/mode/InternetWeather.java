@@ -1,15 +1,15 @@
 package com.java.patterns.observerpattern.upgradeobserve.mode;
 
-
 /**
  * 测试方法
+ *
  * @author yihur
  */
 public class InternetWeather {
 
     public static void main(String[] args) {
 
-        CurrentConditions mCurrentConditions= new CurrentConditions();
+        CurrentConditions mCurrentConditions = new CurrentConditions();
         ForcesConditions mForcesConditions = new ForcesConditions();
         WeatherDataSt mWeatherDataSt = new WeatherDataSt();
 

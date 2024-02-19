@@ -10,22 +10,19 @@ import java.util.stream.Collectors;
 
 public class Folder {
 
+    public static final List<String> FILE_SYMBOL_LIST =
+        List.of(" ", "-", "@", "「", "」", "《", "》", "【", "】", "[", "]", "『", "』", "〖", "〗", "▌", "(", ")", "（", "）", "。",
+            "“", "”", "，", "~", "#", "!", "！", "+", "=", "⊙");
     private List<File> fileList = new ArrayList<>();
-
-    public static final List<String> FILE_SYMBOL_LIST = List.of(" ", "-", "@", "「", "」", "《", "》", "【", "】", "[", "]", "『"
-            , "』", "〖", "〗", "▌", "(", ")", "（", "）", "。", "“", "”", "，", "~", "#", "!", "！", "+", "=", "⊙");
-
 
     public static void main(String[] args) {
         Folder folder = new Folder();
         folder.videoFile();
     }
 
-
     public void videoFile() {
         File file = FileUtil.file("K:\\新建文件夹\\写真图集");
         File[] files = file.listFiles();
-
 
         List<File> fileDirectoryLists = Arrays.stream(files).filter(File::isDirectory).collect(Collectors.toList());
         //List<File> fileDirectoryLists = folderDirectoryLists(files, fileList);
@@ -44,12 +41,11 @@ public class Folder {
             }
         }
 
-//        for (File rootPathFile : fileDirectoryLists) {
-//            System.out.println(rootPathFile.getName());
-//
-//        }
+        //        for (File rootPathFile : fileDirectoryLists) {
+        //            System.out.println(rootPathFile.getName());
+        //
+        //        }
     }
-
 
     private String replaceName(String fileName, String strKey) {
         fileName = fileName.replace(strKey, "");

@@ -2,6 +2,7 @@ package com.java.coco.datastructure.linkedlist.singlylinkedlist;
 
 /**
  * 单链表
+ *
  * @author HY
  */
 public class Node {
@@ -37,9 +38,6 @@ public class Node {
 
     @Override
     public String toString() {
-        return "Node{" +
-                "key=" + key +
-                ", value='" + value + '\'' +
-                '}';
+        return "Node{" + "key=" + key + ", value='" + value + '\'' + '}';
     }
 }

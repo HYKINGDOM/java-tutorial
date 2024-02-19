@@ -1,14 +1,11 @@
 package com.leetcode.hw.nkw;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-
 
 public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        String[][] strings = new String[][]{};
+        String[][] strings = new String[][] {};
         int num = 4;
         while (in.hasNext()) {
             String next = in.nextLine();
@@ -35,7 +32,6 @@ public class Main {
     }
 
 }
-
 
 //    Scanner in = new Scanner(System.in);
 //    int k = 0;

@@ -1,6 +1,5 @@
 package com.java.data.controller;
 
-
 import com.java.data.controller.request.BankRequest;
 import com.java.data.infrastucture.entity.BankEntity;
 import com.java.data.service.BankService;
@@ -25,7 +24,6 @@ public class BankController {
     @Autowired
     @Qualifier("bankTakeServiceImpl")
     private BankService bankService01;
-
 
     @PostMapping("info")
     public String getBank(@RequestBody @Valid BankRequest bankRequest) {

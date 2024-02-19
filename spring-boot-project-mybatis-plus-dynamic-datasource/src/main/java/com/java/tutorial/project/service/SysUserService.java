@@ -19,6 +19,7 @@ public interface SysUserService {
      * @return 实例对象
      */
     SysUser insert(SysUser sysUser);
+
     /**
      * 更新数据
      *
@@ -26,6 +27,7 @@ public interface SysUserService {
      * @return 实例对象
      */
     SysUser update(SysUser sysUser);
+
     /**
      * 通过主键删除数据
      *

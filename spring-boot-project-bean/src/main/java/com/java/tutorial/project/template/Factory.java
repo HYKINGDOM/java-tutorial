@@ -11,9 +11,6 @@ import java.util.Map;
 public class Factory {
     private static Map<String, Handler> strategyMap = new HashMap<>();
 
-
-
-
     public static Handler getInvokeStrategy(String str) {
         return strategyMap.get(str);
     }
@@ -24,6 +21,5 @@ public class Factory {
         }
         strategyMap.put(str, handler);
     }
-
 
 }

@@ -25,7 +25,6 @@ import java.util.concurrent.TimeUnit;
 @Aspect
 public class NoRepeatSubmitAspect {
 
-
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
@@ -42,14 +41,13 @@ public class NoRepeatSubmitAspect {
         /**
          * 获取请求信息
          */
-        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder
-                .getRequestAttributes();
+        ServletRequestAttributes attributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
 
         assert attributes != null;
         HttpServletRequest request = attributes.getRequest();
 
         // 获取执行方法
-        Method method = ((MethodSignature) joinPoint.getSignature()).getMethod();
+        Method method = ((MethodSignature)joinPoint.getSignature()).getMethod();
 
         //获取防重复提交注解
         RepeatSubmit annotation = method.getAnnotation(RepeatSubmit.class);
@@ -70,8 +68,7 @@ public class NoRepeatSubmitAspect {
 
         if (Boolean.FALSE.equals(redisTemplate.hasKey(redisKey))) {
             // 设置防重复操作限时标记（前置通知）
-            redisTemplate.opsForValue()
-                    .set(redisKey, redisValue, annotation.expireSeconds(), TimeUnit.SECONDS);
+            redisTemplate.opsForValue().set(redisKey, redisValue, annotation.expireSeconds(), TimeUnit.SECONDS);
             try {
                 //正常执行方法并返回
                 //ProceedingJoinPoint类型参数可以决定是否执行目标方法，
@@ -86,7 +83,6 @@ public class NoRepeatSubmitAspect {
             // 重复提交了抛出异常，如果是在项目中，根据具体情况处理。
             throw new RuntimeException("请勿重复提交");
         }
-
 
     }
 

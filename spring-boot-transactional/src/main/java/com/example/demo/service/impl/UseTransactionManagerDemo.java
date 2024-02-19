@@ -10,11 +10,11 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 /**
  * 编程式事务之-UseTransactionManagerDemo
+ *
  * @author HY
  */
 @Service
 public class UseTransactionManagerDemo implements TransactionService {
-
 
     @Autowired
     private PlatformTransactionManager transactionManager;

@@ -39,7 +39,6 @@ public class DirectorUtil {
         //System.out.println(dir + "清理成功");
     }
 
-
     public static Map<String, List<String>> createDirector(String path, Map<String, List<File>> listMap) {
 
         Map<String, List<String>> allFileType = getAllFileType();
@@ -74,7 +73,6 @@ public class DirectorUtil {
 
         return allFileType;
     }
-
 
     public static void createMoreFiles() throws IOException {
         Files.createDirectories(Paths.get("I:\\data\\test1\\test2\\test3\\test4\\test5\\"));

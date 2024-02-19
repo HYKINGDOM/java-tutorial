@@ -16,7 +16,6 @@ import static com.java.coco.utils.file.constant.FileFormatNameConstant.getAllFil
  */
 public class FileNameUtils {
 
-
     /**
      * 替换掉文件名中特殊的字符串
      *
@@ -45,7 +44,6 @@ public class FileNameUtils {
      * @return 已修改后的文件
      */
     public static File rewriteRandomFileName(File toFile) {
-
 
         String type = FileTypeUtil.getType(toFile);
 
@@ -100,8 +98,8 @@ public class FileNameUtils {
         if (file.isDirectory()) {
             newFilePath = filePath.substring(0, filePath.lastIndexOf("\\")) + "\\" + newFileName;
         } else {
-            newFilePath = filePath.substring(0, filePath.lastIndexOf("\\")) + "\\" + newFileName
-                    + filePath.substring(filePath.lastIndexOf(".")).toLowerCase();
+            newFilePath = filePath.substring(0, filePath.lastIndexOf("\\")) + "\\" + newFileName + filePath.substring(
+                filePath.lastIndexOf(".")).toLowerCase();
         }
         File nf = new File(newFilePath);
         try {

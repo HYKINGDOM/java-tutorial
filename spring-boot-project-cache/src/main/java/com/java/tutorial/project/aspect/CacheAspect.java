@@ -40,7 +40,7 @@ public class CacheAspect {
 
     @Around("cacheAspect()")
     public Object doAround(ProceedingJoinPoint point) throws Throwable {
-        MethodSignature signature = (MethodSignature) point.getSignature();
+        MethodSignature signature = (MethodSignature)point.getSignature();
         Method method = signature.getMethod();
 
         if (!method.isAnnotationPresent(DoubleCache.class)) {

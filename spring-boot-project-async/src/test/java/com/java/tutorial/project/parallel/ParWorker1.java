@@ -6,7 +6,6 @@ import com.java.tutorial.project.async.executor.timer.SystemClock;
 import com.java.tutorial.project.async.worker.WorkResult;
 import com.java.tutorial.project.async.wrapper.WorkerWrapper;
 
-
 import java.util.Map;
 
 /**
@@ -42,11 +41,13 @@ public class ParWorker1 implements IWorker<String, String>, ICallback<String, St
     @Override
     public void result(boolean success, String param, WorkResult<String> workResult) {
         if (success) {
-            System.out.println("callback worker1 success--" + SystemClock.now() + "----workResult: " + workResult.getResult() + "param: " + param
-                    + "-threadName:" +Thread.currentThread().getName());
+            System.out.println(
+                "callback worker1 success--" + SystemClock.now() + "----workResult: " + workResult.getResult() + "param: " + param + "-threadName:" + Thread.currentThread()
+                    .getName());
         } else {
-            System.err.println("callback worker1 failure--" + SystemClock.now() + "----workResult: " + workResult.getResult() + "param: " + param
-                    + "-threadName:" +Thread.currentThread().getName());
+            System.err.println(
+                "callback worker1 failure--" + SystemClock.now() + "----workResult: " + workResult.getResult() + "param: " + param + "-threadName:" + Thread.currentThread()
+                    .getName());
         }
     }
 

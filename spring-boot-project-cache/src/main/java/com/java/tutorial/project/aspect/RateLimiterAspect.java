@@ -22,7 +22,6 @@ import java.util.List;
 
 import static com.java.tutorial.project.util.IPUtils.getIpAddr;
 
-
 @Slf4j
 @Aspect
 @Component
@@ -58,9 +57,11 @@ public class RateLimiterAspect {
     public String getCombineKey(RateLimiter rateLimiter, JoinPoint point) {
         StringBuilder stringBuffer = new StringBuilder(rateLimiter.key());
         if (rateLimiter.limitType() == LimitType.IP) {
-            stringBuffer.append(getIpAddr(((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest())).append("-");
+            stringBuffer.append(
+                    getIpAddr(((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest()))
+                .append("-");
         }
-        MethodSignature signature = (MethodSignature) point.getSignature();
+        MethodSignature signature = (MethodSignature)point.getSignature();
         Method method = signature.getMethod();
         Class<?> targetClass = method.getDeclaringClass();
         stringBuffer.append(targetClass.getName()).append("-").append(method.getName());

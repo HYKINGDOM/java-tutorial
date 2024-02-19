@@ -1,6 +1,5 @@
 package com.java.tutorial.project.service;
 
-
 import com.java.tutorial.project.entity.Order;
 
 /**
@@ -16,6 +15,6 @@ public interface OrderService {
 
     void deleteOrder(Long id);
 
-    Order getOrderByIdAndStatus(Long id,Integer status);
+    Order getOrderByIdAndStatus(Long id, Integer status);
 
 }

@@ -5,6 +5,17 @@ package com.leetcode.title.ContainerWithMostWater;
  */
 public class ContainerWithMostWater {
 
+    private static int getMax(int j, int i, int j1, int max) {
+        int abs = Math.abs(j - i);
+
+        int i2 = abs * j1;
+
+        if (i2 > max) {
+            max = i2;
+        }
+        return max;
+    }
+
     public int maxArea(int[] height) {
 
         int length = height.length;
@@ -28,17 +39,6 @@ public class ContainerWithMostWater {
             }
         }
 
-        return max;
-    }
-
-    private static int getMax(int j, int i, int j1, int max) {
-        int abs = Math.abs(j - i);
-
-        int i2 = abs * j1;
-
-        if (i2 > max) {
-            max = i2;
-        }
         return max;
     }
 }

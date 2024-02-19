@@ -31,43 +31,27 @@ public class UserService {
             throw new Exception("User does not exist.");
         }
 
-        user.getContacts()
-            .stream()
-            .filter(c -> !contacts.contains(c))
+        user.getContacts().stream().filter(c -> !contacts.contains(c))
             .forEach(c -> repository.addEvent(userId, new UserContactRemovedEvent(c.getType(), c.getDetail())));
-        contacts.stream()
-            .filter(c -> !user.getContacts()
-                .contains(c))
+        contacts.stream().filter(c -> !user.getContacts().contains(c))
             .forEach(c -> repository.addEvent(userId, new UserContactAddedEvent(c.getType(), c.getDetail())));
-        user.getAddresses()
-            .stream()
-            .filter(a -> !addresses.contains(a))
-            .forEach(a -> repository.addEvent(userId, new UserAddressRemovedEvent(a.getCity(), a.getState(), a.getPostcode())));
-        addresses.stream()
-            .filter(a -> !user.getAddresses()
-                .contains(a))
-            .forEach(a -> repository.addEvent(userId, new UserAddressAddedEvent(a.getCity(), a.getState(), a.getPostcode())));
+        user.getAddresses().stream().filter(a -> !addresses.contains(a)).forEach(
+            a -> repository.addEvent(userId, new UserAddressRemovedEvent(a.getCity(), a.getState(), a.getPostcode())));
+        addresses.stream().filter(a -> !user.getAddresses().contains(a)).forEach(
+            a -> repository.addEvent(userId, new UserAddressAddedEvent(a.getCity(), a.getState(), a.getPostcode())));
     }
 
     public Set<Contact> getContactByType(String userId, String contactType) throws Exception {
         User user = UserUtility.recreateUserState(repository, userId);
         if (user == null)
             throw new Exception("User does not exist.");
-        return user.getContacts()
-            .stream()
-            .filter(c -> c.getType()
-                .equals(contactType))
-            .collect(Collectors.toSet());
+        return user.getContacts().stream().filter(c -> c.getType().equals(contactType)).collect(Collectors.toSet());
     }
 
     public Set<Address> getAddressByRegion(String userId, String state) throws Exception {
         User user = UserUtility.recreateUserState(repository, userId);
         if (user == null)
             throw new Exception("User does not exist.");
-        return user.getAddresses()
-            .stream()
-            .filter(a -> a.getState()
-                .equals(state))
-            .collect(Collectors.toSet());
+        return user.getAddresses().stream().filter(a -> a.getState().equals(state)).collect(Collectors.toSet());
     }
 }

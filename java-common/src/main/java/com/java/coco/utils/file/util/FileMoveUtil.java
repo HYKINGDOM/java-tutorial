@@ -1,7 +1,5 @@
 package com.java.coco.utils.file.util;
 
-import cn.hutool.core.io.FileUtil;
-
 import java.io.File;
 
 import static com.java.coco.utils.file.util.FileNameUtils.rewriteRandomFileName;
@@ -10,7 +8,6 @@ import static com.java.coco.utils.file.util.FileNameUtils.rewriteRandomFileName;
  * @author HY
  */
 public class FileMoveUtil {
-
 
     public static void moveFileToTargetIndex(String toPath, File targetFile) {
 

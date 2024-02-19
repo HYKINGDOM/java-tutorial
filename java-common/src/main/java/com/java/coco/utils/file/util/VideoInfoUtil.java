@@ -35,7 +35,6 @@ public class VideoInfoUtil {
             // 读取视频高度
             videoInfo.setHeight(grabber.getImageHeight());
 
-
             videoInfo.setAudioChannel(grabber.getAudioChannels());
 
             videoInfo.setVideoCode(grabber.getVideoCodecName());
@@ -60,6 +59,5 @@ public class VideoInfoUtil {
             }
         }
     }
-
 
 }

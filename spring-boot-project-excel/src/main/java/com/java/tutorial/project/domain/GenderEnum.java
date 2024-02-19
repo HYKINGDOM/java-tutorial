@@ -36,16 +36,10 @@ public enum GenderEnum {
     private final String description;
 
     public static GenderEnum convert(Integer value) {
-        return Stream.of(values())
-                .filter(bean -> bean.value.equals(value))
-                .findAny()
-                .orElse(UNKNOWN);
+        return Stream.of(values()).filter(bean -> bean.value.equals(value)).findAny().orElse(UNKNOWN);
     }
 
     public static GenderEnum convert(String description) {
-        return Stream.of(values())
-                .filter(bean -> bean.description.equals(description))
-                .findAny()
-                .orElse(UNKNOWN);
+        return Stream.of(values()).filter(bean -> bean.description.equals(description)).findAny().orElse(UNKNOWN);
     }
 }

@@ -1,6 +1,5 @@
 package com.java.tutorial.project.controller.validator.annotation;
 
-
 import com.java.tutorial.project.controller.validator.PassWordValidHandle;
 
 import javax.validation.Constraint;

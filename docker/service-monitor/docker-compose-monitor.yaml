@@ -104,7 +104,7 @@ services:
       - "8500:8500"
     volumes:
       - ./consul/data:/consul/data
-    command: [agent,-server,-ui,-client=0.0.0.0,-bootstrap-expect=1]
+    command: [ agent,-server,-ui,-client=0.0.0.0,-bootstrap-expect=1 ]
 
 
 networks:

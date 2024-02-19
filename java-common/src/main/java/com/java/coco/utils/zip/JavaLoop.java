@@ -8,44 +8,9 @@ import static com.google.common.math.LongMath.factorial;
 
 public class JavaLoop {
 
-
-    public long returnNumFactorial(int arrayLength) {
-        return factorial(arrayLength);
-    }
-
-    public List<String> createPasswordList(String[] str, int passwordLength) {
-        long numFactorial = returnNumFactorial(str.length);
-
-        StringBuilder stringBuilder = new StringBuilder();
-        List<String> passwordList = new ArrayList<>();
-
-        int nCnt = str.length;
-
-        int nBit = (0xFFFFFFFF >>> (32 - nCnt));
-
-        for (int i = 1; i <= nBit; i++) {
-            for (int j = 0; j < nCnt; j++) {
-                if ((i << (31 - j)) >> 31 == -1) {
-                    System.out.print("输出数组: " + str[j]);
-                    stringBuilder.append(str[j]);
-                }
-            }
-            if (stringBuilder.length() == passwordLength) {
-                passwordList.add(stringBuilder.toString());
-            } else {
-                stringBuilder.delete(0, stringBuilder.length());
-            }
-            System.out.println("");
-        }
-        for (String s : passwordList) {
-            System.out.println(s);
-        }
-
-        return null;
-    }
-
-
     public static Stack<Integer> stack = new Stack<>();
+    public static Stack<String> stackStr = new Stack<>();
+    public static List<String> stringList = new ArrayList<>();
 
     public static void funLoop(int[] shu, int targ, int cur) {
         if (cur == targ) {
@@ -82,11 +47,6 @@ public class JavaLoop {
 
     }
 
-
-    public static Stack<String> stackStr = new Stack<>();
-
-    public static List<String> stringList = new ArrayList<>();
-
     public static void funLoopStr(String[] shu, int targ, int cur) {
         if (cur == targ) {
             stringList.add(stackStr.toString());
@@ -101,6 +61,40 @@ public class JavaLoop {
         }
     }
 
+    public long returnNumFactorial(int arrayLength) {
+        return factorial(arrayLength);
+    }
+
+    public List<String> createPasswordList(String[] str, int passwordLength) {
+        long numFactorial = returnNumFactorial(str.length);
+
+        StringBuilder stringBuilder = new StringBuilder();
+        List<String> passwordList = new ArrayList<>();
+
+        int nCnt = str.length;
+
+        int nBit = (0xFFFFFFFF >>> (32 - nCnt));
+
+        for (int i = 1; i <= nBit; i++) {
+            for (int j = 0; j < nCnt; j++) {
+                if ((i << (31 - j)) >> 31 == -1) {
+                    System.out.print("输出数组: " + str[j]);
+                    stringBuilder.append(str[j]);
+                }
+            }
+            if (stringBuilder.length() == passwordLength) {
+                passwordList.add(stringBuilder.toString());
+            } else {
+                stringBuilder.delete(0, stringBuilder.length());
+            }
+            System.out.println("");
+        }
+        for (String s : passwordList) {
+            System.out.println(s);
+        }
+
+        return null;
+    }
 
     public void fLoop() {
         String str[] = {"A", "B", "C", "D", "E"};

@@ -63,11 +63,11 @@ public class SysConvert {
         //计算整数部分
         if (pointIndex < 0) {//如果没有小数部分
             for (int i = 0; i < number.length(); i++) {
-                actualValue += (long) changeNI(sysIn, i, number.charAt(number.length() - i - 1));
+                actualValue += (long)changeNI(sysIn, i, number.charAt(number.length() - i - 1));
             }
         } else {//有则
             for (int i = 0; i < pointIndex; i++) {
-                actualValue += (long) changeNI(sysIn, i, number.charAt(pointIndex - i - 1));
+                actualValue += (long)changeNI(sysIn, i, number.charAt(pointIndex - i - 1));
             }
         }
 
@@ -84,16 +84,16 @@ public class SysConvert {
      */
     private void Convert() {
         //分离整数和小数
-        long integerPart = (long) actualValue;
+        long integerPart = (long)actualValue;
         double decimalsPart = actualValue - integerPart;
 
         //建立字符串以用于保存结果
         while (integerPart >= sysOut) { //反复除进制,取余数
-            result.insert(0, changeIN(sysOut, (int) (integerPart % sysOut))); //追加结果
+            result.insert(0, changeIN(sysOut, (int)(integerPart % sysOut))); //追加结果
             integerPart = integerPart / sysOut;//商
         }
         if (integerPart != 0) { //如果最后未被除尽
-            result.insert(0, changeIN(sysOut, (int) integerPart)); //追加结果
+            result.insert(0, changeIN(sysOut, (int)integerPart)); //追加结果
         }
 
         if (decimalsPart > 0) { //如果有小数部分
@@ -101,8 +101,8 @@ public class SysConvert {
             result.append(".");
             for (int t = 0; t < precision; t++) {
                 decimalsPart = decimalsPart * sysOut;
-                result.append(changeIN(sysOut, (int) decimalsPart));
-                decimalsPart = decimalsPart - (int) decimalsPart;
+                result.append(changeIN(sysOut, (int)decimalsPart));
+                decimalsPart = decimalsPart - (int)decimalsPart;
             }
         }
     }

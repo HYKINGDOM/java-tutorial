@@ -13,5 +13,4 @@ public class Severity {
     public interface Error extends Payload {
     }
 
-
 }

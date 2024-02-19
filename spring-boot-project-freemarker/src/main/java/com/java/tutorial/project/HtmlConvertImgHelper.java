@@ -32,16 +32,13 @@ public class HtmlConvertImgHelper {
     @Resource
     private Configuration configuration;
 
-
     private int defaultHighPxSize = 40;
-
 
     /**
      * freemarker转Image
      *
      * @param fileName   ftl文件名称，需要在resources/templates目录下
      * @param formatType
-     *
      * @return
      * @throws IOException
      */
@@ -50,21 +47,19 @@ public class HtmlConvertImgHelper {
         return htmlConvertImg(htmlText, formatType);
     }
 
-
     /**
      * freemarker转Image
      *
      * @param fileName   ftl文件名称，需要在resources/templates目录下
      * @param formatType
-     *
      * @return
      * @throws IOException
      */
-    public byte[] htmlConvertImg(String fileName, Object map, String formatType, Integer num) throws IOException, TemplateException {
+    public byte[] htmlConvertImg(String fileName, Object map, String formatType, Integer num)
+        throws IOException, TemplateException {
         String htmlText = FreeMarkerTemplateUtils.processTemplateIntoString(configuration.getTemplate(fileName), map);
         return htmlConvertImgForHighSize(htmlText, formatType, num);
     }
-
 
     /**
      * 根据HTML内容转Image
@@ -85,7 +80,6 @@ public class HtmlConvertImgHelper {
         return byteArrayOutputStream.toByteArray();
     }
 
-
     /**
      * 根据HTML内容转Image
      *
@@ -103,7 +97,6 @@ public class HtmlConvertImgHelper {
         ImageIO.write(newImage, formatType, byteArrayOutputStream);
         return byteArrayOutputStream.toByteArray();
     }
-
 
     public InputStream getHtmlInputStreams(Map<String, Object> root, String template) {
 

@@ -1,7 +1,5 @@
 package com.java.tutorial.project.async.callback;
 
-
-
 import com.java.tutorial.project.async.wrapper.WorkerWrapper;
 
 import java.util.List;

@@ -2,10 +2,10 @@ package com.java.patterns.strategypattern.baseduck;
 
 /**
  * 绿头鸭
+ *
  * @author Administrator
  */
 public class GreenHeadBaseDuck extends BaseDuck {
-
 
     @Override
     public void display() {

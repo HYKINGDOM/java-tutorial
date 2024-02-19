@@ -1,6 +1,5 @@
 package com.java.tutorial.project.infrastucture.repository;
 
-
 import com.java.tutorial.project.domain.User;
 import com.java.tutorial.project.infrastucture.UserEntityRepository;
 import com.java.tutorial.project.infrastucture.dao.UserEntityDao;
@@ -17,7 +16,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * @author hy
  */
@@ -28,7 +26,6 @@ public class UserEntityRepositoryImpl implements UserEntityRepository {
     private final UserEntityDao userEntityDao;
 
     private final UserEntityMapper userEntityMapper;
-
 
     private final JPAQueryFactory jpaQueryFactory;
 

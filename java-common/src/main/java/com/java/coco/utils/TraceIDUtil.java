@@ -39,10 +39,8 @@ public class TraceIDUtil {
     }
 
     /**
-     * 根据TTL或MDC中的TraceID进行设置
-     * 1, TTL和MDC都不存在TraceID,生成TraceID并设置到TTL和MDC当中
-     * 2, 如果MDC中有但是TTL中没有,将MDC中的TraceID设置到TTL
-     * 3, 如果TTL中有但是MDC中没有,将TTL中的TraceID设置到TTL
+     * 根据TTL或MDC中的TraceID进行设置 1, TTL和MDC都不存在TraceID,生成TraceID并设置到TTL和MDC当中 2, 如果MDC中有但是TTL中没有,将MDC中的TraceID设置到TTL 3,
+     * 如果TTL中有但是MDC中没有,将TTL中的TraceID设置到TTL
      *
      * @return traceId
      */
@@ -64,7 +62,7 @@ public class TraceIDUtil {
             setTraceIdToMdc(ttlTraceId);
         }
 
-        if (!ttlTraceId.equals(traceId)){
+        if (!ttlTraceId.equals(traceId)) {
             setTraceIdToMdc(ttlTraceId);
         }
 

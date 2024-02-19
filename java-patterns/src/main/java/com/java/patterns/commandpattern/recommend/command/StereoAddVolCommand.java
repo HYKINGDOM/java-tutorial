@@ -1,11 +1,11 @@
 package com.java.patterns.commandpattern.recommend.command;
 
-
 import com.java.patterns.commandpattern.recommend.device.Light;
 import com.java.patterns.commandpattern.recommend.device.Stereo;
 
 /**
  * 音响音量增加
+ *
  * @author yihur
  */
 public class StereoAddVolCommand implements Command {

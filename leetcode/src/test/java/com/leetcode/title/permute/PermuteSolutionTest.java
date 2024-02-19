@@ -12,16 +12,14 @@ class PermuteSolutionTest {
 
     private PermuteSolution permuteSolution;
 
-
     @BeforeEach
     public void init() {
         permuteSolution = new PermuteSolution();
     }
 
-
     @Test
     public void test_main_A() {
-        int[] test = new int[]{1, 2, 3};
+        int[] test = new int[] {1, 2, 3};
         List<List<Integer>> profit = permuteSolution.permute(test);
 
         for (List<Integer> integerList : profit) {

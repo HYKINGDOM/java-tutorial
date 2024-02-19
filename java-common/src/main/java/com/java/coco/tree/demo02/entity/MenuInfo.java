@@ -1,6 +1,5 @@
 package com.java.coco.tree.demo02.entity;
 
-
 import com.java.coco.tree.demo02.CompositeIterator;
 
 import java.util.ArrayList;
@@ -17,7 +16,6 @@ public class MenuInfo extends EntityTreeComponent {
     private Integer parentId;
 
     private String menuName;
-
 
     private List<EntityTreeComponent> entityTreeComponents = new ArrayList<>();
 
@@ -43,7 +41,6 @@ public class MenuInfo extends EntityTreeComponent {
         this.parentId = parentId;
     }
 
-
     @Override
     public String getName() {
         return getMenuName();
@@ -56,7 +53,6 @@ public class MenuInfo extends EntityTreeComponent {
     public void setMenuName(String menuName) {
         this.menuName = menuName;
     }
-
 
     public List<EntityTreeComponent> getEntityTreeComponents() {
         return entityTreeComponents;
@@ -74,7 +70,7 @@ public class MenuInfo extends EntityTreeComponent {
         Iterator iterator = entityTreeComponents.iterator();
         while (iterator.hasNext()) {
             // 打印这个节点包含的一切，print 可以兼顾两类节点，这是组合模式的特点
-            EntityTreeComponent menuComponent = (EntityTreeComponent) iterator.next();
+            EntityTreeComponent menuComponent = (EntityTreeComponent)iterator.next();
             menuComponent.print(); // 递归思想的应用
         }
     }
@@ -83,6 +79,5 @@ public class MenuInfo extends EntityTreeComponent {
     public Iterator createIterator() {
         return new CompositeIterator(entityTreeComponents.iterator());
     }
-
 
 }

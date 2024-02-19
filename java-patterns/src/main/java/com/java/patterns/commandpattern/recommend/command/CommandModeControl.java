@@ -1,7 +1,5 @@
 package com.java.patterns.commandpattern.recommend.command;
 
-
-
 import com.java.patterns.commandpattern.notrecommended.Control;
 
 import java.util.Stack;

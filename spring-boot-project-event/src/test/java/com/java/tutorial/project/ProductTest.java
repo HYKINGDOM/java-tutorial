@@ -17,6 +17,20 @@ import java.util.List;
 
 public class ProductTest {
 
+    private static List<Shop> getShops(List<Shop> shops) {
+        List<Shop> shopsId1 = Lists.newArrayList();
+
+        for (Shop shop : shops) {
+            Shop shop1 = new Shop();
+
+            //BeanUtil.copyProperties(shop, shop1, false);
+            BeanUtils.copyProperties(shop, shop1, Shop.class);
+
+            shopsId1.add(shop1);
+        }
+        return shopsId1;
+    }
+
     @Test
     public void test_demo_02() {
 
@@ -74,20 +88,6 @@ public class ProductTest {
         System.out.println(d);
     }
 
-    private static List<Shop> getShops(List<Shop> shops) {
-        List<Shop> shopsId1 = Lists.newArrayList();
-
-        for (Shop shop : shops) {
-            Shop shop1 = new Shop();
-
-            //BeanUtil.copyProperties(shop, shop1, false);
-            BeanUtils.copyProperties(shop, shop1, Shop.class);
-
-            shopsId1.add(shop1);
-        }
-        return shopsId1;
-    }
-
     @Test
     public void test_demo_04() {
 
@@ -116,7 +116,6 @@ public class ProductTest {
         System.out.println(d);
     }
 
-
     @Test
     public void test_demo_05() {
 
@@ -136,7 +135,6 @@ public class ProductTest {
         Shop buildc = Shop.builder().shopId(1000003L).shopName("buildc").products(productsd).build();
 
         List<Shop> shops = Lists.newArrayList(builda, buildb, buildc);
-
 
         Converter converter = new Converter();
 

@@ -36,7 +36,8 @@ public class SmallVideoFileTransfer {
         if (files != null) {
             List<File> fileList = Arrays.stream(files).filter(File::isFile).collect(Collectors.toList());
             for (File rootPathFile : fileList) {
-                if (SMALL_VIDEO_MP4.equals(FileTypeUtil.getType(rootPathFile)) && fileSizeValid(readableFileSize(rootPathFile))) {
+                if (SMALL_VIDEO_MP4.equals(FileTypeUtil.getType(rootPathFile)) && fileSizeValid(
+                    readableFileSize(rootPathFile))) {
                     System.out.println(rootPathFile.toPath());
                     System.out.println("文件大小: " + readableFileSize(rootPathFile));
                     PathUtil.move(rootPathFile.toPath(), path, true);
@@ -69,6 +70,5 @@ public class SmallVideoFileTransfer {
         int compareTo = aDouble.compareTo(FILE_SIZE);
         return compareTo < 0;
     }
-
 
 }

@@ -6,9 +6,6 @@ import org.springframework.context.ApplicationContextAware;
 
 public class UseApplicationContextAwareDemo implements ApplicationContextAware {
 
-
-
-
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 

@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @RequiredArgsConstructor
 @Component
 public class UserEntityRepositoryImpl implements UserEntityRepository {
@@ -21,7 +20,6 @@ public class UserEntityRepositoryImpl implements UserEntityRepository {
     private final UserEntityDao userEntityDao;
 
     private final UserEntityMapper userEntityMapper;
-
 
     @Transactional
     @Override
@@ -45,7 +43,7 @@ public class UserEntityRepositoryImpl implements UserEntityRepository {
         List<UserEntity> all = userEntityDao.findAll(Example.of(userEntity));
 
         return all.stream().findFirst().orElse(null);
-    } 
+    }
 
     @Override
     public long updateUser(UserEntity userEntity) {

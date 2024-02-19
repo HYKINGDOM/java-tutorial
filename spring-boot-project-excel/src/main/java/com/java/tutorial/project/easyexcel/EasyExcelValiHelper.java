@@ -14,10 +14,10 @@ import java.util.Set;
  */
 public class EasyExcelValiHelper {
 
+    private static Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+
     private EasyExcelValiHelper() {
     }
-
-    private static Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
     public static <T> String validateEntity(T obj) throws NoSuchFieldException {
         StringBuilder result = new StringBuilder();

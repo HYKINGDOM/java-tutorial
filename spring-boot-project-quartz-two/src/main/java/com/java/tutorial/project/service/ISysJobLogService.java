@@ -1,7 +1,5 @@
 package com.java.tutorial.project.service;
 
-
-
 import com.java.tutorial.project.domain.SysJobLog;
 
 import java.util.List;

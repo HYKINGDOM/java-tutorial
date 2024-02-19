@@ -86,7 +86,6 @@ public class ExcutorCompletableFuture {
         System.out.println(result);
     }
 
-
     public static void handle() throws Exception {
         CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
             int i = 10 / 0;
@@ -104,28 +103,23 @@ public class ExcutorCompletableFuture {
     }
 
     public static void thenAccept() throws Exception {
-        CompletableFuture<Void> future = CompletableFuture
-                .supplyAsync(() -> new Random().nextInt(10))
-                .thenAccept(System.out::println);
+        CompletableFuture<Void> future =
+            CompletableFuture.supplyAsync(() -> new Random().nextInt(10)).thenAccept(System.out::println);
         future.get();
     }
 
     public static void thenAcceptAsync() throws Exception {
-        CompletableFuture<Void> future = CompletableFuture
-                .supplyAsync(() -> new Random().nextInt(10))
-                .thenAcceptAsync(System.out::println);
+        CompletableFuture<Void> future =
+            CompletableFuture.supplyAsync(() -> new Random().nextInt(10)).thenAcceptAsync(System.out::println);
         future.get();
     }
 
-
     public static void thenRun() throws Exception {
-        CompletableFuture<Void> future = CompletableFuture
-                .supplyAsync(() -> {
-                    int nextInt = new Random().nextInt(10);
-                    System.out.println(nextInt);
-                    return nextInt;
-                })
-                .thenRun(() -> System.out.println("thenRun ..."));
+        CompletableFuture<Void> future = CompletableFuture.supplyAsync(() -> {
+            int nextInt = new Random().nextInt(10);
+            System.out.println(nextInt);
+            return nextInt;
+        }).thenRun(() -> System.out.println("thenRun ..."));
         future.get();
     }
 
@@ -135,7 +129,6 @@ public class ExcutorCompletableFuture {
         CompletableFuture<String> result = future1.thenCombine(future2, (t, u) -> t + " " + u);
         System.out.println(result.get());
     }
-
 
     public static void thenAcceptBoth() {
         CompletableFuture<Integer> f1 = CompletableFuture.supplyAsync(() -> {
@@ -205,7 +198,6 @@ public class ExcutorCompletableFuture {
         System.out.println(f1.acceptEither(f2, System.out::println).get());
     }
 
-
     public static void runAfterEither() throws Exception {
         CompletableFuture<Integer> f1 = CompletableFuture.supplyAsync(() -> {
             int t = new Random().nextInt(3);
@@ -230,7 +222,6 @@ public class ExcutorCompletableFuture {
         });
         System.out.println(f1.runAfterEither(f2, () -> System.out.println("有一个任务已经完成了。")).get());
     }
-
 
     public static void acceptEitherAsync() throws Exception {
         CompletableFuture<Integer> f1 = CompletableFuture.supplyAsync(() -> {
@@ -262,7 +253,6 @@ public class ExcutorCompletableFuture {
         System.out.println(voidCompletableFuture.get());
     }
 
-
     public static void runAfterBoth() throws Exception {
         CompletableFuture<Integer> f1 = CompletableFuture.supplyAsync(() -> {
             int t = new Random().nextInt(10);
@@ -286,7 +276,6 @@ public class ExcutorCompletableFuture {
             return t;
         });
 
-
         CompletableFuture<Integer> f3 = CompletableFuture.supplyAsync(() -> {
             int t = new Random().nextInt(10);
             try {
@@ -305,10 +294,10 @@ public class ExcutorCompletableFuture {
             }
         };
 
-        CompletableFuture<Void> voidCompletableFuture = f1.runAfterBoth(f2, runnable).runAfterBoth(f3, () -> System.out.println("t3 都执行完成了。"));
+        CompletableFuture<Void> voidCompletableFuture =
+            f1.runAfterBoth(f2, runnable).runAfterBoth(f3, () -> System.out.println("t3 都执行完成了。"));
         System.out.println(voidCompletableFuture.get());
     }
-
 
     public static void thenCompose() throws Exception {
         CompletableFuture<Integer> future01 = CompletableFuture.supplyAsync(() -> {
@@ -323,17 +312,14 @@ public class ExcutorCompletableFuture {
             return t;
         }));
 
-
         future01.thenCompose(param -> CompletableFuture.supplyAsync(() -> {
             int t = param * 10;
             System.out.println("t3=" + t);
             return t;
         }));
 
-
         System.out.println("thenCompose result : " + future01.get());
     }
-
 
     public static void thenComposeAsync() throws Exception {
         CompletableFuture<Integer> future01 = CompletableFuture.supplyAsync(() -> {
@@ -348,13 +334,11 @@ public class ExcutorCompletableFuture {
             return t;
         }));
 
-
         CompletableFuture<Integer> future03 = future01.thenComposeAsync(param -> CompletableFuture.supplyAsync(() -> {
             int t = param * 10;
             System.out.println("t3=" + t);
             return t;
         }));
-
 
         System.out.println("thenCompose future01 result : " + future01.get());
         System.out.println("thenCompose future02 result : " + future02.get());
@@ -377,33 +361,33 @@ public class ExcutorCompletableFuture {
 
         ExecutorService executorService02 = Executors.newSingleThreadExecutor();
 
-        CompletableFuture<List<String>> future02 = future01.thenComposeAsync(param -> CompletableFuture.supplyAsync(() -> {
-            List<String> arrayList = Lists.newArrayList();
-            String t = param.toString() +  2;
-            try {
-                Thread.sleep(3000);
-                System.out.println("t2=" + t);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            arrayList.add(t);
-            return arrayList;
-        }), executorService02);
+        CompletableFuture<List<String>> future02 =
+            future01.thenComposeAsync(param -> CompletableFuture.supplyAsync(() -> {
+                List<String> arrayList = Lists.newArrayList();
+                String t = param.toString() + 2;
+                try {
+                    Thread.sleep(3000);
+                    System.out.println("t2=" + t);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                arrayList.add(t);
+                return arrayList;
+            }), executorService02);
 
-
-        CompletableFuture<List<String>> future03 = future01.thenComposeAsync(param -> CompletableFuture.supplyAsync(() -> {
-            List<String> arrayList = Lists.newArrayList();
-            String t = param.toString() +  3;
-            try {
-                Thread.sleep(5000);
-                System.out.println("t3=" + t);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            arrayList.add(t);
-            return arrayList;
-        }),executorService);
-
+        CompletableFuture<List<String>> future03 =
+            future01.thenComposeAsync(param -> CompletableFuture.supplyAsync(() -> {
+                List<String> arrayList = Lists.newArrayList();
+                String t = param.toString() + 3;
+                try {
+                    Thread.sleep(5000);
+                    System.out.println("t3=" + t);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                arrayList.add(t);
+                return arrayList;
+            }), executorService);
 
         val stringCompletableFuture = future02.thenCombine(future03, (t, u) -> {
             List<String> arrayList = Lists.newArrayList();

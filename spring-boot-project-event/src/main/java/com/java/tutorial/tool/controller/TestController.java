@@ -31,7 +31,6 @@ public class TestController {
         return testDemoProperties.isConfigs();
     }
 
-
     @GetMapping("/test3")
     public Object test3(@RequestParam String name) {
         return testDemoProperties.getAAA();

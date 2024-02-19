@@ -26,6 +26,20 @@ public abstract class JDBCUtil {
 
     private static final Logger log = LoggerFactory.getLogger(JDBCUtil.class);
     private static final String driverClass = "com.mysql.jdbc.Driver";
+    /**
+     * 活跃连接
+     */
+    public static Connection connection;
+    /**
+     * 连接状态  0 未连接 , 1 已连接 , 2 覆盖连接 , 3 重连 , 4 关闭中 , 5 连接中
+     */
+    public static int connectionStatus = ConnectionStatus.CLOSE.status;
+    private static String host;
+    private static String port;
+    private static String url;
+    private static String database;
+    private static String username;
+    private static String password;
 
     /**
      * 静态代码块 初始化驱动
@@ -37,79 +51,6 @@ public abstract class JDBCUtil {
             log.error("exception message", e);
         }
     }
-
-    /**
-     * 连接状态
-     */
-    @Getter
-    public enum ConnectionStatus {
-
-        /**
-         * 0 未连接
-         */
-        CLOSE(0),
-
-        /**
-         * 1 已连接
-         */
-        CONNECTIONED(1),
-
-        /**
-         * 2 覆盖连接
-         */
-        OVERRIDE(2),
-
-        /**
-         * 3 重连
-         */
-        RECONNECTING(3),
-
-        /**
-         * 4 关闭中
-         */
-        CLOSING(4),
-
-        /**
-         * 5 连接中
-         */
-        CONNECTING(5);
-
-        private int status;
-
-        ConnectionStatus(int status) {
-            this.status = status;
-        }
-    }
-
-    public enum SqlType {
-        SELECT(1), UPDATE(2), INSERT(3), DELETE(4);
-        private int type;
-
-        public int getType() {
-            return type;
-        }
-
-        SqlType(int type) {
-            this.type = type;
-        }
-    }
-
-    /**
-     * 活跃连接
-     */
-    public static Connection connection;
-
-    /**
-     * 连接状态  0 未连接 , 1 已连接 , 2 覆盖连接 , 3 重连 , 4 关闭中 , 5 连接中
-     */
-    public static int connectionStatus = ConnectionStatus.CLOSE.status;
-
-    private static String host;
-    private static String port;
-    private static String url;
-    private static String database;
-    private static String username;
-    private static String password;
 
     /**
      * 创建连接
@@ -845,6 +786,62 @@ public abstract class JDBCUtil {
             connection.close();
             connection = null;
             connectionStatus = ConnectionStatus.CLOSE.status;
+        }
+    }
+
+    /**
+     * 连接状态
+     */
+    @Getter
+    public enum ConnectionStatus {
+
+        /**
+         * 0 未连接
+         */
+        CLOSE(0),
+
+        /**
+         * 1 已连接
+         */
+        CONNECTIONED(1),
+
+        /**
+         * 2 覆盖连接
+         */
+        OVERRIDE(2),
+
+        /**
+         * 3 重连
+         */
+        RECONNECTING(3),
+
+        /**
+         * 4 关闭中
+         */
+        CLOSING(4),
+
+        /**
+         * 5 连接中
+         */
+        CONNECTING(5);
+
+        private int status;
+
+        ConnectionStatus(int status) {
+            this.status = status;
+        }
+    }
+
+    public enum SqlType {
+        SELECT(1), UPDATE(2), INSERT(3), DELETE(4);
+        private int type;
+
+        SqlType(int type) {
+            this.type = type;
+        }
+
+        public int getType() {
+            return type;
         }
     }
 }

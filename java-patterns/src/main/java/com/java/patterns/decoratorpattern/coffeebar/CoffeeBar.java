@@ -1,6 +1,5 @@
 package com.java.patterns.decoratorpattern.coffeebar;
 
-
 import com.java.patterns.decoratorpattern.coffeebar.coffee.Cappuccino;
 import com.java.patterns.decoratorpattern.coffeebar.coffee.Decaf;
 import com.java.patterns.decoratorpattern.coffeebar.decorator.Chocolate;

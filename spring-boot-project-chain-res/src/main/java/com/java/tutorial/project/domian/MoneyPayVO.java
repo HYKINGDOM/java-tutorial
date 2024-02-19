@@ -1,7 +1,5 @@
 package com.java.tutorial.project.domian;
 
-
-
 import lombok.Data;
 
 import java.math.BigDecimal;

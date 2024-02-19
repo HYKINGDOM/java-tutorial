@@ -1,7 +1,5 @@
 package com.java.tutorial.project.depend;
 
-
-
 import com.java.tutorial.project.async.callback.ICallback;
 import com.java.tutorial.project.async.callback.IWorker;
 import com.java.tutorial.project.async.worker.WorkResult;
@@ -24,7 +22,6 @@ public class DeWorker1 implements IWorker<WorkResult<User>, User>, ICallback<Wor
         }
         return new User("user1");
     }
-
 
     @Override
     public User defaultValue() {

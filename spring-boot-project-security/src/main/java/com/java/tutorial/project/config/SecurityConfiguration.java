@@ -16,6 +16,7 @@ import javax.annotation.Resource;
 
 /**
  * Security配置
+ *
  * @author yihur
  */
 @Configuration
@@ -30,54 +31,29 @@ public class SecurityConfiguration {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return web -> web.ignoring().antMatchers("/login")
-                .anyRequest();
+        return web -> web.ignoring().antMatchers("/login").anyRequest();
     }
 
-
     /**
-     *     @Override
-     *     protected void configure(HttpSecurity http) throws Exception {
-     *         LogoutConfigurer<HttpSecurity> httpSecurityLogoutConfigurer = http.cors().and().csrf().disable()
-     *                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-     *                 .authorizeRequests()
-     *                 .antMatchers(AUTH_WHITELIST).permitAll()
-     *                 .anyRequest().authenticated()  // 所有请求需要身份认证
-     *                 .and()
-     *                 .exceptionHandling()
-     *                 .authenticationEntryPoint(
-     *                         new Http401AuthenticationEntryPoint("Basic realm=\"MyApp\""))
-     *                 .and()
-     * //                .exceptionHandling().accessDeniedHandler(customAccessDeniedHandler) // 自定义访问失败处理器
-     * //                .and()
-     *                 .addFilter(new JWTLoginFilter(authenticationManager()))
-     *                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
-     *                 .logout() // 默认注销行为为logout，可以通过下面的方式来修改
-     *                 .logoutUrl("/logout")
-     *                 .logoutSuccessUrl("/login")// 设置注销成功后跳转页面，默认是跳转到登录页面;
-     * //                .logoutSuccessHandler(customLogoutSuccessHandler)
-     *                 .permitAll();
-     *     }
      * @param httpSecurity
      * @return
      * @throws Exception
+     * @Override protected void configure(HttpSecurity http) throws Exception { LogoutConfigurer<HttpSecurity>
+     *     httpSecurityLogoutConfigurer = http.cors().and().csrf().disable()
+     *     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and() .authorizeRequests()
+     *     .antMatchers(AUTH_WHITELIST).permitAll() .anyRequest().authenticated()  // 所有请求需要身份认证 .and()
+     *     .exceptionHandling() .authenticationEntryPoint( new Http401AuthenticationEntryPoint("Basic realm=\"MyApp\""))
+     *     .and() //                .exceptionHandling().accessDeniedHandler(customAccessDeniedHandler) // 自定义访问失败处理器 //
+     *                    .and() .addFilter(new JWTLoginFilter(authenticationManager())) .addFilter(new
+     *     JWTAuthenticationFilter(authenticationManager())) .logout() // 默认注销行为为logout，可以通过下面的方式来修改
+     *     .logoutUrl("/logout") .logoutSuccessUrl("/login")// 设置注销成功后跳转页面，默认是跳转到登录页面; //
+     *     .logoutSuccessHandler(customLogoutSuccessHandler) .permitAll(); }
      */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity
-                .cors()
-                .and()
-                .csrf()
-                .disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests()
-                .anyRequest()
-                .permitAll()
-                .and()
-                .formLogin()
-                .disable()
-                .csrf()
-                .disable();
+        httpSecurity.cors().and().csrf().disable().sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests().anyRequest().permitAll()
+            .and().formLogin().disable().csrf().disable();
         return httpSecurity.build();
     }
 

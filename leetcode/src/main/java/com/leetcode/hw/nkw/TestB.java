@@ -10,7 +10,6 @@ public class TestB {
         while (in.hasNext()) {
             String next = in.nextLine();
 
-
         }
     }
 

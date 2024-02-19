@@ -1,6 +1,5 @@
 package com.java.tutorial.project.controller;
 
-
 import com.java.tutorial.project.domain.SysJobLog;
 import com.java.tutorial.project.service.ISysJobLogService;
 import org.springframework.web.bind.annotation.DeleteMapping;

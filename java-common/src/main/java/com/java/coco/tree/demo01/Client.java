@@ -7,7 +7,6 @@ public class Client {
         //操作叶子
         leaf.operation();
 
-
         Component composite = new Composite();
         composite.add(leaf);
         //操作容器

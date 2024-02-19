@@ -1,6 +1,5 @@
 package com.java.tutorial.project.infrastucture;
 
-
 import com.java.tutorial.project.domain.User;
 import com.java.tutorial.project.infrastucture.entity.UserEntity;
 

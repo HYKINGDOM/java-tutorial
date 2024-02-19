@@ -12,10 +12,7 @@ public class DateTestClass {
         dateTestClass.localDateToLocalDateTime();
     }
 
-
-
-
-    public void localDateToLocalDateTime(){
+    public void localDateToLocalDateTime() {
         LocalDate now = LocalDate.now();
         LocalDate localDate = now.plusDays(2L);
 
@@ -27,9 +24,7 @@ public class DateTestClass {
         System.out.println(localDate.atTime(LocalTime.MAX));
     }
 
-
-
-    public void localToLocalDateTime(){
+    public void localToLocalDateTime() {
         LocalDateTime localDateTime = LocalDateTime.now();
 
         LocalDateTime localDateTime1 = localDateTime.plusDays(1L);

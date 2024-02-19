@@ -1,6 +1,5 @@
 package com.java.coco.system.demo01;
 
-
 /**
  * Twitter的SnowFlake算法,使用SnowFlake算法生成一个整数，然后转化为62进制变成一个短地址URL
  * <p>
@@ -39,18 +38,6 @@ public class SnowFlakeShortUrl {
     private long sequence = 0L; //序列号
     private long lastTimeStamp = -1L;  //上一次时间戳
 
-    private long getNextMill() {
-        long mill = getNewTimeStamp();
-        while (mill <= lastTimeStamp) {
-            mill = getNewTimeStamp();
-        }
-        return mill;
-    }
-
-    private long getNewTimeStamp() {
-        return System.currentTimeMillis();
-    }
-
     /**
      * 根据指定的数据中心ID和机器标志ID生成指定的序列号
      *
@@ -66,6 +53,27 @@ public class SnowFlakeShortUrl {
         }
         this.dataCenterId = dataCenterId;
         this.machineId = machineId;
+    }
+
+    public static void main(String[] args) {
+        SnowFlakeShortUrl snowFlake = new SnowFlakeShortUrl(2, 3);
+
+        for (int i = 0; i < (1 << 4); i++) {
+            //10进制
+            System.out.println(snowFlake.nextId());
+        }
+    }
+
+    private long getNextMill() {
+        long mill = getNewTimeStamp();
+        while (mill <= lastTimeStamp) {
+            mill = getNewTimeStamp();
+        }
+        return mill;
+    }
+
+    private long getNewTimeStamp() {
+        return System.currentTimeMillis();
     }
 
     /**
@@ -94,17 +102,8 @@ public class SnowFlakeShortUrl {
         lastTimeStamp = currTimeStamp;
 
         return (currTimeStamp - START_TIMESTAMP) << TIMESTAMP_LEFT //时间戳部分
-                | dataCenterId << DATA_CENTER_LEFT       //数据中心部分
-                | machineId << MACHINE_LEFT             //机器标识部分
-                | sequence;                             //序列号部分
-    }
-
-    public static void main(String[] args) {
-        SnowFlakeShortUrl snowFlake = new SnowFlakeShortUrl(2, 3);
-
-        for (int i = 0; i < (1 << 4); i++) {
-            //10进制
-            System.out.println(snowFlake.nextId());
-        }
+            | dataCenterId << DATA_CENTER_LEFT       //数据中心部分
+            | machineId << MACHINE_LEFT             //机器标识部分
+            | sequence;                             //序列号部分
     }
 }

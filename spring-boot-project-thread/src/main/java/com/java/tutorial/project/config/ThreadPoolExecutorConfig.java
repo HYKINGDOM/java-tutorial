@@ -69,6 +69,8 @@ public class ThreadPoolExecutorConfig {
      * 线程池名前缀
      */
     private static final String THREAD_NAME_PREFIX = "thread-Pool-Task-Executor-";
+    private final Map<Runnable, Object> decoratedTaskMap =
+        new ConcurrentReferenceHashMap<>(16, ConcurrentReferenceHashMap.ReferenceType.WEAK);
 
     /**
      * ThreadPoolTaskExecutor spring 封装线程池
@@ -157,9 +159,6 @@ public class ThreadPoolExecutorConfig {
         return new ScheduledThreadPoolExecutor(CORE_POOL_SIZE,
             new BasicThreadFactory.Builder().namingPattern("Scheduled-Executor-Service-%d").daemon(true).build());
     }
-
-    private final Map<Runnable, Object> decoratedTaskMap =
-        new ConcurrentReferenceHashMap<>(16, ConcurrentReferenceHashMap.ReferenceType.WEAK);
 
     /**
      * 执行周期性任务或定时任务

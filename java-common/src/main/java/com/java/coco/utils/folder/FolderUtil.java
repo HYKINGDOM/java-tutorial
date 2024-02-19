@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
  */
 public class FolderUtil {
 
-
     public static List<File> folderDirectoryLists(File[] file, List<File> files) {
 
         if (file != null) {

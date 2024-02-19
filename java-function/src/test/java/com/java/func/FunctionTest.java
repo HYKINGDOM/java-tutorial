@@ -1,6 +1,5 @@
 package com.java.func;
 
-
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
@@ -16,18 +15,23 @@ import java.util.stream.Collectors;
 
 public class FunctionTest {
 
+    private static Supplier<List<String>> getListSupplier() {
+        return () -> RanDomCollectUtils.randomCollectList(13, 100);
+    }
+
+    private static Supplier<List<Map<String, String>>> getMapListSupplier() {
+        return () -> RanDomCollectUtils.randomCollectListMap(8, 100, 5);
+    }
 
     @Test
     public void test_Function() {
 
         Predicate<String> dataPredicate = e -> e.contains("Z");
 
-
         Consumer<String> dataConsumer = e -> {
             e = e.toUpperCase(Locale.ROOT);
             System.out.println(e);
         };
-
 
         Function<String, String> stringFunction = new Function<String, String>() {
             @Override
@@ -44,40 +48,20 @@ public class FunctionTest {
             }
         };
 
-        List<String> stringList1 = getListSupplier()
-                .get()
-                .stream()
-                .filter(dataPredicate)
-//                .peek(dataConsumer)
-                .map(stringFunction)
-                .sorted(stringComparator)
-//                .peek(dataConsumer)
-                .collect(Collectors.toList());
+        List<String> stringList1 = getListSupplier().get().stream().filter(dataPredicate)
+            //                .peek(dataConsumer)
+            .map(stringFunction).sorted(stringComparator)
+            //                .peek(dataConsumer)
+            .collect(Collectors.toList());
 
-
-        stringList1 = getListSupplier()
-                .get()
-                .stream()
-                .filter(dataPredicate)
-//                .peek(dataConsumer)
-                .map(stringFunction)
-                .sorted(stringComparator)
-                .peek(dataConsumer)
-                .collect(Collectors.toList());
+        stringList1 = getListSupplier().get().stream().filter(dataPredicate)
+            //                .peek(dataConsumer)
+            .map(stringFunction).sorted(stringComparator).peek(dataConsumer).collect(Collectors.toList());
 
         System.out.println(stringList1.size());
         for (String s : stringList1) {
             System.out.println(s);
         }
-    }
-
-    private static Supplier<List<String>> getListSupplier() {
-        return () -> RanDomCollectUtils.randomCollectList(13, 100);
-    }
-
-
-    private static Supplier<List<Map<String, String>>> getMapListSupplier() {
-        return () -> RanDomCollectUtils.randomCollectListMap(8, 100, 5);
     }
 
     @Test
@@ -92,7 +76,6 @@ public class FunctionTest {
             return false;
         };
 
-
         Consumer<Map<String, String>> dataConsumer = e -> {
             for (Map.Entry<String, String> stringStringEntry : e.entrySet()) {
                 if (stringStringEntry.getKey().contains("Z")) {
@@ -102,7 +85,6 @@ public class FunctionTest {
             }
         };
 
-
         Consumer<Map<String, String>> printConsumer = e -> {
             for (Map.Entry<String, String> stringStringEntry : e.entrySet()) {
                 System.out.println(stringStringEntry.getKey());
@@ -110,7 +92,6 @@ public class FunctionTest {
                 System.out.println("-".repeat(40));
             }
         };
-
 
         Function<String, String> stringFunction = new Function<String, String>() {
             @Override
@@ -127,22 +108,20 @@ public class FunctionTest {
             }
         };
 
-//        List<String> stringList1 = getMapListSupplier()
-//                .get()
-//                .stream()
-//                .filter(dataPredicate)
-////                .peek(dataConsumer)
-//                .map(stringFunction)
-//                .sorted(stringComparator)
-////                .peek(dataConsumer)
-//                .collect(Collectors.toList());
+        //        List<String> stringList1 = getMapListSupplier()
+        //                .get()
+        //                .stream()
+        //                .filter(dataPredicate)
+        ////                .peek(dataConsumer)
+        //                .map(stringFunction)
+        //                .sorted(stringComparator)
+        ////                .peek(dataConsumer)
+        //                .collect(Collectors.toList());
 
         List<Map<String, String>> mapList = getMapListSupplier().get();
-        mapList
-                .stream()
-                .filter(dataPredicate)
-//                .peek(dataConsumer)
-                .forEach(printConsumer);
+        mapList.stream().filter(dataPredicate)
+            //                .peek(dataConsumer)
+            .forEach(printConsumer);
 
         System.out.println(mapList.size());
         for (Map<String, String> stringStringMap : mapList) {

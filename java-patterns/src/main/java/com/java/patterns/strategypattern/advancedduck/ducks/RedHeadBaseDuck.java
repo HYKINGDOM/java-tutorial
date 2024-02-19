@@ -1,6 +1,5 @@
 package com.java.patterns.strategypattern.advancedduck.ducks;
 
-
 import com.java.patterns.strategypattern.advancedduck.flybehavior.GoodFlyBehavior;
 import com.java.patterns.strategypattern.advancedduck.quackbehavior.GeGeQuackBehavior;
 import com.java.patterns.strategypattern.advancedduck.swimbehavior.BadSwimBehavior;
@@ -11,7 +10,6 @@ import com.java.patterns.strategypattern.advancedduck.swimbehavior.BadSwimBehavi
  * @author Administrator
  */
 public class RedHeadBaseDuck extends BaseDuck {
-
 
     /**
      * 红头鸭所具有的属性

@@ -1,12 +1,9 @@
 package com.java.patterns.cqrs.cqrs.aggregates;
 
-
-
 import com.java.patterns.cqrs.cqrs.commands.CreateUserCommand;
 import com.java.patterns.cqrs.cqrs.commands.UpdateUserCommand;
 import com.java.patterns.cqrs.cqrs.repository.UserWriteRepository;
 import com.java.patterns.cqrs.domain.User;
-
 
 public class UserAggregate {
 

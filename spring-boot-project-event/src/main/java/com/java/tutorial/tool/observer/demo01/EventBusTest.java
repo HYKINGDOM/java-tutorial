@@ -17,7 +17,6 @@ public class EventBusTest {
         bus.post(new Account("富安娜", 2.1, new Date()));
     }
 
-
     public static void notifyAsynObserver() {
         val executorService = Executors.newCachedThreadPool();
         AsyncEventBus bus = new AsyncEventBus(executorService);
@@ -25,9 +24,6 @@ public class EventBusTest {
         bus.register(man);
         bus.post(new Account("富安娜", 2.1, new Date()));
     }
-
-
-
 
     public static void main(String[] args) {
         notifyAsynObserver();

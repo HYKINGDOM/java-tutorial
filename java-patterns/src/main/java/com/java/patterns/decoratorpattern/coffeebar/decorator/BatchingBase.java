@@ -1,6 +1,5 @@
 package com.java.patterns.decoratorpattern.coffeebar.decorator;
 
-
 import com.java.patterns.decoratorpattern.coffeebar.BaseDrink;
 
 /**
@@ -36,7 +35,7 @@ public class BatchingBase extends BaseDrink {
      */
     @Override
     public String getDescription() {
-        return super.description + ": " + super.getPrice() + "\n" + obj.getDescription() ;
+        return super.description + ": " + super.getPrice() + "\n" + obj.getDescription();
     }
 
 }

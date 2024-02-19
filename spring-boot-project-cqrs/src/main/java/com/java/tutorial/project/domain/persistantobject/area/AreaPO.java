@@ -1,6 +1,5 @@
 package com.java.tutorial.project.domain.persistantobject.area;
 
-
 import org.beetl.sql.annotation.entity.AssignID;
 import org.beetl.sql.annotation.entity.Table;
 
@@ -8,10 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- *
  * 行政区划表
- *
- *
  */
 @Getter
 @Setter

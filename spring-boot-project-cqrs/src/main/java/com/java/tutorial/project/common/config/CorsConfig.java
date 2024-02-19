@@ -7,9 +7,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 /**
- *
  * 前端跨域配置信息
- *
  */
 @Configuration
 public class CorsConfig {

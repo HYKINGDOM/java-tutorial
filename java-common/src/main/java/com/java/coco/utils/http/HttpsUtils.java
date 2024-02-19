@@ -141,9 +141,9 @@ public class HttpsUtils {
         try {
             log.info("sendSSLPost - {}", urlNameString);
             SSLContext sc = SSLContext.getInstance("SSL");
-            sc.init(null, new TrustManager[]{new TrustAnyTrustManager()}, new java.security.SecureRandom());
+            sc.init(null, new TrustManager[] {new TrustAnyTrustManager()}, new java.security.SecureRandom());
             URL console = new URL(urlNameString);
-            HttpsURLConnection conn = (HttpsURLConnection) console.openConnection();
+            HttpsURLConnection conn = (HttpsURLConnection)console.openConnection();
             conn.setRequestProperty("accept", "*/*");
             conn.setRequestProperty("connection", "Keep-Alive");
             conn.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
@@ -189,7 +189,7 @@ public class HttpsUtils {
 
         @Override
         public X509Certificate[] getAcceptedIssuers() {
-            return new X509Certificate[]{};
+            return new X509Certificate[] {};
         }
     }
 

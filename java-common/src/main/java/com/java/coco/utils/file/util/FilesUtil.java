@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
  */
 public class FilesUtil {
 
-
     public static List<File> fileDirectoryLists(File[] file, List<File> files) {
 
         if (file != null) {
@@ -47,13 +46,13 @@ public class FilesUtil {
 
         fileDirectoryList(files, fileList);
 
-        return fileList.stream()
-                .collect(Collectors.groupingBy(e -> FileTypeUtil.getType(e).toUpperCase()));
+        return fileList.stream().collect(Collectors.groupingBy(e -> FileTypeUtil.getType(e).toUpperCase()));
     }
 
     /**
      * 递归获取文件
-     * @param file 文件
+     *
+     * @param file  文件
      * @param files 目录下所有文件集合
      */
     private static void fileDirectoryList(File[] file, List<File> files) {
@@ -71,17 +70,17 @@ public class FilesUtil {
         }
     }
 
-
     /**
      * 遍历删除空文件夹
+     *
      * @param dir
      * @return
      */
-    public static boolean deleteDir(File dir){
+    public static boolean deleteDir(File dir) {
         File[] files = dir.listFiles();
-        if(files != null){
-            for(File file : files){
-                if(file.isDirectory()){
+        if (files != null) {
+            for (File file : files) {
+                if (file.isDirectory()) {
                     deleteDir(file);
                 } else {
                     file.delete();

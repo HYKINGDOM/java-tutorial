@@ -1,6 +1,5 @@
 package com.java.tutorial.project.service.impl;
 
-
 import com.java.tutorial.project.domain.User;
 import com.java.tutorial.project.infrastucture.UserEntityRepository;
 import com.java.tutorial.project.infrastucture.entity.UserEntity;
@@ -8,14 +7,12 @@ import com.java.tutorial.project.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-
 /**
  * @author HY
  */
 @AllArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
-
 
     private final UserEntityRepository userEntityRepository;
 
@@ -51,7 +48,6 @@ public class UserServiceImpl implements UserService {
     public long updateUser(UserEntity userEntity) {
         return 0;
     }
-
 
     /**
      * 删除对象

@@ -7,11 +7,10 @@ public class JavaStackDemo {
 
         try {
             javaStackDemo.method1(1);
-        }catch (Throwable throwable){
+        } catch (Throwable throwable) {
             System.out.println(throwable.getClass());
         }
     }
-
 
     private void method1(int i) {
         if (i == 0) {

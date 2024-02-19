@@ -1,6 +1,5 @@
 package com.java.tutorial.project.exception.user;
 
-
 import com.java.tutorial.project.exception.BaseException;
 
 /**

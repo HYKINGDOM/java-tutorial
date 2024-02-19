@@ -4,13 +4,13 @@ filebeat.inputs:
     paths:
       - /usr/share/filebeat/logs/*.log
     fields:
-       type: ks_cs-crm #输出的index索引
+      type: ks_cs-crm #输出的index索引
     multiline.type: pattern
     multiline.pattern: '^\d{4}'
     multiline.negate: true
     multiline.match: after
-    multiline.max_lines：:  500
-    tags: ['es-java']
+    multiline.max_lines：: 500
+    tags: [ 'es-java' ]
 
 #  - type: log
 #    enabled: true
@@ -37,7 +37,7 @@ filebeat.config.modules:
 
 
 output.elasticsearch:
-  hosts: ["192.168.31.154:9200"]
+  hosts: [ "192.168.31.154:9200" ]
   indices:
     - index: "ai_nginx_%{[agent.version]}-%{+yyyy.MM.dd}"
       when.contains:

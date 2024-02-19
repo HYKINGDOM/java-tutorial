@@ -7,20 +7,6 @@ public class WashingMachine {
 
     private List<HouseWork> houseWork = new ArrayList<>();
 
-    public void register(HouseWork work) {
-        houseWork.add(work);
-    }
-
-    public void unregister(HouseWork work) {
-        houseWork.remove(work);
-    }
-
-    public void notifyObserver() {
-        for (HouseWork work : houseWork) {
-            work.dry();
-        }
-    }
-
     public static void main(String[] args) throws InterruptedException {
         // 洗衣机
         WashingMachine machine = new WashingMachine();
@@ -33,6 +19,20 @@ public class WashingMachine {
         Thread.sleep(3000);
         // 通知观察者（女主人），衣服洗完了
         machine.notifyObserver();
+    }
+
+    public void register(HouseWork work) {
+        houseWork.add(work);
+    }
+
+    public void unregister(HouseWork work) {
+        houseWork.remove(work);
+    }
+
+    public void notifyObserver() {
+        for (HouseWork work : houseWork) {
+            work.dry();
+        }
     }
 
 }

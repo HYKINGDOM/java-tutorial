@@ -11,10 +11,8 @@ import org.springframework.stereotype.Component;
 public class AliyunSmsPlugin implements SmsPlugin {
     @Override
     public SmsResponse sendSms(SmsRequest smsRequest) {
-       log.info("来自阿里云短信：" + smsRequest);
-        return SmsResponse.builder()
-            .code("200").message("发送成功")
-            .success(true).result("阿里云短信的回执").build();
+        log.info("来自阿里云短信：" + smsRequest);
+        return SmsResponse.builder().code("200").message("发送成功").success(true).result("阿里云短信的回执").build();
     }
 
     @Override

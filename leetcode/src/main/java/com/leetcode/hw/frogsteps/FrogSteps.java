@@ -1,6 +1,5 @@
 package com.leetcode.hw.frogsteps;
 
-import java.util.HashSet;
 import java.util.Scanner;
 
 public class FrogSteps {
@@ -23,18 +22,17 @@ public class FrogSteps {
                 second = temp;
             }
 
-//            for (int i = 0; i <= twoSteps; i++) {
-//                for (int j = 0; j <= length; j++) {
-//                    if ((2 * i + j) == length) {
-//                        num++;
-//                    }
-//                }
-//            }
+            //            for (int i = 0; i <= twoSteps; i++) {
+            //                for (int j = 0; j <= length; j++) {
+            //                    if ((2 * i + j) == length) {
+            //                        num++;
+            //                    }
+            //                }
+            //            }
 
             System.out.println(temp);
         }
     }
-
 
     private int sumY(int x, int y, int length, int flag) {
 

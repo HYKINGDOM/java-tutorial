@@ -25,30 +25,28 @@ public class PowerMockMethodTest {
     @Test(expected = RuntimeException.class)
     public void when_gambling_is_true_then_always_explode() throws Exception {
         TestMethod spy = PowerMockito.spy(new TestMethod());
-        when(spy, method(TestMethod.class, "doTheGamble", String.class, int.class))
-                .withArguments(anyString(), anyInt())
-                .thenReturn(true);
+        when(spy, method(TestMethod.class, "doTheGamble", String.class, int.class)).withArguments(anyString(), anyInt())
+            .thenReturn(true);
     }
 
     @Test
     public void test_when_return_void() throws Exception {
-//        TestMethod testMethod = new TestMethod();
-//        Class<?> clazz = testMethod.getClass();
-//        Field field = clazz.getDeclaredField("stringList");
-//        field.setAccessible(true);
-//        List<String> string = (List<String>) field.get(testMethod);
-//        Object doReturnVoid = field.get("doReturnVoid");
+        //        TestMethod testMethod = new TestMethod();
+        //        Class<?> clazz = testMethod.getClass();
+        //        Field field = clazz.getDeclaredField("stringList");
+        //        field.setAccessible(true);
+        //        List<String> string = (List<String>) field.get(testMethod);
+        //        Object doReturnVoid = field.get("doReturnVoid");
         TestMethod testMethod1 = PowerMockito.spy(new TestMethod());
         List<String> stringList = new ArrayList<>();
         PowerMockito.when(testMethod1, "doReturnVoid", anyString(), anyInt());
         PowerMockito.when(testMethod1, "stringList").thenReturn(stringList);
 
-//        TestMethod testMethod = PowerMockito.spy(new TestMethod());
-//
-//        PowerMockito
-//                .verifyPrivate(testMethod, Mockito.times(1))
-//                .invoke("doReturnVoid");
-
+        //        TestMethod testMethod = PowerMockito.spy(new TestMethod());
+        //
+        //        PowerMockito
+        //                .verifyPrivate(testMethod, Mockito.times(1))
+        //                .invoke("doReturnVoid");
 
     }
 
@@ -63,7 +61,7 @@ public class PowerMockMethodTest {
 
     @Test
     public void saveUserwithMock() {
-//        User user = Mockito.mock(User.class);
+        //        User user = Mockito.mock(User.class);
         User user = new User();
         UserDao userDao = Mockito.mock(UserDao.class);
         Mockito.doNothing().when(userDao).saveUser(user);
@@ -71,7 +69,6 @@ public class PowerMockMethodTest {
         userSerivce.saveUser(user);
         Mockito.verify(userDao, Mockito.times(1)).saveUser(user);
     }
-
 
     @Test
     public void saveUserwithPowerMock() {

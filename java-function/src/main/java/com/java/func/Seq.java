@@ -1,6 +1,5 @@
 package com.java.func;
 
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -15,9 +14,6 @@ import java.util.function.Predicate;
  */
 public interface Seq<T> {
 
-    void consume(Consumer<T> consumer);
-
-
     static <T> Seq<T> unit(T t) {
         return c -> c.accept(t);
     }
@@ -26,13 +22,14 @@ public interface Seq<T> {
         throw StopException.INSTANCE;
     }
 
+    void consume(Consumer<T> consumer);
+
     default void consumeTillStop(Consumer<T> consumer) {
         try {
             consume(consumer);
         } catch (StopException ignore) {
         }
     }
-
 
     default Seq<T> take(int n) {
         return c -> {
@@ -47,7 +44,6 @@ public interface Seq<T> {
         };
     }
 
-
     default Seq<T> drop(int n) {
         return c -> {
             int[] a = {n - 1};
@@ -60,7 +56,6 @@ public interface Seq<T> {
             });
         };
     }
-
 
     default Seq<T> onEach(Consumer<T> consumer) {
         return c -> consume(consumer.andThen(c));
@@ -95,13 +90,11 @@ public interface Seq<T> {
         };
     }
 
-
     default String join(String sep) {
         StringJoiner joiner = new StringJoiner(sep);
         consume(t -> joiner.add(t.toString()));
         return joiner.toString();
     }
-
 
     default List<T> toList() {
         List<T> list = new ArrayList<>();

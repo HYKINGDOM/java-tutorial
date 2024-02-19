@@ -20,7 +20,6 @@ public abstract class AbstractBusinessHandler {
 
     /**
      * 取号
-     *
      */
     private void getNumber() {
 

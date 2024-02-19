@@ -11,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
 /**
  * @author hy
  */
@@ -19,10 +18,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class SysUserRepositoryImpl implements SysUserRepository {
 
-
     @Autowired
     private SysUserMapping sysUserMapping;
-
 
     @Autowired
     private SysUserDao sysUserDao;
@@ -38,7 +35,6 @@ public class SysUserRepositoryImpl implements SysUserRepository {
         SysUserEntity sysUserEntity = sysUserDao.selectById(id);
         return sysUserMapping.toSysUser(sysUserEntity);
     }
-
 
     /**
      * 新增数据

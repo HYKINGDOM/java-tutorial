@@ -6,7 +6,6 @@ public class Hero {
     public float armor; //护甲
     public int moveSpeed; //移动速度
 
-
     //---------------构造方法-------------------
     //（默认的构造方法）
     Hero(String str) {
@@ -38,7 +37,6 @@ public class Hero {
         System.out.println("私有的构造方法   血量：" + hp);
     }
 
-
     public int sumHero(int num) {
         return num;
     }
@@ -46,6 +44,5 @@ public class Hero {
     private int sumHero(int num, int data) {
         return num + data;
     }
-
 
 }

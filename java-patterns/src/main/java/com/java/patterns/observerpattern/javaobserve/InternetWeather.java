@@ -1,9 +1,8 @@
 package com.java.patterns.observerpattern.javaobserve;
 
-
 /**
- *
  * 使用java内置观察者实现观察者模式
+ *
  * @author yihur
  */
 public class InternetWeather {

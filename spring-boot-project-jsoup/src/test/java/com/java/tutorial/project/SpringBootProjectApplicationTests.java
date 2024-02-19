@@ -7,10 +7,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class SpringBootProjectApplicationTests {
 
-	@Test
-	void contextLoads() {
+    @Test
+    void contextLoads() {
 
-		HttpClientUtils httpClientUtils = new HttpClientUtils();
-	}
+        HttpClientUtils httpClientUtils = new HttpClientUtils();
+    }
 
 }

@@ -1,6 +1,5 @@
 package com.java.patterns.cqrs.crud.service;
 
-
 import com.java.patterns.cqrs.crud.repository.UserRepository;
 import com.java.patterns.cqrs.domain.Address;
 import com.java.patterns.cqrs.domain.Contact;
@@ -36,10 +35,7 @@ public class UserService {
         if (user == null)
             throw new Exception("User does not exit.");
         Set<Contact> contacts = user.getContacts();
-        return contacts.stream()
-            .filter(c -> c.getType()
-                .equals(contactType))
-            .collect(Collectors.toSet());
+        return contacts.stream().filter(c -> c.getType().equals(contactType)).collect(Collectors.toSet());
     }
 
     public Set<Address> getAddressByRegion(String userId, String state) throws Exception {
@@ -47,10 +43,7 @@ public class UserService {
         if (user == null)
             throw new Exception("User does not exist.");
         Set<Address> addresses = user.getAddresses();
-        return addresses.stream()
-            .filter(a -> a.getState()
-                .equals(state))
-            .collect(Collectors.toSet());
+        return addresses.stream().filter(a -> a.getState().equals(state)).collect(Collectors.toSet());
     }
 
 }

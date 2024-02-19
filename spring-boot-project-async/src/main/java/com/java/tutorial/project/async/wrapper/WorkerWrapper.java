@@ -8,6 +8,7 @@ import com.java.tutorial.project.async.executor.timer.SystemClock;
 import com.java.tutorial.project.async.worker.DependWrapper;
 import com.java.tutorial.project.async.worker.ResultState;
 import com.java.tutorial.project.async.worker.WorkResult;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -23,9 +24,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * 对每个worker及callback进行包装，一对一
  *
- *  @author hy
+ * @author hy
  */
 public class WorkerWrapper<T, V> {
+    private static final int FINISH = 1;
+    private static final int ERROR = 2;
+    private static final int WORKING = 3;
+    private static final int INIT = 0;
     /**
      * 该wrapper的唯一标识
      */
@@ -37,25 +42,15 @@ public class WorkerWrapper<T, V> {
     private IWorker<T, V> worker;
     private ICallback<T, V> callback;
     /**
-     * 在自己后面的wrapper，如果没有，自己就是末尾；如果有一个，就是串行；如果有多个，有几个就需要开几个线程</p>
-     * -------2
-     * 1
-     * -------3
-     * 如1后面有2、3
+     * 在自己后面的wrapper，如果没有，自己就是末尾；如果有一个，就是串行；如果有多个，有几个就需要开几个线程</p> -------2 1 -------3 如1后面有2、3
      */
     private List<WorkerWrapper<?, ?>> nextWrappers;
     /**
-     * 依赖的wrappers，有2种情况，1:必须依赖的全部完成后，才能执行自己 2:依赖的任何一个、多个完成了，就可以执行自己
-     * 通过must字段来控制是否依赖项必须完成
-     * 1
-     * -------3
-     * 2
-     * 1、2执行完毕后才能执行3
+     * 依赖的wrappers，有2种情况，1:必须依赖的全部完成后，才能执行自己 2:依赖的任何一个、多个完成了，就可以执行自己 通过must字段来控制是否依赖项必须完成 1 -------3 2 1、2执行完毕后才能执行3
      */
     private List<DependWrapper> dependWrappers;
     /**
-     * 标记该事件是否已经被处理过了，譬如已经超时返回false了，后续rpc又收到返回值了，则不再二次回调
-     * 经试验,volatile并不能保证"同一毫秒"内,多线程对该值的修改和拉取
+     * 标记该事件是否已经被处理过了，譬如已经超时返回false了，后续rpc又收到返回值了，则不再二次回调 经试验,volatile并不能保证"同一毫秒"内,多线程对该值的修改和拉取
      * <p>
      * 1-finish, 2-error, 3-working
      */
@@ -69,19 +64,10 @@ public class WorkerWrapper<T, V> {
      */
     private volatile WorkResult<V> workResult = WorkResult.defaultResult();
     /**
-     * 是否在执行自己前，去校验nextWrapper的执行结果<p>
-     * 1   4
-     * -------3
-     * 2
-     * 如这种在4执行前，可能3已经执行完毕了（被2执行完后触发的），那么4就没必要执行了。
+     * 是否在执行自己前，去校验nextWrapper的执行结果<p> 1   4 -------3 2 如这种在4执行前，可能3已经执行完毕了（被2执行完后触发的），那么4就没必要执行了。
      * 注意，该属性仅在nextWrapper数量<=1时有效，>1时的情况是不存在的
      */
     private volatile boolean needCheckNextWrapperResult = true;
-
-    private static final int FINISH = 1;
-    private static final int ERROR = 2;
-    private static final int WORKING = 3;
-    private static final int INIT = 0;
 
     private WorkerWrapper(String id, IWorker<T, V> worker, T param, ICallback<T, V> callback) {
         if (worker == null) {
@@ -98,10 +84,10 @@ public class WorkerWrapper<T, V> {
     }
 
     /**
-     * 开始工作
-     * fromWrapper代表这次work是由哪个上游wrapper发起的
+     * 开始工作 fromWrapper代表这次work是由哪个上游wrapper发起的
      */
-    private void work(ExecutorService executorService, WorkerWrapper fromWrapper, long remainTime, Map<String, WorkerWrapper> forParamUseWrappers) {
+    private void work(ExecutorService executorService, WorkerWrapper fromWrapper, long remainTime,
+        Map<String, WorkerWrapper> forParamUseWrappers) {
         this.forParamUseWrappers = forParamUseWrappers;
         //将自己放到所有wrapper的集合里去
         forParamUseWrappers.put(id, this);
@@ -152,7 +138,6 @@ public class WorkerWrapper<T, V> {
 
     }
 
-
     public void work(ExecutorService executorService, long remainTime, Map<String, WorkerWrapper> forParamUseWrappers) {
         work(executorService, null, remainTime, forParamUseWrappers);
     }
@@ -167,8 +152,7 @@ public class WorkerWrapper<T, V> {
     }
 
     /**
-     * 判断自己下游链路上，是否存在已经出结果的或已经开始执行的
-     * 如果没有返回true，如果有返回false
+     * 判断自己下游链路上，是否存在已经出结果的或已经开始执行的 如果没有返回true，如果有返回false
      */
     private boolean checkNextWrapperResult() {
         //如果自己就是最后一个，或者后面有并行的多个，就返回true
@@ -198,7 +182,8 @@ public class WorkerWrapper<T, V> {
         for (int i = 0; i < nextWrappers.size(); i++) {
             int finalI = i;
             futures[i] = CompletableFuture.runAsync(() -> nextWrappers.get(finalI)
-                    .work(executorService, WorkerWrapper.this, remainTime - costTime, forParamUseWrappers), executorService);
+                    .work(executorService, WorkerWrapper.this, remainTime - costTime, forParamUseWrappers),
+                executorService);
         }
         try {
             CompletableFuture.allOf(futures).get();
@@ -220,7 +205,8 @@ public class WorkerWrapper<T, V> {
         }
     }
 
-    private synchronized void doDependsJobs(ExecutorService executorService, List<DependWrapper> dependWrappers, WorkerWrapper fromWrapper, long now, long remainTime) {
+    private synchronized void doDependsJobs(ExecutorService executorService, List<DependWrapper> dependWrappers,
+        WorkerWrapper fromWrapper, long now, long remainTime) {
         //如果当前任务已经完成了，依赖的其他任务拿到锁再进来时，不需要执行下面的逻辑了。
         if (getState() != INIT) {
             return;
@@ -441,7 +427,6 @@ public class WorkerWrapper<T, V> {
         return workResult;
     }
 
-
     private int getState() {
         return state.get();
     }
@@ -460,26 +445,23 @@ public class WorkerWrapper<T, V> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o)  {
+        if (this == o) {
             return true;
         }
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        WorkerWrapper<?, ?> that = (WorkerWrapper<?, ?>) o;
-        return needCheckNextWrapperResult == that.needCheckNextWrapperResult &&
-                Objects.equals(param, that.param) &&
-                Objects.equals(worker, that.worker) &&
-                Objects.equals(callback, that.callback) &&
-                Objects.equals(nextWrappers, that.nextWrappers) &&
-                Objects.equals(dependWrappers, that.dependWrappers) &&
-                Objects.equals(state, that.state) &&
-                Objects.equals(workResult, that.workResult);
+        WorkerWrapper<?, ?> that = (WorkerWrapper<?, ?>)o;
+        return needCheckNextWrapperResult == that.needCheckNextWrapperResult && Objects.equals(param,
+            that.param) && Objects.equals(worker, that.worker) && Objects.equals(callback,
+            that.callback) && Objects.equals(nextWrappers, that.nextWrappers) && Objects.equals(dependWrappers,
+            that.dependWrappers) && Objects.equals(state, that.state) && Objects.equals(workResult, that.workResult);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(param, worker, callback, nextWrappers, dependWrappers, state, workResult, needCheckNextWrapperResult);
+        return Objects.hash(param, worker, callback, nextWrappers, dependWrappers, state, workResult,
+            needCheckNextWrapperResult);
     }
 
     public static class Builder<W, C> {

@@ -1,6 +1,5 @@
 package com.java.func.sortBy;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,6 +18,5 @@ public class DomainUser {
     private Integer age;
 
     private boolean sex;
-
 
 }

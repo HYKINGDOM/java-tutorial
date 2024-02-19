@@ -2,6 +2,7 @@ package com.java.patterns.decoratorpattern.coffeebar.coffee;
 
 /**
  * Long Black 咖啡
+ *
  * @author yihur
  */
 public class LongBlack extends CoffeeBase {

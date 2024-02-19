@@ -14,9 +14,7 @@ import java.util.Set;
  */
 public class Convert {
     /**
-     * 转换为字符串<br>
-     * 如果给定的值为null，或者转换失败，返回默认值<br>
-     * 转换失败不会报错
+     * 转换为字符串<br> 如果给定的值为null，或者转换失败，返回默认值<br> 转换失败不会报错
      *
      * @param value        被转换的值
      * @param defaultValue 转换错误时的默认值
@@ -27,15 +25,13 @@ public class Convert {
             return defaultValue;
         }
         if (value instanceof String) {
-            return (String) value;
+            return (String)value;
         }
         return value.toString();
     }
 
     /**
-     * 转换为字符串<br>
-     * 如果给定的值为<code>null</code>，或者转换失败，返回默认值<code>null</code><br>
-     * 转换失败不会报错
+     * 转换为字符串<br> 如果给定的值为<code>null</code>，或者转换失败，返回默认值<code>null</code><br> 转换失败不会报错
      *
      * @param value 被转换的值
      * @return 结果
@@ -45,9 +41,7 @@ public class Convert {
     }
 
     /**
-     * 转换为字符<br>
-     * 如果给定的值为null，或者转换失败，返回默认值<br>
-     * 转换失败不会报错
+     * 转换为字符<br> 如果给定的值为null，或者转换失败，返回默认值<br> 转换失败不会报错
      *
      * @param value        被转换的值
      * @param defaultValue 转换错误时的默认值
@@ -58,7 +52,7 @@ public class Convert {
             return defaultValue;
         }
         if (value instanceof Character) {
-            return (Character) value;
+            return (Character)value;
         }
 
         final String valueStr = toStr(value, null);
@@ -66,9 +60,7 @@ public class Convert {
     }
 
     /**
-     * 转换为字符<br>
-     * 如果给定的值为<code>null</code>，或者转换失败，返回默认值<code>null</code><br>
-     * 转换失败不会报错
+     * 转换为字符<br> 如果给定的值为<code>null</code>，或者转换失败，返回默认值<code>null</code><br> 转换失败不会报错
      *
      * @param value 被转换的值
      * @return 结果
@@ -78,9 +70,7 @@ public class Convert {
     }
 
     /**
-     * 转换为byte<br>
-     * 如果给定的值为<code>null</code>，或者转换失败，返回默认值<br>
-     * 转换失败不会报错
+     * 转换为byte<br> 如果给定的值为<code>null</code>，或者转换失败，返回默认值<br> 转换失败不会报错
      *
      * @param value        被转换的值
      * @param defaultValue 转换错误时的默认值
@@ -91,10 +81,10 @@ public class Convert {
             return defaultValue;
         }
         if (value instanceof Byte) {
-            return (Byte) value;
+            return (Byte)value;
         }
         if (value instanceof Number) {
-            return ((Number) value).byteValue();
+            return ((Number)value).byteValue();
         }
         final String valueStr = toStr(value, null);
         if (StringUtils.isEmpty(valueStr)) {
@@ -108,9 +98,7 @@ public class Convert {
     }
 
     /**
-     * 转换为byte<br>
-     * 如果给定的值为<code>null</code>，或者转换失败，返回默认值<code>null</code><br>
-     * 转换失败不会报错
+     * 转换为byte<br> 如果给定的值为<code>null</code>，或者转换失败，返回默认值<code>null</code><br> 转换失败不会报错
      *
      * @param value 被转换的值
      * @return 结果
@@ -120,9 +108,7 @@ public class Convert {
     }
 
     /**
-     * 转换为Short<br>
-     * 如果给定的值为<code>null</code>，或者转换失败，返回默认值<br>
-     * 转换失败不会报错
+     * 转换为Short<br> 如果给定的值为<code>null</code>，或者转换失败，返回默认值<br> 转换失败不会报错
      *
      * @param value        被转换的值
      * @param defaultValue 转换错误时的默认值
@@ -133,10 +119,10 @@ public class Convert {
             return defaultValue;
         }
         if (value instanceof Short) {
-            return (Short) value;
+            return (Short)value;
         }
         if (value instanceof Number) {
-            return ((Number) value).shortValue();
+            return ((Number)value).shortValue();
         }
         final String valueStr = toStr(value, null);
         if (StringUtils.isEmpty(valueStr)) {
@@ -150,9 +136,7 @@ public class Convert {
     }
 
     /**
-     * 转换为Short<br>
-     * 如果给定的值为<code>null</code>，或者转换失败，返回默认值<code>null</code><br>
-     * 转换失败不会报错
+     * 转换为Short<br> 如果给定的值为<code>null</code>，或者转换失败，返回默认值<code>null</code><br> 转换失败不会报错
      *
      * @param value 被转换的值
      * @return 结果
@@ -162,9 +146,7 @@ public class Convert {
     }
 
     /**
-     * 转换为Number<br>
-     * 如果给定的值为空，或者转换失败，返回默认值<br>
-     * 转换失败不会报错
+     * 转换为Number<br> 如果给定的值为空，或者转换失败，返回默认值<br> 转换失败不会报错
      *
      * @param value        被转换的值
      * @param defaultValue 转换错误时的默认值
@@ -175,7 +157,7 @@ public class Convert {
             return defaultValue;
         }
         if (value instanceof Number) {
-            return (Number) value;
+            return (Number)value;
         }
         final String valueStr = toStr(value, null);
         if (StringUtils.isEmpty(valueStr)) {
@@ -189,9 +171,7 @@ public class Convert {
     }
 
     /**
-     * 转换为Number<br>
-     * 如果给定的值为空，或者转换失败，返回默认值<code>null</code><br>
-     * 转换失败不会报错
+     * 转换为Number<br> 如果给定的值为空，或者转换失败，返回默认值<code>null</code><br> 转换失败不会报错
      *
      * @param value 被转换的值
      * @return 结果
@@ -201,9 +181,7 @@ public class Convert {
     }
 
     /**
-     * 转换为int<br>
-     * 如果给定的值为空，或者转换失败，返回默认值<br>
-     * 转换失败不会报错
+     * 转换为int<br> 如果给定的值为空，或者转换失败，返回默认值<br> 转换失败不会报错
      *
      * @param value        被转换的值
      * @param defaultValue 转换错误时的默认值
@@ -214,10 +192,10 @@ public class Convert {
             return defaultValue;
         }
         if (value instanceof Integer) {
-            return (Integer) value;
+            return (Integer)value;
         }
         if (value instanceof Number) {
-            return ((Number) value).intValue();
+            return ((Number)value).intValue();
         }
         final String valueStr = toStr(value, null);
         if (StringUtils.isEmpty(valueStr)) {
@@ -231,9 +209,7 @@ public class Convert {
     }
 
     /**
-     * 转换为int<br>
-     * 如果给定的值为<code>null</code>，或者转换失败，返回默认值<code>null</code><br>
-     * 转换失败不会报错
+     * 转换为int<br> 如果给定的值为<code>null</code>，或者转换失败，返回默认值<code>null</code><br> 转换失败不会报错
      *
      * @param value 被转换的值
      * @return 结果
@@ -271,7 +247,7 @@ public class Convert {
      */
     public static Integer[] toIntArray(String split, String str) {
         if (StringUtils.isEmpty(str)) {
-            return new Integer[]{};
+            return new Integer[] {};
         }
         String[] arr = str.split(split);
         final Integer[] ints = new Integer[arr.length];
@@ -291,7 +267,7 @@ public class Convert {
      */
     public static Long[] toLongArray(String split, String str) {
         if (StringUtils.isEmpty(str)) {
-            return new Long[]{};
+            return new Long[] {};
         }
         String[] arr = str.split(split);
         final Long[] longs = new Long[arr.length];
@@ -324,9 +300,7 @@ public class Convert {
     }
 
     /**
-     * 转换为long<br>
-     * 如果给定的值为空，或者转换失败，返回默认值<br>
-     * 转换失败不会报错
+     * 转换为long<br> 如果给定的值为空，或者转换失败，返回默认值<br> 转换失败不会报错
      *
      * @param value        被转换的值
      * @param defaultValue 转换错误时的默认值
@@ -337,10 +311,10 @@ public class Convert {
             return defaultValue;
         }
         if (value instanceof Long) {
-            return (Long) value;
+            return (Long)value;
         }
         if (value instanceof Number) {
-            return ((Number) value).longValue();
+            return ((Number)value).longValue();
         }
         final String valueStr = toStr(value, null);
         if (StringUtils.isEmpty(valueStr)) {
@@ -355,9 +329,7 @@ public class Convert {
     }
 
     /**
-     * 转换为long<br>
-     * 如果给定的值为<code>null</code>，或者转换失败，返回默认值<code>null</code><br>
-     * 转换失败不会报错
+     * 转换为long<br> 如果给定的值为<code>null</code>，或者转换失败，返回默认值<code>null</code><br> 转换失败不会报错
      *
      * @param value 被转换的值
      * @return 结果
@@ -367,9 +339,7 @@ public class Convert {
     }
 
     /**
-     * 转换为double<br>
-     * 如果给定的值为空，或者转换失败，返回默认值<br>
-     * 转换失败不会报错
+     * 转换为double<br> 如果给定的值为空，或者转换失败，返回默认值<br> 转换失败不会报错
      *
      * @param value        被转换的值
      * @param defaultValue 转换错误时的默认值
@@ -380,10 +350,10 @@ public class Convert {
             return defaultValue;
         }
         if (value instanceof Double) {
-            return (Double) value;
+            return (Double)value;
         }
         if (value instanceof Number) {
-            return ((Number) value).doubleValue();
+            return ((Number)value).doubleValue();
         }
         final String valueStr = toStr(value, null);
         if (StringUtils.isEmpty(valueStr)) {
@@ -398,9 +368,7 @@ public class Convert {
     }
 
     /**
-     * 转换为double<br>
-     * 如果给定的值为空，或者转换失败，返回默认值<code>null</code><br>
-     * 转换失败不会报错
+     * 转换为double<br> 如果给定的值为空，或者转换失败，返回默认值<code>null</code><br> 转换失败不会报错
      *
      * @param value 被转换的值
      * @return 结果
@@ -410,9 +378,7 @@ public class Convert {
     }
 
     /**
-     * 转换为Float<br>
-     * 如果给定的值为空，或者转换失败，返回默认值<br>
-     * 转换失败不会报错
+     * 转换为Float<br> 如果给定的值为空，或者转换失败，返回默认值<br> 转换失败不会报错
      *
      * @param value        被转换的值
      * @param defaultValue 转换错误时的默认值
@@ -423,10 +389,10 @@ public class Convert {
             return defaultValue;
         }
         if (value instanceof Float) {
-            return (Float) value;
+            return (Float)value;
         }
         if (value instanceof Number) {
-            return ((Number) value).floatValue();
+            return ((Number)value).floatValue();
         }
         final String valueStr = toStr(value, null);
         if (StringUtils.isEmpty(valueStr)) {
@@ -440,9 +406,7 @@ public class Convert {
     }
 
     /**
-     * 转换为Float<br>
-     * 如果给定的值为空，或者转换失败，返回默认值<code>null</code><br>
-     * 转换失败不会报错
+     * 转换为Float<br> 如果给定的值为空，或者转换失败，返回默认值<code>null</code><br> 转换失败不会报错
      *
      * @param value 被转换的值
      * @return 结果
@@ -452,9 +416,7 @@ public class Convert {
     }
 
     /**
-     * 转换为boolean<br>
-     * String支持的值为：true、false、yes、ok、no，1,0 如果给定的值为空，或者转换失败，返回默认值<br>
-     * 转换失败不会报错
+     * 转换为boolean<br> String支持的值为：true、false、yes、ok、no，1,0 如果给定的值为空，或者转换失败，返回默认值<br> 转换失败不会报错
      *
      * @param value        被转换的值
      * @param defaultValue 转换错误时的默认值
@@ -465,7 +427,7 @@ public class Convert {
             return defaultValue;
         }
         if (value instanceof Boolean) {
-            return (Boolean) value;
+            return (Boolean)value;
         }
         String valueStr = toStr(value, null);
         if (StringUtils.isEmpty(valueStr)) {
@@ -493,9 +455,7 @@ public class Convert {
     }
 
     /**
-     * 转换为boolean<br>
-     * 如果给定的值为空，或者转换失败，返回默认值<code>null</code><br>
-     * 转换失败不会报错
+     * 转换为boolean<br> 如果给定的值为空，或者转换失败，返回默认值<code>null</code><br> 转换失败不会报错
      *
      * @param value 被转换的值
      * @return 结果
@@ -505,8 +465,7 @@ public class Convert {
     }
 
     /**
-     * 转换为Enum对象<br>
-     * 如果给定的值为空，或者转换失败，返回默认值<br>
+     * 转换为Enum对象<br> 如果给定的值为空，或者转换失败，返回默认值<br>
      *
      * @param clazz        Enum的Class
      * @param value        值
@@ -518,8 +477,7 @@ public class Convert {
             return defaultValue;
         }
         if (clazz.isAssignableFrom(value.getClass())) {
-            @SuppressWarnings("unchecked")
-            E myE = (E) value;
+            @SuppressWarnings("unchecked") E myE = (E)value;
             return myE;
         }
         final String valueStr = toStr(value, null);
@@ -534,8 +492,7 @@ public class Convert {
     }
 
     /**
-     * 转换为Enum对象<br>
-     * 如果给定的值为空，或者转换失败，返回默认值<code>null</code><br>
+     * 转换为Enum对象<br> 如果给定的值为空，或者转换失败，返回默认值<code>null</code><br>
      *
      * @param clazz Enum的Class
      * @param value 值
@@ -546,9 +503,7 @@ public class Convert {
     }
 
     /**
-     * 转换为BigInteger<br>
-     * 如果给定的值为空，或者转换失败，返回默认值<br>
-     * 转换失败不会报错
+     * 转换为BigInteger<br> 如果给定的值为空，或者转换失败，返回默认值<br> 转换失败不会报错
      *
      * @param value        被转换的值
      * @param defaultValue 转换错误时的默认值
@@ -559,10 +514,10 @@ public class Convert {
             return defaultValue;
         }
         if (value instanceof BigInteger) {
-            return (BigInteger) value;
+            return (BigInteger)value;
         }
         if (value instanceof Long) {
-            return BigInteger.valueOf((Long) value);
+            return BigInteger.valueOf((Long)value);
         }
         final String valueStr = toStr(value, null);
         if (StringUtils.isEmpty(valueStr)) {
@@ -576,9 +531,7 @@ public class Convert {
     }
 
     /**
-     * 转换为BigInteger<br>
-     * 如果给定的值为空，或者转换失败，返回默认值<code>null</code><br>
-     * 转换失败不会报错
+     * 转换为BigInteger<br> 如果给定的值为空，或者转换失败，返回默认值<code>null</code><br> 转换失败不会报错
      *
      * @param value 被转换的值
      * @return 结果
@@ -588,9 +541,7 @@ public class Convert {
     }
 
     /**
-     * 转换为BigDecimal<br>
-     * 如果给定的值为空，或者转换失败，返回默认值<br>
-     * 转换失败不会报错
+     * 转换为BigDecimal<br> 如果给定的值为空，或者转换失败，返回默认值<br> 转换失败不会报错
      *
      * @param value        被转换的值
      * @param defaultValue 转换错误时的默认值
@@ -601,16 +552,16 @@ public class Convert {
             return defaultValue;
         }
         if (value instanceof BigDecimal) {
-            return (BigDecimal) value;
+            return (BigDecimal)value;
         }
         if (value instanceof Long) {
-            return new BigDecimal((Long) value);
+            return new BigDecimal((Long)value);
         }
         if (value instanceof Double) {
-            return new BigDecimal((Double) value);
+            return new BigDecimal((Double)value);
         }
         if (value instanceof Integer) {
-            return new BigDecimal((Integer) value);
+            return new BigDecimal((Integer)value);
         }
         final String valueStr = toStr(value, null);
         if (StringUtils.isEmpty(valueStr)) {
@@ -624,9 +575,7 @@ public class Convert {
     }
 
     /**
-     * 转换为BigDecimal<br>
-     * 如果给定的值为空，或者转换失败，返回默认值<br>
-     * 转换失败不会报错
+     * 转换为BigDecimal<br> 如果给定的值为空，或者转换失败，返回默认值<br> 转换失败不会报错
      *
      * @param value 被转换的值
      * @return 结果
@@ -636,8 +585,7 @@ public class Convert {
     }
 
     /**
-     * 将对象转为字符串<br>
-     * 1、Byte数组和ByteBuffer会被转换为对应字符串的数组 2、对象数组会调用Arrays.toString方法
+     * 将对象转为字符串<br> 1、Byte数组和ByteBuffer会被转换为对应字符串的数组 2、对象数组会调用Arrays.toString方法
      *
      * @param obj 对象
      * @return 字符串
@@ -647,8 +595,7 @@ public class Convert {
     }
 
     /**
-     * 将对象转为字符串<br>
-     * 1、Byte数组和ByteBuffer会被转换为对应字符串的数组 2、对象数组会调用Arrays.toString方法
+     * 将对象转为字符串<br> 1、Byte数组和ByteBuffer会被转换为对应字符串的数组 2、对象数组会调用Arrays.toString方法
      *
      * @param obj         对象
      * @param charsetName 字符集
@@ -659,8 +606,7 @@ public class Convert {
     }
 
     /**
-     * 将对象转为字符串<br>
-     * 1、Byte数组和ByteBuffer会被转换为对应字符串的数组 2、对象数组会调用Arrays.toString方法
+     * 将对象转为字符串<br> 1、Byte数组和ByteBuffer会被转换为对应字符串的数组 2、对象数组会调用Arrays.toString方法
      *
      * @param obj     对象
      * @param charset 字符集
@@ -672,11 +618,11 @@ public class Convert {
         }
 
         if (obj instanceof String) {
-            return (String) obj;
+            return (String)obj;
         } else if (obj instanceof byte[] || obj instanceof Byte[]) {
-            return str((Byte[]) obj, charset);
+            return str((Byte[])obj, charset);
         } else if (obj instanceof ByteBuffer) {
-            return str((ByteBuffer) obj, charset);
+            return str((ByteBuffer)obj, charset);
         }
         return obj.toString();
     }
@@ -769,7 +715,7 @@ public class Convert {
             if (c[i] == ' ') {
                 c[i] = '\u3000';
             } else if (c[i] < '\177') {
-                c[i] = (char) (c[i] + 65248);
+                c[i] = (char)(c[i] + 65248);
 
             }
         }
@@ -804,7 +750,7 @@ public class Convert {
             if (c[i] == '\u3000') {
                 c[i] = ' ';
             } else if (c[i] > '\uFF00' && c[i] < '\uFF5F') {
-                c[i] = (char) (c[i] - 65248);
+                c[i] = (char)(c[i] - 65248);
             }
         }
         String returnString = new String(c);
@@ -828,12 +774,12 @@ public class Convert {
 
         String s = "";
         for (int i = 0; i < fraction.length; i++) {
-            s += (digit[(int) (Math.floor(n * 10 * Math.pow(10, i)) % 10)] + fraction[i]).replaceAll("(零.)+", "");
+            s += (digit[(int)(Math.floor(n * 10 * Math.pow(10, i)) % 10)] + fraction[i]).replaceAll("(零.)+", "");
         }
         if (s.length() < 1) {
             s = "整";
         }
-        int integerPart = (int) Math.floor(n);
+        int integerPart = (int)Math.floor(n);
 
         for (int i = 0; i < unit[0].length && integerPart > 0; i++) {
             String p = "";
@@ -843,6 +789,7 @@ public class Convert {
             }
             s = p.replaceAll("(零.)*零$", "").replaceAll("^$", "零") + unit[0][i] + s;
         }
-        return head + s.replaceAll("(零.)*零元", "元").replaceFirst("(零.)+", "").replaceAll("(零.)+", "零").replaceAll("^整$", "零元整");
+        return head + s.replaceAll("(零.)*零元", "元").replaceFirst("(零.)+", "").replaceAll("(零.)+", "零")
+            .replaceAll("^整$", "零元整");
     }
 }

@@ -67,7 +67,7 @@ public class HttpResponseWrapper extends HttpServletResponseWrapper {
                 e.printStackTrace();
             }
         }
-        return new String(bytes.toByteArray(),StandardCharsets.UTF_8);
+        return new String(bytes.toByteArray(), StandardCharsets.UTF_8);
     }
 
     class MyServletOutputStream extends ServletOutputStream {

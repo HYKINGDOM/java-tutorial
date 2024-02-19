@@ -1,6 +1,5 @@
 package com.java.coco.demo;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,7 +10,7 @@ public class JavaMain {
 
     public static void main(String[] args) {
 
-        String[] strings = new String[]{"1", "2", "3", "4", "5", "6", "7", "8"};
+        String[] strings = new String[] {"1", "2", "3", "4", "5", "6", "7", "8"};
 
         List<String> stringList = Arrays.asList(strings);
 
@@ -22,10 +21,9 @@ public class JavaMain {
         }
     }
 
-
     private static void test_for() {
 
-        String[] strings = new String[]{"1", "2", "3", "4", "5", "6", "7", "8"};
+        String[] strings = new String[] {"1", "2", "3", "4", "5", "6", "7", "8"};
 
         List<String> stringList = Arrays.asList(strings);
 

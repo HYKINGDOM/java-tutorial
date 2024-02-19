@@ -1,6 +1,5 @@
 package com.java.tutorial.project.common;
 
-
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -21,7 +20,6 @@ public class EnumCache {
      * 枚举静态块加载标识缓存结构
      */
     static final Map<Class<? extends Enum>, Boolean> LOADED = new ConcurrentHashMap<>();
-
 
     /**
      * 以枚举名称构建缓存，在枚举的静态块里面调用
@@ -48,13 +46,16 @@ public class EnumCache {
      */
     public static <E extends Enum> void registerByValue(Class<E> clazz, E[] es, EnumMapping<E> enumMapping) {
         if (CACHE_BY_VALUE.containsKey(clazz)) {
-            throw new RuntimeException(String.format("枚举%s已经构建过value缓存,不允许重复构建", clazz.getSimpleName()));
+            throw new RuntimeException(
+                String.format("枚举%s已经构建过value缓存,不允许重复构建", clazz.getSimpleName()));
         }
         Map<Object, Enum> map = new ConcurrentHashMap<>();
         for (E e : es) {
             Object value = enumMapping.value(e);
             if (map.containsKey(value)) {
-                throw new RuntimeException(String.format("枚举%s存在相同的值%s映射同一个枚举%s.%s", clazz.getSimpleName(), value, clazz.getSimpleName(), e));
+                throw new RuntimeException(
+                    String.format("枚举%s存在相同的值%s映射同一个枚举%s.%s", clazz.getSimpleName(), value,
+                        clazz.getSimpleName(), e));
             }
             map.put(value, e);
         }
@@ -87,7 +88,8 @@ public class EnumCache {
         return find(clazz, value, CACHE_BY_VALUE, defaultEnum);
     }
 
-    private static <E extends Enum> E find(Class<E> clazz, Object obj, Map<Class<? extends Enum>, Map<Object, Enum>> cache, E defaultEnum) {
+    private static <E extends Enum> E find(Class<E> clazz, Object obj,
+        Map<Class<? extends Enum>, Map<Object, Enum>> cache, E defaultEnum) {
         Map<Object, Enum> map = null;
         if ((map = cache.get(clazz)) == null) {
             executeEnumStatic(clazz);// 触发枚举静态块执行
@@ -98,29 +100,21 @@ public class EnumCache {
             if (cache == CACHE_BY_NAME) {
                 msg = String.format(
                     "枚举%s还没有注册到枚举缓存中，请在%s.static代码块中加入如下代码 : EnumCache.registerByName(%s.class, %s.values());",
-                    clazz.getSimpleName(),
-                    clazz.getSimpleName(),
-                    clazz.getSimpleName(),
-                    clazz.getSimpleName()
-                );
+                    clazz.getSimpleName(), clazz.getSimpleName(), clazz.getSimpleName(), clazz.getSimpleName());
             }
             if (cache == CACHE_BY_VALUE) {
                 msg = String.format(
                     "枚举%s还没有注册到枚举缓存中，请在%s.static代码块中加入如下代码 : EnumCache.registerByValue(%s.class, %s.values(), %s::getXxx);",
-                    clazz.getSimpleName(),
-                    clazz.getSimpleName(),
-                    clazz.getSimpleName(),
-                    clazz.getSimpleName(),
-                    clazz.getSimpleName()
-                );
+                    clazz.getSimpleName(), clazz.getSimpleName(), clazz.getSimpleName(), clazz.getSimpleName(),
+                    clazz.getSimpleName());
             }
             throw new RuntimeException(msg);
         }
-        if(obj == null){
+        if (obj == null) {
             return defaultEnum;
         }
         Enum result = map.get(obj);
-        return result == null ? defaultEnum : (E) result;
+        return result == null ? defaultEnum : (E)result;
     }
 
     private static <E extends Enum> void executeEnumStatic(Class<E> clazz) {

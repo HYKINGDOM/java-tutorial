@@ -6,9 +6,7 @@ import org.springframework.plugin.core.Plugin;
 
 public interface SmsPlugin extends Plugin<SmsRequest> {
 
-
     SmsResponse sendSms(SmsRequest smsRequest);
-
 
 }
 

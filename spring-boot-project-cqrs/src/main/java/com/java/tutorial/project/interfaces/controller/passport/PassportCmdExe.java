@@ -22,10 +22,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 
 /**
- *
  * APP用户登录注册
- *
- *
  */
 @Validated
 @RestController

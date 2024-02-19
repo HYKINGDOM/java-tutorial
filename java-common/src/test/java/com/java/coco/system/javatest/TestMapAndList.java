@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
  */
 public class TestMapAndList {
 
-
     private Map<String, String> map;
 
     private List<Object> list;
@@ -168,13 +167,11 @@ public class TestMapAndList {
         System.out.println(list);
     }
 
-
     @Test
     public void test_java_string_switch_list() {
         String str = "";
         System.out.println(convertListToString(str));
     }
-
 
     public String convertListToString(String str) {
         if (StringUtils.isBlank(str)) {
@@ -194,7 +191,6 @@ public class TestMapAndList {
         return sb.toString();
 
     }
-
 
     private List<String> converStringToList(String strs) {
         if (StringUtils.isNotBlank(strs)) {

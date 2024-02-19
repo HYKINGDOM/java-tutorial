@@ -1,6 +1,5 @@
 package com.java.func.actuallyapplication;
 
-
 import java.util.function.Function;
 
 /**
@@ -9,19 +8,6 @@ import java.util.function.Function;
  * @author hy852
  */
 public class FunctionClass {
-
-    private Function<Integer, Object> buildFunction(EmployeeRef employeeRef) {
-
-        return (employeeId -> {
-            if (employeeRef.getEmpId() != null) {
-                employeeRef.setEmpId(employeeId);
-            } else {
-                employeeRef.setEmpId(2048);
-            }
-            return employeeRef;
-        });
-    }
-
 
     public static void main(String[] args) {
         EmployeeImp employeeImp = new EmployeeServiceImpl();
@@ -38,5 +24,16 @@ public class FunctionClass {
 
     }
 
+    private Function<Integer, Object> buildFunction(EmployeeRef employeeRef) {
+
+        return (employeeId -> {
+            if (employeeRef.getEmpId() != null) {
+                employeeRef.setEmpId(employeeId);
+            } else {
+                employeeRef.setEmpId(2048);
+            }
+            return employeeRef;
+        });
+    }
 
 }

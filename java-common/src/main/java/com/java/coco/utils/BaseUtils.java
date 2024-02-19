@@ -13,6 +13,7 @@ public class BaseUtils {
 
     /**
      * 拼接字符串之后翻转字符串
+     *
      * @param param
      * @return
      */
@@ -23,6 +24,7 @@ public class BaseUtils {
 
     /**
      * 翻转字符串之后删减字符串
+     *
      * @param param
      * @return
      */
@@ -30,7 +32,6 @@ public class BaseUtils {
         String reverseString = reverseString(param);
         return StringUtils.substring(reverseString, 10);
     }
-
 
     /**
      * 倒序字符串
@@ -67,12 +68,12 @@ public class BaseUtils {
         byte[] byteArray = new byte[charArray.length];
 
         for (int i = 0; i < charArray.length; i++) {
-            byteArray[i] = (byte) charArray[i];
+            byteArray[i] = (byte)charArray[i];
         }
         byte[] md5Bytes = md5.digest(byteArray);
         StringBuilder hexValue = new StringBuilder();
         for (byte md5Byte : md5Bytes) {
-            int val = ((int) md5Byte) & 0xff;
+            int val = ((int)md5Byte) & 0xff;
             if (val < 16) {
                 hexValue.append("0");
             }

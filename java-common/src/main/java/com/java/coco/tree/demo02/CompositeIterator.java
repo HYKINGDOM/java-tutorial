@@ -1,7 +1,5 @@
 package com.java.coco.tree.demo02;
 
-
-
 import com.java.coco.tree.demo02.entity.EntityTreeComponent;
 import com.java.coco.tree.demo02.entity.MenuInfo;
 
@@ -37,7 +35,7 @@ public class CompositeIterator implements Iterator {
             // 仅查看当前的栈顶元素——迭代器，不出栈
             Iterator iterator = stack.peek();
             // 使用该栈顶的迭代器，取出要遍历的组合的元素
-            EntityTreeComponent component = (EntityTreeComponent) iterator.next();
+            EntityTreeComponent component = (EntityTreeComponent)iterator.next();
             if (component instanceof MenuInfo) {
                 // 如果取出的元素仍然是菜单，那需要继续遍历它，故要记录它的位置，把它的迭代器取出来
                 // 调用 component.createIterator() 返回 CompositeIterator，这个 CompositeIterator 仍然包含一个自己的 stack，继续存入栈中

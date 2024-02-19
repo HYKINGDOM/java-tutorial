@@ -9,7 +9,6 @@ class MaxAreaATest {
 
     private MaxAreaA maxArea;
 
-
     @BeforeEach
     public void init_class() {
         maxArea = new MaxAreaA();
@@ -35,7 +34,6 @@ class MaxAreaATest {
         int profit = maxArea.maxArea(ints);
         assertThat(profit).isEqualTo(16);
     }
-
 
     @Test
     public void test_main_04() {

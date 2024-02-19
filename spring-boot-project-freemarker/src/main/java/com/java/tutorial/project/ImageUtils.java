@@ -7,7 +7,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-
 /**
  * @author HY
  */
@@ -22,7 +21,6 @@ public class ImageUtils {
         return outputImage;
     }
 
-
     /**
      * BufferedImage图片流转byte[]数组
      */
@@ -35,7 +33,6 @@ public class ImageUtils {
         }
         return out.toByteArray();
     }
-
 
     /**
      * byte[]数组转BufferedImage图片流

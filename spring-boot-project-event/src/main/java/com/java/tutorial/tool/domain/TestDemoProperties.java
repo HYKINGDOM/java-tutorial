@@ -16,7 +16,6 @@ public class TestDemoProperties {
 
     private boolean configs;
 
-
     private String AAA;
 
 }

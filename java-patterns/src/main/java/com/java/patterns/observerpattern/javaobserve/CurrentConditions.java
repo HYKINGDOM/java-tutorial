@@ -3,9 +3,9 @@ package com.java.patterns.observerpattern.javaobserve;
 import java.util.Observable;
 import java.util.Observer;
 
-
 /**
  * 当前观察者
+ *
  * @author yihur
  */
 public class CurrentConditions implements Observer {
@@ -16,9 +16,9 @@ public class CurrentConditions implements Observer {
 
     @Override
     public void update(Observable arg0, Object arg1) {
-        this.mTemperate = ((AssembleWeatherData) (arg1)).mTemperate;
-        this.mPressure = ((AssembleWeatherData) (arg1)).mPressure;
-        this.mHumidity = ((AssembleWeatherData) (arg1)).mHumidity;
+        this.mTemperate = ((AssembleWeatherData)(arg1)).mTemperate;
+        this.mPressure = ((AssembleWeatherData)(arg1)).mPressure;
+        this.mHumidity = ((AssembleWeatherData)(arg1)).mHumidity;
         display();
     }
 
@@ -27,6 +27,5 @@ public class CurrentConditions implements Observer {
         System.out.println("***Today mPressure:" + mPressure + "***");
         System.out.println("***Today mHumidity:" + mHumidity + "***");
     }
-
 
 }

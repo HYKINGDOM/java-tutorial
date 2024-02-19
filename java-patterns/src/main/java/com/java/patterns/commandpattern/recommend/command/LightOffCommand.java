@@ -1,10 +1,10 @@
 package com.java.patterns.commandpattern.recommend.command;
 
-
 import com.java.patterns.commandpattern.recommend.device.Light;
 
 /**
  * 灯光关闭命令
+ *
  * @author yihur
  */
 public class LightOffCommand implements Command {

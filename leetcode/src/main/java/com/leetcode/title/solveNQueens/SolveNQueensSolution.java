@@ -26,13 +26,13 @@ public class SolveNQueensSolution {
         return lists;
     }
 
-    public void addList(List<List<String>> lists, char[][] strings, Stack<String> path, boolean[][] flag, int length, int n) {
+    public void addList(List<List<String>> lists, char[][] strings, Stack<String> path, boolean[][] flag, int length,
+        int n) {
 
         if (length == n) {
             lists.add(path);
             return;
         }
-
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -69,7 +69,6 @@ public class SolveNQueensSolution {
         }
         return flag;
     }
-
 
     public boolean judgeDiagonalRightLine(char[][] chars, int c, int r, int n) {
         boolean flag = false;
@@ -133,6 +132,5 @@ public class SolveNQueensSolution {
         }
         return flag;
     }
-
 
 }

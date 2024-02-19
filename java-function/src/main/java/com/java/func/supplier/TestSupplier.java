@@ -10,12 +10,11 @@ public class TestSupplier {
         int b = supplier.get() + 1;
         System.out.println(b);
 
-
         DepartmentService departmentService = new DepartmentServiceImpl();
         Long uid = 1L;
         LazyUser user = new LazyUser();
         user.setUid(uid);
-// departmentService 是一个rpc调用
+        // departmentService 是一个rpc调用
         user.setDepartment(Lazy.of(() -> departmentService.getDepartment(uid)));
         System.out.println("=========================1111=======================");
         System.out.println(user);

@@ -1,6 +1,5 @@
 package com.java.tutorial.project.util;
 
-
 import com.java.tutorial.project.domain.SysJob;
 import org.quartz.JobExecutionContext;
 

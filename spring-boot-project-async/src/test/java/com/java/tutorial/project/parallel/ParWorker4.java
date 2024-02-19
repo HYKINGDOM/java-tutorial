@@ -1,6 +1,5 @@
 package com.java.tutorial.project.parallel;
 
-
 import com.java.tutorial.project.async.callback.ICallback;
 import com.java.tutorial.project.async.callback.IWorker;
 import com.java.tutorial.project.async.executor.timer.SystemClock;
@@ -24,7 +23,6 @@ public class ParWorker4 implements IWorker<String, String>, ICallback<String, St
         return "result = " + SystemClock.now() + "---param = " + object + " from 4";
     }
 
-
     @Override
     public String defaultValue() {
         return "worker4--default";
@@ -38,11 +36,13 @@ public class ParWorker4 implements IWorker<String, String>, ICallback<String, St
     @Override
     public void result(boolean success, String param, WorkResult<String> workResult) {
         if (success) {
-            System.out.println("callback worker4 success--" + SystemClock.now() + "----workResult: " + workResult.getResult() + "param: " + param
-                    + "-threadName:" +Thread.currentThread().getName());
+            System.out.println(
+                "callback worker4 success--" + SystemClock.now() + "----workResult: " + workResult.getResult() + "param: " + param + "-threadName:" + Thread.currentThread()
+                    .getName());
         } else {
-            System.err.println("callback worker4 failure--" + SystemClock.now() + "----workResult: " + workResult.getResult() + "param: " + param
-                    + "-threadName:" +Thread.currentThread().getName());
+            System.err.println(
+                "callback worker4 failure--" + SystemClock.now() + "----workResult: " + workResult.getResult() + "param: " + param + "-threadName:" + Thread.currentThread()
+                    .getName());
         }
     }
 

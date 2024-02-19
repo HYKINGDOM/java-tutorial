@@ -1,6 +1,5 @@
 package com.java.patterns.responsibility;
 
-
 /**
  * @author
  * @date

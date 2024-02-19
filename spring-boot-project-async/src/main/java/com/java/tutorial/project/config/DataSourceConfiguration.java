@@ -40,8 +40,6 @@ public class DataSourceConfiguration {
         return createHikariDataSource(properties);
     }
 
-
-
     /**
      * 创建 Hikari 数据库连接池
      *

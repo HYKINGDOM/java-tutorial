@@ -5,7 +5,6 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class UseBeanFactoryAwareDemo implements BeanFactoryAware {
 
@@ -16,8 +15,7 @@ public class UseBeanFactoryAwareDemo implements BeanFactoryAware {
         this.beanFactory = beanFactory;
     }
 
-
-    public void testDemo(){
+    public void testDemo() {
         Object myBeanPostProcessor = beanFactory.getBean("myBeanPostProcessor");
         System.out.println(myBeanPostProcessor.toString());
     }

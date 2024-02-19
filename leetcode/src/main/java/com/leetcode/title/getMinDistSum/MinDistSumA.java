@@ -21,7 +21,8 @@ public class MinDistSumA {
     }
 
     private void changeAns(double[] centre, int[][] positions, double test_distances, double end) {//求更优解
-        if (test_distances <= end) return;
+        if (test_distances <= end)
+            return;
         int flag = 0;
         double[] newpoint = new double[2];
         for (int k = 0; k < di.length; k++) {

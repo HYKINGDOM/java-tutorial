@@ -20,7 +20,6 @@ public abstract class AbstractBankBusinessHandler {
         System.out.println("give a praised");
     }
 
-
     protected void execute(Supplier<String> supplier, Consumer<BigDecimal> consumer) {
 
         String number = supplier.get();

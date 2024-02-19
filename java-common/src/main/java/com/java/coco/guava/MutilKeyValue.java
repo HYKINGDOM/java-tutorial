@@ -18,7 +18,8 @@ public class MutilKeyValue {
         HashBasedTable<String, String, Double> objectObjectObjectHashBasedTable = HashBasedTable.create();
 
         for (StudentScore studentScore : testScoreList) {
-            objectObjectObjectHashBasedTable.put(studentScore.getStudentName(), studentScore.getSubject(), studentScore.getScore());
+            objectObjectObjectHashBasedTable.put(studentScore.getStudentName(), studentScore.getSubject(),
+                studentScore.getScore());
         }
         //3.计算每个学生的总分
         Map<String, Map<String, Double>> studentSubjectScoreMap = objectObjectObjectHashBasedTable.rowMap();
@@ -49,7 +50,6 @@ public class MutilKeyValue {
 
     }
 
-
     public static class StudentScore {
         private String studentName;
 
@@ -61,23 +61,17 @@ public class MutilKeyValue {
 
         private String classGrade;
 
-        @Override
-        public String toString() {
-            return "StudentScore{" +
-                    "studentName='" + studentName + '\'' +
-                    ", subject='" + subject + '\'' +
-                    ", semester='" + semester + '\'' +
-                    ", score=" + score +
-                    ", classGrade='" + classGrade + '\'' +
-                    '}';
-        }
-
         public StudentScore(String studentName, String subject, String semester, Double score, String classGrade) {
             this.studentName = studentName;
             this.subject = subject;
             this.semester = semester;
             this.score = score;
             this.classGrade = classGrade;
+        }
+
+        @Override
+        public String toString() {
+            return "StudentScore{" + "studentName='" + studentName + '\'' + ", subject='" + subject + '\'' + ", semester='" + semester + '\'' + ", score=" + score + ", classGrade='" + classGrade + '\'' + '}';
         }
 
         public String getStudentName() {

@@ -1,6 +1,5 @@
 package com.java.patterns.observerpattern.upgradeobserve.mode;
 
-
 import com.java.patterns.observerpattern.upgradeobserve.observer.Observer;
 
 /**

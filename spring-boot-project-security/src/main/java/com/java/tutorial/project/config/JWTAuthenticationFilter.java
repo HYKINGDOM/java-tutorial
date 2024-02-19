@@ -29,10 +29,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 自定义JWT认证过滤器
- * 该类继承自BasicAuthenticationFilter，在doFilterInternal方法中，
- * 从http头的Authorization 项读取token数据，然后用Jwts包提供的方法校验token的合法性。
- * 如果校验通过，就认为这是一个取得授权的合法请求
+ * 自定义JWT认证过滤器 该类继承自BasicAuthenticationFilter，在doFilterInternal方法中， 从http头的Authorization
+ * 项读取token数据，然后用Jwts包提供的方法校验token的合法性。 如果校验通过，就认为这是一个取得授权的合法请求
  *
  * @author yihur
  */
@@ -45,7 +43,8 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+        throws IOException, ServletException {
         String header = request.getHeader(ConstantKey.HEADER_KEY);
         if (ObjectUtil.isEmpty(header) || !header.startsWith(ConstantKey.BEARER)) {
             chain.doFilter(request, response);
@@ -56,7 +55,8 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
         chain.doFilter(request, response);
     }
 
-    private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request,
+        HttpServletResponse response) throws ServletException, IOException {
         try {
             long start = System.currentTimeMillis();
             String token = request.getHeader(ConstantKey.HEADER_KEY);
@@ -66,7 +66,8 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
             // parse the token.
             String user = null;
 
-            Claims claims = Jwts.parser().setSigningKey(ConstantKey.SIGNING_KEY).parseClaimsJws(token.replace(ConstantKey.BEARER, "")).getBody();
+            Claims claims = Jwts.parser().setSigningKey(ConstantKey.SIGNING_KEY)
+                .parseClaimsJws(token.replace(ConstantKey.BEARER, "")).getBody();
             // token签发时间
             long issuedAt = claims.getIssuedAt().getTime();
             // 当前时间
@@ -87,13 +88,10 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
                 // 设置过期时间
                 calendar.add(Calendar.MINUTE, 5);// 5分钟
                 Date time = calendar.getTime();
-                String refreshToken = Jwts.builder()
-                        .setSubject(claims.getSubject())
-                        .setIssuedAt(now)//签发时间
-                        .setExpiration(time)//过期时间
-                        //采用什么算法是可以自己选择的，不一定非要采用HS512
-                        .signWith(SignatureAlgorithm.HS512, ConstantKey.SIGNING_KEY)
-                        .compact();
+                String refreshToken = Jwts.builder().setSubject(claims.getSubject()).setIssuedAt(now)//签发时间
+                    .setExpiration(time)//过期时间
+                    //采用什么算法是可以自己选择的，不一定非要采用HS512
+                    .signWith(SignatureAlgorithm.HS512, ConstantKey.SIGNING_KEY).compact();
                 // 重新生成token end
 
                 // 主动刷新token，并返回给前端
@@ -106,7 +104,7 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
                 String[] split = user.split("-")[1].split(",");
                 List<GrantedAuthority> authorities = new ArrayList<>();
                 for (String s : split) {
-//                    authorities.add(new GrantedAuthorityImpl(s));
+                    //                    authorities.add(new GrantedAuthorityImpl(s));
                 }
                 return new UsernamePasswordAuthenticationToken(user, null, authorities);
             }

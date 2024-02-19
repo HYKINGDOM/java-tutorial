@@ -90,8 +90,7 @@ public class BeanUtils extends org.springframework.beans.BeanUtils {
     }
 
     /**
-     * 检查Bean方法名中的属性名是否相等。<br>
-     * 如getName()和setName()属性名一样，getName()和setAge()属性名不一样。
+     * 检查Bean方法名中的属性名是否相等。<br> 如getName()和setName()属性名一样，getName()和setAge()属性名不一样。
      *
      * @param m1 方法名1
      * @param m2 方法名2

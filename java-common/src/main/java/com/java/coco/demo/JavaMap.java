@@ -13,25 +13,14 @@ import java.util.function.Function;
 
 public class JavaMap {
 
-
-    public void testCollectionsMap() {
-        Map<Object, Object> objectObjectMap = Collections.synchronizedMap(new HashMap<>(16));
-
-
-        Hashtable<Object, Object> objectObjectHashtable = new Hashtable<>();
-
-
-    }
+    private static HashMap<Integer, String> stringHashMap = new HashMap<>();
 
     public static void setStringConcurrentHashMap() {
         ConcurrentMap<String, ConcurrentDateFormat> CACHE = new ConcurrentHashMap<>(3);
     }
 
-    private static HashMap<Integer, String> stringHashMap = new HashMap<>();
-
     public static void main(String[] args) {
         ConcurrentHashMap concurrentHashMapde = new ConcurrentHashMap();
-
 
         stringHashMap.put(1, "one");
         stringHashMap.put(2, "two");
@@ -40,21 +29,24 @@ public class JavaMap {
         JavaMap javaMap = new JavaMap();
         javaMap.mapCompute();
 
-
         for (Map.Entry<Integer, String> stringEntry : stringHashMap.entrySet()) {
 
-
         }
-
 
         for (Integer integer : stringHashMap.keySet()) {
 
         }
 
-
         for (Map.Entry<Integer, String> integerStringEntry : stringHashMap.entrySet()) {
             System.out.println(integerStringEntry.toString());
         }
+    }
+
+    public void testCollectionsMap() {
+        Map<Object, Object> objectObjectMap = Collections.synchronizedMap(new HashMap<>(16));
+
+        Hashtable<Object, Object> objectObjectHashtable = new Hashtable<>();
+
     }
 
     /**
@@ -71,8 +63,7 @@ public class JavaMap {
     }
 
     /**
-     * 当key不存在时将数据add到map 并返回null
-     * 当key存在时不修改原值,并返回该key对应的value
+     * 当key不存在时将数据add到map 并返回null 当key存在时不修改原值,并返回该key对应的value
      */
     public void mapPutIfAbsent() {
         String www = stringHashMap.putIfAbsent(3, "www");
@@ -88,9 +79,7 @@ public class JavaMap {
     }
 
     /**
-     * map的单个替换
-     * 第一种会将key对应的value替换
-     * 第二种首先会匹配第二个参数oldvalue 如没匹配上则不替换,
+     * map的单个替换 第一种会将key对应的value替换 第二种首先会匹配第二个参数oldvalue 如没匹配上则不替换,
      */
     public void mapReplace() {
         stringHashMap.replace(1, "qqqq");
@@ -111,7 +100,6 @@ public class JavaMap {
         });
     }
 
-
     /**
      * 如果 Map 中 key 对应的映射不存在或者为 null，则将 value（不能是 null）关联到 key 上；
      * <p>
@@ -128,7 +116,6 @@ public class JavaMap {
 
     }
 
-
     /**
      * 用是把 remappingFunction 的计算结果关联到 key 上，如果计算结果为 null，则在 Map 中删除 key 的映射．
      */
@@ -143,7 +130,6 @@ public class JavaMap {
         stringHashMap.compute(3, (k, v) -> v == null ? newMsg : v.concat(newMsg));
     }
 
-
     public void mapComputeIfAbsent() {
         stringHashMap.computeIfAbsent(2, new Function<Integer, String>() {
             @Override
@@ -152,7 +138,6 @@ public class JavaMap {
             }
         });
     }
-
 
     public void mapComputeIfPresent() {
 
@@ -166,7 +151,7 @@ public class JavaMap {
         System.out.println("HashMap: " + prices);
 
         // 重新计算鞋加上10%的增值税后的价值
-        int shoesPrice = prices.computeIfPresent("Shoes", (key, value) -> value + value * 10/100);
+        int shoesPrice = prices.computeIfPresent("Shoes", (key, value) -> value + value * 10 / 100);
         System.out.println("Price of Shoes after VAT: " + shoesPrice);
 
         // 输出更新后的HashMap

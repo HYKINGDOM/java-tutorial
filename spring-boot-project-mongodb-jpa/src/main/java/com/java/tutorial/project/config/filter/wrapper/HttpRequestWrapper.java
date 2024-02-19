@@ -1,6 +1,5 @@
 package com.java.tutorial.project.config.filter.wrapper;
 
-
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -18,13 +17,8 @@ import java.util.Map;
 
 public class HttpRequestWrapper extends HttpServletRequestWrapper {
 
-    private Map<String, String> headers = new HashMap<>();
-
-    public void addHeader(String name, String value) {
-        headers.put(name, value);
-    }
-
     private final String body;
+    private Map<String, String> headers = new HashMap<>();
 
     public HttpRequestWrapper(HttpServletRequest request) {
         super(request);
@@ -52,6 +46,10 @@ public class HttpRequestWrapper extends HttpServletRequestWrapper {
             }
         }
         body = stringBuilder.toString();
+    }
+
+    public void addHeader(String name, String value) {
+        headers.put(name, value);
     }
 
     @Override

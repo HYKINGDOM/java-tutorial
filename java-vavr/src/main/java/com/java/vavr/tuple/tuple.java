@@ -18,19 +18,12 @@ public class tuple {
         Long aLong = tuple3._3();
 
         //映射计算元组中每个元素的函数，返回另一个元组
-        Tuple2<String, Integer> thatMap1 = tuple2.map(
-                s -> s.substring(2) + "vr",
-                i -> i / 8
-        );
+        Tuple2<String, Integer> thatMap1 = tuple2.map(s -> s.substring(2) + "vr", i -> i / 8);
 
-        Tuple2<String, Integer> thatMap2 = tuple2.map(
-                (s, i) -> Tuple.of(s.substring(2) + "vr", i / 8)
-        );
+        Tuple2<String, Integer> thatMap2 = tuple2.map((s, i) -> Tuple.of(s.substring(2) + "vr", i / 8));
 
         //转换基于元组的内容创建新类型。
-        String that = tuple2.apply(
-                (s, i) -> s.substring(2) + "vr " + i / 8
-        );
+        String that = tuple2.apply((s, i) -> s.substring(2) + "vr " + i / 8);
 
     }
 }

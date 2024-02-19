@@ -1,6 +1,5 @@
 package com.java.data.infrastucture.dao;
 
-
 import com.java.data.domain.User;
 import com.java.data.infrastucture.entity.UserEntity;
 

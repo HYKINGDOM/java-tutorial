@@ -6,7 +6,6 @@ import java.util.Random;
 
 public class TreeClent {
 
-
     public static void main(String[] args) {
         AbstractTreeNode depNode00 = new DepInfo(1, "中国", 0);
         AbstractTreeNode depNode01 = new DepInfo(2, "美国", 0);
@@ -16,13 +15,11 @@ public class TreeClent {
         AbstractTreeNode depNode4 = new DepInfo(5, "江苏", 1);
         AbstractTreeNode depNode5 = new DepInfo(6, "浙江", 1);
 
-
         AbstractTreeNode depNode07 = new DepInfo(7, "西安", 3);
         AbstractTreeNode depNode08 = new DepInfo(8, "大同", 4);
         AbstractTreeNode depNode09 = new DepInfo(9, "宝鸡", 3);
         AbstractTreeNode depNode10 = new DepInfo(10, "安康", 3);
         AbstractTreeNode depNode11 = new DepInfo(11, "杭州", 6);
-
 
         AbstractTreeNode depNode20 = new DepInfo(13, "富平", 7);
         AbstractTreeNode depNode21 = new DepInfo(14, "彬县", 7);
@@ -35,7 +32,6 @@ public class TreeClent {
         AbstractTreeNode depNode32 = new DepInfo(20, "高粱", 13);
         AbstractTreeNode depNode33 = new DepInfo(21, "周至", 13);
         AbstractTreeNode depNode34 = new DepInfo(22, "乾县", 13);
-
 
         List<AbstractTreeNode> depAllNode = new ArrayList<>();
         depAllNode.add(depNode00);
@@ -63,11 +59,9 @@ public class TreeClent {
         depAllNode.add(depNode33);
         depAllNode.add(depNode34);
 
-
-
         for (int i = 0; i < 100000; i++) {
             int nextInt = new Random().nextInt(22) + 1;
-            int ran2 = (int) (Math.random() * (20000 - 20) + 20);
+            int ran2 = (int)(Math.random() * (20000 - 20) + 20);
             depAllNode.add(new DepInfo(ran2, "杭州" + i, nextInt));
         }
 
@@ -82,8 +76,6 @@ public class TreeClent {
             System.out.println(node.getDepName());
         }
 
-
     }
-
 
 }

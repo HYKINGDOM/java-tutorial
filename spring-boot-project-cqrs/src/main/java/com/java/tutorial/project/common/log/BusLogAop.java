@@ -18,11 +18,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
 
-
 /**
- *
  * 业务操作日志切面类
- *
  */
 @Slf4j
 @Aspect
@@ -33,7 +30,8 @@ public final class BusLogAop implements Ordered {
     /**
      * 定义BusLogAop的切入点为标记@BusLog注解的方法
      */
-    @Pointcut("execution(* com.java.tutorial.project.interfaces.controller..*(..)) || execution(* com.java.tutorial.project.application.service..*(..))")
+    @Pointcut(
+        "execution(* com.java.tutorial.project.interfaces.controller..*(..)) || execution(* com.java.tutorial.project.application.service..*(..))")
     public void pointcut() {
     }
 
@@ -51,7 +49,7 @@ public final class BusLogAop implements Ordered {
             result = proceedingJoinPoint.proceed();
             // 目标方法执行完成后，获取目标类、目标方法上的业务日志注解上的功能名称和功能描述
             Map<String, Object> map = new LinkedHashMap<>();
-            MethodSignature signature = (MethodSignature) proceedingJoinPoint.getSignature();
+            MethodSignature signature = (MethodSignature)proceedingJoinPoint.getSignature();
             map.put("serviceName", signature.getDeclaringTypeName());
             map.put("methodName", signature.getName());
             map.put("args", proceedingJoinPoint.getArgs());
@@ -61,7 +59,7 @@ public final class BusLogAop implements Ordered {
             throwable.printStackTrace();
             // 目标方法执行完成后，获取目标类、目标方法上的业务日志注解上的功能名称和功能描述
             Map<String, Object> map = new LinkedHashMap<>();
-            MethodSignature signature = (MethodSignature) proceedingJoinPoint.getSignature();
+            MethodSignature signature = (MethodSignature)proceedingJoinPoint.getSignature();
             map.put("declaringTypeName", signature.getDeclaringTypeName());
             map.put("name", signature.getName());
             map.put("args", proceedingJoinPoint.getArgs());

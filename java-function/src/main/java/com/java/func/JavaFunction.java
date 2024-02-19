@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 public class JavaFunction {
 
-
     public static void main(String[] args) {
         Change change01 = new Change(100L, "test01", 21, true);
         Change change02 = new Change(110L, "test02", 22, true);
@@ -24,10 +23,10 @@ public class JavaFunction {
         System.out.println(compareTesting);
     }
 
-
     public <T> boolean compareTesting(List<T> list1, List<T> list2, Function<T, Long> mapping) {
 
-        Sets.SetView<Long> difference = Sets.difference(list1.stream().map(mapping).collect(Collectors.toSet()), list2.stream().map(mapping).collect(Collectors.toSet()));
+        Sets.SetView<Long> difference = Sets.difference(list1.stream().map(mapping).collect(Collectors.toSet()),
+            list2.stream().map(mapping).collect(Collectors.toSet()));
 
         return difference.isEmpty();
 

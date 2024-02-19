@@ -22,11 +22,10 @@ public class ReverseString {
             stringBuilder.append(chars[i]);
         }
 
-
         String string = stringBuilder.toString();
         long parseLong = Long.parseLong(string);
 
-        if (-2147483648 <= parseLong && parseLong <= 2147483647){
+        if (-2147483648 <= parseLong && parseLong <= 2147483647) {
             return Integer.parseInt(string);
         }
 

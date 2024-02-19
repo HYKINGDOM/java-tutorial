@@ -6,10 +6,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 /**
- *
  * APP用户登录
- *
- *
  */
 @Setter
 @Getter
@@ -30,9 +27,7 @@ public class LoginBO {
      */
     private String code;
     /**
-     * 登录方式
-     * 1: 手机号+密码
-     * 2: 手机号+验证码
+     * 登录方式 1: 手机号+密码 2: 手机号+验证码
      */
     private String type;
 

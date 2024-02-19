@@ -1,8 +1,5 @@
 package com.java.tutorial.project.seq;
 
-
-
-
 import com.java.tutorial.project.async.callback.ICallback;
 import com.java.tutorial.project.async.callback.IWorker;
 import com.java.tutorial.project.async.executor.timer.SystemClock;
@@ -39,11 +36,13 @@ public class SeqTimeoutWorker implements IWorker<String, String>, ICallback<Stri
     @Override
     public void result(boolean success, String param, WorkResult<String> workResult) {
         if (success) {
-            System.out.println("callback worker0 success--" + SystemClock.now() + "----" + workResult.getResult()
-                    + "-threadName:" +Thread.currentThread().getName());
+            System.out.println(
+                "callback worker0 success--" + SystemClock.now() + "----" + workResult.getResult() + "-threadName:" + Thread.currentThread()
+                    .getName());
         } else {
-            System.err.println("callback worker0 failure--" + SystemClock.now() + "----"  + workResult.getResult()
-                    + "-threadName:" +Thread.currentThread().getName());
+            System.err.println(
+                "callback worker0 failure--" + SystemClock.now() + "----" + workResult.getResult() + "-threadName:" + Thread.currentThread()
+                    .getName());
         }
     }
 

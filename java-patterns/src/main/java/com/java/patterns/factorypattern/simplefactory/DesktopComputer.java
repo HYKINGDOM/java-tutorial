@@ -5,7 +5,6 @@ package com.java.patterns.factorypattern.simplefactory;
  */
 public class DesktopComputer extends BaseComputer {
 
-
     private String ram;
     private String nvidia;
     private String hdd;
@@ -17,7 +16,6 @@ public class DesktopComputer extends BaseComputer {
         this.hdd = hdd;
         this.cpu = cpu;
     }
-
 
     @Override
     public String getRAM() {

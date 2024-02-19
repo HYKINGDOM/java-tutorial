@@ -18,6 +18,52 @@ import java.util.UUID;
  */
 public class TreeSwitchList {
 
+    public static void main(String[] args) {
+        //将树转化为Map结构
+        String result = "Tree.class".toString();//抽象写法，先将树转为String
+        JSONObject jsonObject = JSONObject.parseObject(result);
+        //获取Map形式的数据。
+        Map<String, Object> objectMap = JSONObject.toJavaObject(jsonObject, Map.class);
+        //该处需要给该树的根节点添加id和pid（例如id=UUID.randomUUID().toString()，pid=0）
+        objectMap.put("pid", "0");
+        objectMap.put("id", UUID.randomUUID().toString());
+        //广度遍历解析树
+        List<Map<String, Object>> platList = breadthFirst(objectMap);
+        for (Map<String, Object> plat : platList) {
+            System.out.println(plat.toString());
+        }
+
+    }
+
+    /***
+     * 树转化为List 广度优先遍历
+     * @param root
+     * @return
+     */
+    public static List<Map<String, Object>> breadthFirst(Map<String, Object> root) {
+        List<Map<String, Object>> lists = new ArrayList<>();
+        if (root == null) {
+            return lists;
+        }
+        Queue<Map<String, Object>> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            Map<String, Object> tree = queue.poll();
+            String pid = (String)tree.get("id");
+            List<Map<String, Object>> children = (List<Map<String, Object>>)tree.get("children");
+            for (Map<String, Object> child : children) {
+                child.put("pid", pid);
+                child.put("id", UUID.randomUUID().toString());
+                queue.offer(child);
+            }
+            Map<String, Object> plat = new HashMap<>();
+            plat.put("name", tree.get("name"));
+            plat.put("pid", tree.get("pid"));
+            plat.put("id", tree.get("id"));
+            lists.add(plat);
+        }
+        return lists;
+    }
 
     private List<Map<String, Object>> selectAllTreeNode() {
         List<Map<String, Object>> resultReturn = new ArrayList<>();
@@ -69,56 +115,6 @@ public class TreeSwitchList {
 
         return resultReturn;
     }
-
-
-    public static void main(String[] args) {
-        //将树转化为Map结构
-        String result = "Tree.class".toString();//抽象写法，先将树转为String
-        JSONObject jsonObject = JSONObject.parseObject(result);
-        //获取Map形式的数据。
-        Map<String, Object> objectMap = JSONObject.toJavaObject(jsonObject, Map.class);
-        //该处需要给该树的根节点添加id和pid（例如id=UUID.randomUUID().toString()，pid=0）
-        objectMap.put("pid", "0");
-        objectMap.put("id", UUID.randomUUID().toString());
-        //广度遍历解析树
-        List<Map<String, Object>> platList = breadthFirst(objectMap);
-        for (Map<String, Object> plat : platList) {
-            System.out.println(plat.toString());
-        }
-
-    }
-
-
-    /***
-     * 树转化为List 广度优先遍历
-     * @param root
-     * @return
-     */
-    public static List<Map<String, Object>> breadthFirst(Map<String, Object> root) {
-        List<Map<String, Object>> lists = new ArrayList<>();
-        if (root == null) {
-            return lists;
-        }
-        Queue<Map<String, Object>> queue = new LinkedList<>();
-        queue.offer(root);
-        while (!queue.isEmpty()) {
-            Map<String, Object> tree = queue.poll();
-            String pid = (String) tree.get("id");
-            List<Map<String, Object>> children = (List<Map<String, Object>>) tree.get("children");
-            for (Map<String, Object> child : children) {
-                child.put("pid", pid);
-                child.put("id", UUID.randomUUID().toString());
-                queue.offer(child);
-            }
-            Map<String, Object> plat = new HashMap<>();
-            plat.put("name", tree.get("name"));
-            plat.put("pid", tree.get("pid"));
-            plat.put("id", tree.get("id"));
-            lists.add(plat);
-        }
-        return lists;
-    }
-
 
     @Test
     public void test_queue_list() {

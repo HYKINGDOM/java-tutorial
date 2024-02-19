@@ -2,13 +2,13 @@
 
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
     <!-- 属性定义 -->
-    <property name="LOG_HOME" value="../../logs/demo-schedule-quartz-group" />
-    <property name="appName" value="springboot" />
-    <property name="maxHistory" value="90" />
+    <property name="LOG_HOME" value="../../logs/demo-schedule-quartz-group"/>
+    <property name="appName" value="springboot"/>
+    <property name="maxHistory" value="90"/>
     <property name="CONSOLE_LOG_PATTERN"
               value="%d{yyyy-MM-dd HH:mm:ss} | %highlight(%-5level) | %boldYellow(%thread) | %boldGreen(%logger{50} %L\)| %msg%n"/>
     <property name="FILE_LOG_PATTERN"
-              value="%d{yyyy-MM-dd HH:mm:ss} | %-5level | %thread | %logger{50} %L\ | %msg%n" />
+              value="%d{yyyy-MM-dd HH:mm:ss} | %-5level | %thread | %logger{50} %L\ | %msg%n"/>
 
     <!-- ConsoleAppender 控制台输出日志 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -100,26 +100,26 @@
     <!--<logger name="com.ljq.test" level="info" />-->
     <!-- eg: com.ljq.test1 类的日志不输出 -->
     <!--<logger name="com.ljq.test1" additivity="false" />-->
-    <logger name="org.apache.ibatis.io" level="info" />
-    <logger name="org.mybatis.spring" level="info" />
-    <logger name="org.springframework" level="info" />
+    <logger name="org.apache.ibatis.io" level="info"/>
+    <logger name="org.mybatis.spring" level="info"/>
+    <logger name="org.springframework" level="info"/>
     <logger name="io.lettuce" level="info"/>
-    <logger name="io.netty" level="info" />
-    <logger name="com.netflix.eureka" level="warn" />
-    <logger name="org.hibernate.validator" level="info" />
-    <logger name="org.terracotta.offheapstore" level="info" />
-    <logger name="springfox.documentation" level="info" />
-    <logger name="org.apache.http" level="warn" />
-    <logger name="com.zaxxer.hikari" level="info" />
-    <logger name="org.quartz.simpl" level="info" />
+    <logger name="io.netty" level="info"/>
+    <logger name="com.netflix.eureka" level="warn"/>
+    <logger name="org.hibernate.validator" level="info"/>
+    <logger name="org.terracotta.offheapstore" level="info"/>
+    <logger name="springfox.documentation" level="info"/>
+    <logger name="org.apache.http" level="warn"/>
+    <logger name="com.zaxxer.hikari" level="info"/>
+    <logger name="org.quartz.simpl" level="info"/>
 
 
     <!-- 根日志,所有日志appender都必须包含在root/logger中,否则不会起作用 -->
     <root level="debug">
-        <appender-ref ref="STDOUT" />
-        <appender-ref ref="DEBUG" />
-        <appender-ref ref="INFO" />
-        <appender-ref ref="WARN" />
-        <appender-ref ref="ERROR" />
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="DEBUG"/>
+        <appender-ref ref="INFO"/>
+        <appender-ref ref="WARN"/>
+        <appender-ref ref="ERROR"/>
     </root>
 </configuration>

@@ -1,6 +1,5 @@
 package com.java.coco.BIExtend.domain;
 
-
 import lombok.Data;
 
 /**
@@ -9,12 +8,9 @@ import lombok.Data;
 @Data
 public abstract class ParentDomain {
 
-    public abstract Integer typeCode();
-
     private Integer UserId;
-
     private String UserName;
 
-
+    public abstract Integer typeCode();
 
 }

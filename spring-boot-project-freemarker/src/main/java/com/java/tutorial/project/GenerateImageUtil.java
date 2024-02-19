@@ -30,7 +30,6 @@ public class GenerateImageUtil {
      * @param contentMap 表格内容
      * @param desc       备注
      * @param path       保存路径
-     *
      * @throws TemplateException
      * @throws IOException
      */
@@ -53,7 +52,6 @@ public class GenerateImageUtil {
             throw new RuntimeException(e);
         }
     }
-
 
     /**
      * @param contentMap
@@ -80,13 +78,13 @@ public class GenerateImageUtil {
         }
     }
 
-
     /**
      * @param contentMap
      * @param titleTime
      * @param path
      */
-    public void createImageByTable(Map<String, List<String>> contentMap, String titleTime, String path, String fileName) {
+    public void createImageByTable(Map<String, List<String>> contentMap, String titleTime, String path,
+        String fileName) {
         Map<String, List<String>> descMap = new HashMap<>();
         List<String> descList = Lists.newArrayList(titleTime);
         descMap.put("dateTime", descList);

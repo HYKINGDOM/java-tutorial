@@ -1,10 +1,10 @@
 package com.java.patterns.observerpattern.upgradeobserve.mode;
 
-
 import com.java.patterns.observerpattern.upgradeobserve.observer.Observer;
 
 /**
  * 明天天气看板
+ *
  * @author yihur
  */
 public class ForcesConditions implements Observer {

@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class LongestPalindromeSubsequence {
 
-
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
@@ -14,7 +13,6 @@ public class LongestPalindromeSubsequence {
     }
 
     public static String initArrayMethodLongestPalindromeSubsequence(String s) {
-
 
         int num = 0;
         char[] chars = s.toCharArray();
@@ -48,7 +46,6 @@ public class LongestPalindromeSubsequence {
         if (i == j) {
             return true;
         }
-
 
         if ((j - i) == 1 && chars[i] == chars[j]) {
             return true;

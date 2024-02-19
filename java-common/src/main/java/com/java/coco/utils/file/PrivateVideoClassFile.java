@@ -19,7 +19,6 @@ import static java.util.stream.Collectors.groupingBy;
  */
 public class PrivateVideoClassFile {
 
-
     private List<String> CONSTANT_FILE_TYPE = new ArrayList<>(Arrays.asList(VIDEO_EXTENSION));
 
     public Map<Integer, List<String>> countPrivateVideoClassFile() {
@@ -47,7 +46,6 @@ public class PrivateVideoClassFile {
 
         return listMap;
     }
-
 
     public String className(String str) {
 

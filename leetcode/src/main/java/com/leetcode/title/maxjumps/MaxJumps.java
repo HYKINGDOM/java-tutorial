@@ -4,7 +4,6 @@ public class MaxJumps {
 
     public int maxJumps(int[] arr, int d) {
 
-
         return 0;
     }
 }

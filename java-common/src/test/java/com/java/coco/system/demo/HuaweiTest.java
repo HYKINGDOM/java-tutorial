@@ -1,6 +1,5 @@
 package com.java.coco.system.demo;
 
-
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -16,7 +15,6 @@ public class HuaweiTest {
         assertEquals(89, getRecursion(8));
     }
 
-
     //方法1：递归
     public int getFibonacci(int n) {
         if (n < 0)
@@ -25,7 +23,6 @@ public class HuaweiTest {
             return n;
         return getFibonacci(n - 1) + getFibonacci(n - 3);
     }
-
 
     //解法2：迭代
     public int getRecursion(int n) {
@@ -44,8 +41,7 @@ public class HuaweiTest {
         return result;
     }
 
-
-    public List<String> returnListData(){
+    public List<String> returnListData() {
         List<String> list = new ArrayList<>();
         list.add("one");
         list.add("one");
@@ -62,7 +58,7 @@ public class HuaweiTest {
     }
 
     @Test
-    public void test_list(){
+    public void test_list() {
         for (String listDatum : returnListData()) {
             System.out.println(listDatum);
         }

@@ -5,9 +5,7 @@ package com.java.coco.utils;
  */
 public class PatternUtil {
 
-    private static String ONLY_CONTAINS_NUM_AND_LETTER = "^(?=.*[0-9])(?=.*[a-zA-Z])(.{8,})$";
-
-
+    public static final String EXPORT_SYMBOL = "/[^-|^（|^）|^\\d|^\\[a-zA-Z\\]|^\\[\\u4e00-\\u9fa5\\]]/g";
     /**
      * ^[\u4e00-\u9fa5]{0,}$
      *
@@ -16,19 +14,14 @@ public class PatternUtil {
      * (?=.*[\\u54c8])
      */
     public static String MOR_CONTAINS_HA = "[\\u54c8]{1,}$";
+    private static String ONLY_CONTAINS_NUM_AND_LETTER = "^(?=.*[0-9])(?=.*[a-zA-Z])(.{8,})$";
 
-
-    public static final String EXPORT_SYMBOL = "/[^-|^（|^）|^\\d|^\\[a-zA-Z\\]|^\\[\\u4e00-\\u9fa5\\]]/g";
-
-    public static boolean isOnlyExportSymbol(String str){
+    public static boolean isOnlyExportSymbol(String str) {
         return str.matches(EXPORT_SYMBOL);
     }
 
-
-    public boolean isOnlyCONTAINSNUMANDLETTER(String str){
+    public boolean isOnlyCONTAINSNUMANDLETTER(String str) {
         return str.matches(ONLY_CONTAINS_NUM_AND_LETTER);
     }
-
-
 
 }

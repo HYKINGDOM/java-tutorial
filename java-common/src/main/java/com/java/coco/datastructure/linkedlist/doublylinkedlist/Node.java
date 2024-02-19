@@ -2,6 +2,7 @@ package com.java.coco.datastructure.linkedlist.doublylinkedlist;
 
 /**
  * 双向链表
+ *
  * @author HY
  */
 public class Node {
@@ -13,7 +14,6 @@ public class Node {
     private Node prev;
 
     private Node next;
-
 
     public int getKey() {
         return key;

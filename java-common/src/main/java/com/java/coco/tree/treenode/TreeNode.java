@@ -30,16 +30,16 @@ public interface TreeNode<T> {
     boolean root();
 
     /**
-     * 设置节点的子节点列表
-     *
-     * @param children 子节点
-     */
-    void setChildren(List<? extends TreeNode<T>> children);
-
-    /**
      * 获取所有子节点
      *
      * @return 子节点列表
      */
     List<? extends TreeNode<T>> getChildren();
+
+    /**
+     * 设置节点的子节点列表
+     *
+     * @param children 子节点
+     */
+    void setChildren(List<? extends TreeNode<T>> children);
 }

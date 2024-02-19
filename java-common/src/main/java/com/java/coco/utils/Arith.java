@@ -61,8 +61,7 @@ public class Arith {
     }
 
     /**
-     * 提供（相对）精确的除法运算，当发生除不尽的情况时，精确到
-     * 小数点以后10位，以后的数字四舍五入。
+     * 提供（相对）精确的除法运算，当发生除不尽的情况时，精确到 小数点以后10位，以后的数字四舍五入。
      *
      * @param v1 被除数
      * @param v2 除数
@@ -73,8 +72,7 @@ public class Arith {
     }
 
     /**
-     * 提供（相对）精确的除法运算。当发生除不尽的情况时，由scale参数指
-     * 定精度，以后的数字四舍五入。
+     * 提供（相对）精确的除法运算。当发生除不尽的情况时，由scale参数指 定精度，以后的数字四舍五入。
      *
      * @param v1    被除数
      * @param v2    除数
@@ -83,8 +81,7 @@ public class Arith {
      */
     public static double div(double v1, double v2, int scale) {
         if (scale < 0) {
-            throw new IllegalArgumentException(
-                    "The scale must be a positive integer or zero");
+            throw new IllegalArgumentException("The scale must be a positive integer or zero");
         }
         BigDecimal b1 = BigDecimal.valueOf(v1);
         BigDecimal b2 = BigDecimal.valueOf(v2);
@@ -103,8 +100,7 @@ public class Arith {
      */
     public static double round(double v, int scale) {
         if (scale < 0) {
-            throw new IllegalArgumentException(
-                    "The scale must be a positive integer or zero");
+            throw new IllegalArgumentException("The scale must be a positive integer or zero");
         }
         BigDecimal b = BigDecimal.valueOf(v);
         BigDecimal one = new BigDecimal("1");

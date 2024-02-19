@@ -1,6 +1,5 @@
 package com.java.tutorial.project.config.filter.config;
 
-
 import com.java.tutorial.project.config.filter.HttpMonitorFilter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -13,7 +12,6 @@ import javax.annotation.Resource;
 @Configuration
 public class MonitorConfiguration {
     private static final Log log = LogFactory.getLog(MonitorConfiguration.class);
-
 
     @Resource
     private MonitorProperties monitorProperties;

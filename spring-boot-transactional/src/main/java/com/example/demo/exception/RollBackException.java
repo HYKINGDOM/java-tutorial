@@ -7,9 +7,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Setter
 @Getter
-public class RollBackException extends RuntimeException{
+public class RollBackException extends RuntimeException {
 
     private String message;
-
 
 }

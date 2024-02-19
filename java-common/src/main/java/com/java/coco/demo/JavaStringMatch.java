@@ -6,9 +6,63 @@ import java.util.List;
 public class JavaStringMatch {
 
     private final static String UNDER_LINE = "_";
+    private List<String> list = new ArrayList<>();
 
     public static void main(String[] args) {
         new JavaStringMatch().go();
+    }
+
+    //递归查找字符串中指定字符出现的次数
+    public static int searchEleNum(String str, String targetEle) {    //参数为字符串和指定字符
+
+        if (str.indexOf(targetEle) == -1) {
+            return 0;
+        } else {
+            //从当前找到位置的下一个位置下标开始，截取字符串，再进行递归Enum
+            return 1 + searchEleNum(str.substring(str.indexOf(targetEle) + 1), targetEle);
+        }
+    }
+
+    //递归替换，将母字符串的目标字符串，替换成指定字符串
+    public static String replaceAll(String parent, String targetEle, String replaceEle) {
+
+        //当目标元素不存在时，返回母字符串
+        if (parent.indexOf(targetEle) == -1) {
+
+            return parent;
+        } else {                    //目标元素存在时，采用截取的方式进行递归
+
+            //获取目标元素开始下标
+            int beginIndex = parent.indexOf(targetEle);
+            //获取目标元素结束位置的下一位置下标
+            int endIndex = beginIndex + targetEle.length();
+
+            //采用递归的方法，截取目标元素在parent中的前面字符串 + 替换字符串 + 目标元素在parent中的后面字符串递归
+            //注意：substring()方法，当有两个参数时，后者所表示下标元素取不到
+            return parent.substring(0, beginIndex) + replaceEle + replaceAll(parent.substring(endIndex), targetEle,
+                replaceEle);
+        }
+
+    }
+
+    //判断email地址是否合法
+    public static boolean ifEmeil(String email) {
+
+        //字符串不为空
+        if (email != null && !"".equals(email)) {
+
+            //采用正则验证邮箱地址合法性
+            if (email.matches(
+                "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$")) {
+
+                return true;
+            } else {
+
+                return false;
+            }
+        }
+
+        return false;
     }
 
     private void go() {
@@ -26,9 +80,6 @@ public class JavaStringMatch {
         System.out.println(substring);
         System.out.println(matchStr(input, str, 0, 0));
     }
-
-    private List<String> list = new ArrayList<>();
-
 
     private List<String> matchStr(String matchStr, String str, int start, int index) {
         int i = matchStr.indexOf(UNDER_LINE, index);
@@ -51,7 +102,6 @@ public class JavaStringMatch {
         return list;
     }
 
-
     /**
      * 把要解析的字符串传进去并进行解析
      */
@@ -67,61 +117,6 @@ public class JavaStringMatch {
         }
         return phoneStr;
     }
-
-
-    //递归查找字符串中指定字符出现的次数
-    public static int searchEleNum(String str, String targetEle) {    //参数为字符串和指定字符
-
-        if (str.indexOf(targetEle) == -1) {
-            return 0;
-        } else {
-            //从当前找到位置的下一个位置下标开始，截取字符串，再进行递归Enum
-            return 1 + searchEleNum(str.substring(str.indexOf(targetEle) + 1), targetEle);
-        }
-    }
-
-
-    //递归替换，将母字符串的目标字符串，替换成指定字符串
-    public static String replaceAll(String parent, String targetEle, String replaceEle) {
-
-        //当目标元素不存在时，返回母字符串
-        if (parent.indexOf(targetEle) == -1) {
-
-            return parent;
-        } else {                    //目标元素存在时，采用截取的方式进行递归
-
-            //获取目标元素开始下标
-            int beginIndex = parent.indexOf(targetEle);
-            //获取目标元素结束位置的下一位置下标
-            int endIndex = beginIndex + targetEle.length();
-
-            //采用递归的方法，截取目标元素在parent中的前面字符串 + 替换字符串 + 目标元素在parent中的后面字符串递归
-            //注意：substring()方法，当有两个参数时，后者所表示下标元素取不到
-            return parent.substring(0, beginIndex) + replaceEle +
-                    replaceAll(parent.substring(endIndex), targetEle, replaceEle);
-        }
-
-    }
-
-    //判断email地址是否合法
-    public static boolean ifEmeil(String email) {
-
-        //字符串不为空
-        if (email != null && !"".equals(email)) {
-
-            //采用正则验证邮箱地址合法性
-            if (email.matches("^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$")) {
-
-                return true;
-            } else {
-
-                return false;
-            }
-        }
-
-        return false;
-    }
-
 
     /**
      * 便利解析结果集，并且把第一个符合电话号码的串取出来

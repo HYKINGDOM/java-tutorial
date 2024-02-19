@@ -1,6 +1,5 @@
 package com.java.patterns.commandpattern.recommend.command;
 
-
 import com.java.patterns.commandpattern.recommend.device.Light;
 import com.java.patterns.commandpattern.recommend.device.Stereo;
 
@@ -17,7 +16,6 @@ public class ControlTest {
         Light bedroomlight = new Light("BedRoom");
         Light kitchlight = new Light("Kitch");
         Stereo stereo = new Stereo();
-
 
         LightOnCommand bedroomlighton = new LightOnCommand(bedroomlight);
         LightOffCommand bedroomlightoff = new LightOffCommand(bedroomlight);

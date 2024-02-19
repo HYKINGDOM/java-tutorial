@@ -19,7 +19,6 @@ import static com.java.coco.utils.file.util.FilesUtil.fileFromDirectoryToFiles;
  */
 public abstract class FileArrange {
 
-
     public Map<String, List<File>> fileFromDirectoryToFiles = new HashMap<>();
 
     private String rootPath;
@@ -75,12 +74,10 @@ public abstract class FileArrange {
         getAllFile(rootPath);
     }
 
-
     /**
      * 各不同类型的文件做特殊处理
      */
     public abstract void fileDetailHandle();
-
 
     /**
      * 创建文件夹
@@ -90,20 +87,17 @@ public abstract class FileArrange {
         arrangeDirector = createDirector(path, fileFromDirectoryToFiles);
     }
 
-
     /**
      * 业务分类放到不同的文件夹
      */
     public void fileGroupHandle() {
         System.out.println("业务分类放到不同的文件夹");
 
-
         for (Map.Entry<String, List<File>> stringListEntry : fileFromDirectoryToFiles.entrySet()) {
 
         }
 
     }
-
 
     /**
      * 清理空文件夹

@@ -15,6 +15,7 @@ import com.java.tutorial.project.common.vo.MessageVo;
 import com.java.tutorial.project.service.ConnectionInfoService;
 import com.java.tutorial.project.service.MessageService;
 import com.java.tutorial.project.service.SseEmitterService;
+
 import java.io.IOException;
 import java.util.Date;
 import java.util.Map;
@@ -23,6 +24,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
 import javax.annotation.Resource;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -32,17 +34,16 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 @Slf4j
 public class SseEmitterServiceImpl implements SseEmitterService {
 
-    @Resource
-    private MsgClient msgClient;
-    @Resource
-    private ConnectionInfoService connectionInfoService;
-
-    @Resource
-    private MessageService messageService;
     /**
      * 容器，保存连接，用于输出返回 ;可使用其他方法实现
      */
     private static final Map<String, SseEmitter> sseCache = new ConcurrentHashMap<>();
+    @Resource
+    private MsgClient msgClient;
+    @Resource
+    private ConnectionInfoService connectionInfoService;
+    @Resource
+    private MessageService messageService;
 
     /**
      * 根据客户端id获取SseEmitter对象

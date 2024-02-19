@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class IntToRomanTest {
 
@@ -14,7 +13,6 @@ class IntToRomanTest {
     public void init_class() {
         intToRoman = new IntToRoman();
     }
-
 
     @Test
     public void test_main_01() {

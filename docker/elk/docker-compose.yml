@@ -1,33 +1,33 @@
 version: "3.8"
 services:
 
-#  logstash:
-#    image: logstash:${ELK_VERSION}
-#    container_name: logstash-${ELK_VERSION}
-#    environment:
-#      - TZ=Asia/Shanghai
-#    depends_on:
-#      - elasticsearch
-#    volumes:
-#      - ./config/logstash/pipeline/:/usr/share/logstash/pipeline/
-#      - ./config/logstash/config/:/usr/share/logstash/config
-#      - ./config/logstash/db_geoLite2_city/:/usr/share/logstash/db_geoLite2_city
-      # 被采集的日志文件往往要求都是实时性的，所以必须映射目录，不要映射文件，否则文件变化 logstash 不会实时采集，只有每次启动的时候才会采集
-      # - /home/wwwlogs/project2021/test.log:/usr/share/wwwlogs/project2021/test.log # 该方式当文件发生变化时，logstash 不会实时采集，原因参见避坑指南链接 ↓ ↓ ↓
-#      - /home/wwwlogs/project2021/:/usr/share/wwwlogs/project2021/
+  #  logstash:
+  #    image: logstash:${ELK_VERSION}
+  #    container_name: logstash-${ELK_VERSION}
+  #    environment:
+  #      - TZ=Asia/Shanghai
+  #    depends_on:
+  #      - elasticsearch
+  #    volumes:
+  #      - ./config/logstash/pipeline/:/usr/share/logstash/pipeline/
+  #      - ./config/logstash/config/:/usr/share/logstash/config
+  #      - ./config/logstash/db_geoLite2_city/:/usr/share/logstash/db_geoLite2_city
+  # 被采集的日志文件往往要求都是实时性的，所以必须映射目录，不要映射文件，否则文件变化 logstash 不会实时采集，只有每次启动的时候才会采集
+  # - /home/wwwlogs/project2021/test.log:/usr/share/wwwlogs/project2021/test.log # 该方式当文件发生变化时，logstash 不会实时采集，原因参见避坑指南链接 ↓ ↓ ↓
+  #      - /home/wwwlogs/project2021/:/usr/share/wwwlogs/project2021/
 
   filebeat:
     container_name: filebeat
     image: elastic/filebeat:${ELK_VERSION}
     volumes:
       - ./config/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
-#      - ./logs/filebeat:/usr/share/filebeat/logs
+      #      - ./logs/filebeat:/usr/share/filebeat/logs
       - F:/NewProject/java-util/logs/:/usr/share/filebeat/logs
-#    command: /bin/bash -c "/usr/share/filebeat modules enable elasticsearch"
-#    command: /bin/bash -c 'export PATH=$PATH:/usr/share/filebeat && /usr/local/bin/docker-entrypoint -e'
-#    command:  chmod -rwxrwxrwx filebeat.yml
-#      - 'ls'
-#      - 'chmod 755 /usr/share/filebeat/filebeat.yml'
+    #    command: /bin/bash -c "/usr/share/filebeat modules enable elasticsearch"
+    #    command: /bin/bash -c 'export PATH=$PATH:/usr/share/filebeat && /usr/local/bin/docker-entrypoint -e'
+    #    command:  chmod -rwxrwxrwx filebeat.yml
+    #      - 'ls'
+    #      - 'chmod 755 /usr/share/filebeat/filebeat.yml'
     environment:
       - "SELINUX=permissive"
       - "SELINUXTYPE=targeted"

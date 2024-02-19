@@ -1,6 +1,5 @@
 package com.java.tutorial.project.controller;
 
-
 import com.java.tutorial.project.funcmodel.AccountService;
 import com.java.tutorial.project.service.CustomizeRetryService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +20,6 @@ public class TestController {
     @Resource
     private List<AccountService<String>> accountServices;
 
-
     @Resource
     private AccountService<Integer> accountService;
 
@@ -32,21 +30,15 @@ public class TestController {
 
     }
 
-
     @GetMapping(value = "/demo01")
-    public String test01(@RequestParam String type){
+    public String test01(@RequestParam String type) {
         String accountType = "manager_type";
-        return accountServices
-                .stream()
-                .filter(e -> e.isAccountType(type))
-                .findFirst()
-                .orElseThrow(RuntimeException::new)
-                .getAccountName(accountType);
+        return accountServices.stream().filter(e -> e.isAccountType(type)).findFirst()
+            .orElseThrow(RuntimeException::new).getAccountName(accountType);
     }
 
-
     @GetMapping(value = "/demo02")
-    public String test02(@RequestParam Integer type){
+    public String test02(@RequestParam Integer type) {
         String accountType = "manager_type";
         return accountService.getAccountName(type);
     }

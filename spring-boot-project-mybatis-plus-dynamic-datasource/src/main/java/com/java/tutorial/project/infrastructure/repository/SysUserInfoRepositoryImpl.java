@@ -10,7 +10,6 @@ import com.java.tutorial.project.infrastructure.mapper.SysUserInfoMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
 /**
  * @author hy
  */
@@ -19,7 +18,6 @@ public class SysUserInfoRepositoryImpl implements SysUserInfoRepository {
 
     @Autowired
     private SysUserInfoDao sysUserInfoDao;
-
 
     @Autowired
     private SysUserInfoMapping sysUserInfoMapping;
@@ -59,7 +57,8 @@ public class SysUserInfoRepositoryImpl implements SysUserInfoRepository {
     public SysUserInfo update(SysUserInfo sysUserInfo) {
         SysUserInfoEntity sysUserInfoEntity = sysUserInfoMapping.toSysUserInfoEntity(sysUserInfo);
         //1. 根据条件动态更新
-        LambdaUpdateChainWrapper<SysUserInfoEntity> chainWrapper = new LambdaUpdateChainWrapper<SysUserInfoEntity>(sysUserInfoDao);
+        LambdaUpdateChainWrapper<SysUserInfoEntity> chainWrapper =
+            new LambdaUpdateChainWrapper<SysUserInfoEntity>(sysUserInfoDao);
         if (StrUtil.isNotBlank(sysUserInfoEntity.getNikeName())) {
             chainWrapper.eq(SysUserInfoEntity::getNikeName, sysUserInfoEntity.getNikeName());
         }

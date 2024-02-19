@@ -1,14 +1,9 @@
 package com.java.data.config;
 
-
 import com.java.data.controller.request.UserRequest;
-import org.hibernate.validator.internal.engine.constraintvalidation.ConstraintValidatorContextImpl;
-
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import javax.validation.Payload;
-import java.util.Set;
 
 public class UserValidHandle implements ConstraintValidator<UserValid, UserRequest> {
 

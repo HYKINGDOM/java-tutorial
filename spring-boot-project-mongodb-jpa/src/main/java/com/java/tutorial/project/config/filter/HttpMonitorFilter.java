@@ -1,6 +1,5 @@
 package com.java.tutorial.project.config.filter;
 
-
 import com.java.tutorial.project.config.filter.config.MonitorProperties;
 import com.java.tutorial.project.config.filter.wrapper.HttpRequestWrapper;
 import com.java.tutorial.project.config.filter.wrapper.HttpResponseWrapper;
@@ -31,8 +30,6 @@ public class HttpMonitorFilter implements Filter {
 
     private final MonitorProperties properties;
 
-
-
     public HttpMonitorFilter(MonitorProperties properties) {
         this.properties = properties;
     }
@@ -46,12 +43,13 @@ public class HttpMonitorFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
+        throws IOException, ServletException {
         if (!properties.isEnabled()) {
             return;
         }
-        HttpServletRequest request = (HttpServletRequest) servletRequest;
-        HttpServletResponse response = (HttpServletResponse) servletResponse;
+        HttpServletRequest request = (HttpServletRequest)servletRequest;
+        HttpServletResponse response = (HttpServletResponse)servletResponse;
         // 跳过的url
         if (skipUrl(request.getRequestURI())) {
             filterChain.doFilter(request, response);
@@ -66,13 +64,14 @@ public class HttpMonitorFilter implements Filter {
             String reqParam = getReqParam(wrapperRequest);
             String traceId = getTraceId(wrapperRequest);
             // 放置日志控件域对象中
-            log.info("ip:[{}],url:[{}],traceId:[{}],reqParam:[{}]", clientIp, url,traceId, reqParam);
+            log.info("ip:[{}],url:[{}],traceId:[{}],reqParam:[{}]", clientIp, url, traceId, reqParam);
             long startTime = System.currentTimeMillis();
             filterChain.doFilter(wrapperRequest, wrapperResponse);
-            response.setHeader("Constant.DEFAULT_TRACE_ID",traceId);
+            response.setHeader("Constant.DEFAULT_TRACE_ID", traceId);
             long elapsed = System.currentTimeMillis() - startTime;
             String res = wrapperResponse.getContent();
-            log.info("ip:[{}],url:[{}],traceId:[{}],response:[{}],elapsed:[{}]ms", clientIp, url,traceId,res,elapsed);
+            log.info("ip:[{}],url:[{}],traceId:[{}],response:[{}],elapsed:[{}]ms", clientIp, url, traceId, res,
+                elapsed);
             servletOutputStream.write(res.getBytes());
         } catch (Exception e) {
             filterChain.doFilter(request, response);
@@ -106,11 +105,11 @@ public class HttpMonitorFilter implements Filter {
      * 获取traceID
      */
     private String getTraceId(HttpRequestWrapper request) {
-//        if (!StringUtils.isEmpty(request.getHeader(Constant.DEFAULT_TRACE_ID))) {
-//            return request.getHeader(Constant.DEFAULT_TRACE_ID);
-//        }
-//        String traceId = TraceIDUtil.createTraceId();
-//        request.addHeader(Constant.DEFAULT_TRACE_ID, traceId);
+        //        if (!StringUtils.isEmpty(request.getHeader(Constant.DEFAULT_TRACE_ID))) {
+        //            return request.getHeader(Constant.DEFAULT_TRACE_ID);
+        //        }
+        //        String traceId = TraceIDUtil.createTraceId();
+        //        request.addHeader(Constant.DEFAULT_TRACE_ID, traceId);
         return "traceId";
     }
 
@@ -142,7 +141,7 @@ public class HttpMonitorFilter implements Filter {
                 break;
             }
         }
-        if(checkVal.contains("import")){
+        if (checkVal.contains("import")) {
             return true;
         }
         return result;

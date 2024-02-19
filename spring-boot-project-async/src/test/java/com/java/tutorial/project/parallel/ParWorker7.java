@@ -17,6 +17,7 @@ public class ParWorker7 implements IWorker<String, String>, ICallback<String, St
     public void setSleepTime(long sleepTime) {
         this.sleepTime = sleepTime;
     }
+
     @Override
     public String action(String object, Map<String, WorkerWrapper> allWrappers) {
         try {
@@ -26,7 +27,6 @@ public class ParWorker7 implements IWorker<String, String>, ICallback<String, St
         }
         return "result = " + SystemClock.now() + "---param = " + object + " from 3";
     }
-
 
     @Override
     public String defaultValue() {
@@ -41,11 +41,13 @@ public class ParWorker7 implements IWorker<String, String>, ICallback<String, St
     @Override
     public void result(boolean success, String param, WorkResult<String> workResult) {
         if (success) {
-            System.out.println("callback worker3 success--" + SystemClock.now() + "----workResult: " + workResult.getResult() + "param: " + param
-                    + "-threadName:" +Thread.currentThread().getName());
+            System.out.println(
+                "callback worker3 success--" + SystemClock.now() + "----workResult: " + workResult.getResult() + "param: " + param + "-threadName:" + Thread.currentThread()
+                    .getName());
         } else {
-            System.err.println("callback worker3 failure--" + SystemClock.now() + "----workResult: " + workResult.getResult() + "param: " + param
-                    + "-threadName:" +Thread.currentThread().getName());
+            System.err.println(
+                "callback worker3 failure--" + SystemClock.now() + "----workResult: " + workResult.getResult() + "param: " + param + "-threadName:" + Thread.currentThread()
+                    .getName());
         }
     }
 

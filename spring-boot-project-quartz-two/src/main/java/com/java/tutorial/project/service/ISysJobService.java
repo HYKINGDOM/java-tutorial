@@ -1,6 +1,5 @@
 package com.java.tutorial.project.service;
 
-
 import com.java.tutorial.project.domain.SysJob;
 import com.java.tutorial.project.exception.job.TaskException;
 import org.quartz.SchedulerException;

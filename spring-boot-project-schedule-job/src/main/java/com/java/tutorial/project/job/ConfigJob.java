@@ -7,10 +7,8 @@ import org.springframework.scheduling.annotation.Scheduled;
  */
 public class ConfigJob {
 
-
-
     @Scheduled
-    public void processJob(){
+    public void processJob() {
 
     }
 }

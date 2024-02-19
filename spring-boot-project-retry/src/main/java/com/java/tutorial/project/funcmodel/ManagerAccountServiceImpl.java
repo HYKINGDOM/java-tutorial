@@ -1,6 +1,5 @@
 package com.java.tutorial.project.funcmodel;
 
-
 import cn.hutool.core.util.RandomUtil;
 import org.springframework.stereotype.Component;
 

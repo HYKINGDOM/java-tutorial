@@ -1,6 +1,5 @@
 package com.java.coco.domian;
 
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,6 +1,5 @@
 package com.java.tutorial.project.config;
 
-
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.stereotype.Component;
@@ -16,12 +15,10 @@ import java.util.Optional;
 @Component
 public class MybatisPlusMetaObjectHandler implements MetaObjectHandler {
 
-
     /**
      * 默认操作人
      */
     private static final String DEFAULT_OPERATOR = "SystemAdmin";
-
 
     @Override
     public void insertFill(MetaObject metaObject) {

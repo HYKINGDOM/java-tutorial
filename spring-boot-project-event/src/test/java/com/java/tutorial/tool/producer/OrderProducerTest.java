@@ -21,10 +21,7 @@ class OrderProducerTest {
 
     @Test
     public void when_send_order_id_should_listener_order_id_then_listener_throw_exception() {
-        Assertions
-                .assertThatThrownBy(() -> orderProducer.sendMessage("test"))
-                .isInstanceOf(RuntimeException.class);
+        Assertions.assertThatThrownBy(() -> orderProducer.sendMessage("test")).isInstanceOf(RuntimeException.class);
     }
-
 
 }

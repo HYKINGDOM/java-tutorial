@@ -3,9 +3,7 @@ package com.java.tutorial.project.common.kits;
 import org.springframework.util.StringUtils;
 
 /**
- *
  * 字符串工具类
- *
  */
 public final class StrKit extends StringUtils {
 

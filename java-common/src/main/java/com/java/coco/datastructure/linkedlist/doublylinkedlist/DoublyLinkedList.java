@@ -72,9 +72,7 @@ public class DoublyLinkedList {
             return this;
         }
 
-
         return this;
     }
-
 
 }

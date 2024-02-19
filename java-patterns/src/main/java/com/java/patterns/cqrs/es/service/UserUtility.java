@@ -1,7 +1,5 @@
 package com.java.patterns.cqrs.es.service;
 
-
-
 import com.java.patterns.cqrs.domain.Address;
 import com.java.patterns.cqrs.domain.Contact;
 import com.java.patterns.cqrs.domain.User;
@@ -24,37 +22,32 @@ public class UserUtility {
         List<Event> events = store.getEvents(userId);
         for (Event event : events) {
             if (event instanceof UserCreatedEvent) {
-                UserCreatedEvent e = (UserCreatedEvent) event;
-                user = new User(UUID.randomUUID()
-                    .toString(), e.getFirstName(), e.getLastName());
+                UserCreatedEvent e = (UserCreatedEvent)event;
+                user = new User(UUID.randomUUID().toString(), e.getFirstName(), e.getLastName());
             }
             if (event instanceof UserAddressAddedEvent) {
-                UserAddressAddedEvent e = (UserAddressAddedEvent) event;
+                UserAddressAddedEvent e = (UserAddressAddedEvent)event;
                 Address address = new Address(e.getCity(), e.getState(), e.getPostCode());
                 if (user != null)
-                    user.getAddresses()
-                        .add(address);
+                    user.getAddresses().add(address);
             }
             if (event instanceof UserAddressRemovedEvent) {
-                UserAddressRemovedEvent e = (UserAddressRemovedEvent) event;
+                UserAddressRemovedEvent e = (UserAddressRemovedEvent)event;
                 Address address = new Address(e.getCity(), e.getState(), e.getPostCode());
                 if (user != null)
-                    user.getAddresses()
-                        .remove(address);
+                    user.getAddresses().remove(address);
             }
             if (event instanceof UserContactAddedEvent) {
-                UserContactAddedEvent e = (UserContactAddedEvent) event;
+                UserContactAddedEvent e = (UserContactAddedEvent)event;
                 Contact contact = new Contact(e.getContactType(), e.getContactDetails());
                 if (user != null)
-                    user.getContacts()
-                        .add(contact);
+                    user.getContacts().add(contact);
             }
             if (event instanceof UserContactRemovedEvent) {
-                UserContactRemovedEvent e = (UserContactRemovedEvent) event;
+                UserContactRemovedEvent e = (UserContactRemovedEvent)event;
                 Contact contact = new Contact(e.getContactType(), e.getContactDetails());
                 if (user != null)
-                    user.getContacts()
-                        .remove(contact);
+                    user.getContacts().remove(contact);
             }
         }
 

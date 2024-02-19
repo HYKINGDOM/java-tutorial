@@ -4,9 +4,7 @@ public class Test2 {
 
     private String nicename;
 
-
     private int hight;
-
 
     public String getNicename() {
         return nicename;

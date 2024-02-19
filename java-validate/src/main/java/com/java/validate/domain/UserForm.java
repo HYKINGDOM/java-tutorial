@@ -19,13 +19,13 @@ public class UserForm {
     /**
      * 类型
      */
-    @NotEmpty(message = "姓名不能为空" , groups = {Insert.class})
+    @NotEmpty(message = "姓名不能为空", groups = {Insert.class})
     private String name;
 
     /**
      * 年龄
      */
-    @NotEmpty(message = "年龄不能为空" , groups = {Insert.class})
+    @NotEmpty(message = "年龄不能为空", groups = {Insert.class})
     private String age;
 
 }

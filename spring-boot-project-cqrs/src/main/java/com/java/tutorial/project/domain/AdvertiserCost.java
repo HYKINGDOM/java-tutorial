@@ -8,7 +8,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -308,7 +307,6 @@ public class AdvertiserCost {
      * 是否同步本省消耗
      */
     private Integer isSyncActual;
-
 
 }
 

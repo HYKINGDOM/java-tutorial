@@ -1,6 +1,5 @@
 package com.java.tutorial.project.infrastucture.entity;
 
-
 import lombok.Builder;
 import lombok.Data;
 
@@ -9,7 +8,6 @@ import lombok.Data;
  */
 @Data
 @Builder
-@Ta
 public class OrderEntity {
 
     Long id;

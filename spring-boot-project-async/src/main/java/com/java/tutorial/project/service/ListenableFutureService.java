@@ -14,13 +14,10 @@ import java.util.concurrent.Executors;
 
 import static cn.hutool.core.util.NumberUtil.factorial;
 
-
 @Component
 public class ListenableFutureService {
 
     private ExecutorService asyncTaskExecutor;
-
-
 
     @Cacheable
     public void setAsyncTaskExecutor(ExecutorService asyncTaskExecutor) {
@@ -29,7 +26,6 @@ public class ListenableFutureService {
 
     public void listenableFuture() throws ExecutionException, InterruptedException {
         ExecutorService threadpool = Executors.newCachedThreadPool();
-
 
         ListeningExecutorService service = MoreExecutors.listeningDecorator(threadpool);
 

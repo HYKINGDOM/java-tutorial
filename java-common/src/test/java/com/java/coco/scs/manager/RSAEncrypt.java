@@ -9,7 +9,12 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import java.nio.charset.StandardCharsets;
-import java.security.*;
+import java.security.InvalidKeyException;
+import java.security.KeyFactory;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.InvalidKeySpecException;
@@ -27,7 +32,6 @@ public class RSAEncrypt {
 
     private static Logger logger = LoggerFactory.getLogger(RSAEncrypt.class);
 
-
     /**
      * 用于封装随机产生的公钥与私钥
      *
@@ -38,20 +42,15 @@ public class RSAEncrypt {
      */
     private static Map<Integer, String> keyMap = new HashMap<>();
 
-
     /**
      * 测试方法
      *
      * @param args
      * @return void
-     * <p>
-     * <p>
-     * 前端用crypto-js进行加密，
-     * npm i jsencrypt，
-     * 然后页面头引入import JSEncrypt from 'jsencrypt';
-     * const encrypt = new JSEncrypt();
-     * encrypt.setPublicKey('你的公钥');
-     * password = encrypt.encrypt(‘你的密码’);// 加密后的字符串
+     *     <p>
+     *     <p>
+     *     前端用crypto-js进行加密， npm i jsencrypt， 然后页面头引入import JSEncrypt from 'jsencrypt'; const encrypt = new JSEncrypt();
+     *     encrypt.setPublicKey('你的公钥'); password = encrypt.encrypt(‘你的密码’);// 加密后的字符串
      * @author yihur
      * @date 2019/4/4
      */
@@ -90,8 +89,8 @@ public class RSAEncrypt {
         keyPairGen.initialize(1024, new SecureRandom());
         // 生成一个密钥对，保存在keyPair中
         KeyPair keyPair = keyPairGen.generateKeyPair();
-        RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();   // 得到私钥
-        RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();  // 得到公钥
+        RSAPrivateKey privateKey = (RSAPrivateKey)keyPair.getPrivate();   // 得到私钥
+        RSAPublicKey publicKey = (RSAPublicKey)keyPair.getPublic();  // 得到公钥
         String publicKeyString = new String(Base64.encodeBase64(publicKey.getEncoded()));
         // 得到私钥字符串
         String privateKeyString = new String(Base64.encodeBase64((privateKey.getEncoded())));
@@ -113,11 +112,12 @@ public class RSAEncrypt {
         RSAPublicKey pubKey = null;
         String outStr = null;
         try {
-            pubKey = (RSAPublicKey) KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(decoded));
+            pubKey = (RSAPublicKey)KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(decoded));
             Cipher cipher = Cipher.getInstance("RSA");
             cipher.init(Cipher.ENCRYPT_MODE, pubKey);
             outStr = Base64.encodeBase64String(cipher.doFinal(str.getBytes(StandardCharsets.UTF_8)));
-        } catch (InvalidKeySpecException | BadPaddingException | IllegalBlockSizeException | InvalidKeyException | NoSuchPaddingException | NoSuchAlgorithmException e) {
+        } catch (InvalidKeySpecException | BadPaddingException | IllegalBlockSizeException | InvalidKeyException |
+            NoSuchPaddingException | NoSuchAlgorithmException e) {
             e.printStackTrace();
             logger.info(e.getMessage());
         }
@@ -142,11 +142,12 @@ public class RSAEncrypt {
         Cipher cipher = null;
         String outStr = null;
         try {
-            priKey = (RSAPrivateKey) KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(decoded));
+            priKey = (RSAPrivateKey)KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(decoded));
             cipher = Cipher.getInstance("RSA");
             cipher.init(Cipher.DECRYPT_MODE, priKey);
             outStr = new String(cipher.doFinal(inputByte));
-        } catch (InvalidKeySpecException | NoSuchAlgorithmException | NoSuchPaddingException | BadPaddingException | IllegalBlockSizeException | InvalidKeyException e) {
+        } catch (InvalidKeySpecException | NoSuchAlgorithmException | NoSuchPaddingException | BadPaddingException |
+            IllegalBlockSizeException | InvalidKeyException e) {
             e.printStackTrace();
             logger.info(e.getMessage());
         }

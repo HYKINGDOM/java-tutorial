@@ -1,6 +1,5 @@
 package com.java.tutorial.project.util;
 
-
 import com.java.tutorial.project.domain.SysJob;
 
 import java.lang.reflect.InvocationTargetException;
@@ -42,8 +41,8 @@ public class JobInvokeUtil {
      * @param methodParams 方法参数
      */
     private static void invokeMethod(Object bean, String methodName, List<Object[]> methodParams)
-            throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException,
-            InvocationTargetException {
+        throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException,
+        InvocationTargetException {
         if (StringUtils.isNotNull(methodParams) && !methodParams.isEmpty()) {
             Method method = bean.getClass().getMethod(methodName, getMethodParamsType(methodParams));
             method.invoke(bean, getMethodParamsValue(methodParams));
@@ -135,7 +134,7 @@ public class JobInvokeUtil {
         Class<?>[] classs = new Class<?>[methodParams.size()];
         int index = 0;
         for (Object[] os : methodParams) {
-            classs[index] = (Class<?>) os[1];
+            classs[index] = (Class<?>)os[1];
             index++;
         }
         return classs;
@@ -151,7 +150,7 @@ public class JobInvokeUtil {
         Object[] classs = new Object[methodParams.size()];
         int index = 0;
         for (Object[] os : methodParams) {
-            classs[index] = (Object) os[0];
+            classs[index] = (Object)os[0];
             index++;
         }
         return classs;

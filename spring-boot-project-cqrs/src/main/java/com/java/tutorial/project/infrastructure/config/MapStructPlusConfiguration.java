@@ -10,7 +10,9 @@ import io.github.linpeilie.annotations.MapperConfig;
  */
 @Component
 @ComponentModelConfig
-@MapperConfig(mapperPackage = "com.sdnc.trade.application.assembler", adapterPackage = "com.sdnc.trade.application.adapter", adapterClassName = "TradeHallConvertAdapter", mapAdapterClassName = "TradeHallMapConvertAdapter")
+@MapperConfig(mapperPackage = "com.sdnc.trade.application.assembler",
+    adapterPackage = "com.sdnc.trade.application.adapter", adapterClassName = "TradeHallConvertAdapter",
+    mapAdapterClassName = "TradeHallMapConvertAdapter")
 public class MapStructPlusConfiguration {
 
 }

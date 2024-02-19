@@ -8,11 +8,10 @@ public class TestCompositeStack {
 
     }
 
-
     public static void testStack(EntityTreeComponent menuComponent) {
         CompositeIterator compositeIterator = new CompositeIterator(menuComponent.createIterator());
         while (compositeIterator.hasNext()) {
-            EntityTreeComponent menuComponent1 = (EntityTreeComponent) compositeIterator.next();
+            EntityTreeComponent menuComponent1 = (EntityTreeComponent)compositeIterator.next();
         }
     }
 }

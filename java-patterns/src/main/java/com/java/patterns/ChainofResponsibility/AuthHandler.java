@@ -1,6 +1,5 @@
 package com.java.patterns.ChainofResponsibility;
 
-
 public class AuthHandler extends Handler<User> {
     @Override
     public void doHandler(User user) {

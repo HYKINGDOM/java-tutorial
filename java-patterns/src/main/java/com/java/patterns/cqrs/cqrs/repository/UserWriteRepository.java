@@ -1,8 +1,5 @@
 package com.java.patterns.cqrs.cqrs.repository;
 
-
-
-
 import com.java.patterns.cqrs.domain.User;
 
 import java.util.HashMap;

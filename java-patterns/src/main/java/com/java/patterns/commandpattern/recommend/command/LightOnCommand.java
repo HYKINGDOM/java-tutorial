@@ -1,7 +1,7 @@
 package com.java.patterns.commandpattern.recommend.command;
 
-
 import com.java.patterns.commandpattern.recommend.device.Light;
+
 /**
  * 灯管打开命令
  *

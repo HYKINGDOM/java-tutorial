@@ -1,6 +1,5 @@
 package com.java.tutorial.project.service;
 
-
 import cn.hutool.core.util.RandomUtil;
 
 import com.java.tutorial.project.util.InheritableThreadLocalUtil;
@@ -12,14 +11,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ThreadPoolExecutor;
 
-
 /**
  * @author HY
  */
 @Slf4j
 @Service
 public class ThreadLocalAsyncServiceImpl implements ThreadLocalAsyncService {
-
 
     private String target;
     private String params;
@@ -46,19 +43,19 @@ public class ThreadLocalAsyncServiceImpl implements ThreadLocalAsyncService {
         method = RandomUtil.randomString(8);
     }
 
-//    @Override
-//    public void run() {
-//        TraceIDUtil.setTraceIdByTransmittableThreadLocal();
-//        try {
-//            Thread.sleep(5000L);
-//            log.info("任务线程： {}, 任务执行结束,TraceId: {}, beanName： {}, params： {}, methodName： {}",
-//                    Thread.currentThread().getName(),
-//                    TraceIDUtil.getTraceId(),
-//                    target,
-//                    params,
-//                    method);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+    //    @Override
+    //    public void run() {
+    //        TraceIDUtil.setTraceIdByTransmittableThreadLocal();
+    //        try {
+    //            Thread.sleep(5000L);
+    //            log.info("任务线程： {}, 任务执行结束,TraceId: {}, beanName： {}, params： {}, methodName： {}",
+    //                    Thread.currentThread().getName(),
+    //                    TraceIDUtil.getTraceId(),
+    //                    target,
+    //                    params,
+    //                    method);
+    //        } catch (InterruptedException e) {
+    //            throw new RuntimeException(e);
+    //        }
+    //    }
 }

@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PalindromeNumberNoConvertStringTest {
 
-
     private PalindromeNumberNoConvertString palindromeNumberNoConvertString;
 
     @BeforeEach
@@ -30,10 +29,9 @@ public class PalindromeNumberNoConvertStringTest {
 
     @Test
     public void test_palindromeNumberNoConvertString_03() {
-        System.out.println(12.10/10);
-        System.out.println(12.10%10);
+        System.out.println(12.10 / 10);
+        System.out.println(12.10 % 10);
     }
-
 
     @Test
     public void test_palindromeNumberNoConvertString_04() {
@@ -58,7 +56,6 @@ public class PalindromeNumberNoConvertStringTest {
         boolean palindrome = palindromeNumberNoConvertString.isPalindrome(0);
         assertTrue(palindrome);
     }
-
 
     @Test
     public void test_palindromeNumberNoConvertString_08() {

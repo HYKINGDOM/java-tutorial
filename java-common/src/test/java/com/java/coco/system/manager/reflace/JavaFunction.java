@@ -9,7 +9,6 @@ import java.lang.reflect.Method;
 
 public class JavaFunction {
 
-
     @Test
     public void test_java_class() {
         String className = "src.project.scs.manager.reflace.Hero";
@@ -25,12 +24,10 @@ public class JavaFunction {
             System.out.println(pClass1 == pClass2);
             System.out.println(pClass1 == pClass3);
 
-
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
-
 
     /*
      * 通过Class对象可以获取某个类中的：构造方法、成员变量、成员方法；并访问成员；
@@ -54,7 +51,6 @@ public class JavaFunction {
             //1.加载Class对象
             Class clazz = Hero.class;
 
-
             //2.获取所有公有构造方法
             System.out.println("**********************所有公有构造方法*********************************");
             Constructor[] conArray = clazz.getConstructors();
@@ -76,7 +72,6 @@ public class JavaFunction {
             //调用构造方法
             Object obj = con.newInstance();
 
-
             System.out.println("******************获取私有构造方法，并调用*******************************");
             con = clazz.getDeclaredConstructor(float.class);
             System.out.println(con);
@@ -89,11 +84,10 @@ public class JavaFunction {
             System.out.println(method);
 
         } catch (InstantiationException | InvocationTargetException | NoSuchMethodException |
-                 IllegalAccessException e) {
+            IllegalAccessException e) {
             e.printStackTrace();
         }
     }
-
 
     /**
      * 获取成员变量并 使用
@@ -118,18 +112,10 @@ public class JavaFunction {
     }
 
     /**
-     * 获取HeroPlus类的对象 h
-     * 获取成员方法：
-     * public Method getMethod(String name ，Class<?>… parameterTypes):获取"公有方法"；（包含了父类的方法也包含Object类）
-     * public Method getDeclaredMethods(String name ，Class<?>… parameterTypes) :获取成员方法，包括私有的(不包括继承的)
-     * 参数解释：
-     *   name : 方法名；
-     *   Class … : 形参的Class类型对象
-     * 调用方法
-     * Method --> public Object invoke(Object obj,Object… args):
-     * 参数说明：
-     *   obj : 要调用方法的对象；
-     *   args:调用方式时所传递的实参；
+     * 获取HeroPlus类的对象 h 获取成员方法： public Method getMethod(String name ，Class<?>…
+     * parameterTypes):获取"公有方法"；（包含了父类的方法也包含Object类） public Method getDeclaredMethods(String name ，Class<?>…
+     * parameterTypes) :获取成员方法，包括私有的(不包括继承的) 参数解释：   name : 方法名；   Class … : 形参的Class类型对象 调用方法 Method --> public Object
+     * invoke(Object obj,Object… args): 参数说明：   obj : 要调用方法的对象；   args:调用方式时所传递的实参；
      */
     @Test
     public void test_java_reflex_method() {
@@ -159,7 +145,7 @@ public class JavaFunction {
             // methodMain.invoke(null, new String[]{"a","b","c"});
             //第一个参数，对象类型，因为方法是static静态的，所以为null可以，第二个参数是String数组，这里要注意在jdk1.4时是数组，jdk1.5之后是可变参数
             //这里拆的时候将  new String[]{"a","b","c"} 拆成3个对象。所以需要将它强转。
-            methodMain.invoke(null, (Object) new String[]{"a", "b", "c"});//方式一
+            methodMain.invoke(null, (Object)new String[] {"a", "b", "c"});//方式一
             // methodMain.invoke(null, new Object[]{new String[]{"a","b","c"}});//方式二
 
         } catch (Exception e) {

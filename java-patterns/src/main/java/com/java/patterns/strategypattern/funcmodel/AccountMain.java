@@ -9,12 +9,8 @@ public class AccountMain {
 
     public static void main(String[] args) {
         String accountType = "manager_type";
-        String accountId = accountServiceList
-                .stream()
-                .filter(e -> e.isAccountType(accountType))
-                .findFirst()
-                .orElseThrow(RuntimeException::new)
-                .getAccountName("test");
+        String accountId = accountServiceList.stream().filter(e -> e.isAccountType(accountType)).findFirst()
+            .orElseThrow(RuntimeException::new).getAccountName("test");
         System.out.println(accountId);
     }
 }

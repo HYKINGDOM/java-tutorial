@@ -37,20 +37,15 @@ public class ParallelStepsJobConfig {
     public Job job() {
         JobBuilder jobBuilder = jobBuilderFactory.get("job");
         log.info(jobBuilder.toString());
-        return jobBuilder
-                .start(splitFlow())
-                .next(step4())
-                .build()        // builds FlowJobBuilder instance
-                .build();       // builds Job instance
+        return jobBuilder.start(splitFlow()).next(step4()).build()        // builds FlowJobBuilder instance
+            .build();       // builds Job instance
     }
 
     @Bean
     public Flow splitFlow() {
-        return new FlowBuilder<SimpleFlow>("splitFlow")
-                .split(taskExecutor())
-                // flow1 和 flow2 并行执行
-                .add(flow1(), flow2())
-                .build();
+        return new FlowBuilder<SimpleFlow>("splitFlow").split(taskExecutor())
+            // flow1 和 flow2 并行执行
+            .add(flow1(), flow2()).build();
     }
 
     @Bean
@@ -79,15 +74,12 @@ public class ParallelStepsJobConfig {
 
     @Bean
     public Step step2() {
-        return stepBuilderFactory
-                .get("step2")
-                .tasklet((contribution, chunkContext) -> {
-                    log.info("step2 start");
-                    TimeUnit.SECONDS.sleep(2);
-                    log.info("step2 end");
-                    return RepeatStatus.FINISHED;
-                })
-                .build();
+        return stepBuilderFactory.get("step2").tasklet((contribution, chunkContext) -> {
+            log.info("step2 start");
+            TimeUnit.SECONDS.sleep(2);
+            log.info("step2 end");
+            return RepeatStatus.FINISHED;
+        }).build();
     }
 
     @Bean
@@ -113,6 +105,7 @@ public class ParallelStepsJobConfig {
 
     /**
      * 线程池
+     *
      * @return
      */
     @Bean

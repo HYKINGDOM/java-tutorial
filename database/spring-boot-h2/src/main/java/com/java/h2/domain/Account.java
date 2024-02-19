@@ -1,6 +1,5 @@
 package com.java.h2.domain;
 
-
 import lombok.Builder;
 import lombok.Data;
 

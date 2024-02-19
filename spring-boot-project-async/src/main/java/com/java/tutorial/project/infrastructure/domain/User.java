@@ -1,6 +1,5 @@
 package com.java.tutorial.project.infrastructure.domain;
 
-
 import lombok.Data;
 
 @Data

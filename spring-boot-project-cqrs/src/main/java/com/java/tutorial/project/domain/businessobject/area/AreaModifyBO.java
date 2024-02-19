@@ -11,10 +11,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 /**
- *
  * 行政区划表
- *
- *
  */
 @Getter
 @Setter

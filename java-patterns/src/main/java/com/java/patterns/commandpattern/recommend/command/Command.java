@@ -5,13 +5,13 @@ package com.java.patterns.commandpattern.recommend.command;
  */
 public interface Command {
 
-	/**
-	 * 执行命令
-	 */
+    /**
+     * 执行命令
+     */
     void execute();
 
-	/**
-	 * 控制
-	 */
-	void undo();
+    /**
+     * 控制
+     */
+    void undo();
 }

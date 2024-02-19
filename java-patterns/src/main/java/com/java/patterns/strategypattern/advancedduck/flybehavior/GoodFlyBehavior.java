@@ -1,8 +1,8 @@
 package com.java.patterns.strategypattern.advancedduck.flybehavior;
 
-
 /**
  * 描述正常的飞行行为
+ *
  * @author Administrator
  */
 public class GoodFlyBehavior implements FlyBehavior {

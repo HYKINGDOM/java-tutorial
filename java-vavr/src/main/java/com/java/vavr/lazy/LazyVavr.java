@@ -4,7 +4,6 @@ import io.vavr.Lazy;
 
 public class LazyVavr {
 
-
     public static void main(String[] args) {
         Lazy<Double> lazy = Lazy.of(Math::random);
         // = false

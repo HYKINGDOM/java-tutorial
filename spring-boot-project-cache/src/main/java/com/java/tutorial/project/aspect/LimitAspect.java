@@ -17,12 +17,12 @@ import java.util.Map;
 @Aspect
 @Component
 public class LimitAspect {
-    Logger logger = LoggerFactory.getLogger(LimitAspect.class);
     private final Map<String, RateLimiter> limitMap = Maps.newConcurrentMap();
+    Logger logger = LoggerFactory.getLogger(LimitAspect.class);
 
     @Around("@annotation(com.java.tutorial.project.annotation.Limit)")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
-        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        MethodSignature signature = (MethodSignature)joinPoint.getSignature();
         Method method = signature.getMethod();
         //拿limit的注解
         Limit limit = method.getAnnotation(Limit.class);

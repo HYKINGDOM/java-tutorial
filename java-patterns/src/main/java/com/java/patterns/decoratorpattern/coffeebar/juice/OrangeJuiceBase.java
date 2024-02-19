@@ -1,6 +1,5 @@
 package com.java.patterns.decoratorpattern.coffeebar.juice;
 
-
 import com.java.patterns.decoratorpattern.coffeebar.BaseDrink;
 
 /**

@@ -67,8 +67,9 @@ public class VerifyCodeUtils {
         Graphics2D g2 = image.createGraphics();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         Color[] colors = new Color[5];
-        Color[] colorSpaces = new Color[]{Color.WHITE, Color.CYAN, Color.GRAY, Color.LIGHT_GRAY, Color.MAGENTA,
-                Color.ORANGE, Color.PINK, Color.YELLOW};
+        Color[] colorSpaces =
+            new Color[] {Color.WHITE, Color.CYAN, Color.GRAY, Color.LIGHT_GRAY, Color.MAGENTA, Color.ORANGE, Color.PINK,
+                Color.YELLOW};
         float[] fractions = new float[colors.length];
         for (int i = 0; i < colors.length; i++) {
             colors[i] = colorSpaces[rand.nextInt(colorSpaces.length)];
@@ -98,7 +99,7 @@ public class VerifyCodeUtils {
 
         // 添加噪点  噪声率
         float yawpRate = 0.05f;
-        int area = (int) (yawpRate * w * h);
+        int area = (int)(yawpRate * w * h);
         for (int i = 0; i < area; i++) {
             int x = random.nextInt(w);
             int y = random.nextInt(h);
@@ -116,7 +117,7 @@ public class VerifyCodeUtils {
         for (int i = 0; i < verifySize; i++) {
             AffineTransform affine = new AffineTransform();
             affine.setToRotation(Math.PI / 4 * rand.nextDouble() * (rand.nextBoolean() ? 1 : -1),
-                    (w / verifySize) * i + fontSize / 2, h / 2);
+                (w / verifySize) * i + fontSize / 2, h / 2);
             g2.setTransform(affine);
             g2.drawChars(chars, i, 1, ((w - 10) / verifySize) * i + 5, h / 2 + fontSize / 2 - 10);
         }
@@ -167,12 +168,12 @@ public class VerifyCodeUtils {
         int frames = 1;
         int phase = random.nextInt(2);
         for (int i = 0; i < h1; i++) {
-            double d = (double) (period >> 1)
-                    * Math.sin((double) i / (double) period + (6.2831853071795862D * (double) phase) / (double) frames);
-            g.copyArea(0, i, w1, 1, (int) d, 0);
+            double d = (double)(period >> 1) * Math.sin(
+                (double)i / (double)period + (6.2831853071795862D * (double)phase) / (double)frames);
+            g.copyArea(0, i, w1, 1, (int)d, 0);
             g.setColor(color);
-            g.drawLine((int) d, i, 0, i);
-            g.drawLine((int) d + w1, i, w1, i);
+            g.drawLine((int)d, i, 0, i);
+            g.drawLine((int)d + w1, i, w1, i);
         }
 
     }
@@ -183,12 +184,12 @@ public class VerifyCodeUtils {
         int frames = 20;
         int phase = 7;
         for (int i = 0; i < w1; i++) {
-            double d = (double) (period >> 1)
-                    * Math.sin((double) i / (double) period + (6.2831853071795862D * (double) phase) / (double) frames);
-            g.copyArea(i, 0, 1, h1, 0, (int) d);
+            double d = (double)(period >> 1) * Math.sin(
+                (double)i / (double)period + (6.2831853071795862D * (double)phase) / (double)frames);
+            g.copyArea(i, 0, 1, h1, 0, (int)d);
             g.setColor(color);
-            g.drawLine(i, (int) d, i, 0);
-            g.drawLine(i, (int) d + h1, i, h1);
+            g.drawLine(i, (int)d, i, 0);
+            g.drawLine(i, (int)d + h1, i, h1);
 
         }
     }

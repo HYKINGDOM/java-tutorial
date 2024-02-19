@@ -19,7 +19,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class BloomInit implements CommandLineRunner {
 
-
     @Override
     public void run(String... args) throws Exception {
         this.bloomInit();

@@ -21,6 +21,5 @@ public class OptionalGuavaTest {
 
         System.out.println(test1);
 
-
     }
 }

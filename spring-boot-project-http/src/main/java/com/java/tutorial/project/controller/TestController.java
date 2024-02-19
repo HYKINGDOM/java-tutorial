@@ -31,16 +31,12 @@ public class TestController {
     }
 
     @GetMapping(value = "/user/{id}")
-    public Map<String, Object> user(@PathVariable Long id,
-                                    @RequestParam String userName,
-                                    @RequestHeader String userHeader,
-                                    HttpServletResponse response,
-                                    @CookieValue("JSESSIONID") String cookie) {
+    public Map<String, Object> user(@PathVariable Long id, @RequestParam String userName,
+        @RequestHeader String userHeader, HttpServletResponse response, @CookieValue("JSESSIONID") String cookie) {
         response.addHeader("X-USER-ID", id.toString());
         response.addHeader("cookie", cookie);
         return Map.of("userName", userName, "id", id, "userHeader", userHeader);
     }
-
 
     @PostMapping(value = "/user")
     public User addUser(User user) {
@@ -53,7 +49,5 @@ public class TestController {
         System.out.println(user.getName() + ":" + user.getPassword());
         return user;
     }
-
-
 
 }

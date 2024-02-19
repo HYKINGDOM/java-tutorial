@@ -1,17 +1,13 @@
 package com.java.coco.demo;
 
-import java.util.Collections;
+import cn.hutool.core.util.RandomUtil;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import org.junit.jupiter.api.Test;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.util.RandomUtil;
-import com.google.common.collect.Lists;
-import com.java.coco.utils.RanDomUtils;
-import org.junit.jupiter.api.Test;
-
-import com.google.common.collect.Maps;
 
 public class JavaMapTest {
 
@@ -61,7 +57,6 @@ public class JavaMapTest {
         for (String string : strings) {
             stringListMap.put(string, Lists.newArrayList());
         }
-
 
         List<String> computeIfPresent = stringListMap.computeIfPresent("Shoes", (key, value) -> {
 

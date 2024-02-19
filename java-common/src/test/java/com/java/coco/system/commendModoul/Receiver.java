@@ -6,7 +6,7 @@ package com.java.coco.system.commendModoul;
  * @date 2019/4/3
  */
 public class Receiver {
-    public void action(){
+    public void action() {
         System.out.println("command received!");
     }
 }

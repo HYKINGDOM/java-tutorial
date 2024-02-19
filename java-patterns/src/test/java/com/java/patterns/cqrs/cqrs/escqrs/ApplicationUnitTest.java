@@ -1,7 +1,5 @@
 package com.java.patterns.cqrs.cqrs.escqrs;
 
-
-
 import com.java.patterns.cqrs.cqrs.commands.CreateUserCommand;
 import com.java.patterns.cqrs.cqrs.commands.UpdateUserCommand;
 import com.java.patterns.cqrs.cqrs.projections.UserProjection;
@@ -43,34 +41,35 @@ public class ApplicationUnitTest {
 
     @Test
     public void givenCQRSApplication_whenCommandRun_thenQueryShouldReturnResult() throws Exception {
-        String userId = UUID.randomUUID()
-                .toString();
+        String userId = UUID.randomUUID().toString();
         List<Event> events = null;
         CreateUserCommand createUserCommand = new CreateUserCommand(userId, "Kumar", "Chandrakant");
         events = userAggregate.handleCreateUserCommand(createUserCommand);
 
         projector.project(userId, events);
 
-        UpdateUserCommand updateUserCommand = new UpdateUserCommand(userId, Stream.of(new Address("New York", "NY", "10001"), new Address("Los Angeles", "CA", "90001"))
+        UpdateUserCommand updateUserCommand = new UpdateUserCommand(userId,
+            Stream.of(new Address("New York", "NY", "10001"), new Address("Los Angeles", "CA", "90001"))
                 .collect(Collectors.toSet()),
-                Stream.of(new Contact("EMAIL", "tom.sawyer@gmail.com"), new Contact("EMAIL", "tom.sawyer@rediff.com"))
-                        .collect(Collectors.toSet()));
+            Stream.of(new Contact("EMAIL", "tom.sawyer@gmail.com"), new Contact("EMAIL", "tom.sawyer@rediff.com"))
+                .collect(Collectors.toSet()));
         events = userAggregate.handleUpdateUserCommand(updateUserCommand);
         projector.project(userId, events);
 
-        updateUserCommand = new UpdateUserCommand(userId, Stream.of(new Address("New York", "NY", "10001"), new Address("Housten", "TX", "77001"))
+        updateUserCommand = new UpdateUserCommand(userId,
+            Stream.of(new Address("New York", "NY", "10001"), new Address("Housten", "TX", "77001"))
                 .collect(Collectors.toSet()),
-                Stream.of(new Contact("EMAIL", "tom.sawyer@gmail.com"), new Contact("PHONE", "700-000-0001"))
-                        .collect(Collectors.toSet()));
+            Stream.of(new Contact("EMAIL", "tom.sawyer@gmail.com"), new Contact("PHONE", "700-000-0001"))
+                .collect(Collectors.toSet()));
         events = userAggregate.handleUpdateUserCommand(updateUserCommand);
         projector.project(userId, events);
 
         ContactByTypeQuery contactByTypeQuery = new ContactByTypeQuery(userId, "EMAIL");
-        assertEquals(Stream.of(new Contact("EMAIL", "tom.sawyer@gmail.com"))
-                .collect(Collectors.toSet()), userProjection.handle(contactByTypeQuery));
+        assertEquals(Stream.of(new Contact("EMAIL", "tom.sawyer@gmail.com")).collect(Collectors.toSet()),
+            userProjection.handle(contactByTypeQuery));
         AddressByRegionQuery addressByRegionQuery = new AddressByRegionQuery(userId, "NY");
-        assertEquals(Stream.of(new Address("New York", "NY", "10001"))
-                .collect(Collectors.toSet()), userProjection.handle(addressByRegionQuery));
+        assertEquals(Stream.of(new Address("New York", "NY", "10001")).collect(Collectors.toSet()),
+            userProjection.handle(addressByRegionQuery));
 
     }
 

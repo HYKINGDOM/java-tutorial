@@ -1,7 +1,5 @@
 package com.leetcode.hw.arraymaximumsum;
 
-import java.util.Arrays;
-import java.util.OptionalInt;
 import java.util.Scanner;
 
 public class ArrayMaximumSum {

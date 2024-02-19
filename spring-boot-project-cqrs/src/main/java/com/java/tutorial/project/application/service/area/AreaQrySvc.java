@@ -11,15 +11,11 @@ import com.java.tutorial.project.infrastructure.dao.area.AreaDao;
 import org.beetl.sql.core.page.PageResult;
 import org.springframework.stereotype.Service;
 
-
 import io.github.linpeilie.Converter;
 import lombok.RequiredArgsConstructor;
 
 /**
- *
  * 行政区划表
- *
- *
  */
 @Service
 @RequiredArgsConstructor
@@ -35,9 +31,8 @@ public class AreaQrySvc {
      * @return
      */
     public PageResult<AreaPageVO> page(AreaPageBO bo) {
-        PageResult<AreaPO> result = dao.createLambdaQuery()
-                .andLike(AreaPO::getName, QueryKit.like(bo.getName()))
-                .page(bo.getPageNum(), bo.getPageSize());
+        PageResult<AreaPO> result = dao.createLambdaQuery().andLike(AreaPO::getName, QueryKit.like(bo.getName()))
+            .page(bo.getPageNum(), bo.getPageSize());
         Function<AreaPO, AreaPageVO> function = po -> converter.convert(po, AreaPageVO.class);
 
         return result.convert(function);

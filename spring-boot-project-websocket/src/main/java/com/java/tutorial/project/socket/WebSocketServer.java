@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
- * @Auther:  
+ * @Auther:
  * @Date: 2022/7/18 14:15
  * @Description:
  */
@@ -25,16 +25,13 @@ import java.util.concurrent.CopyOnWriteArraySet;
 @ServerEndpoint("/websocket/{userId}")
 public class WebSocketServer {
 
+    private static final CopyOnWriteArraySet<WebSocketServer> webSockets = new CopyOnWriteArraySet<>();
+    // 用来存在线连接数
+    private static final Map<String, Session> sessionPool = new HashMap<String, Session>();
     //与某个客户端的连接会话，需要通过它来给客户端发送数据
     private Session session;
 
-    private static final CopyOnWriteArraySet<WebSocketServer> webSockets = new CopyOnWriteArraySet<>();
-
-    // 用来存在线连接数
-    private static final Map<String, Session> sessionPool = new HashMap<String, Session>();
-
     /**
-     *  
      * 链接成功调用的方法
      */
     @OnOpen
@@ -49,7 +46,6 @@ public class WebSocketServer {
     }
 
     /**
-     *  
      * 链接关闭调用的方法
      */
     @OnClose
@@ -62,7 +58,6 @@ public class WebSocketServer {
     }
 
     /**
-     *  
      * 收到客户端消息后调用的方法
      */
     @OnMessage
@@ -71,7 +66,6 @@ public class WebSocketServer {
     }
 
     /**
-     *  
      * 发送错误时的处理
      */
     @OnError
@@ -80,7 +74,6 @@ public class WebSocketServer {
     }
 
     /**
-     *  
      * 此为广播消息
      */
     public void sendAllMessage(String message) {
@@ -97,7 +90,6 @@ public class WebSocketServer {
     }
 
     /**
-     *  
      * 此为单点消息
      */
     public void sendOneMessage(String userId, String message) {
@@ -113,7 +105,6 @@ public class WebSocketServer {
     }
 
     /**
-     *  
      * 此为单点消息(多人)
      */
     public void sendMoreMessage(String[] userIds, String message) {

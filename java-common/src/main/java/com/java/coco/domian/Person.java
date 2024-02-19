@@ -1,6 +1,5 @@
 package com.java.coco.domian;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

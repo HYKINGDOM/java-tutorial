@@ -1,6 +1,5 @@
 package com.java.data.controller.request;
 
-
 import com.java.data.config.PassWordValid;
 import com.java.data.config.UserValid;
 import com.java.data.controller.validator.Severity;
@@ -39,7 +38,6 @@ public class UserRequest {
     @NotEmpty(message = FIELD_IS_EMPTY_FAILED, groups = UserUpdate.class, payload = Severity.Info.class)
     private String userAccountNum;
 
-
     @Length(min = 8, max = 20, message = FIELD_IS_LENGTH_FAILED, groups = UserCreate.class)
     @NotEmpty(message = FIELD_IS_EMPTY_FAILED, payload = Severity.Warn.class)
     private String niceName;
@@ -48,7 +46,8 @@ public class UserRequest {
     @Min(value = 10, message = FIELD_IS_MIN_FAILED, payload = Severity.Warn.class)
     private Integer age;
 
-    @PassWordValid(pattern = "[\\w.]", message = FIELD_IS_REGULAR_FAILED, groups = UserCreate.class, payload = Severity.Error.class)
+    @PassWordValid(pattern = "[\\w.]", message = FIELD_IS_REGULAR_FAILED, groups = UserCreate.class,
+        payload = Severity.Error.class)
     @Length(min = 8, max = 20, message = FIELD_IS_LENGTH_FAILED)
     @NotBlank(message = FIELD_IS_BLANK_FAILED)
     private String passWord;

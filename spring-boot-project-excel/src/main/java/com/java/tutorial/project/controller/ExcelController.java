@@ -32,11 +32,8 @@ public class ExcelController {
         try {
             this.setExcelResponseProp(response, "用户列表");
             List<UserDO> userList = this.getUserList();
-            EasyExcel.write(response.getOutputStream())
-                    .head(UserDO.class)
-                    .excelType(ExcelTypeEnum.XLSX)
-                    .sheet("用户列表")
-                    .doWrite(userList);
+            EasyExcel.write(response.getOutputStream()).head(UserDO.class).excelType(ExcelTypeEnum.XLSX)
+                .sheet("用户列表").doWrite(userList);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -49,7 +46,8 @@ public class ExcelController {
      * @param rawFileName 文件名
      * @throws UnsupportedEncodingException 不支持编码异常
      */
-    private void setExcelResponseProp(HttpServletResponse response, String rawFileName) throws UnsupportedEncodingException {
+    private void setExcelResponseProp(HttpServletResponse response, String rawFileName)
+        throws UnsupportedEncodingException {
         response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         response.setCharacterEncoding(StandardCharsets.UTF_8.name());
         String fileName = URLEncoder.encode(rawFileName, StandardCharsets.UTF_8).replaceAll("\n+", "%20");

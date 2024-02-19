@@ -9,7 +9,6 @@ public class NumConvertTime {
         System.out.println(doubleToDate(0.66666666666666667));
     }
 
-
     public static Date doubleToDate(Double dateTime) {
 
         Calendar base = Calendar.getInstance();
@@ -20,7 +19,7 @@ public class NumConvertTime {
 
         base.add(Calendar.DATE, dateTime.intValue());
 
-        base.add(Calendar.MILLISECOND, (int) ((dateTime % 1) * 24 * 60 * 60 * 1000));
+        base.add(Calendar.MILLISECOND, (int)((dateTime % 1) * 24 * 60 * 60 * 1000));
 
         return base.getTime();
 

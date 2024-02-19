@@ -1,10 +1,10 @@
 package com.java.patterns.decoratorpattern.coffeebar.decorator;
 
-
 import com.java.patterns.decoratorpattern.coffeebar.BaseDrink;
 
 /**
  * 酱油
+ *
  * @author yihur
  */
 public class Soy extends BatchingBase {

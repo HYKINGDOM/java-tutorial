@@ -1,6 +1,5 @@
 package com.java.tutorial.project.domain;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -11,6 +11,7 @@ public interface SysUserInfoService {
      * @return 实例对象
      */
     SysUserInfo queryById(Integer id);
+
     /**
      * 新增数据
      *
@@ -18,6 +19,7 @@ public interface SysUserInfoService {
      * @return 实例对象
      */
     SysUserInfo insert(SysUserInfo sysUserInfo);
+
     /**
      * 更新数据
      *
@@ -25,6 +27,7 @@ public interface SysUserInfoService {
      * @return 实例对象
      */
     SysUserInfo update(SysUserInfo sysUserInfo);
+
     /**
      * 通过主键删除数据
      *

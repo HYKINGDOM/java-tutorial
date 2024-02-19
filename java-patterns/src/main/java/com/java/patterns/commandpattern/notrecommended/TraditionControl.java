@@ -1,11 +1,11 @@
 package com.java.patterns.commandpattern.notrecommended;
 
-
 import com.java.patterns.commandpattern.recommend.device.Light;
 import com.java.patterns.commandpattern.recommend.device.Stereo;
 
 /**
  * 按钮的具体执行方法
+ *
  * @author yihur
  */
 public class TraditionControl implements Control {
@@ -63,6 +63,5 @@ public class TraditionControl implements Control {
     public void undoButton() {
 
     }
-
 
 }

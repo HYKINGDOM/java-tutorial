@@ -1,6 +1,5 @@
 package com.java.tutorial.project.controller;
 
-
 import com.java.tutorial.project.controller.request.BankRequest;
 import com.java.tutorial.project.infrastucture.entity.BankEntity;
 import com.java.tutorial.project.service.BankService;
@@ -25,7 +24,6 @@ public class BankController {
     @Autowired
     @Qualifier("bankTakeServiceImpl")
     private BankService bankService01;
-
 
     @PostMapping("info")
     public String getBank(@RequestBody @Valid BankRequest bankRequest) {

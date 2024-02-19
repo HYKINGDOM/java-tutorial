@@ -1,6 +1,5 @@
 package com.java.tutorial.project.consumer;
 
-
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -8,9 +7,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class KafkaConsumer {
 
-
     /**
      * 消费监听
+     *
      * @param record
      */
     @KafkaListener(topics = {"event-topic-first"})

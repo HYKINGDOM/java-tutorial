@@ -22,10 +22,10 @@ public class DepInfo extends AbstractTreeNode {
         super.children = new ArrayList<>();
     }
 
-//    @Override
-//    public List<AbstractTreeNode> createTreeNode(List<AbstractTreeNode> depChildren) {
-//        return buildByTreeNode(depChildren);
-//    }
+    //    @Override
+    //    public List<AbstractTreeNode> createTreeNode(List<AbstractTreeNode> depChildren) {
+    //        return buildByTreeNode(depChildren);
+    //    }
 
     public String getDepName() {
         return depName;
@@ -37,6 +37,6 @@ public class DepInfo extends AbstractTreeNode {
 
     @Override
     public <T extends AbstractTreeNode> List<T> createTreeNode(List<AbstractTreeNode> childrenNode) {
-        return (List<T>) buildByTreeNode(childrenNode);
+        return (List<T>)buildByTreeNode(childrenNode);
     }
 }

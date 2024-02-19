@@ -1,6 +1,5 @@
 package com.java.tutorial.project.config;
 
-
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.java.tutorial.project.constant.ConstantKey;
@@ -29,38 +28,34 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 自定义JWT登录过滤器
- * 验证用户名密码正确后，生成一个token，并将token返回给客户端
- * 该类继承自UsernamePasswordAuthenticationFilter，重写了其中的2个方法
- * attemptAuthentication ：接收并解析用户凭证。
- * successfulAuthentication ：用户成功登录后，这个方法会被调用，我们在这个方法里生成token。
+ * 自定义JWT登录过滤器 验证用户名密码正确后，生成一个token，并将token返回给客户端 该类继承自UsernamePasswordAuthenticationFilter，重写了其中的2个方法
+ * attemptAuthentication ：接收并解析用户凭证。 successfulAuthentication ：用户成功登录后，这个方法会被调用，我们在这个方法里生成token。
+ *
  * @author yihur
  */
 public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
 
     private AuthenticationManager authenticationManager;
-    
+
     public JWTLoginFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
     }
 
     /**
      * 尝试身份认证(接收并解析用户凭证)
+     *
      * @param req
      * @param res
      * @return
      * @throws AuthenticationException
      */
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res) throws AuthenticationException {
+    public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res)
+        throws AuthenticationException {
         try {
             User user = new ObjectMapper().readValue(req.getInputStream(), User.class);
             return authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            user.getUsername(),
-                            user.getPassword(),
-                            new ArrayList<>())
-            );
+                new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(), new ArrayList<>()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -68,6 +63,7 @@ public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
 
     /**
      * 认证成功(用户成功登录后，这个方法会被调用，我们在这个方法里生成token)
+     *
      * @param request
      * @param response
      * @param chain
@@ -76,10 +72,8 @@ public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
      * @throws ServletException
      */
     @Override
-    protected void successfulAuthentication(HttpServletRequest request,
-                                            HttpServletResponse response,
-                                            FilterChain chain,
-                                            Authentication auth) throws IOException, ServletException {
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
+        Authentication auth) throws IOException, ServletException {
         // builder the token
         String token = null;
         try {
@@ -89,7 +83,7 @@ public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
             for (GrantedAuthority grantedAuthority : authorities) {
                 roleList.add(grantedAuthority.getAuthority());
             }
-            
+
             // 生成token start
             Calendar calendar = Calendar.getInstance();
             Date now = calendar.getTime();
@@ -98,14 +92,12 @@ public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
             // 设置过期时间
             calendar.add(Calendar.MINUTE, 5);// 5分钟
             Date time = calendar.getTime();
-            token = Jwts.builder()
-                    .setSubject(auth.getName() + "-" + roleList)
-                    .setIssuedAt(now)//签发时间
-                    .setExpiration(time)//过期时间
-                    .signWith(SignatureAlgorithm.HS512, ConstantKey.SIGNING_KEY) //采用什么算法是可以自己选择的，不一定非要采用HS512
-                    .compact();
+            token = Jwts.builder().setSubject(auth.getName() + "-" + roleList).setIssuedAt(now)//签发时间
+                .setExpiration(time)//过期时间
+                .signWith(SignatureAlgorithm.HS512, ConstantKey.SIGNING_KEY) //采用什么算法是可以自己选择的，不一定非要采用HS512
+                .compact();
             // 生成token end
-            
+
             // 登录成功后，返回token到header里面
             /*response.addHeader(ConstantKey.HEADER_KEY, ConstantKey.BEARER + token);*/
 

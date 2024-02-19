@@ -2,7 +2,6 @@ package com.java.coco.domian;
 
 public class UserTestB {
 
-
     private Integer id;
 
     private String username;
@@ -35,10 +34,6 @@ public class UserTestB {
 
     @Override
     public String toString() {
-        return "UserTestB{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", age=" + age +
-                '}';
+        return "UserTestB{" + "id=" + id + ", username='" + username + '\'' + ", age=" + age + '}';
     }
 }

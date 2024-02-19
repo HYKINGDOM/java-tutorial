@@ -5,7 +5,6 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
-
 @Slf4j
 public class ScheduledExecutorPoolJob extends QuartzJobBean {
 

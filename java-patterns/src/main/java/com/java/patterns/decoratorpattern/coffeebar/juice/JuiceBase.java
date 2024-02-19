@@ -1,6 +1,5 @@
 package com.java.patterns.decoratorpattern.coffeebar.juice;
 
-
 import com.java.patterns.decoratorpattern.coffeebar.BaseDrink;
 
 /**
@@ -15,7 +14,6 @@ public class JuiceBase extends BaseDrink {
     public JuiceBase(BaseDrink obj) {
         this.obj = obj;
     }
-
 
     /**
      * 价格
@@ -34,6 +32,6 @@ public class JuiceBase extends BaseDrink {
      */
     @Override
     public String getDescription() {
-        return super.description + ": " + super.getPrice() + "\n" + obj.getDescription() ;
+        return super.description + ": " + super.getPrice() + "\n" + obj.getDescription();
     }
 }

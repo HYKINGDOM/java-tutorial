@@ -1,6 +1,5 @@
 package com.java.tutorial.project.controller;
 
-
 import com.java.tutorial.project.service.ThreadLocalAsyncService;
 import com.java.tutorial.project.util.InheritableThreadLocalUtil;
 import com.java.tutorial.project.util.TraceIDUtil;
@@ -20,7 +19,6 @@ public class ThreadLocalAsyncController {
     @Autowired
     private ThreadLocalAsyncService threadLocalAsyncService;
 
-
     @RequestMapping("/testThreadLocalAsync")
     public String testInheritableThreadLocal() throws Exception {
         log.info("我是Controller层testInheritableThreadLocal处理线程，线程名：" + Thread.currentThread().getName());
@@ -30,7 +28,6 @@ public class ThreadLocalAsyncController {
         threadLocalAsyncService.testThreadLocalAsync();
         return traceId;
     }
-
 
     @RequestMapping("/testThreadLocalAsyncThreadLocal")
     public String testThreadLocalAsyncThreadLocal() {

@@ -18,8 +18,6 @@ public class DemoProcessor implements PageProcessor {
         Selectable selectable = page.getHtml().smartContent();
         String string = selectable.get();
 
-
-
     }
 
     @Override

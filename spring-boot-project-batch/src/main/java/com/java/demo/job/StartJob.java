@@ -31,12 +31,12 @@ public class StartJob {
 
     @PostConstruct
     public void startJob() {
-        JobParameters jobParameters = new JobParametersBuilder().addString("uuid", UUID.randomUUID().toString())
-                .toJobParameters();
+        JobParameters jobParameters =
+            new JobParametersBuilder().addString("uuid", UUID.randomUUID().toString()).toJobParameters();
         try {
             jobLauncher.run(job, jobParameters);
         } catch (JobExecutionAlreadyRunningException | JobRestartException | JobParametersInvalidException |
-                JobInstanceAlreadyCompleteException e) {
+            JobInstanceAlreadyCompleteException e) {
             log.error(e.getMessage());
             throw new RuntimeException(e);
         }

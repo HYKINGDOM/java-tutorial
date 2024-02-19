@@ -10,14 +10,10 @@ import io.github.linpeilie.Converter;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import lombok.RequiredArgsConstructor;
 
 /**
- *
  * 行政区划表
- *
- *
  */
 @Service
 @RequiredArgsConstructor

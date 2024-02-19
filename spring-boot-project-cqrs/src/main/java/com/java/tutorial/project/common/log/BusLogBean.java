@@ -6,10 +6,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- *
  * 业务操作日志
- *
- *
  */
 @Data
 @Accessors(chain = true)

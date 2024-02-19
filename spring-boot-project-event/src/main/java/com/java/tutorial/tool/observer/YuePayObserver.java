@@ -1,6 +1,5 @@
 package com.java.tutorial.tool.observer;
 
-
 import com.google.common.eventbus.AllowConcurrentEvents;
 import com.google.common.eventbus.Subscribe;
 import com.java.tutorial.tool.event.Account;
@@ -8,7 +7,6 @@ import com.java.tutorial.tool.event.OrderEvent;
 
 /**
  * 余额支付观察者
- *
  */
 public class YuePayObserver {
     // 标记当前订阅者是线程安全的，支持并发接收消息

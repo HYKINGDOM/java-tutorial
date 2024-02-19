@@ -28,13 +28,14 @@ class TestControllerTest {
 
     @Test
     public void test_demo_01() throws IOException, InterruptedException {
-        HttpClient client = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2)
-            .connectTimeout(Duration.ofSeconds(20)).authenticator(new Authenticator() {
-                @Override
-                protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication("admin", "password".toCharArray());
-                }
-            }).proxy(ProxySelector.of(new InetSocketAddress("proxy.example.com", 80))).build();
+        HttpClient client =
+            HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).connectTimeout(Duration.ofSeconds(20))
+                .authenticator(new Authenticator() {
+                    @Override
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication("admin", "password".toCharArray());
+                    }
+                }).proxy(ProxySelector.of(new InetSocketAddress("proxy.example.com", 80))).build();
 
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create("http://127.0.0.1/user/1?userName=admin"))
             .header("userHeader", "myHeader").header("cookie", "JSESSIONID=111").timeout(Duration.ofSeconds(10)).GET()
@@ -45,11 +46,12 @@ class TestControllerTest {
         });
         System.out.println("同步请求:" + response.body());
 
-        CompletableFuture<Void> voidCompletableFuture = client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-            .thenApply(HttpResponse::body).exceptionally(err -> {
-                err.printStackTrace();
-                return "error" + err.getMessage();
-            }).thenAccept(x -> System.out.println("异步结果:" + x));
+        CompletableFuture<Void> voidCompletableFuture =
+            client.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenApply(HttpResponse::body)
+                .exceptionally(err -> {
+                    err.printStackTrace();
+                    return "error" + err.getMessage();
+                }).thenAccept(x -> System.out.println("异步结果:" + x));
         voidCompletableFuture.join();
 
     }
@@ -57,9 +59,10 @@ class TestControllerTest {
     @Test
     public void test_demo_02() throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create("http://127.0.0.1/user"))
-            .timeout(Duration.ofMinutes(2)).header("Content-Type", "application/x-www-form-urlencoded;charset=utf-8")
-            .POST(HttpRequest.BodyPublishers.ofString("id=1&userName=赵云")).build();
+        HttpRequest request =
+            HttpRequest.newBuilder().uri(URI.create("http://127.0.0.1/user")).timeout(Duration.ofMinutes(2))
+                .header("Content-Type", "application/x-www-form-urlencoded;charset=utf-8")
+                .POST(HttpRequest.BodyPublishers.ofString("id=1&userName=赵云")).build();
         String body = client.send(request, HttpResponse.BodyHandlers.ofString()).body();
         System.out.println("阻塞请求结果:" + body);
 
@@ -67,16 +70,17 @@ class TestControllerTest {
 
     /**
      * { "id": 1, "userName": "赵云" }
-     * 
+     *
      * @throws IOException
      * @throws InterruptedException
      */
     @Test
     public void test_demo_03() throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create("http://127.0.0.1/user/update"))
-            .timeout(Duration.ofMinutes(2)).header("Content-Type", "application/json;charset=utf-8")
-            .POST(HttpRequest.BodyPublishers.ofString(" ")).build();
+        HttpRequest request =
+            HttpRequest.newBuilder().uri(URI.create("http://127.0.0.1/user/update")).timeout(Duration.ofMinutes(2))
+                .header("Content-Type", "application/json;charset=utf-8").POST(HttpRequest.BodyPublishers.ofString(" "))
+                .build();
         String body = client.send(request, HttpResponse.BodyHandlers.ofString()).body();
         System.out.println("阻塞请求结果:" + body);
     }

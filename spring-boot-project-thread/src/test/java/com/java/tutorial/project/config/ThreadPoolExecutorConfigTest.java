@@ -12,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ThreadPoolExecutorConfigTest {
 
-    private static TransmittableThreadLocal<String> CONTEXT = new TransmittableThreadLocal<>();
     // 使用只有一个线程的线程池，测试线程复用是否影响TransmittableThreadLocal的效果
     private static final Executor EXECUTOR = Executors.newFixedThreadPool(1);
+    private static TransmittableThreadLocal<String> CONTEXT = new TransmittableThreadLocal<>();
 
     @Test
     public void test_main() throws InterruptedException {
@@ -42,8 +42,7 @@ public class ThreadPoolExecutorConfigTest {
         });
 
         // 按顺序执行两个任务，全部放到线程池中执行
-        CompletableFuture.runAsync(task1, EXECUTOR)
-                .thenRunAsync(task2, EXECUTOR);
+        CompletableFuture.runAsync(task1, EXECUTOR).thenRunAsync(task2, EXECUTOR);
         // 检查主线程上下文是否受影响；
         String countryCode = CONTEXT.get();
         System.out.println("主线程执行结果：" + countryCode);

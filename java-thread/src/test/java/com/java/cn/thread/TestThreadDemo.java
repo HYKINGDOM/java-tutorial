@@ -40,7 +40,8 @@ public class TestThreadDemo {
             }
         }, executor);
 
-        CompletableFuture<String> future = future1.thenCombine(future2, (str1, str2) -> str1 + "======test=====" + str2);
+        CompletableFuture<String> future =
+            future1.thenCombine(future2, (str1, str2) -> str1 + "======test=====" + str2);
         System.out.println(future.get());
 
         //获取小红买酒结果，从小红的操作中获取结果，把结果打印

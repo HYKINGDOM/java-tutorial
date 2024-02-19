@@ -9,15 +9,13 @@ public class TestATest {
 
     private TestA testA;
 
-
     @BeforeEach
-    public void init(){
+    public void init() {
         testA = new TestA();
     }
 
-
     @Test
-    public void test_main_A(){
+    public void test_main_A() {
         assertThat(4).isEqualTo(4);
     }
 

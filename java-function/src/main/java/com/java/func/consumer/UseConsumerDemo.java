@@ -5,7 +5,6 @@ import java.util.stream.Stream;
 
 public class UseConsumerDemo {
 
-
     public static void main(String[] args) {
 
         Consumer<String> consumer = System.out::println;
@@ -14,11 +13,9 @@ public class UseConsumerDemo {
 
         stream.forEach(UseConsumerDemo::listToString);
 
-
     }
 
-
-    private static String listToString(String str){
+    private static String listToString(String str) {
 
         return str.toUpperCase();
     }

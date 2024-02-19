@@ -10,7 +10,6 @@ import static com.java.coco.utils.PatternUtil.MOR_CONTAINS_HA;
 
 public class PatternUtilTest {
 
-
     private PatternUtil patternUtil;
 
     @BeforeEach
@@ -64,7 +63,6 @@ public class PatternUtilTest {
         Assertions.assertTrue(match);
     }
 
-
     @Test
     public void TEST_MOR_CONTAINS_HA_02() {
 
@@ -80,7 +78,6 @@ public class PatternUtilTest {
         boolean match = ReUtil.isMatch(MOR_CONTAINS_HA, str);
         Assertions.assertTrue(match);
     }
-
 
     @Test
     public void TEST_MOR_CONTAINS_HA() {

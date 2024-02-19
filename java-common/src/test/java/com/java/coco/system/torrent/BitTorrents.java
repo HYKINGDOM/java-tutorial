@@ -15,18 +15,43 @@ public class BitTorrents {
         return new BitTorrents().analyze(new FileInputStream(btFilePath));
     }
 
+    public static void main(String[] args) throws Exception {
+        BitTorrentInfo info = parse(
+            "E://Program Files (x86)//Thunder//Profiles//Torrents//4ADF5F1A2E9AE6D2B8FD8692C6A48121FF9E08C1.torrent");
+        System.out.println(
+            "信息:" + info.getAnnounce() + "\t" + info.getComment() + "\t" + info.getCreateBy() + "\t" + info.getCreationDate());
+        Info it = info.getInfo();
+        System.out.println(
+            "信息:" + it.getName() + "\t" + it.getPiecesLength() + "\t" + it.getLength() + "\t" + it.getMd5sum() + "\t" + it.getPieces());
+        if (info.getAnnounceList().size() > 0) {
+            for (String str : info.getAnnounceList()) {
+                System.out.println("信息2:" + str);
+            }
+        }
+        if (it.getFiles().size() > 0) {
+            for (Files file : it.getFiles()) {
+                System.out.println("信息3:" + file.getLength() + "\t" + file.getMd5sum());
+                if (file.getPath().size() > 0) {
+                    for (String str : file.getPath()) {
+                        System.out.println("信息4：" + str);
+                    }
+                }
+            }
+        }
+    }
+
     private BitTorrentInfo analyze(InputStream is) throws Exception {
         BitTorrentInfo btInfo = new BitTorrentInfo();
         String key = null;
         StringBuilder strLengthBuilder = new StringBuilder();
         int tempByte;
         while ((tempByte = is.read()) != -1) {
-            char temp = (char) tempByte;
+            char temp = (char)tempByte;
             switch (temp) {
                 case 'i':
                     StringBuilder itempBuilder = new StringBuilder();
                     char iTemp;
-                    while ((iTemp = (char) is.read()) != 'e') {
+                    while ((iTemp = (char)is.read()) != 'e') {
                         itempBuilder.append(iTemp);
                     }
                     btInfo.setValue(key, itempBuilder.toString());
@@ -71,7 +96,8 @@ public class BitTorrents {
                             } else if (tempStr.equals("md5sum")) {
                                 List<Files> tempFiles = btInfo.getInfo().getFiles();
                                 if (tempFiles != null) {
-                                    if (tempFiles.isEmpty() || tempFiles.get(tempFiles.size() - 1).getMd5sum() != null) {
+                                    if (tempFiles.isEmpty() || tempFiles.get(tempFiles.size() - 1)
+                                        .getMd5sum() != null) {
                                         tempFiles.add(new Files());
                                     }
                                 }
@@ -96,27 +122,5 @@ public class BitTorrents {
             }
         }
         return btInfo;
-    }
-
-    public static void main(String[] args) throws Exception {
-        BitTorrentInfo info = parse("E://Program Files (x86)//Thunder//Profiles//Torrents//4ADF5F1A2E9AE6D2B8FD8692C6A48121FF9E08C1.torrent");
-        System.out.println("信息:" + info.getAnnounce() + "\t" + info.getComment() + "\t" + info.getCreateBy() + "\t" + info.getCreationDate());
-        Info it = info.getInfo();
-        System.out.println("信息:" + it.getName() + "\t" + it.getPiecesLength() + "\t" + it.getLength() + "\t" + it.getMd5sum() + "\t" + it.getPieces());
-        if (info.getAnnounceList().size() > 0) {
-            for (String str : info.getAnnounceList()) {
-                System.out.println("信息2:" + str);
-            }
-        }
-        if (it.getFiles().size() > 0) {
-            for (Files file : it.getFiles()) {
-                System.out.println("信息3:" + file.getLength() + "\t" + file.getMd5sum());
-                if (file.getPath().size() > 0) {
-                    for (String str : file.getPath()) {
-                        System.out.println("信息4：" + str);
-                    }
-                }
-            }
-        }
     }
 }

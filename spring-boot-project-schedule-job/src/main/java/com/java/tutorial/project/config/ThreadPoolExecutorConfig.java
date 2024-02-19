@@ -1,6 +1,5 @@
 package com.java.tutorial.project.config;
 
-
 import com.alibaba.ttl.threadpool.TtlExecutors;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +25,6 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Configuration
 public class ThreadPoolExecutorConfig {
-
 
     /**
      * cpu 核心数
@@ -71,8 +69,7 @@ public class ThreadPoolExecutorConfig {
     /**
      * ThreadPoolTaskExecutor spring 封装线程池
      *
-     * 当线程池的任务缓存队列已满并且线程池中的线程数目达到maximumPoolSize，如果还有任务到来就会采取任务拒绝策略
-     * 通常有以下四种策略：
+     * 当线程池的任务缓存队列已满并且线程池中的线程数目达到maximumPoolSize，如果还有任务到来就会采取任务拒绝策略 通常有以下四种策略：
      * ThreadPoolExecutor.AbortPolicy:丢弃任务并抛出RejectedExecutionException异常。
      * ThreadPoolExecutor.DiscardPolicy：也是丢弃任务，但是不抛出异常。
      * ThreadPoolExecutor.DiscardOldestPolicy：丢弃队列最前面的任务，然后重新尝试执行任务（重复此过程）
@@ -97,19 +94,18 @@ public class ThreadPoolExecutorConfig {
         return taskExecutor;
     }
 
-
     /**
      * ThreadPoolExecutor
+     *
      * @return ThreadPoolExecutor
      */
     @Bean(name = "defaultThreadPoolExecutor", destroyMethod = "shutdown")
     public ThreadPoolExecutor systemCheckPoolExecutorService() {
         return new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.SECONDS,
-                new LinkedBlockingQueue<>(QUEUE_CAPACITY),
-                new ThreadFactoryBuilder().setNameFormat("default-executor-%d").build(),
-                (r, executor) -> log.error("defaultThreadPoolExecutor pool is full! "));
+            new LinkedBlockingQueue<>(QUEUE_CAPACITY),
+            new ThreadFactoryBuilder().setNameFormat("default-executor-%d").build(),
+            (r, executor) -> log.error("defaultThreadPoolExecutor pool is full! "));
     }
-
 
     /**
      * 线程池配置
@@ -118,18 +114,19 @@ public class ThreadPoolExecutorConfig {
     public ExecutorService taskExecutor() {
         ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("Thread-Pool-Executor-%d").build();
         ThreadPoolExecutor.CallerRunsPolicy callerRunsPolicy = new ThreadPoolExecutor.CallerRunsPolicy();
-        return new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.SECONDS, createQueue(QUEUE_CAPACITY), threadFactory, callerRunsPolicy);
+        return new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.SECONDS,
+            createQueue(QUEUE_CAPACITY), threadFactory, callerRunsPolicy);
     }
-
 
     @Bean(name = "ttlThreadPoolExecutor")
     public ExecutorService ttlThreadPoolExecutorService() {
         ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("ttl-Thread-Pool-Executor-%d").build();
         ThreadPoolExecutor.CallerRunsPolicy callerRunsPolicy = new ThreadPoolExecutor.CallerRunsPolicy();
-        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.SECONDS, createQueue(QUEUE_CAPACITY), threadFactory, callerRunsPolicy);
+        ThreadPoolExecutor threadPoolExecutor =
+            new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.SECONDS,
+                createQueue(QUEUE_CAPACITY), threadFactory, callerRunsPolicy);
         return TtlExecutors.getTtlExecutorService(threadPoolExecutor);
     }
-
 
     @Bean(name = "ttlThreadPoolTaskExecutor")
     public Executor ttlThreadPoolTaskExecutor() {
@@ -146,16 +143,14 @@ public class ThreadPoolExecutorConfig {
         return TtlExecutors.getTtlExecutor(taskExecutor);
     }
 
-
     /**
      * 执行周期性任务或定时任务
-     *
      */
     @Bean(name = "defaultScheduledExecutorService")
     public ScheduledExecutorService defaultScheduledExecutorService() {
-        return new ScheduledThreadPoolExecutor(CORE_POOL_SIZE, new BasicThreadFactory.Builder().namingPattern("Scheduled-Executor-Service-%d").daemon(true).build());
+        return new ScheduledThreadPoolExecutor(CORE_POOL_SIZE,
+            new BasicThreadFactory.Builder().namingPattern("Scheduled-Executor-Service-%d").daemon(true).build());
     }
-
 
     /**
      * 执行周期性任务或定时任务
@@ -164,13 +159,13 @@ public class ThreadPoolExecutorConfig {
      */
     @Bean(name = "ttlScheduledExecutorService")
     public ScheduledExecutorService ttlScheduledExecutorService() {
-        ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(CORE_POOL_SIZE, new BasicThreadFactory.Builder().namingPattern("ttl-Scheduled-Executor-Service-%d").daemon(true).build());
+        ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(CORE_POOL_SIZE,
+            new BasicThreadFactory.Builder().namingPattern("ttl-Scheduled-Executor-Service-%d").daemon(true).build());
         return TtlExecutors.getTtlScheduledExecutorService(scheduledThreadPoolExecutor);
     }
 
-
     private BlockingQueue<Runnable> createQueue(int queueCapacity) {
-        return (BlockingQueue) (queueCapacity > 0 ? new LinkedBlockingQueue<>(queueCapacity) : new SynchronousQueue());
+        return (BlockingQueue)(queueCapacity > 0 ? new LinkedBlockingQueue<>(queueCapacity) : new SynchronousQueue());
     }
 
 }

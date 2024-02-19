@@ -1,6 +1,5 @@
 package com.java.tutorial.project.controller;
 
-
 import com.java.tutorial.project.entity.Order;
 import com.java.tutorial.project.service.OrderService;
 import lombok.AllArgsConstructor;
@@ -29,28 +28,28 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping("get/{id}")
-    public Order get(@PathVariable("id") Long id){
+    public Order get(@PathVariable("id") Long id) {
         return orderService.getOrderById(id);
     }
 
     @PostMapping("update")
-    public void updateOrder(@RequestBody Order order){
+    public void updateOrder(@RequestBody Order order) {
         orderService.updateOrder(order);
     }
 
     @PutMapping("/put")
-    public void updatePatchOrder(@RequestBody Order order){
+    public void updatePatchOrder(@RequestBody Order order) {
         log.info(order.toString());
         orderService.updatePutOrder(order);
     }
 
     @GetMapping("get2")
-    public Order get2(@RequestParam("id") Long id,@RequestParam("status")Integer status){
-        return orderService.getOrderByIdAndStatus(id,status);
+    public Order get2(@RequestParam("id") Long id, @RequestParam("status") Integer status) {
+        return orderService.getOrderByIdAndStatus(id, status);
     }
 
     @DeleteMapping("del")
-    public void del(@RequestParam("id") Long id){
+    public void del(@RequestParam("id") Long id) {
         orderService.deleteOrder(id);
     }
 }

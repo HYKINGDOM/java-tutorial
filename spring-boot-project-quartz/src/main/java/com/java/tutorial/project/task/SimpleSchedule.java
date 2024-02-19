@@ -25,7 +25,8 @@ public class SimpleSchedule {
 
     @Bean
     public JobDetail job0() {
-        return JobBuilder.newJob(SchedulerJob0.class).withIdentity("job0").storeDurably().usingJobData("k1", "v1").build();
+        return JobBuilder.newJob(SchedulerJob0.class).withIdentity("job0").storeDurably().usingJobData("k1", "v1")
+            .build();
     }
 
     @Bean

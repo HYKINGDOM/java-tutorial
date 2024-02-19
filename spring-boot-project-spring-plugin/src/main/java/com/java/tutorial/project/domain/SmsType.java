@@ -5,8 +5,7 @@ import lombok.Getter;
 @Getter
 public enum SmsType {
 
-    ALIYUN ("ALIYUN");
-
+    ALIYUN("ALIYUN");
 
     private String type;
 

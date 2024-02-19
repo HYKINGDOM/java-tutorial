@@ -50,13 +50,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class TestJavaStream {
 
-
     private List<Map<String, Object>> lists;
 
     private List<Map<String, Object>> listCopy;
 
     private Map<String, Object> map;
-
 
     private List<TimeMap> timeMapList;
 
@@ -176,23 +174,13 @@ public class TestJavaStream {
         LocalDateTime localDateTime3 = localDateTime0.plusDays(7);
         LocalDateTime localDateTime4 = localDateTime0.plusDays(4);
 
-        timeMapList = Lists.newArrayList(
-                new TimeMap(0, localDateTime0, 5),
-                new TimeMap(1, localDateTime1, 3),
-                new TimeMap(2, localDateTime2, null),
-                new TimeMap(3, null, 3),
-                new TimeMap(4, localDateTime4, 5));
+        timeMapList = Lists.newArrayList(new TimeMap(0, localDateTime0, 5), new TimeMap(1, localDateTime1, 3),
+            new TimeMap(2, localDateTime2, null), new TimeMap(3, null, 3), new TimeMap(4, localDateTime4, 5));
 
-
-        persons =
-                Arrays.asList(
-                        new Person("Max", 18),
-                        new Person("Peter", 23),
-                        new Person("Pamela", 23),
-                        new Person("David", 12));
+        persons = Arrays.asList(new Person("Max", 18), new Person("Peter", 23), new Person("Pamela", 23),
+            new Person("David", 12));
 
     }
-
 
     /**
      * 基于Lamada表达式的list和map的遍历
@@ -213,20 +201,16 @@ public class TestJavaStream {
     @Test
     public void test_java_stream_flatMap() {
         //拼接去重
-        List<Integer> together = Stream.of(asList(1, 2, 3, 4), asList(3, 4, 5, 6, 7))
-                .flatMap(Collection::stream)
-                .distinct()
+        List<Integer> together =
+            Stream.of(asList(1, 2, 3, 4), asList(3, 4, 5, 6, 7)).flatMap(Collection::stream).distinct()
                 .collect(toList());
         System.out.println(Arrays.toString(together.toArray()));
         System.out.println("=========================================");
 
         //数组字符分割去重返回list
         String[] strArray = {"hello", "world"};
-        List<String> res = Arrays.stream(strArray)
-                .map(w -> w.split(""))
-                .flatMap(Arrays::stream)
-                .distinct()
-                .collect(Collectors.toList());
+        List<String> res = Arrays.stream(strArray).map(w -> w.split("")).flatMap(Arrays::stream).distinct()
+            .collect(Collectors.toList());
         System.out.println(res);
 
         System.out.println("=========================================");
@@ -238,12 +222,15 @@ public class TestJavaStream {
         List<Integer> nums3List = Arrays.asList(nums3);
 
         //使用2个map嵌套过滤,返回一个新的list
-        List<int[]> res2 = nums2List.stream().flatMap(i -> nums3List.stream().map(j -> new int[]{i, j})).collect(Collectors.toList());
+        List<int[]> res2 =
+            nums2List.stream().flatMap(i -> nums3List.stream().map(j -> new int[] {i, j})).collect(Collectors.toList());
         res2.forEach(e -> System.out.println(Arrays.toString(e)));
 
         System.out.println("=========================================");
         //返回总和能被3整除的数对
-        List<int[]> res3 = nums2List.stream().flatMap(i -> nums3List.stream().filter(j -> (i + j) % 3 == 0).map(j -> new int[]{i, j})).collect(Collectors.toList());
+        List<int[]> res3 =
+            nums2List.stream().flatMap(i -> nums3List.stream().filter(j -> (i + j) % 3 == 0).map(j -> new int[] {i, j}))
+                .collect(Collectors.toList());
         res3.forEach(e -> System.out.println(Arrays.toString(e)));
 
         System.out.println("=========================================");
@@ -251,9 +238,7 @@ public class TestJavaStream {
         List<Integer> integerList1 = Lists.newArrayList(1, 2, 3, 4, 5, 6);
         List<Integer> integerList2 = Lists.newArrayList(5, 6, 7, 8, 9, 0);
         List<List<Integer>> objects = Lists.newArrayList();
-        IntStream
-                .range(1, 4)
-                .forEach(i -> objects.add(integerList1));
+        IntStream.range(1, 4).forEach(i -> objects.add(integerList1));
 
         objects.stream().flatMap(Collection::stream).forEach(System.out::print);
         System.out.println();
@@ -269,9 +254,8 @@ public class TestJavaStream {
         Map<Integer, Map> map3 = Maps.newHashMap();
         map3.put(3, map2);
 
-        Optional.of(map3).flatMap(e -> Optional.ofNullable(e.get(3)))
-                .flatMap(o -> Optional.ofNullable(o.get(2)))
-                .ifPresent(System.out::println);
+        Optional.of(map3).flatMap(e -> Optional.ofNullable(e.get(3))).flatMap(o -> Optional.ofNullable(o.get(2)))
+            .ifPresent(System.out::println);
 
     }
 
@@ -281,12 +265,8 @@ public class TestJavaStream {
     @Test
     public void test_java_list_max_min() {
         List<Integer> list = Lists.newArrayList(3, 5, 2, 9, 1);
-        int maxInt = list.stream()
-                .max(Integer::compareTo)
-                .get();
-        int minInt = list.stream()
-                .min(Integer::compareTo)
-                .get();
+        int maxInt = list.stream().max(Integer::compareTo).get();
+        int minInt = list.stream().min(Integer::compareTo).get();
         assertEquals(9, maxInt);
         assertEquals(1, minInt);
     }
@@ -296,17 +276,14 @@ public class TestJavaStream {
      */
     @Test
     public void test_java_stream_reduce() {
-        int resultSum = Stream.of(45, 10, 20, 5)
-                .reduce(0, Integer::sum);
+        int resultSum = Stream.of(45, 10, 20, 5).reduce(0, Integer::sum);
         assertEquals(80, resultSum);
 
-        int result = Stream.of(1, 2, 3, 4)
-                .reduce(1, (acc, element) -> acc * element);
+        int result = Stream.of(1, 2, 3, 4).reduce(1, (acc, element) -> acc * element);
         assertEquals(24, result);
 
         System.out.println("=========================================");
-        Stream.of(45, 10, 20, 5).reduce((a, b) -> a > b ? a : b)
-                .ifPresent(System.out::println);
+        Stream.of(45, 10, 20, 5).reduce((a, b) -> a > b ? a : b).ifPresent(System.out::println);
 
         System.out.println("=========================================");
         Map<String, Integer> integerMap00 = new HashMap<>();
@@ -338,33 +315,21 @@ public class TestJavaStream {
 
         System.out.format("age=%s", age);
 
-
         System.out.println("=========================================");
-        List<Person> persons = Arrays.asList(
-                new Person("Max", 18),
-                new Person("Peter", 23),
-                new Person("Pamela", 23),
-                new Person("David", 12));
+        List<Person> persons = Arrays.asList(new Person("Max", 18), new Person("Peter", 23), new Person("Pamela", 23),
+            new Person("David", 12));
 
-
-        Integer reduce = persons
-                .parallelStream()
-                .reduce(0,
-                        (sum, p) -> {
-                            System.out.format("accumulator: sum=%s; person=%s [%s]\n",
-                                    sum, p, Thread.currentThread().getName());
-                            return sum + p.getAge();
-                        },
-                        (sum1, sum2) -> {
-                            System.out.format("combiner: sum1=%s; sum2=%s [%s]\n",
-                                    sum1, sum2, Thread.currentThread().getName());
-                            return sum1 + sum2;
-                        });
+        Integer reduce = persons.parallelStream().reduce(0, (sum, p) -> {
+            System.out.format("accumulator: sum=%s; person=%s [%s]\n", sum, p, Thread.currentThread().getName());
+            return sum + p.getAge();
+        }, (sum1, sum2) -> {
+            System.out.format("combiner: sum1=%s; sum2=%s [%s]\n", sum1, sum2, Thread.currentThread().getName());
+            return sum1 + sum2;
+        });
 
         System.out.println(reduce);
 
     }
-
 
     /**
      * Takewhile:假设要在流中找到所有小于20的数字，可能会出现一下情况：
@@ -383,7 +348,6 @@ public class TestJavaStream {
         numberList01.stream().dropWhile(num -> num <= 20).forEach(System.out::println);
     }
 
-
     @Test
     public void test_java_stream_03() {
         Map<Integer, String> integerMap02 = new HashMap<>();
@@ -396,19 +360,15 @@ public class TestJavaStream {
         assertThat(orDefault02).isEqualTo("de");
     }
 
-
     /**
      * map计算平方数
      */
     @Test
     public void test_java_stream_map_count() {
         List<Integer> nums = Arrays.asList(1, 2, 3, 4);
-        List<Integer> squareNums = nums.stream().
-                map(n -> n * n).
-                collect(Collectors.toList());
+        List<Integer> squareNums = nums.stream().map(n -> n * n).collect(Collectors.toList());
         System.out.println(Arrays.toString(squareNums.toArray()));
     }
-
 
     /**
      * 对list进行排序操作
@@ -416,28 +376,22 @@ public class TestJavaStream {
     @Test
     public void test_java_list_sort_stream() {
         List<Integer> list = Lists.newArrayList(3, 5, 1, 10, 8);
-        List<Integer> sortedList = list.stream()
-                .sorted(Integer::compareTo)
-                .collect(Collectors.toList());
+        List<Integer> sortedList = list.stream().sorted(Integer::compareTo).collect(Collectors.toList());
     }
 
     /**
-     * 遍历list取相应的值返回一组特定格式的数据
-     * 返回值可以Collectors.进行定义
+     * 遍历list取相应的值返回一组特定格式的数据 返回值可以Collectors.进行定义
      */
     @Test
     public void test_java_stream_map() {
 
-        Set<String> stringSet = lists.stream()
-                .filter(e -> e.get("name").toString().startsWith("the"))
-                .map(e -> e.get("nation").toString())
+        Set<String> stringSet =
+            lists.stream().filter(e -> e.get("name").toString().startsWith("the")).map(e -> e.get("nation").toString())
                 .collect(Collectors.toSet());
         System.out.println(Arrays.toString(stringSet.toArray()));
 
-
-        List<String> strings = lists.stream()
-                .filter(e -> e.get("nation").toString().length() > 6)
-                .map(e -> e.get("name").toString())
+        List<String> strings =
+            lists.stream().filter(e -> e.get("nation").toString().length() > 6).map(e -> e.get("name").toString())
                 .collect(Collectors.toList());
         System.out.println(Arrays.toString(strings.toArray()));
     }
@@ -447,13 +401,11 @@ public class TestJavaStream {
      */
     @Test
     public void test_java_stream_collection_group_by() {
-        IntSummaryStatistics summaryStatistics = lists.stream().mapToInt(e -> Integer.parseInt(e.get("age").toString())).summaryStatistics();
-        System.out.printf("Max: %d, Min: %d, Ave: %f, Sum: %d, count: %d",
-                summaryStatistics.getMax(),
-                summaryStatistics.getMin(),
-                summaryStatistics.getAverage(),
-                summaryStatistics.getSum(),
-                summaryStatistics.getCount());
+        IntSummaryStatistics summaryStatistics =
+            lists.stream().mapToInt(e -> Integer.parseInt(e.get("age").toString())).summaryStatistics();
+        System.out.printf("Max: %d, Min: %d, Ave: %f, Sum: %d, count: %d", summaryStatistics.getMax(),
+            summaryStatistics.getMin(), summaryStatistics.getAverage(), summaryStatistics.getSum(),
+            summaryStatistics.getCount());
     }
 
     /**
@@ -475,50 +427,41 @@ public class TestJavaStream {
         System.out.println(longMap.toString());
 
         //按照类型分组之后 返回带上每组数据的其中一个字段的额list
-        Map<Object, List<Object>> listMap = lists.stream().collect(groupingBy(e -> e.get("type").toString() + e.get("name"), mapping(e_ -> e_.get("name"), toList())));
+        Map<Object, List<Object>> listMap = lists.stream().collect(
+            groupingBy(e -> e.get("type").toString() + e.get("name"), mapping(e_ -> e_.get("name"), toList())));
         System.out.println(listMap.toString());
     }
-
 
     @Test
     public void test_collect_group_by_java_type() {
 
-
         List<SysUserAccount> sysUserAccounts = buildSysUserAccount(20);
-        Map<String, Map<Integer, Long>> resultMap = sysUserAccounts.stream()
-                .collect(Collectors.groupingBy(SysUserAccount::getUserName,
-                        Collectors.groupingBy(SysUserAccount::getStatus,
-                                Collectors.counting())));
-
+        Map<String, Map<Integer, Long>> resultMap = sysUserAccounts.stream().collect(
+            Collectors.groupingBy(SysUserAccount::getUserName,
+                Collectors.groupingBy(SysUserAccount::getStatus, Collectors.counting())));
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-//        val gsonJsonParser = new Gson();
+        //        val gsonJsonParser = new Gson();
         String toJson = gson.toJson(resultMap);
         System.out.println(toJson);
 
     }
 
-
     /**
-     * 1️⃣ collect是Stream流的一个终止方法，会使用传入的收集器（入参）对结果执行相关的操作，这个收集器必须是Collector接口的某个具体实现类
-     * 2️⃣ Collector是一个接口，collect方法的收集器是Collector接口的具体实现类
-     * 3️⃣ Collectors是一个工具类，提供了很多的静态工厂方法，提供了很多Collector接口的具体实现类，是为了方便程序员使用而预置的一些较为通用的收集器（如果不使用Collectors类，而是自己去实现Collector接口，也可以）。
+     * 1️⃣ collect是Stream流的一个终止方法，会使用传入的收集器（入参）对结果执行相关的操作，这个收集器必须是Collector接口的某个具体实现类 2️⃣
+     * Collector是一个接口，collect方法的收集器是Collector接口的具体实现类 3️⃣
+     * Collectors是一个工具类，提供了很多的静态工厂方法，提供了很多Collector接口的具体实现类，是为了方便程序员使用而预置的一些较为通用的收集器（如果不使用Collectors类，而是自己去实现Collector接口，也可以）。
      * <p>
-     * 作者：架构悟道
-     * 链接：https://juejin.cn/post/7121539527151190053
-     * 来源：稀土掘金
-     * 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+     * 作者：架构悟道 链接：https://juejin.cn/post/7121539527151190053 来源：稀土掘金 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
      */
     @Test
     public void test_collect_group_by_java_type_01() {
 
-
         List<SysUserAccount> sysUserAccounts = buildSysUserAccount(20);
 
-        Map<Boolean, Long> resultMap = sysUserAccounts.stream()
-                .collect(Collectors.partitioningBy(e -> e.getStatus() == 5,
-                        Collectors.counting()));
+        Map<Boolean, Long> resultMap =
+            sysUserAccounts.stream().collect(Collectors.partitioningBy(e -> e.getStatus() == 5, Collectors.counting()));
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String toJson = gson.toJson(resultMap);
@@ -526,21 +469,18 @@ public class TestJavaStream {
 
     }
 
-
     @Test
     public void test_collect_group_by_java_type_02() {
 
-
         List<SysUserAccount> sysUserAccounts = buildSysUserAccount(20);
 
-        IntSummaryStatistics summaryStatistics = sysUserAccounts.stream()
-                .collect(Collectors.summarizingInt(SysUserAccount::getVision));
+        IntSummaryStatistics summaryStatistics =
+            sysUserAccounts.stream().collect(Collectors.summarizingInt(SysUserAccount::getVision));
 
         System.out.println(summaryStatistics);
 
-
-        LongSummaryStatistics longSummaryStatistics = sysUserAccounts.stream()
-                .collect(Collectors.summarizingLong(SysUserAccount::getVision));
+        LongSummaryStatistics longSummaryStatistics =
+            sysUserAccounts.stream().collect(Collectors.summarizingLong(SysUserAccount::getVision));
 
         System.out.println(longSummaryStatistics);
 
@@ -549,12 +489,10 @@ public class TestJavaStream {
     @Test
     public void test_collect_group_by_java_type_03() {
 
-
         List<SysUserAccount> sysUserAccounts = buildSysUserAccount(20);
 
-        Map<Integer, Long> collect = sysUserAccounts.stream()
-                .collect(groupingBy(SysUserAccount::getStatus,
-                        counting()));
+        Map<Integer, Long> collect =
+            sysUserAccounts.stream().collect(groupingBy(SysUserAccount::getStatus, counting()));
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String toJson = gson.toJson(collect);
@@ -562,32 +500,27 @@ public class TestJavaStream {
 
     }
 
-
     @Test
     public void test_collect_group_by_java_type_04() {
 
-
         List<SysUserAccount> sysUserAccounts = buildSysUserAccount(20);
 
-        SysUserAccount collect = sysUserAccounts.stream()
-                .filter(employee -> employee.getStatus() == 1)
-                .collect(
-                        Collectors.collectingAndThen(
-                                Collectors.maxBy(Comparator.comparingInt(SysUserAccount::getVision)),
-                                Optional::get)
-                );
+        SysUserAccount collect = sysUserAccounts.stream().filter(employee -> employee.getStatus() == 1).collect(
+            Collectors.collectingAndThen(Collectors.maxBy(Comparator.comparingInt(SysUserAccount::getVision)),
+                Optional::get));
 
-        System.out.println(JSONObject.toJSONString(sysUserAccounts, JSONWriter.Feature.PrettyFormat, JSONWriter.Feature.MapSortField));
+        System.out.println(
+            JSONObject.toJSONString(sysUserAccounts, JSONWriter.Feature.PrettyFormat, JSONWriter.Feature.MapSortField));
 
     }
-
 
     /**
      * 将list<map<>>中的数据取出拼接成字符串
      */
     @Test
     public void test_group_by_java_list_to_string() {
-        String name = lists.stream().map(e -> e.get("name")).map(String::valueOf).collect(Collectors.joining(",", "[", "]"));
+        String name =
+            lists.stream().map(e -> e.get("name")).map(String::valueOf).collect(Collectors.joining(",", "[", "]"));
         System.out.println("name:" + name);
     }
 
@@ -601,33 +534,25 @@ public class TestJavaStream {
         System.out.println(Arrays.toString(afterDistinctList.toArray()));
     }
 
-
     /**
-     * parallel()并行化操作,进行操作前会对数据进行分块,然后每块数据开辟线程运算,
-     * 尽量使用list或数组作为数据源,因为parallel会对数据进行分割,
+     * parallel()并行化操作,进行操作前会对数据进行分块,然后每块数据开辟线程运算, 尽量使用list或数组作为数据源,因为parallel会对数据进行分割,
      * <p>
      * 注意:只有在数据量大的时候才能体现出并行化的效率优势
      *
      * @param
-     *
      * @return void
      * @author yihur
      * @date 2019/4/29
      */
     @Test
     public void test_java_stream_parallel() {
-        int sumSize = Stream.of("Apple", "Banana", "Orange", "Pear")
-                .parallel()
-                .map(String::length)
-                .reduce(Integer::sum)
-                .get();
+        int sumSize =
+            Stream.of("Apple", "Banana", "Orange", "Pear").parallel().map(String::length).reduce(Integer::sum).get();
         assertEquals(21, sumSize);
     }
 
-
     /**
-     * 并行化的方法生成数组
-     * 并行化的方法数组求和
+     * 并行化的方法生成数组 并行化的方法数组求和
      */
     @Test
     public void test_java_array_parallel() {
@@ -651,7 +576,6 @@ public class TestJavaStream {
         System.out.println(count);
     }
 
-
     /**
      * 对于嵌套for循环的lamada表达式的优化
      */
@@ -664,41 +588,39 @@ public class TestJavaStream {
         System.out.println("==========================================");
 
         //noneMatch 不满足判断条件的数据返回
-        lists.stream()
-                .filter(map -> listCopy.stream().noneMatch(map1 -> map.get("age").equals(map1.get("age")) && map.get("name").equals(map1.get("name"))))
-                .forEach(map -> {
-                    System.out.println(map.toString());
-                });
+        lists.stream().filter(map -> listCopy.stream()
+                .noneMatch(map1 -> map.get("age").equals(map1.get("age")) && map.get("name").equals(map1.get("name"))))
+            .forEach(map -> {
+                System.out.println(map.toString());
+            });
 
         //allMatch 所有数据满足全部条件的时候返回数据
         System.out.println("==========================================");
-        lists.stream()
-                .filter(map -> listCopy.stream().allMatch(map1 -> map.get("age").equals(map1.get("age"))))
-                .forEach(map -> {
-                    System.out.println(map.toString());
-                });
+        lists.stream().filter(map -> listCopy.stream().allMatch(map1 -> map.get("age").equals(map1.get("age"))))
+            .forEach(map -> {
+                System.out.println(map.toString());
+            });
 
         //anyMatch 只有满足判断条件的数据返回
         System.out.println("==========================================");
-        lists.stream()
-                .filter(map -> listCopy.stream().anyMatch(map1 -> map.get("age").equals(map1.get("age"))))
-                .forEach(map -> {
-                    System.out.println(map.toString());
-                });
+        lists.stream().filter(map -> listCopy.stream().anyMatch(map1 -> map.get("age").equals(map1.get("age"))))
+            .forEach(map -> {
+                System.out.println(map.toString());
+            });
         System.out.println("==========================================");
 
         Map<String, Object> integerMap02 = new HashMap<>();
         integerMap02.put("age", 10);
 
-        Map<String, Object> collect = Stream.of(lists, listCopy).flatMap(Collection::stream).distinct().reduce(integerMap02, (a, b) -> {
-            if (a.get("age").equals(b.get("age"))) {
-                return a;
-            }
-            return integerMap02;
-        });
+        Map<String, Object> collect =
+            Stream.of(lists, listCopy).flatMap(Collection::stream).distinct().reduce(integerMap02, (a, b) -> {
+                if (a.get("age").equals(b.get("age"))) {
+                    return a;
+                }
+                return integerMap02;
+            });
 
         System.out.println(collect.toString());
-
 
     }
 
@@ -718,56 +640,39 @@ public class TestJavaStream {
     @Test
     public void test_java_lambda_collectors_copy() {
 
+        Map<Integer, List<Person>> personsByAge = persons.stream().collect(Collectors.groupingBy(Person::getAge));
 
-        Map<Integer, List<Person>> personsByAge = persons
-                .stream()
-                .collect(Collectors.groupingBy(Person::getAge));
-
-        personsByAge
-                .forEach((age, p) -> System.out.format("age %s: %s\n", age, p));
+        personsByAge.forEach((age, p) -> System.out.format("age %s: %s\n", age, p));
 
         System.out.println("==========================================");
 
-        Double averageAge = persons
-                .stream()
-                .collect(Collectors.averagingInt(Person::getAge));
+        Double averageAge = persons.stream().collect(Collectors.averagingInt(Person::getAge));
 
         System.out.println(averageAge);
 
         System.out.println("==========================================");
-        IntSummaryStatistics ageSummary =
-                persons
-                        .stream()
-                        .collect(Collectors.summarizingInt(Person::getAge));
+        IntSummaryStatistics ageSummary = persons.stream().collect(Collectors.summarizingInt(Person::getAge));
 
         System.out.println(ageSummary);
         System.out.println("==========================================");
 
         //为了将流元素转换为映射，我们必须指定如何映射键和值。请记住，映射的键必须是唯一的，否则抛出一个IllegalStateException。您可以选择将合并函数作为附加参数传递以绕过异常：
-        Map<Integer, String> map = persons
-                .stream()
-                .collect(Collectors.toMap(
-                        Person::getAge,
-                        Person::getName,
-                        (name1, name2) -> name1 + ";" + name2));
+        Map<Integer, String> map = persons.stream()
+            .collect(Collectors.toMap(Person::getAge, Person::getName, (name1, name2) -> name1 + ";" + name2));
 
         System.out.println(map);
         System.out.println("==========================================");
 
         Collector<Person, StringJoiner, String> personNameCollector =
-                Collector.of(
-                        () -> new StringJoiner(" | "),          // supplier
-                        (j, p) -> j.add(p.getName().toUpperCase()),  // accumulator
-                        StringJoiner::merge,               // combiner
-                        StringJoiner::toString);                // finisher
+            Collector.of(() -> new StringJoiner(" | "),          // supplier
+                (j, p) -> j.add(p.getName().toUpperCase()),  // accumulator
+                StringJoiner::merge,               // combiner
+                StringJoiner::toString);                // finisher
 
-        String names = persons
-                .stream()
-                .collect(personNameCollector);
+        String names = persons.stream().collect(personNameCollector);
 
         System.out.println(names);// MAX | PETER | PAMELA | DAVID
     }
-
 
     @Test
     public void test_java_list_map_data() {
@@ -778,7 +683,6 @@ public class TestJavaStream {
 
         System.out.println(Arrays.toString(lists.toArray()));
     }
-
 
     /**
      * filter过滤为null的条件
@@ -791,10 +695,8 @@ public class TestJavaStream {
         System.out.println("===================================================");
 
         timeMapList.add(null);
-        List<TimeMap> collect3 = timeMapList
-                .stream()
-                .filter(e -> Optional.ofNullable(e.getLocalDateTime()).isPresent())
-                .collect(toList());
+        List<TimeMap> collect3 =
+            timeMapList.stream().filter(e -> Optional.ofNullable(e.getLocalDateTime()).isPresent()).collect(toList());
 
         testfor(collect3);
 
@@ -808,13 +710,15 @@ public class TestJavaStream {
         //下面两组方法结果是一样的就是对结果进行排序,第一个是最大值Power
         //timeMapList.sort((TimeMap t1, TimeMap t2) -> t1.getLocalDateTime().compareTo(t2.getLocalDateTime()));
         //reversed为从大到小排序,不加的话默认从小到大排序
-        timeMapList.sort(Comparator.comparing(TimeMap::getLocalDateTime, Comparator.nullsLast(LocalDateTime::compareTo)));
+        timeMapList.sort(
+            Comparator.comparing(TimeMap::getLocalDateTime, Comparator.nullsLast(LocalDateTime::compareTo)));
 
         testfor(timeMapList);
 
         System.out.println("=======================================================");
 
-        timeMapList.sort(Comparator.comparing(TimeMap::getLocalDateTime, Comparator.nullsLast(LocalDateTime::compareTo)).reversed());
+        timeMapList.sort(
+            Comparator.comparing(TimeMap::getLocalDateTime, Comparator.nullsLast(LocalDateTime::compareTo)).reversed());
 
         testfor(timeMapList);
     }
@@ -826,35 +730,27 @@ public class TestJavaStream {
     public void test_java_lambda_list_compare_sort_return_max_or_min() {
 
         //返回最大值之前进行判空和去重
-        LocalDateTime timeMap5 = timeMapList.stream()
-                .filter(o -> o.getLocalDateTime() != null)
-                .map(TimeMap::getLocalDateTime)
-                .distinct()
-                .max(LocalDateTime::compareTo)
-                .orElse(null);
+        LocalDateTime timeMap5 =
+            timeMapList.stream().filter(o -> o.getLocalDateTime() != null).map(TimeMap::getLocalDateTime).distinct()
+                .max(LocalDateTime::compareTo).orElse(null);
         System.out.println("Max Time:" + timeMap5);
 
-        LocalDateTime timeMap7 = Optional.of(timeMapList).orElseGet(Collections::emptyList)
-                .stream()
-                .filter(o -> o.getId() == 888)
-                .map(TimeMap::getLocalDateTime)
-                .distinct()
-                .max(LocalDateTime::compareTo)
-                .orElse(null);
+        LocalDateTime timeMap7 =
+            Optional.of(timeMapList).orElseGet(Collections::emptyList).stream().filter(o -> o.getId() == 888)
+                .map(TimeMap::getLocalDateTime).distinct().max(LocalDateTime::compareTo).orElse(null);
 
         System.out.println("Max Time:" + timeMap7);
 
-
-//        //返回包含最小值的对象
-//        TimeMap timeMap6 = timeMapList
-//                .stream()
-//                .min(Comparator.comparing(TimeMap::getLocalDateTime))
-//                .orElse(null);
-//        System.out.println("Max Time:" + Objects.requireNonNull(timeMap6).getLocalDateTime());
-//
-//        for (TimeMap timeMap : timeMapList) {
-//            System.out.println("LocalDateTime:= " + timeMap.getLocalDateTime());
-//        }
+        //        //返回包含最小值的对象
+        //        TimeMap timeMap6 = timeMapList
+        //                .stream()
+        //                .min(Comparator.comparing(TimeMap::getLocalDateTime))
+        //                .orElse(null);
+        //        System.out.println("Max Time:" + Objects.requireNonNull(timeMap6).getLocalDateTime());
+        //
+        //        for (TimeMap timeMap : timeMapList) {
+        //            System.out.println("LocalDateTime:= " + timeMap.getLocalDateTime());
+        //        }
 
         TimeMap timeMap = new TimeMap();
         timeMap.setSortNum(5);
@@ -863,13 +759,11 @@ public class TestJavaStream {
         System.out.println(contains);
 
         System.out.println("==================================");
-        String str = timeMapList.stream()
-                .filter(o -> o.getSortNum() != null)
-                .map(e -> e.getSortNum().toString()).collect(Collectors.joining(","));
+        String str = timeMapList.stream().filter(o -> o.getSortNum() != null).map(e -> e.getSortNum().toString())
+            .collect(Collectors.joining(","));
         System.out.println(str);
 
     }
-
 
     /**
      * List对象多条件排序
@@ -929,9 +823,8 @@ public class TestJavaStream {
      */
     @Test
     public void test_java_stream_group_not_null() {
-        Map<LocalDateTime, List<TimeMap>> localDateTimeListMap = timeMapList
-                .stream()
-                .filter(e -> null != e.getLocalDateTime())
+        Map<LocalDateTime, List<TimeMap>> localDateTimeListMap =
+            timeMapList.stream().filter(e -> null != e.getLocalDateTime())
                 .collect(groupingBy(TimeMap::getLocalDateTime));
         for (Map.Entry<LocalDateTime, List<TimeMap>> localDateTimeListEntry : localDateTimeListMap.entrySet()) {
             System.out.println(localDateTimeListEntry.getKey());
@@ -941,7 +834,7 @@ public class TestJavaStream {
     @Test
     public void test_iterator() {
 
-        String[] strings = new String[]{"1", "2", "3", "4", "5", "6", "7", "8"};
+        String[] strings = new String[] {"1", "2", "3", "4", "5", "6", "7", "8"};
 
         List<String> stringList = new ArrayList<>(List.of(strings));
 
@@ -951,7 +844,6 @@ public class TestJavaStream {
             System.out.println(string);
         }
     }
-
 
     /**
      * List对象排序
@@ -964,12 +856,9 @@ public class TestJavaStream {
         LocalDateTime localDateTime3 = localDateTime0.plusDays(7);
         LocalDateTime localDateTime4 = localDateTime0.plusDays(4);
 
-        List<TimeMap> timeMapList = Lists.newArrayList(
-                new TimeMap(0, localDateTime0, 5),
-                new TimeMap(1, localDateTime1, 3),
-                new TimeMap(2, localDateTime2, 5),
-                new TimeMap(3, null, 3),
-                new TimeMap(4, localDateTime4, 5));
+        List<TimeMap> timeMapList =
+            Lists.newArrayList(new TimeMap(0, localDateTime0, 5), new TimeMap(1, localDateTime1, 3),
+                new TimeMap(2, localDateTime2, 5), new TimeMap(3, null, 3), new TimeMap(4, localDateTime4, 5));
 
         System.out.println("==================准备数据=======================");
 
@@ -979,13 +868,13 @@ public class TestJavaStream {
             System.out.println("SortNum:= " + timeMap.getSortNum());
         }
 
-
         System.out.println("==================单条件排序=======================");
 
         //下面两组方法结果是一样的就是对结果进行排序,第一个是最大值
         //timeMapList.sort((TimeMap t1, TimeMap t2) -> t1.getLocalDateTime().compareTo(t2.getLocalDateTime()));
         //reversed为从大到小排序,不加的话默认从小到大排序
-        timeMapList.sort(Comparator.comparing(TimeMap::getLocalDateTime, Comparator.nullsLast(LocalDateTime::compareTo)).reversed());
+        timeMapList.sort(
+            Comparator.comparing(TimeMap::getLocalDateTime, Comparator.nullsLast(LocalDateTime::compareTo)).reversed());
 
         List<TimeMap> collect1 = timeMapList.stream().filter(o -> o.getSortNum() == 5).collect(toList());
 
@@ -997,7 +886,6 @@ public class TestJavaStream {
 
         System.out.println("============================================================");
 
-
         List<TimeMap> collect2 = timeMapList.stream().filter(o -> o.getSortNum() == 3).collect(toList());
 
         for (TimeMap timeMap : collect2) {
@@ -1006,26 +894,20 @@ public class TestJavaStream {
             System.out.println("SortNum:= " + timeMap.getSortNum());
         }
 
-
         System.out.println("==================单条件排序=======================");
 
-        List<TimeMap> collect = timeMapList.stream()
-                .filter(o -> o.getLocalDateTime() != null).collect(toList());
+        List<TimeMap> collect = timeMapList.stream().filter(o -> o.getLocalDateTime() != null).collect(toList());
 
         //返回最大值之前进行判空和去重
-        LocalDateTime timeMap5 = timeMapList.stream()
-                .map(TimeMap::getLocalDateTime)
-                .filter(Objects::nonNull).distinct()
-                .max(LocalDateTime::compareTo).orElse(null);
+        LocalDateTime timeMap5 = timeMapList.stream().map(TimeMap::getLocalDateTime).filter(Objects::nonNull).distinct()
+            .max(LocalDateTime::compareTo).orElse(null);
         System.out.println("Max Time:" + timeMap5);
 
-        LocalDateTime timeMap7 = Optional.of(timeMapList).orElseGet(Collections::emptyList).stream()
-                .filter(o -> o.getId() == 888)
-                .map(TimeMap::getLocalDateTime).distinct()
-                .max(LocalDateTime::compareTo).orElse(null);
+        LocalDateTime timeMap7 =
+            Optional.of(timeMapList).orElseGet(Collections::emptyList).stream().filter(o -> o.getId() == 888)
+                .map(TimeMap::getLocalDateTime).distinct().max(LocalDateTime::compareTo).orElse(null);
 
         System.out.println("Max Time:" + timeMap7);
-
 
         //返回包含最小值的对象
         TimeMap timeMap6 = timeMapList.stream().min(Comparator.comparing(TimeMap::getLocalDateTime)).orElse(null);
@@ -1049,12 +931,9 @@ public class TestJavaStream {
             System.out.println("SortNum:= " + timeMap.getSortNum());
         }
 
-
         Map<Integer, List<TimeMap>> integerListMap = timeMapList.stream().collect(groupingBy(TimeMap::getSortNum));
 
-
     }
-
 
     /**
      * 基于Lamada表达式的list和map的遍历
@@ -1075,20 +954,16 @@ public class TestJavaStream {
     @Test
     public void test_java_stream_flatMap_01() {
         //拼接去重
-        List<Integer> together = Stream.of(asList(1, 2, 3, 4), asList(3, 4, 5, 6, 7))
-                .flatMap(Collection::stream)
-                .distinct()
+        List<Integer> together =
+            Stream.of(asList(1, 2, 3, 4), asList(3, 4, 5, 6, 7)).flatMap(Collection::stream).distinct()
                 .collect(toList());
         System.out.println(Arrays.toString(together.toArray()));
         System.out.println("=========================================");
 
         //数组字符分割去重返回list
         String[] strArray = {"hello", "world"};
-        List<String> res = Arrays.stream(strArray)
-                .map(w -> w.split(""))
-                .flatMap(Arrays::stream)
-                .distinct()
-                .collect(Collectors.toList());
+        List<String> res = Arrays.stream(strArray).map(w -> w.split("")).flatMap(Arrays::stream).distinct()
+            .collect(Collectors.toList());
         System.out.println(res);
 
         System.out.println("=========================================");
@@ -1100,12 +975,15 @@ public class TestJavaStream {
         List<Integer> nums3List = Arrays.asList(nums3);
 
         //使用2个map嵌套过滤,返回一个新的list
-        List<int[]> res2 = nums2List.stream().flatMap(i -> nums3List.stream().map(j -> new int[]{i, j})).collect(Collectors.toList());
+        List<int[]> res2 =
+            nums2List.stream().flatMap(i -> nums3List.stream().map(j -> new int[] {i, j})).collect(Collectors.toList());
         res2.forEach(e -> System.out.println(Arrays.toString(e)));
 
         System.out.println("=========================================");
         //返回总和能被3整除的数对
-        List<int[]> res3 = nums2List.stream().flatMap(i -> nums3List.stream().filter(j -> (i + j) % 3 == 0).map(j -> new int[]{i, j})).collect(Collectors.toList());
+        List<int[]> res3 =
+            nums2List.stream().flatMap(i -> nums3List.stream().filter(j -> (i + j) % 3 == 0).map(j -> new int[] {i, j}))
+                .collect(Collectors.toList());
         res3.forEach(e -> System.out.println(Arrays.toString(e)));
 
     }
@@ -1116,12 +994,8 @@ public class TestJavaStream {
     @Test
     public void test_java_list_max_min_01() {
         List<Integer> list = Lists.newArrayList(3, 5, 2, 9, 1);
-        int maxInt = list.stream()
-                .max(Integer::compareTo)
-                .get();
-        int minInt = list.stream()
-                .min(Integer::compareTo)
-                .get();
+        int maxInt = list.stream().max(Integer::compareTo).get();
+        int minInt = list.stream().min(Integer::compareTo).get();
         assertEquals(9, maxInt);
         assertEquals(1, minInt);
     }
@@ -1131,12 +1005,10 @@ public class TestJavaStream {
      */
     @Test
     public void test_java_stream_reduce_01() {
-        int resultSum = Stream.of(45, 10, 20, 5)
-                .reduce(0, Integer::sum);
+        int resultSum = Stream.of(45, 10, 20, 5).reduce(0, Integer::sum);
         assertEquals(80, resultSum);
 
-        int result = Stream.of(1, 2, 3, 4)
-                .reduce(1, (acc, element) -> acc * element);
+        int result = Stream.of(1, 2, 3, 4).reduce(1, (acc, element) -> acc * element);
         assertEquals(24, result);
     }
 
@@ -1146,12 +1018,9 @@ public class TestJavaStream {
     @Test
     public void test_java_stream_map_count_01() {
         List<Integer> nums = Arrays.asList(1, 2, 3, 4);
-        List<Integer> squareNums = nums.stream().
-                map(n -> n * n).
-                collect(Collectors.toList());
+        List<Integer> squareNums = nums.stream().map(n -> n * n).collect(Collectors.toList());
         System.out.println(Arrays.toString(squareNums.toArray()));
     }
-
 
     /**
      * 对list进行排序操作
@@ -1159,29 +1028,23 @@ public class TestJavaStream {
     @Test
     public void test_java_list_sort_stream_01() {
         List<Integer> list = Lists.newArrayList(3, 5, 1, 10, 8);
-        List<Integer> sortedList = list.stream()
-                .sorted(Integer::compareTo)
-                .collect(Collectors.toList());
+        List<Integer> sortedList = list.stream().sorted(Integer::compareTo).collect(Collectors.toList());
         Assertions.assertThatList(sortedList).isEqualTo(Lists.newArrayList(1, 3, 5, 8, 10));
     }
 
     /**
-     * 遍历list取相应的值返回一组特定格式的数据
-     * 返回值可以Collectors.进行定义
+     * 遍历list取相应的值返回一组特定格式的数据 返回值可以Collectors.进行定义
      */
     @Test
     public void test_java_stream_map_01() {
 
-        Set<String> stringSet = lists.stream()
-                .filter(e -> e.get("name").toString().startsWith("the"))
-                .map(e -> e.get("nation").toString())
+        Set<String> stringSet =
+            lists.stream().filter(e -> e.get("name").toString().startsWith("the")).map(e -> e.get("nation").toString())
                 .collect(Collectors.toSet());
         System.out.println(Arrays.toString(stringSet.toArray()));
 
-
-        List<String> strings = lists.stream()
-                .filter(e -> e.get("nation").toString().length() > 6)
-                .map(e -> e.get("name").toString())
+        List<String> strings =
+            lists.stream().filter(e -> e.get("nation").toString().length() > 6).map(e -> e.get("name").toString())
                 .collect(Collectors.toList());
         System.out.println(Arrays.toString(strings.toArray()));
     }
@@ -1191,13 +1054,11 @@ public class TestJavaStream {
      */
     @Test
     public void test_java_stream_collection_group_by_01() {
-        IntSummaryStatistics summaryStatistics = lists.stream().mapToInt(e -> Integer.parseInt(e.get("age").toString())).summaryStatistics();
-        System.out.printf("Max: %d, Min: %d, Ave: %f, Sum: %d, count: %d",
-                summaryStatistics.getMax(),
-                summaryStatistics.getMin(),
-                summaryStatistics.getAverage(),
-                summaryStatistics.getSum(),
-                summaryStatistics.getCount());
+        IntSummaryStatistics summaryStatistics =
+            lists.stream().mapToInt(e -> Integer.parseInt(e.get("age").toString())).summaryStatistics();
+        System.out.printf("Max: %d, Min: %d, Ave: %f, Sum: %d, count: %d", summaryStatistics.getMax(),
+            summaryStatistics.getMin(), summaryStatistics.getAverage(), summaryStatistics.getSum(),
+            summaryStatistics.getCount());
     }
 
     /**
@@ -1219,10 +1080,10 @@ public class TestJavaStream {
         System.out.println(longMap);
 
         //按照类型分组之后 返回带上每组数据的其中一个字段的额list
-        Map<Object, List<Object>> listMap = lists.stream().collect(groupingBy(e -> e.get("type").toString() + e.get("name"), mapping(e_ -> e_.get("name"), toList())));
+        Map<Object, List<Object>> listMap = lists.stream().collect(
+            groupingBy(e -> e.get("type").toString() + e.get("name"), mapping(e_ -> e_.get("name"), toList())));
         System.out.println(listMap.toString());
     }
-
 
     /**
      * 将list<map<>>中的数据取出拼接成字符串
@@ -1243,33 +1104,25 @@ public class TestJavaStream {
         System.out.println(Arrays.toString(afterDistinctList.toArray()));
     }
 
-
     /**
-     * parallel()并行化操作,进行操作前会对数据进行分块,然后每块数据开辟线程运算,
-     * 尽量使用list或数组作为数据源,因为parallel会对数据进行分割,
+     * parallel()并行化操作,进行操作前会对数据进行分块,然后每块数据开辟线程运算, 尽量使用list或数组作为数据源,因为parallel会对数据进行分割,
      * <p>
      * 注意:只有在数据量大的时候才能体现出并行化的效率优势
      *
      * @param
-     *
      * @return void
      * @author yihur
      * @date 2019/4/29
      */
     @Test
     public void test_java_stream_parallel_01() {
-        int sumSize = Stream.of("Apple", "Banana", "Orange", "Pear")
-                .parallel()
-                .map(String::length)
-                .reduce(Integer::sum)
-                .get();
+        int sumSize =
+            Stream.of("Apple", "Banana", "Orange", "Pear").parallel().map(String::length).reduce(Integer::sum).get();
         assertEquals(21, sumSize);
     }
 
-
     /**
-     * 并行化的方法生成数组
-     * 并行化的方法数组求和
+     * 并行化的方法生成数组 并行化的方法数组求和
      */
     @Test
     public void test_java_array_parallel_01() {
@@ -1296,29 +1149,26 @@ public class TestJavaStream {
         System.out.println(cc);// FALSE
         System.out.println(count);
 
-
         //noneMatch 不满足判断条件的数据返回
-        lists.stream()
-                .filter(map -> listCopy.stream().noneMatch(map1 -> map.get("age").equals(map1.get("age")) && map.get("name").equals(map1.get("name"))))
-                .forEach(map -> {
-                    System.out.println(map.toString());
-                });
+        lists.stream().filter(map -> listCopy.stream()
+                .noneMatch(map1 -> map.get("age").equals(map1.get("age")) && map.get("name").equals(map1.get("name"))))
+            .forEach(map -> {
+                System.out.println(map.toString());
+            });
 
         //allMatch 所有数据满足全部条件的时候返回数据
         System.out.println("==========================================");
-        lists.stream()
-                .filter(map -> listCopy.stream().allMatch(map1 -> map.get("age").equals(map1.get("age"))))
-                .forEach(map -> {
-                    System.out.println(map.toString());
-                });
+        lists.stream().filter(map -> listCopy.stream().allMatch(map1 -> map.get("age").equals(map1.get("age"))))
+            .forEach(map -> {
+                System.out.println(map.toString());
+            });
 
         //anyMatch 只有满足判断条件的数据返回
         System.out.println("==========================================");
-        lists.stream()
-                .filter(map -> listCopy.stream().anyMatch(map1 -> map.get("age").equals(map1.get("age"))))
-                .forEach(map -> {
-                    System.out.println(map.toString());
-                });
+        lists.stream().filter(map -> listCopy.stream().anyMatch(map1 -> map.get("age").equals(map1.get("age"))))
+            .forEach(map -> {
+                System.out.println(map.toString());
+            });
 
     }
 
@@ -1345,6 +1195,5 @@ public class TestJavaStream {
         System.out.println(toDays);
 
     }
-
 
 }

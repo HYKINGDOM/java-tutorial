@@ -24,6 +24,10 @@ public class MapExample {
 
     private static Map<Integer, Integer> map = Maps.newHashMap();
 
+    private static void func(int threadNum) {
+        map.put(threadNum, threadNum);
+    }
+
     @Test
     public void test_count_thread() {
         ExecutorService executorService = Executors.newCachedThreadPool();
@@ -42,10 +46,6 @@ public class MapExample {
         }
         executorService.shutdown();
         log.info("计算得到的总数：{}", map.size());
-    }
-
-    private static void func(int threadNum) {
-        map.put(threadNum, threadNum);
     }
 
     @Test

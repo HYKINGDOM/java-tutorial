@@ -1,14 +1,10 @@
 package com.java.patterns.observerpattern.upgradeobserve.mode;
 
-
-
-
 import com.java.patterns.observerpattern.upgradeobserve.observer.Observer;
 import com.java.patterns.observerpattern.upgradeobserve.observer.Subject;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * 天气数据
@@ -44,7 +40,6 @@ public class WeatherDataSt implements Subject {
     public void dataChange() {
         notifyObservers();
     }
-
 
     public void setData(float mTemperate, float mPressure, float mHumidity) {
         this.mTemperate = mTemperate;

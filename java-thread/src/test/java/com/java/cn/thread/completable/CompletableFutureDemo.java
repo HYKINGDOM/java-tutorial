@@ -8,7 +8,6 @@ import java.util.concurrent.CompletableFuture;
 
 public class CompletableFutureDemo {
 
-
     @Test
     public void test_demo_01() {
 
@@ -16,12 +15,9 @@ public class CompletableFutureDemo {
 
         RunProcessB runProcessB = new RunProcessB();
 
-
         CompletableFuture<Integer> completableFutureA = CompletableFuture.supplyAsync(() -> runProcessA.process(10));
 
-
         CompletableFuture<Integer> completableFutureB = CompletableFuture.supplyAsync(() -> runProcessB.process(10));
-
 
         completableFutureA.whenComplete((result, exc) -> {
 
@@ -31,7 +27,6 @@ public class CompletableFutureDemo {
             }
         });
 
-
         completableFutureB.whenComplete((result, exc) -> {
 
             if (exc == null) {
@@ -40,12 +35,9 @@ public class CompletableFutureDemo {
             }
         });
 
-
         CompletableFuture<Void> allOf = CompletableFuture.allOf(completableFutureA, completableFutureB);
 
-
         allOf.join();
-
 
     }
 }

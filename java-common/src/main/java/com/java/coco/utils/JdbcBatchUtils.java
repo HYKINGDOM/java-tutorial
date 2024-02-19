@@ -1,7 +1,11 @@
 package com.java.coco.utils;
 
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 import java.util.Map;
 
@@ -13,10 +17,10 @@ import java.util.Map;
 //@Component
 public class JdbcBatchUtils {
 
-   // @Value("${spring.datasource.driverClassName}")
+    // @Value("${spring.datasource.driverClassName}")
     private String jdbcDriver;
 
-   // @Value("${spring.datasource.druid.master.url}")
+    // @Value("${spring.datasource.druid.master.url}")
     private String masterDataUrlAddress;
 
     //@Value("${spring.datasource.druid.master.username}")
@@ -32,7 +36,8 @@ public class JdbcBatchUtils {
      * @param typeSortList
      * @param insertSql
      */
-    public void batchGenerateMysqlUtil(List<Map<String, Object>> dataList, List<String> typeSortList, String insertSql) {
+    public void batchGenerateMysqlUtil(List<Map<String, Object>> dataList, List<String> typeSortList,
+        String insertSql) {
         PreparedStatement stat = null;
         Connection conn = null;
         if (dataList == null) {
@@ -71,7 +76,6 @@ public class JdbcBatchUtils {
         }
     }
 
-
     /**
      * 执行特定语句的批处理
      *
@@ -99,7 +103,6 @@ public class JdbcBatchUtils {
             }
         }
     }
-
 
     /**
      * 获取连接

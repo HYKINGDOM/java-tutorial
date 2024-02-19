@@ -11,6 +11,7 @@ import java.util.Base64;
 
 /**
  * 图片下载转字节流
+ *
  * @author hy
  */
 @Slf4j
@@ -21,16 +22,14 @@ public class OssUrlImgBase64TransferUtil {
     public static final String REGEX = "[\\s*\t\n\r]";
     public static final String REPLACEMENT = "";
 
-
     public static String getBase64FromImageUrl(String imageUrl) {
         try {
             URL url = new URL(imageUrl);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
             conn.setRequestMethod(REQUEST_METHOD);
             conn.setConnectTimeout(CONNECT_TIMEOUT);
 
-            try (InputStream in = conn.getInputStream();
-                ByteArrayOutputStream data = new ByteArrayOutputStream()) {
+            try (InputStream in = conn.getInputStream(); ByteArrayOutputStream data = new ByteArrayOutputStream()) {
                 byte[] buffer = new byte[1024];
                 int length;
                 while ((length = in.read(buffer)) != -1) {

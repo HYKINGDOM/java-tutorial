@@ -107,7 +107,8 @@ public class ResResult<T> {
      * 未登录返回结果
      */
     public static <T> ResResult<T> unauthorized(T data) {
-        return new ResResult<T>(CommonCodeMessage.UNAUTHORIZED.getCode(), CommonCodeMessage.UNAUTHORIZED.getMessage(), data);
+        return new ResResult<T>(CommonCodeMessage.UNAUTHORIZED.getCode(), CommonCodeMessage.UNAUTHORIZED.getMessage(),
+            data);
     }
 
     /**

@@ -4,9 +4,9 @@ import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 
 public class AtomicIntegerFieldUpdaterTest {
 
+    private static final AtomicIntegerFieldUpdater updater =
+        AtomicIntegerFieldUpdater.newUpdater(AtomicIntegerFieldUpdaterTest.class, "a");
     private volatile int a = 0;
-
-    private static final AtomicIntegerFieldUpdater updater = AtomicIntegerFieldUpdater.newUpdater(AtomicIntegerFieldUpdaterTest.class, "a");
 
     public static void main(String[] args) {
         AtomicIntegerFieldUpdaterTest test = new AtomicIntegerFieldUpdaterTest();

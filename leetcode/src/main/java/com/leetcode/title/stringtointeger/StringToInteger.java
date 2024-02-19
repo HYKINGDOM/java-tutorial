@@ -51,10 +51,9 @@ public class StringToInteger {
                 }
             }
 
-
             if (Character.isDigit(chars[i])) {
                 if (first == -1) {
-                    if ((int) chars[i] == 0){
+                    if ((int)chars[i] == 0) {
                         continue;
                     }
                     first = i;
@@ -76,8 +75,8 @@ public class StringToInteger {
             substring = "-" + substring;
         }
 
-        if (substring.length() > 13){
-            if (flag){
+        if (substring.length() > 13) {
+            if (flag) {
                 return Integer.MIN_VALUE;
             }
             return Integer.MAX_VALUE;

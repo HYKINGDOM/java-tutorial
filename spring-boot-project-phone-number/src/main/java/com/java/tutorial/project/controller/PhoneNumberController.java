@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 /**
  * @author meta
  */
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PhoneNumberController {
 
     @GetMapping("/getPhoneAffiliationInfo.do/{phone}")
-    public Result<?> getPhoneAffiliationInfo(@PathVariable("phone") String phone){
+    public Result<?> getPhoneAffiliationInfo(@PathVariable("phone") String phone) {
         return Result.success(PhoneToRegionUtil.getPhoneAffiliationInfo(phone));
     }
 

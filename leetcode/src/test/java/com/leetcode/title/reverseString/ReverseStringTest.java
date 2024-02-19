@@ -1,6 +1,5 @@
 package com.leetcode.title.reverseString;
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -28,19 +27,19 @@ public class ReverseStringTest {
     }
 
     @Test
-    public void test_reverse_string_03(){
+    public void test_reverse_string_03() {
         int reverse = reverseString.reverse(120);
         assertEquals(reverse, 21);
     }
 
     @Test
-    public void test_reverse_string_04(){
+    public void test_reverse_string_04() {
         int reverse = reverseString.reverse(0);
         assertEquals(reverse, 0);
     }
 
     @Test
-    public void test_reverse_string_06(){
+    public void test_reverse_string_06() {
         int reverse = reverseString.reverse(1534236469);
         assertEquals(reverse, 0);
     }

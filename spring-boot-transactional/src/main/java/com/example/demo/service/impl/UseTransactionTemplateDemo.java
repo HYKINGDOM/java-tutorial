@@ -8,13 +8,11 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
-
 /**
  * 编程式事务之TransactionTemplate
  */
 @Service
 public class UseTransactionTemplateDemo implements TransactionService {
-
 
     @Autowired
     private TransactionTemplate transactionTemplate;
@@ -28,14 +26,13 @@ public class UseTransactionTemplateDemo implements TransactionService {
                 try {
 
                     // ....  业务代码
-                } catch (Exception e){
+                } catch (Exception e) {
                     //回滚
                     transactionStatus.setRollbackOnly();
                 }
 
             }
         });
-
 
         return false;
     }

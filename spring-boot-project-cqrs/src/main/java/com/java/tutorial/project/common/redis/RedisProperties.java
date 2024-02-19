@@ -3,9 +3,7 @@ package com.java.tutorial.project.common.redis;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- *
  * Redis属性配置
- *
  */
 @ConfigurationProperties(prefix = "spring.data.redis")
 public final class RedisProperties {

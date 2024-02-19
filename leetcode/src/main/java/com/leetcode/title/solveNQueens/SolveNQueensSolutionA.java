@@ -3,7 +3,6 @@ package com.leetcode.title.solveNQueens;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Stack;
 
 public class SolveNQueensSolutionA {
 
@@ -38,7 +37,6 @@ public class SolveNQueensSolutionA {
         }
         return;
     }
-
 
     public boolean judge(char[][] chessboard, int level, int i) {
         int n = chessboard.length;
@@ -91,7 +89,6 @@ public class SolveNQueensSolutionA {
         }
         return true;
     }
-
 
     //将矩阵chessboard里的‘.’和‘Q’都存到最终结果的res集合中。
     public List Array2List(char[][] chessboard) {

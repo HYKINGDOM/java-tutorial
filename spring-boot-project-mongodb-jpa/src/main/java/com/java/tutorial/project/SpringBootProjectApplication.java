@@ -11,8 +11,8 @@ import org.springframework.data.mongodb.config.EnableMongoAuditing;
 @EnableJpaRepositories
 public class SpringBootProjectApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootProjectApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBootProjectApplication.class, args);
+    }
 
 }

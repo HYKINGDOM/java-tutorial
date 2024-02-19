@@ -1,9 +1,7 @@
 package com.java.tutorial.project.common.query;
 
 /**
- *
  * 分页查询参数
- *
  */
 public class PageQO {
 

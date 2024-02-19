@@ -21,19 +21,18 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-
     @ResponseBody
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public String handleMethodArgumentNotValidException(MethodArgumentNotValidException methodArgumentNotValidException) {
+    public String handleMethodArgumentNotValidException(
+        MethodArgumentNotValidException methodArgumentNotValidException) {
         String collect = methodArgumentNotValidException.getAllErrors().stream()
-                .map(e -> String.format(Objects.requireNonNull(e.getDefaultMessage()), ((FieldError) e).getField()))
-                .collect(Collectors.joining(", "));
+            .map(e -> String.format(Objects.requireNonNull(e.getDefaultMessage()), ((FieldError)e).getField()))
+            .collect(Collectors.joining(", "));
         Map<String, Object> objectObjectHashMap = new HashMap<>(2);
         objectObjectHashMap.put("code", "500");
         objectObjectHashMap.put("data", collect);
         val gsonJsonParser = new Gson();
         return gsonJsonParser.toJson(objectObjectHashMap);
     }
-
 
 }

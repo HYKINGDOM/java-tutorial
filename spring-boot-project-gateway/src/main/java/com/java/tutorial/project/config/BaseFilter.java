@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-
 @Component
 public class BaseFilter implements GlobalFilter, Ordered {
 
@@ -41,9 +40,9 @@ public class BaseFilter implements GlobalFilter, Ordered {
         String path = exchange.getRequest().getPath().toString();
         String channelSource = exchange.getRequest().getHeaders().getFirst(HeaderKey.CHANNEL_SOURCE);
         String ip = IpAddressUtils.getIp(exchange.getRequest());
-        if(path.contains(H5)){
+        if (path.contains(H5)) {
             source = "2";
-        } else if (path.contains(APPLETS)){
+        } else if (path.contains(APPLETS)) {
             source = "3";
         }
         log.info("path： {}", path);

@@ -14,6 +14,13 @@ import java.util.stream.Stream;
 
 public class FunctionDemoTest {
 
+    private static void applyFunction(Function func, String p) {
+        System.out.println("Function 的执行结果: " + func.apply(p));
+    }
+
+    private static void acceptConsumer(Consumer consumer, String p) {
+        consumer.accept(p);
+    }
 
     @Test
     public void test_Function() {
@@ -27,7 +34,6 @@ public class FunctionDemoTest {
         };
         System.out.println("Function 示例, 字符串长度: " + strLen.apply("Hello"));
     }
-
 
     @Test
     public void test_Function01() {
@@ -83,7 +89,6 @@ public class FunctionDemoTest {
         System.out.println("hello 函数带'" + param + "'参数,  生成的字符串的长度: " + couterOfHello.apply(param));
     }
 
-
     @Test
     public void test_Function02() {
         Function<String, String> hello = new Function<>() {
@@ -130,7 +135,6 @@ public class FunctionDemoTest {
         System.out.println("是否总是相等? " + idHello.apply(param).equals(param));
     }
 
-
     @Test
     public void test_BiFunction() {
         BiFunction<String, Integer, Boolean> expectLength = new BiFunction<>() {
@@ -141,7 +145,6 @@ public class FunctionDemoTest {
         };
         System.out.print("BiFunction 示例, 字符串长度是否符合预期? " + expectLength.apply("21yi", 4));
     }
-
 
     @Test
     public void test_BiFunction01() {
@@ -168,7 +171,6 @@ public class FunctionDemoTest {
         param = "Java";
         System.out.println(analyse.apply(param, 16));
     }
-
 
     /**
      * consumer接口测试
@@ -243,7 +245,6 @@ public class FunctionDemoTest {
         dialogue.accept("谁谁谁");
     }
 
-
     @Test
     public void test_BiConsumer() {
         BiConsumer<String, Integer> hello = new BiConsumer<>() {
@@ -288,7 +289,6 @@ public class FunctionDemoTest {
         dialogue.accept("21yi", "学编程");
     }
 
-
     @Test
     public void test_Supplier() {
         //① 使用Supplier接口实现方法,只有一个get方法，无参数，返回一个值
@@ -314,7 +314,6 @@ public class FunctionDemoTest {
         System.out.println(supplier2.get());
     }
 
-
     /**
      * Predicate谓词测试，谓词其实就是一个判断的作用类似bool的作用
      */
@@ -331,7 +330,6 @@ public class FunctionDemoTest {
             }
         };
 
-
         System.out.println(predicate.test(6));
 
         System.out.println("********************");
@@ -343,7 +341,6 @@ public class FunctionDemoTest {
 
     }
 
-
     @Test
     public void test_Predicate01() {
         Predicate<Double> isDoubleMax = new Predicate<>() {
@@ -354,7 +351,6 @@ public class FunctionDemoTest {
         };
         System.out.println("Predicate 示例, 是否 Double 的最大值? " + isDoubleMax.test(Double.MAX_VALUE));
     }
-
 
     @Test
     public void test_Predicate02() {
@@ -384,7 +380,6 @@ public class FunctionDemoTest {
         System.out.println("p3 是否无名的小宝宝? " + isNonameBaby.test(p3));
     }
 
-
     @Test
     public void test_Predicate03() {
         Predicate<String> helloStringEquals = Predicate.isEqual("Hello");
@@ -393,7 +388,6 @@ public class FunctionDemoTest {
         obj = "hello";
         System.out.println("Hello 和 " + obj + " 是否相等? " + helloStringEquals.test(obj));
     }
-
 
     @Test
     public void test_Predicate04() {
@@ -408,7 +402,6 @@ public class FunctionDemoTest {
         Predicate<Object> notEmptyString = Predicate.isEqual("").negate();
         System.out.println("不是空字符串? " + notEmptyString.test("Hello"));
     }
-
 
     @Test
     public void test_Predicate05() {
@@ -438,7 +431,6 @@ public class FunctionDemoTest {
         System.out.println("p3 是否无名或小宝宝? " + isNonameOrBaby.test(p3));
     }
 
-
     @Test
     public void test_UnaryOperator() {
         UnaryOperator<String> maskTel = new UnaryOperator<>() {
@@ -453,7 +445,6 @@ public class FunctionDemoTest {
         System.out.println("UnaryOperator 示例, 掩盖电话: " + maskTel.apply("1234567890"));
     }
 
-
     @Test
     public void test_UnaryOperator01() {
         UnaryOperator<String> idHello = UnaryOperator.identity();
@@ -461,13 +452,11 @@ public class FunctionDemoTest {
         String param = "Jack789789515";
         System.out.println("是否总是相等? " + idHello.apply(applyUnaryOperator(param)).equals(param));
 
-
         UnaryOperator<Integer> idHello2 = UnaryOperator.identity();
 
         Integer ten = 10;
         System.out.println("是否总是相等? " + idHello2.apply(ten).equals(ten));
     }
-
 
     private String applyUnaryOperator(String tel) {
         if (tel.length() < 8) {
@@ -475,27 +464,6 @@ public class FunctionDemoTest {
         }
         return tel.substring(0, 2) + "****" + tel.substring(6, tel.length());
     }
-
-
-    private static class Person {
-        private String name;
-        private Integer age;
-
-        public Person(String name, Integer age) {
-            this.name = name;
-            this.age = age;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public Integer getAge() {
-            return age;
-        }
-
-    }
-
 
     @Test
     public void test_FunctionalProgramming() {
@@ -521,7 +489,7 @@ public class FunctionDemoTest {
         Supplier<Integer> randSupplier = new Supplier<>() {
             @Override
             public Integer get() {
-                return (int) (Math.random() * 100);
+                return (int)(Math.random() * 100);
             }
         };
         System.out.println("Supplier 示例, 1-100随机数: " + randSupplier.get());
@@ -562,22 +530,31 @@ public class FunctionDemoTest {
         };
         System.out.println("BiFunction 示例, 字符串长度是否符合预期? " + expectLength.apply("21yi", 4));
 
-        applyFunction(
-                (s) -> {
-                    return s.toString().length();
-                },
-                "21yi");
+        applyFunction((s) -> {
+            return s.toString().length();
+        }, "21yi");
 
         acceptConsumer(System.out::println, "Hello, 21yi");
 
     }
 
-    private static void applyFunction(Function func, String p) {
-        System.out.println("Function 的执行结果: " + func.apply(p));
-    }
+    private static class Person {
+        private String name;
+        private Integer age;
 
-    private static void acceptConsumer(Consumer consumer, String p) {
-        consumer.accept(p);
+        public Person(String name, Integer age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public Integer getAge() {
+            return age;
+        }
+
     }
 
 }

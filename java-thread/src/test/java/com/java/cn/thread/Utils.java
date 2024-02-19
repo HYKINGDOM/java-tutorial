@@ -1,11 +1,9 @@
 package com.java.cn.thread;
 
-
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 
 public class Utils {
-
 
     public static SimpleDateFormat sdfymdHMS = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -13,9 +11,7 @@ public class Utils {
 
     public static SimpleDateFormat sdfYMDHms = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
-
     public static DecimalFormat decimalFormat = new DecimalFormat("0");
-
 
     /**
      * 去掉字符串右边的空格

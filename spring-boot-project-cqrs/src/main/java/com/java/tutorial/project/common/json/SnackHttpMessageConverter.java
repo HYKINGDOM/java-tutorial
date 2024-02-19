@@ -18,48 +18,46 @@ import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.util.StreamUtils;
 
 /**
- *
  * 自定义SpringBoot JSON转换器
- *
  */
 public final class SnackHttpMessageConverter<T> implements HttpMessageConverter<T> {
 
-	@Override
-	public boolean canRead(Class<?> clazz, MediaType mediaType) {
-		return true;
-	}
+    @Override
+    public boolean canRead(Class<?> clazz, MediaType mediaType) {
+        return true;
+    }
 
-	@Override
-	public boolean canWrite(Class<?> clazz, MediaType mediaType) {
-		return true;
-	}
+    @Override
+    public boolean canWrite(Class<?> clazz, MediaType mediaType) {
+        return true;
+    }
 
-	@Override
-	public List<MediaType> getSupportedMediaTypes() {
-		return Arrays.asList(MediaType.APPLICATION_JSON);
-	}
+    @Override
+    public List<MediaType> getSupportedMediaTypes() {
+        return Arrays.asList(MediaType.APPLICATION_JSON);
+    }
 
-	@Override
-	public T read(Class<? extends T> clazz, HttpInputMessage inputMessage)
-			throws IOException, HttpMessageNotReadableException {
-		String json = StreamUtils.copyToString(inputMessage.getBody(), StandardCharsets.UTF_8);
+    @Override
+    public T read(Class<? extends T> clazz, HttpInputMessage inputMessage)
+        throws IOException, HttpMessageNotReadableException {
+        String json = StreamUtils.copyToString(inputMessage.getBody(), StandardCharsets.UTF_8);
 
-		return ONode.deserialize(json, clazz);
-	}
+        return ONode.deserialize(json, clazz);
+    }
 
-	@Override
-	public void write(T obj, MediaType contentType, HttpOutputMessage outputMessage)
-			throws IOException, HttpMessageNotWritableException {
-		try (OutputStream output = outputMessage.getBody();) {
-			Options options = Options.of(Feature.WriteNumberUseString, Feature.WriteDateUseFormat);
-			byte[] bytes = ONode.stringify(obj, options).getBytes(StandardCharsets.UTF_8);
-			for (int i = 0, size = bytes.length; i < size; ++i) {
-				output.write(bytes[i]);
-			}
-			output.flush();
-		} finally {
+    @Override
+    public void write(T obj, MediaType contentType, HttpOutputMessage outputMessage)
+        throws IOException, HttpMessageNotWritableException {
+        try (OutputStream output = outputMessage.getBody();) {
+            Options options = Options.of(Feature.WriteNumberUseString, Feature.WriteDateUseFormat);
+            byte[] bytes = ONode.stringify(obj, options).getBytes(StandardCharsets.UTF_8);
+            for (int i = 0, size = bytes.length; i < size; ++i) {
+                output.write(bytes[i]);
+            }
+            output.flush();
+        } finally {
 
-		}
-	}
+        }
+    }
 
 }

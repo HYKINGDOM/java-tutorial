@@ -2,7 +2,6 @@ package com.leetcode.title.intToRoman;
 
 public class IntToRoman {
 
-
     String[] thousands = {"", "M", "MM", "MMM"};
     String[] hundreds = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
     String[] tens = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};

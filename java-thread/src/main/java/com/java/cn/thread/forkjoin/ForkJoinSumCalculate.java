@@ -8,13 +8,12 @@ import java.util.concurrent.RecursiveTask;
 public class ForkJoinSumCalculate extends RecursiveTask<Long> {
 
     private static final long serialVersionUID = -259195479995561737L;
-    private final long start;
-    private final long end;
-
     /**
      * 临界值
      */
     private static final long THURSHOLD = 10000L;
+    private final long start;
+    private final long end;
 
     public ForkJoinSumCalculate(long start, long end) {
         this.start = start;

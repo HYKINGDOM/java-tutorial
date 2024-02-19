@@ -25,16 +25,13 @@ public class ListSortUtil {
      * @param desc
      * @param descNull
      * @param <T>
-     *
      * @return
      */
-    public static <T> List<T> sortListByField(List<T> list, String sortName, Class<T> tClass, boolean desc, boolean descNull) {
+    public static <T> List<T> sortListByField(List<T> list, String sortName, Class<T> tClass, boolean desc,
+        boolean descNull) {
 
-        return list.stream()
-                .map(convertBeanToMap())
-                .sorted(getMapComparator(sortName, desc, descNull))
-                .map(convertMapToBean(tClass))
-                .collect(Collectors.toList());
+        return list.stream().map(convertBeanToMap()).sorted(getMapComparator(sortName, desc, descNull))
+            .map(convertMapToBean(tClass)).collect(Collectors.toList());
     }
 
     /**
@@ -45,7 +42,6 @@ public class ListSortUtil {
      * @param desc
      * @param tClass
      * @param <T>
-     *
      * @return
      */
     public static <T> List<?> sortListByField(List<T> list, String sortName, boolean desc, Class<T> tClass) {
@@ -58,16 +54,14 @@ public class ListSortUtil {
      * @param sortName
      * @param desc
      * @param descNull
-     *
      * @return
      */
     private static Comparator<Map<String, Object>> getMapComparator(String sortName, boolean desc, boolean descNull) {
         if (desc) {
             return (o1, o2) -> getCompareUtil(sortName, descNull, o1, o2);
         }
-        return ((Comparator<Map<String, Object>>) (o1, o2) -> getCompareUtil(sortName, descNull, o1, o2)).reversed();
+        return ((Comparator<Map<String, Object>>)(o1, o2) -> getCompareUtil(sortName, descNull, o1, o2)).reversed();
     }
-
 
     /**
      * 比较方法
@@ -76,13 +70,12 @@ public class ListSortUtil {
      * @param descNull null值排序规则
      * @param o1
      * @param o2
-     *
      * @return
      */
-    private static int getCompareUtil(String sortName, boolean descNull, Map<String, Object> o1, Map<String, Object> o2) {
+    private static int getCompareUtil(String sortName, boolean descNull, Map<String, Object> o1,
+        Map<String, Object> o2) {
         return CompareUtil.compare(o1.get(sortName), o2.get(sortName), descNull);
     }
-
 
     private static <T> Function<Map<String, Object>, T> convertMapToBean(Class<T> tClass) {
         return map -> BeanUtil.toBean(map, tClass);
@@ -91,6 +84,5 @@ public class ListSortUtil {
     private static <T> Function<T, Map<String, Object>> convertBeanToMap() {
         return BeanUtil::beanToMap;
     }
-
 
 }

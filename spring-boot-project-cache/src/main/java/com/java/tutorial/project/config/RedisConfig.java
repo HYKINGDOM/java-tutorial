@@ -27,13 +27,12 @@ public class RedisConfig extends CachingConfigurerSupport {
         redisTemplate.setConnectionFactory(redisConnectionFactory);
 
         // json序列化设置
-        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer
-                = new Jackson2JsonRedisSerializer<>(Object.class);
+        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer =
+            new Jackson2JsonRedisSerializer<>(Object.class);
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         objectMapper.activateDefaultTyping(objectMapper.getPolymorphicTypeValidator(),
-                ObjectMapper.DefaultTyping.NON_FINAL,
-                JsonTypeInfo.As.WRAPPER_ARRAY);
+            ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.WRAPPER_ARRAY);
         jackson2JsonRedisSerializer.setObjectMapper(objectMapper);
 
         //String类型的序列化
@@ -51,22 +50,21 @@ public class RedisConfig extends CachingConfigurerSupport {
         return redisTemplate;
     }
 
-
-//    @Bean
-//    public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
-//        RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
-//        redisTemplate.setConnectionFactory(connectionFactory);
-//        // 使用Jackson2JsonRedisSerialize 替换默认序列化(默认采用的是JDK序列化)
-//        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
-//        ObjectMapper om = new ObjectMapper();
-//        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-//        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-//        jackson2JsonRedisSerializer.setObjectMapper(om);
-//        redisTemplate.setKeySerializer(jackson2JsonRedisSerializer);
-//        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
-//        redisTemplate.setHashKeySerializer(jackson2JsonRedisSerializer);
-//        redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
-//        return redisTemplate;
-//    }
+    //    @Bean
+    //    public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
+    //        RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
+    //        redisTemplate.setConnectionFactory(connectionFactory);
+    //        // 使用Jackson2JsonRedisSerialize 替换默认序列化(默认采用的是JDK序列化)
+    //        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
+    //        ObjectMapper om = new ObjectMapper();
+    //        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+    //        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+    //        jackson2JsonRedisSerializer.setObjectMapper(om);
+    //        redisTemplate.setKeySerializer(jackson2JsonRedisSerializer);
+    //        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
+    //        redisTemplate.setHashKeySerializer(jackson2JsonRedisSerializer);
+    //        redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
+    //        return redisTemplate;
+    //    }
 
 }

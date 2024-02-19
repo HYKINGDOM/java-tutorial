@@ -15,7 +15,8 @@ public class SingleThread {
         new Thread(() -> {
             try {
                 while (true) {
-                    Files.write(Paths.get("test.log"), Collections.singleton(content = "当前时间" + System.currentTimeMillis()));
+                    Files.write(Paths.get("test.log"),
+                        Collections.singleton(content = "当前时间" + System.currentTimeMillis()));
                     Thread.sleep(1000L);
                 }
             } catch (Exception e) {

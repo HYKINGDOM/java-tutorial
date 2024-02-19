@@ -1,11 +1,12 @@
 package com.java.data.config;
 
-import java.util.regex.Pattern;
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+import java.util.regex.Pattern;
 
 /**
  * @author hy

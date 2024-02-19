@@ -1,6 +1,5 @@
 package com.java.data.infrastucture.entity;
 
-
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;

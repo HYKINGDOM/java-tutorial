@@ -1,4 +1,5 @@
 package com.java.patterns.factorypattern.simplefactory;
+
 /**
  * @author yihur
  */

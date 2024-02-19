@@ -27,29 +27,18 @@ public class QuartzConfig implements SchedulingConfigurer {
     @Autowired
     private ScheduledExecutorService defaultScheduledExecutorService;
 
-
-
     @Bean("springQuartzJob")
     public JobDetail springQuartzJob() {
-        return JobBuilder.newJob(SpringQuartzJob.class)
-                .withIdentity("Date Time Job")
-                .usingJobData("message", "start Quartz Job data")
-                .storeDurably()
-                .build();
+        return JobBuilder.newJob(SpringQuartzJob.class).withIdentity("Date Time Job")
+            .usingJobData("message", "start Quartz Job data").storeDurably().build();
     }
-
 
     @Bean
     public Trigger printTimeJobTrigger() {
         CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule("0/50 * * * * ?");
-        return TriggerBuilder.newTrigger()
-                .forJob(springQuartzJob())
-                .withIdentity("quartzTaskService")
-                .withSchedule(cronScheduleBuilder)
-                .build();
+        return TriggerBuilder.newTrigger().forJob(springQuartzJob()).withIdentity("quartzTaskService")
+            .withSchedule(cronScheduleBuilder).build();
     }
-
-
 
     @Override
     public void configureTasks(ScheduledTaskRegistrar scheduledTaskRegistrar) {

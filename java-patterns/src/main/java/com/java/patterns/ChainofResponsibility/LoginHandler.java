@@ -1,6 +1,5 @@
 package com.java.patterns.ChainofResponsibility;
 
-
 public class LoginHandler extends Handler<User> {
 
     @Override

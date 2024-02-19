@@ -3,8 +3,7 @@ package com.java.interview.code.hw;
 import java.util.Scanner;
 
 /**
- * 计算最后一个字符串的长度
- * 字符串使用空格 隔开
+ * 计算最后一个字符串的长度 字符串使用空格 隔开
  */
 public class LastStringLength {
 

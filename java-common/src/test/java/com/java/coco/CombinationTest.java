@@ -17,14 +17,14 @@ public class CombinationTest {
 
     @Test
     public void funLoopUniqueStr() {
-        String[] strings = new String[]{"A", "B", "C"};
+        String[] strings = new String[] {"A", "B", "C"};
         combination.funLoopUniqueStr(strings, 2, 0);
         assertEquals(6, combination.stringList.size());
     }
 
     @Test
     public void funLoopRepeatedStr() {
-        String[] strings = new String[]{"A", "B", "C"};
+        String[] strings = new String[] {"A", "B", "C"};
         combination.funLoopRepeatedStr(strings, 2, 0);
         assertEquals(9, combination.stringList.size());
     }

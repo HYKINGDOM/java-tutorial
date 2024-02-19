@@ -11,7 +11,6 @@ import lombok.Data;
 
 import java.util.Date;
 
-
 /**
  * 用户信息
  *

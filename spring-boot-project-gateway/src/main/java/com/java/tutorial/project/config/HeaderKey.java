@@ -1,6 +1,5 @@
 package com.java.tutorial.project.config;
 
-
 /**
  * @author meta
  */

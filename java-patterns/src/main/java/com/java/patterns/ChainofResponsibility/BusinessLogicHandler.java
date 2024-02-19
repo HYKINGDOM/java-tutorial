@@ -1,6 +1,5 @@
 package com.java.patterns.ChainofResponsibility;
 
-
 /**
  * @author HY
  */

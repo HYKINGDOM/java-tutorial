@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- *
  * APP用户更换手机号
- *
- *
  */
 @Getter
 @Setter

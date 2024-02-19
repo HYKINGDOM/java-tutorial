@@ -1,6 +1,5 @@
 package com.java.patterns.strategypattern.advancedduck.ducks;
 
-
 import com.java.patterns.strategypattern.advancedduck.flybehavior.FlyBehavior;
 import com.java.patterns.strategypattern.advancedduck.quackbehavior.QuackBehavior;
 import com.java.patterns.strategypattern.advancedduck.swimbehavior.SwimBehavior;
@@ -27,7 +26,6 @@ public abstract class BaseDuck {
      */
     SwimBehavior mSwimBehavior;
 
-
     public BaseDuck() {
 
     }
@@ -37,9 +35,7 @@ public abstract class BaseDuck {
      */
     public abstract void display();
 
-
     public abstract String getDuckName();
-
 
     /**
      * 基本飞行行为
@@ -73,14 +69,12 @@ public abstract class BaseDuck {
         mQuackBehavior = quackBehavior;
     }
 
-
     /**
      * 鸭子基本的额游泳属性
      */
     public void swim() {
         mSwimBehavior.swim();
     }
-
 
     /**
      * 设置新的游泳行为
@@ -90,6 +84,5 @@ public abstract class BaseDuck {
     public void setSwimBehavior(SwimBehavior swimBehavior) {
         mSwimBehavior = swimBehavior;
     }
-
 
 }

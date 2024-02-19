@@ -5,13 +5,10 @@ import org.junit.jupiter.api.Test;
 
 import static com.leetcode.hw.maximumproductcontinuoussubarrays.MaximumProductContinuousSubarrays.initArrayMethod;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class MaximumProductContinuousSubarraysTest {
 
-
     private MaximumProductContinuousSubarrays maximumProductContinuousSubarrays;
-
 
     @BeforeEach
     public void init_class() {
@@ -25,7 +22,6 @@ class MaximumProductContinuousSubarraysTest {
         int result = initArrayMethod(num, ints);
         assertThat(result).isEqualTo(0);
     }
-
 
     @Test
     public void test_max_array_02() {

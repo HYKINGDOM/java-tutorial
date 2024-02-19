@@ -1,9 +1,9 @@
 package com.java.tutorial.project.domain;
 
-
 import com.mybatisflex.annotation.Table;
 
 import java.util.Date;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -16,7 +16,6 @@ import lombok.EqualsAndHashCode;
 @Data
 @Table(value = "sys_job_log")
 public class SysJobLog extends BaseEntity {
-
 
     private static final long serialVersionUID = 1L;
 

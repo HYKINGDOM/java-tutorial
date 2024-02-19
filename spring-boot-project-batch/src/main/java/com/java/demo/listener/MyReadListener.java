@@ -12,7 +12,6 @@ import static java.lang.String.format;
 @Slf4j
 public class MyReadListener implements ItemReadListener<BlogInfo> {
 
-
     @Override
     public void beforeRead() {
         log.info("MyReadListener beforeRead");

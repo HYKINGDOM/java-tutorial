@@ -29,8 +29,6 @@ public class JavaLoopTest {
         String[] str = {"3", "4", "5", "6", "7"};
         List<String> passwordList = javaLoop.createPasswordList(str, passwordLength);
 
-
     }
-
 
 }

@@ -12,19 +12,16 @@ class MobileNumberTest {
 
     private MobileNumber mobileNumber;
 
-
     @BeforeEach
     public void init() {
         mobileNumber = new MobileNumber();
     }
-
 
     @Test
     public void test_main_A() {
         List<String> result = mobileNumber.letterCombinations("");
         assertThat(result).isEmpty();
     }
-
 
     @Test
     public void test_main_A_1() {

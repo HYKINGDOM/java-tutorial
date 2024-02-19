@@ -12,7 +12,6 @@ public final class ForkJoinPoolUtils {
     private ForkJoinPoolUtils() {
     }
 
-
     public static <T> T executeInDedicatedThreadPool(Callable<T> task) {
         return executeInDedicatedThreadPool(task, CPUS_COUNT);
     }
@@ -21,7 +20,6 @@ public final class ForkJoinPoolUtils {
         System.out.println("核心线数： " + CPUS_COUNT);
         return new ForkJoinPool(CPUS_COUNT).invoke(task);
     }
-
 
     public static <T> T executeInDedicatedThreadPool(Callable<T> task, int threadsCount) {
         try {

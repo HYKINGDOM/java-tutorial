@@ -1,11 +1,9 @@
 package com.java.tutorial.tool.domain;
 
-
 import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-
 
 /**
  * @author HY
@@ -24,6 +22,5 @@ public class MessageDto {
     private String version;
 
     private LocalDateTime currentDateTime;
-
 
 }

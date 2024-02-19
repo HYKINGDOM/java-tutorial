@@ -9,25 +9,21 @@ import java.util.Scanner;
 
 public class AutoVendingMachine {
 
-
     /**
      * 名称和数量
      */
     private static Map<String, Integer> GOODS_NUMBER = new HashMap<>();
-
 
     /**
      * 名称和单价
      */
     private static Map<String, Integer> GOODS_PRICE = new HashMap<>();
 
-
     private static Map<Integer, Integer> CURRENCY_NUMBERS = new HashMap<>();
 
     private static List<Integer> CURRENCY = new ArrayList<>();
 
     private static int balance = 0;
-
 
     static {
         //初始化商品数量为0
@@ -50,7 +46,6 @@ public class AutoVendingMachine {
         CURRENCY.add(5);
         CURRENCY.add(10);
     }
-
 
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
@@ -80,23 +75,10 @@ public class AutoVendingMachine {
     }
 
     /**
-     * 2.4 退币
-     * 命令格式：c
-     * 功能说明：
-     * （1） 如果投币余额等于0的情况下，输出“E009:Work failure”；
-     * （2） 如果投币余额大于0的情况下，按照 退币原则 进行“找零”，输出退币信息；
-     * 约束说明：
-     * （1） 系统在任意阶段都可以退币；
-     * （2） 退币方式必须按照 退币原则 进行退币；
-     * 输出说明：如果退币成功，按照 退币原则 输出退币信息。
-     * 例，退5元钱币:
-     * 命令
-     * 输出
-     * c;
-     * 1 yuan coin number=0
-     * 2 yuan coin number=0
-     * 5 yuan coin number=1
-     * 10 yuan coin number=0
+     * 2.4 退币 命令格式：c 功能说明： （1） 如果投币余额等于0的情况下，输出“E009:Work failure”； （2） 如果投币余额大于0的情况下，按照 退币原则 进行“找零”，输出退币信息； 约束说明： （1）
+     * 系统在任意阶段都可以退币； （2） 退币方式必须按照 退币原则 进行退币； 输出说明：如果退币成功，按照 退币原则 输出退币信息。 例，退5元钱币: 命令 输出 c; 1 yuan coin number=0 2 yuan
+     * coin number=0 5 yuan coin number=1 10 yuan coin number=0
+     *
      * @param split
      */
     private static void sendBack(String[] split) {
@@ -107,18 +89,9 @@ public class AutoVendingMachine {
     }
 
     /**
-     * 2.3 购买商品
-     * 命令格式：b 商品名称
-     * 功能说明：
-     * （1） 如果购买的商品不在商品列表中，输出“E006:Goods does not exist”；
-     * （2） 如果所购买的商品的数量为0，输出“E007:The goods sold out”；
-     * （3） 如果投币余额小于待购买商品价格，输出“E008:Lack of balance”；
-     * （4） 如果购买成功，输出“S003:Buy success,balance=X”；
-     * 约束说明：
-     * （1） 一次购买操作仅能购买一件商品，可以多次购买；
-     * （2） 同等条件下，错误码的优先级：E006 > E007 > E008；
-     * 输出说明：
-     * 如果购买成功，输出“S003:Buy success,balance=X”。
+     * 2.3 购买商品 命令格式：b 商品名称 功能说明： （1） 如果购买的商品不在商品列表中，输出“E006:Goods does not exist”； （2） 如果所购买的商品的数量为0，输出“E007:The goods
+     * sold out”； （3） 如果投币余额小于待购买商品价格，输出“E008:Lack of balance”； （4） 如果购买成功，输出“S003:Buy success,balance=X”； 约束说明： （1）
+     * 一次购买操作仅能购买一件商品，可以多次购买； （2） 同等条件下，错误码的优先级：E006 > E007 > E008； 输出说明： 如果购买成功，输出“S003:Buy success,balance=X”。
      *
      * @param split
      */

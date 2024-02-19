@@ -17,15 +17,13 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class TestSortedStream {
 
-
     private List<Person> personList;
-
 
     @BeforeEach
     public void init_data() {
-        personList = Arrays.asList(new Person(null, 18), new Person("Peter", 23), new Person("Anda", 23), new Person("David", 12));
+        personList = Arrays.asList(new Person(null, 18), new Person("Peter", 23), new Person("Anda", 23),
+            new Person("David", 12));
     }
-
 
     @Test
     public void test_java_stream_sorted_01() {
@@ -43,7 +41,6 @@ public class TestSortedStream {
         assertThat(persons.get(3).getName()).isNull();
     }
 
-
     @Test
     public void test_java_stream_sorted_02() {
 
@@ -58,7 +55,6 @@ public class TestSortedStream {
         assertThat(persons.get(2).getName()).isEqualTo("David");
         assertThat(persons.get(3).getName()).isEqualTo("Peter");
     }
-
 
     @Test
     public void test_java_stream_sorted_03() {
@@ -75,7 +71,6 @@ public class TestSortedStream {
         assertThat(persons.get(2).getName()).isEqualTo("David");
         assertThat(persons.get(3).getName()).isEqualTo("Anda");
     }
-
 
     @Test
     public void test_java_stream_sorted_04() {

@@ -5,14 +5,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import cn.hutool.core.date.DateUtil;
-
 
 /**
  * @author HY
  */
 public class DateFormatDemo {
-
 
     public static void main(String[] args) throws ParseException {
 
@@ -20,12 +17,10 @@ public class DateFormatDemo {
         System.out.println(LocalDateTime.now());
     }
 
-
     private void sqlDateConvertToUtilDate() {
         String str = "2021-04-05";
         Date newDate = java.sql.Date.valueOf(str);
     }
-
 
     public void dateFormatLocal() {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

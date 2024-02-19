@@ -3,8 +3,7 @@ package com.leetcode.hw.climbstairs;
 import java.util.Scanner;
 
 /**
- * 3
- * 2 5 20
+ * 3 2 5 20
  */
 public class ClimbStairs {
     public static void main(String[] args) {

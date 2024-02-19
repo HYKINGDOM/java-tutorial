@@ -1,6 +1,5 @@
 package com.java.patterns.strategypattern.advancedduck.ducks;
 
-
 import com.java.patterns.strategypattern.advancedduck.flybehavior.NoFlyBehavior;
 import com.java.patterns.strategypattern.advancedduck.quackbehavior.GaGaQuackBehavior;
 import com.java.patterns.strategypattern.advancedduck.swimbehavior.NoSwimBehavior;
@@ -12,13 +11,11 @@ import com.java.patterns.strategypattern.advancedduck.swimbehavior.NoSwimBehavio
  */
 public class PlasticBaseDuck extends BaseDuck {
 
-
     public PlasticBaseDuck() {
         mQuackBehavior = new GaGaQuackBehavior();
         mFlyBehavior = new NoFlyBehavior();
         mSwimBehavior = new NoSwimBehavior();
     }
-
 
     @Override
     public void display() {

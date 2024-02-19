@@ -1,6 +1,5 @@
 package com.java.coco.tdd;
 
-
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -79,7 +78,6 @@ public class FizzBuzzWhizzTest {
         assertEquals("FizzBuzzWhizz", loudSay);
     }
 
-
     @Test
     public void when_0_then_return_0() {
         FizzBuzzWhizz fizzBuzzWhizz = new FizzBuzzWhizz();
@@ -87,6 +85,5 @@ public class FizzBuzzWhizzTest {
         String loudSay = fizzBuzzWhizz.loudSay(num);
         assertEquals("0", loudSay);
     }
-
 
 }

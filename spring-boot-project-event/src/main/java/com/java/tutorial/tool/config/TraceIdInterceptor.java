@@ -14,6 +14,10 @@ public class TraceIdInterceptor implements HandlerInterceptor {
     private static final String TRACE_ID_HEADER = "X-TRACE-ID";
     private static final ThreadLocal<String> TRACE_ID = new ThreadLocal<>();
 
+    public static String getTraceId() {
+        return TRACE_ID.get();
+    }
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         String traceId = request.getHeader(TRACE_ID_HEADER);
@@ -25,11 +29,8 @@ public class TraceIdInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler,
+        Exception ex) {
         TRACE_ID.remove();
-    }
-
-    public static String getTraceId() {
-        return TRACE_ID.get();
     }
 }

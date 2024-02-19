@@ -1,6 +1,5 @@
 package com.java.tutorial.project.domain;
 
-
 import lombok.Data;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;

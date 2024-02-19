@@ -7,7 +7,6 @@ import java.util.List;
  */
 public class UTMock {
 
-
     public String convertToString(List<Integer> number) {
 
         sumNumber(number);
@@ -22,10 +21,8 @@ public class UTMock {
             }
         }
 
-
         return stringBuilder.toString();
     }
-
 
     public void sumNumber(List<Integer> number) {
 

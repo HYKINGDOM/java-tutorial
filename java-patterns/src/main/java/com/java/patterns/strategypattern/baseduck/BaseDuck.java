@@ -7,7 +7,6 @@ package com.java.patterns.strategypattern.baseduck;
  */
 public abstract class BaseDuck {
 
-
     public BaseDuck() {
 
     }

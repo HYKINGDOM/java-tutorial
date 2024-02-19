@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class SmsController {
 
-
     @Autowired
     private TransactionService propagationRequiredNewTransactionServiceImpl;
-
 
     @GetMapping("/sms/{transactionType}")
     public String executeTransactionalAction(@PathVariable String transactionType) {

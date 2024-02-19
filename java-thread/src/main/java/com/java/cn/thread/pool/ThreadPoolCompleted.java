@@ -13,12 +13,11 @@ import java.util.concurrent.TimeUnit;
  */
 public class ThreadPoolCompleted {
 
-
     public static void main(String[] args) {
         ThreadFactory writeThreadFactory = new ThreadFactoryBuilder().setNameFormat("Thread-Pool-%d").build();
         // 1.创建线程池
-        ThreadPoolExecutor threadPool = new ThreadPoolExecutor(10, 20,
-                0, TimeUnit.SECONDS, new LinkedBlockingDeque<>(1024), writeThreadFactory);
+        ThreadPoolExecutor threadPool =
+            new ThreadPoolExecutor(10, 20, 0, TimeUnit.SECONDS, new LinkedBlockingDeque<>(1024), writeThreadFactory);
 
         // 2.添加任务
         addTask(threadPool);
@@ -30,8 +29,7 @@ public class ThreadPoolCompleted {
     }
 
     /**
-     * 方法1：isTerminated 实现方式
-     * 判断线程池的所有任务是否执行完
+     * 方法1：isTerminated 实现方式 判断线程池的所有任务是否执行完
      */
     private static void isCompleted(ThreadPoolExecutor threadPool) {
         threadPool.shutdown();
@@ -40,15 +38,12 @@ public class ThreadPoolCompleted {
     }
 
     /**
-     * 方法2：getCompletedTaskCount 实现方式
-     * 判断线程池的所有任务是否执行完
+     * 方法2：getCompletedTaskCount 实现方式 判断线程池的所有任务是否执行完
      */
     private static void isCompletedByTaskCount(ThreadPoolExecutor threadPool) {
         while (threadPool.getTaskCount() != threadPool.getCompletedTaskCount()) {
         }
     }
-
-
 
     /**
      * 给线程池添加任务

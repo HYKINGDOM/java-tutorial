@@ -18,7 +18,7 @@ public class Main {
 
         char[] charsS = stringS.toCharArray();
         char[] charsL = stringL.toCharArray();
-        if(charsL.length < charsS.length){
+        if (charsL.length < charsS.length) {
             System.out.println(-1);
             return;
         }
@@ -28,17 +28,17 @@ public class Main {
 
         for (int i = 0; i < charsS.length; i++) {
             for (int j = 0; j < charsL.length; j++) {
-                if (charsL[j] == charsS[i]){
-                    if (!hashMap.containsKey(String.valueOf(charsS[j]))){
-                        hashMap.put(String.valueOf(charsS[i]),j);
+                if (charsL[j] == charsS[i]) {
+                    if (!hashMap.containsKey(String.valueOf(charsS[j]))) {
+                        hashMap.put(String.valueOf(charsS[i]), j);
                         integerList.add(j);
-                    }else {
+                    } else {
                         System.out.println(-1);
                     }
                 }
             }
         }
-        if (integerList.size()==0){
+        if (integerList.size() == 0) {
             System.out.println(-1);
             return;
         }
@@ -48,8 +48,8 @@ public class Main {
         String string1 = integerList.toString();
         System.out.println("=========");
         System.out.println(string1);
-        if (string.equals(string1)){
-            System.out.println(integerList.get(integerList.size()-1));
+        if (string.equals(string1)) {
+            System.out.println(integerList.get(integerList.size() - 1));
             return;
         }
         System.out.println(-1);

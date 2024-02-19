@@ -1,6 +1,5 @@
 package com.java.data.controller;
 
-
 import com.java.data.controller.request.UserRequest;
 import com.java.data.controller.response.UserResponse;
 import com.java.data.controller.validator.UserCreate;
@@ -35,7 +34,6 @@ public class UserController {
         return userMapper.toUserResponse(userByUserName);
     }
 
-
     @PostMapping("/update")
     public UserResponse updateUserInfo(@Validated(value = UserUpdate.class) @RequestBody UserRequest userRequest) {
         UserEntity userByUserName = userService.findUserByUserName(userRequest.getUserName());
@@ -60,16 +58,16 @@ public class UserController {
         return userMapper.toUserResponse(userByUserName);
     }
 
-
     @PostMapping("/info-desc")
-    public UserResponse getUserInfoDesc(@Validated(value = UserSequenceDesc.class) @RequestBody UserRequest userRequest) {
+    public UserResponse getUserInfoDesc(
+        @Validated(value = UserSequenceDesc.class) @RequestBody UserRequest userRequest) {
         UserEntity userByUserName = userService.findUserByUserName(userRequest.getUserName());
         return userMapper.toUserResponse(userByUserName);
     }
 
-
     @PostMapping("/info-exclude-default")
-    public UserResponse getUserInfoDefault(@Validated(value = UserSequenceExcludeDefault.class) @RequestBody UserRequest userRequest) {
+    public UserResponse getUserInfoDefault(
+        @Validated(value = UserSequenceExcludeDefault.class) @RequestBody UserRequest userRequest) {
         UserEntity userByUserName = userService.findUserByUserName(userRequest.getUserName());
         return userMapper.toUserResponse(userByUserName);
     }

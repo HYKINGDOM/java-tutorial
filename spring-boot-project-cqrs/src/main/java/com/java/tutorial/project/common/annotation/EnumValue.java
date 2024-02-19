@@ -14,27 +14,25 @@ import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
 /**
- *
  * 枚举值注解
- *
  */
-@Constraint(validatedBy = { EnumValueValidator.class })
-@Target({ METHOD, FIELD, CONSTRUCTOR, PARAMETER })
+@Constraint(validatedBy = {EnumValueValidator.class})
+@Target({METHOD, FIELD, CONSTRUCTOR, PARAMETER})
 @Retention(RUNTIME)
 @Documented
 public @interface EnumValue {
 
-	// 默认错误消息
-	String message() default "必须为指定值";
+    // 默认错误消息
+    String message() default "必须为指定值";
 
-	String[] strVal() default {};
+    String[] strVal() default {};
 
-	int[] intVal() default {};
+    int[] intVal() default {};
 
-	// 分组
-	Class<?>[] groups() default {};
+    // 分组
+    Class<?>[] groups() default {};
 
-	// 负载
-	Class<? extends Payload>[] payload() default {};
+    // 负载
+    Class<? extends Payload>[] payload() default {};
 
 }

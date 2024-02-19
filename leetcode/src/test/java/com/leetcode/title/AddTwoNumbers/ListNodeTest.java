@@ -1,16 +1,13 @@
 package com.leetcode.title.AddTwoNumbers;
 
-
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ListNodeTest {
 
-
     /**
-     * 2--4--3
-     * 5--6--4
+     * 2--4--3 5--6--4
      */
     @Test
     public void create_list_node() {

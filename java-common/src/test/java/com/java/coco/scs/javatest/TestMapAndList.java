@@ -12,8 +12,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -29,7 +27,6 @@ import java.util.stream.Collectors;
  * @date 2019/4/19
  */
 public class TestMapAndList {
-
 
     private Map<String, String> map;
 
@@ -178,13 +175,11 @@ public class TestMapAndList {
         System.out.println(list);
     }
 
-
     @Test
     public void test_java_string_switch_list() {
         String str = "";
         System.out.println(convertListToString(str));
     }
-
 
     public String convertListToString(String str) {
         if (StringUtils.isBlank(str)) {
@@ -205,7 +200,6 @@ public class TestMapAndList {
 
     }
 
-
     @Test
     public void test_binarySearch() {
         List<String> list = new ArrayList<>();
@@ -221,7 +215,6 @@ public class TestMapAndList {
         int idx = Collections.binarySearch(list, "6");
         System.out.println("二分查找：" + idx);
     }
-
 
     private List<String> converStringToList(String strs) {
         if (StringUtils.isNotBlank(strs)) {

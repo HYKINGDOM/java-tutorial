@@ -6,6 +6,7 @@ import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.mockito.Mockito.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,21 +19,21 @@ public class UTMockTest {
     private List<Integer> integerList;
 
     @Before
-    public void init_ut_mock(){
-//        utMock = new UTMock();
+    public void init_ut_mock() {
+        //        utMock = new UTMock();
 
         integerList = new ArrayList<>();
         integerList.add(1001);
     }
 
     @Test
-    public void test_case_1(){
-//        String s = utMock.convertToString(integerList);
-//        assertEquals("100111112222",s);
+    public void test_case_1() {
+        //        String s = utMock.convertToString(integerList);
+        //        assertEquals("100111112222",s);
     }
 
     @Test
-    public void test_case_2(){
+    public void test_case_2() {
         doNothing().when(utMock).sumNumber(anyList());
 
         utMock.sumNumber(integerList);

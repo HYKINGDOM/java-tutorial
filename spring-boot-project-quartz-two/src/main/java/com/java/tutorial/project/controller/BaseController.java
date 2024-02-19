@@ -32,7 +32,6 @@ public class BaseController {
         });
     }
 
-
     /**
      * 返回成功
      */

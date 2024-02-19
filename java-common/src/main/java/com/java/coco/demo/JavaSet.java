@@ -10,7 +10,6 @@ public class JavaSet {
         HashSet<Object> objectHashSet01 = new HashSet<>();
         HashSet<Object> objectHashSet02 = new HashSet<>();
 
-
-        System.out.println(!Sets.difference(objectHashSet01,objectHashSet02).isEmpty());
+        System.out.println(!Sets.difference(objectHashSet01, objectHashSet02).isEmpty());
     }
 }

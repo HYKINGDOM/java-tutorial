@@ -1,7 +1,5 @@
 package com.leetcode.title.combinationSum;
 
-import com.google.common.collect.Lists;
-
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -50,6 +48,5 @@ public class CombinationSumA {
             path.removeLast();
         }
     }
-
 
 }

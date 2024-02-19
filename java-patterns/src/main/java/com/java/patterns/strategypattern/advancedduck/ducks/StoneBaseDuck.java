@@ -1,6 +1,5 @@
 package com.java.patterns.strategypattern.advancedduck.ducks;
 
-
 import com.java.patterns.strategypattern.advancedduck.flybehavior.NoFlyBehavior;
 import com.java.patterns.strategypattern.advancedduck.quackbehavior.NoQuackBehavior;
 import com.java.patterns.strategypattern.advancedduck.swimbehavior.NoSwimBehavior;
@@ -12,7 +11,6 @@ import com.java.patterns.strategypattern.advancedduck.swimbehavior.NoSwimBehavio
  */
 public class StoneBaseDuck extends BaseDuck {
 
-
     /**
      * 石头鸭所具有的属性
      */
@@ -21,7 +19,6 @@ public class StoneBaseDuck extends BaseDuck {
         mQuackBehavior = new NoQuackBehavior();
         mSwimBehavior = new NoSwimBehavior();
     }
-
 
     @Override
     public void display() {
