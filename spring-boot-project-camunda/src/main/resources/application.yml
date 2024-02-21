@@ -27,5 +27,5 @@ spring:
 camunda:
   bpm:
     admin-user:
-      id: transduck
-      password: 111111
+      id: demo
+      password: demo
