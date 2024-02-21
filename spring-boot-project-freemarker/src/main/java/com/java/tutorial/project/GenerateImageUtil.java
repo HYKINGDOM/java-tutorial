@@ -78,29 +78,29 @@ public class GenerateImageUtil {
         }
     }
 
-    /**
-     * @param contentMap
-     * @param titleTime
-     * @param path
-     */
-    public void createImageByTable(Map<String, List<String>> contentMap, String titleTime, String path,
-        String fileName) {
-        Map<String, List<String>> descMap = new HashMap<>();
-        List<String> descList = Lists.newArrayList(titleTime);
-        descMap.put("dateTime", descList);
-        Map<String, Map<String, List<String>>> map = new HashMap<>();
-        map.put("contentMap", contentMap);
-        map.put("dateTime", descMap);
-        byte[] bytes = new byte[0];
-        OutputStream os = null;
-        try {
-            bytes = htmlConvertImgHelper.htmlConvertImg(fileName, map, "jpg", contentMap.size());
-            os = new FileOutputStream(path);
-            os.write(bytes, 0, bytes.length);
-            os.flush();
-            os.close();
-        } catch (IOException | TemplateException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    /**
+//     * @param contentMap
+//     * @param titleTime
+//     * @param path
+//     */
+//    public void createImageByTable(Map<String, List<String>> contentMap, String titleTime, String path,
+//        String fileName) {
+//        Map<String, List<String>> descMap = new HashMap<>();
+//        List<String> descList = Lists.newArrayList(titleTime);
+//        descMap.put("dateTime", descList);
+//        Map<String, Map<String, List<String>>> map = new HashMap<>();
+//        map.put("contentMap", contentMap);
+//        map.put("dateTime", descMap);
+//        byte[] bytes = new byte[0];
+//        OutputStream os = null;
+//        try {
+//            bytes = htmlConvertImgHelper.htmlConvertImg(fileName, map, "jpg", contentMap.size());
+//            os = new FileOutputStream(path);
+//            os.write(bytes, 0, bytes.length);
+//            os.flush();
+//            os.close();
+//        } catch (IOException | TemplateException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 }

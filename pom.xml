@@ -64,6 +64,7 @@
         <module>spring-boot-project-gateway</module>
         <module>spring-boot-project-valid-helper</module>
         <module>spring-boot-project-dynamic-schema</module>
+        <module>spring-boot-project-camunda</module>
     </modules>
 
     <properties>
