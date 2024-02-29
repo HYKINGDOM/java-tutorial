@@ -65,6 +65,7 @@
         <module>spring-boot-project-valid-helper</module>
         <module>spring-boot-project-dynamic-schema</module>
         <module>spring-boot-project-camunda</module>
+        <module>spring-boot-project-LiteFlow</module>
     </modules>
 
     <properties>
@@ -91,7 +92,13 @@
 
 
     <dependencyManagement>
+
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot-starter-version}</version>
+            </dependency>
 
             <!-- https://mvnrepository.com/artifact/com.mybatis-flex/mybatis-flex-spring-boot-starter -->
             <dependency>
