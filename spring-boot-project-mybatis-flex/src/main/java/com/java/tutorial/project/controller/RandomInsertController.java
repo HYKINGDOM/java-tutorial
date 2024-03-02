@@ -16,7 +16,7 @@ import java.util.Random;
 
 @RestController
 @RequestMapping("/talent")
-public class RandomInserController {
+public class RandomInsertController {
 
 
     @Resource
