@@ -71,7 +71,7 @@ liteflow:
   #简易监控配置选项
 monitor:
   #监控是否开启，默认不开启
-  enable-log: false
+  enable-log: true
   #监控队列存储大小，默认值为200
   queue-limit: 200
   #监控一开始延迟多少执行，默认值为300000毫秒，也就是5分钟

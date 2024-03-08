@@ -22,8 +22,7 @@ public class ToBHandleCmp {
         // 获取OrderContext上下文
         OrderContext orderContext = nodeComponent.getContextBean(OrderContext.class);
         log.info("执行处理业务节点B");
-        final List<String> executeRuleList =
-            Optional.ofNullable(orderContext.getExecuteRuleList()).orElse(new ArrayList<>());
+        List<String> executeRuleList = Optional.ofNullable(orderContext.getExecuteRuleList()).orElse(new ArrayList<>());
         executeRuleList.add("BNodeComponent");
         orderContext.setExecuteRuleList(executeRuleList);
         orderContext.setOrderId("TOB11111");
@@ -35,8 +34,7 @@ public class ToBHandleCmp {
         // 获取OrderContext上下文
         OrderContext orderContext = nodeComponent.getContextBean(OrderContext.class);
         log.info("执行处理业务节点E");
-        final List<String> executeRuleList =
-            Optional.ofNullable(orderContext.getExecuteRuleList()).orElse(new ArrayList<>());
+        List<String> executeRuleList = Optional.ofNullable(orderContext.getExecuteRuleList()).orElse(new ArrayList<>());
         executeRuleList.add("ENodeComponent");
         orderContext.setExecuteRuleList(executeRuleList);
     }
