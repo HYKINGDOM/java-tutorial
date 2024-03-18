@@ -39,7 +39,6 @@ import javax.net.ssl.SSLHandshakeException;
 import java.io.File;
 import java.io.IOException;
 import java.io.InterruptedIOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
@@ -69,6 +68,7 @@ public class HttpClientUtil {
     public static final String CLOSE_EXPIRED_CONNECTIONS_SCHEDULE_POOL = "close-expired-connections-schedule-pool-%d";
     public static final String STRING = "?";
     public static final char CHAR = '?';
+    public static final String EMPTY_BODY = "";
     public static final String FORMAT_NAME_VALUE = "'%s'='%s'";
     /**
      * 连接池最大连接数 默认值：20
@@ -90,8 +90,6 @@ public class HttpClientUtil {
      * 设置数据超时时间
      */
     private static final int SOCKET_TIMEOUT = 10000;
-    private static final String DEFAULT_CHARSET = "UTF-8";
-    private static final String EMPTY_BODY = "";
     private static PoolingHttpClientConnectionManager connectionManager = null;
     private static RequestConfig requestConfig;
     private static CloseableHttpClient client;
@@ -125,7 +123,7 @@ public class HttpClientUtil {
                 // 长连接策略
                 builder.setKeepAliveStrategy(new DefaultConnectionKeepAliveStrategy());
                 // 创建httpClient
-                client = builder.setDefaultRequestConfig(config).setRetryHandler(new MyRetryHandle()).build();
+                client = builder.setDefaultRequestConfig(config).setRetryHandler(new RequestPoolRetryHandle()).build();
                 // 启动定时器，定时回收过期的连接
                 ScheduledExecutorService executorService = new ScheduledThreadPoolExecutor(CORE_POOL_SIZE,
                     new BasicThreadFactory.Builder().namingPattern(CLOSE_EXPIRED_CONNECTIONS_SCHEDULE_POOL).daemon(true)
@@ -157,16 +155,7 @@ public class HttpClientUtil {
         for (String key : headers.keySet()) {
             httpPost.setHeader(key, headers.get(key));
         }
-        if (socketTimeout != SOCKET_TIMEOUT) {
-            RequestConfig.Builder configBuilder = RequestConfig.custom();
-            // 设置连接超时
-            configBuilder.setConnectTimeout(CONNECT_TIMEOUT);
-            // 设置读取超时
-            configBuilder.setSocketTimeout(socketTimeout);
-            // 设置从连接池获取连接实例的超时
-            configBuilder.setConnectionRequestTimeout(CONNECTION_REQUEST_TIMEOUT);
-            requestConfig = configBuilder.build();
-        }
+        getRequestConfig(socketTimeout);
         httpPost.setConfig(requestConfig);
         CloseableHttpClient httpclient = getClientFromPool();
         String response = EMPTY_BODY;
@@ -214,22 +203,13 @@ public class HttpClientUtil {
         for (String key : headers.keySet()) {
             httpPost.setHeader(key, headers.get(key));
         }
-        if (socketTimeout != SOCKET_TIMEOUT) {
-            RequestConfig.Builder configBuilder = RequestConfig.custom();
-            // 设置连接超时
-            configBuilder.setConnectTimeout(CONNECT_TIMEOUT);
-            // 设置读取超时
-            configBuilder.setSocketTimeout(socketTimeout);
-            // 设置从连接池获取连接实例的超时
-            configBuilder.setConnectionRequestTimeout(CONNECTION_REQUEST_TIMEOUT);
-            requestConfig = configBuilder.build();
-        }
+        getRequestConfig(socketTimeout);
         httpPost.setConfig(requestConfig);
         CloseableHttpClient httpclient = getClientFromPool();
         String response = EMPTY_BODY;
         if (StrUtil.isNotEmpty(body)) {
             StringEntity stringEntity = new StringEntity(body, StandardCharsets.UTF_8);
-            stringEntity.setContentEncoding(DEFAULT_CHARSET);
+            stringEntity.setContentEncoding(StandardCharsets.UTF_8.name());
             stringEntity.setContentType(CONTENT_TYPE_JSON);
             httpPost.setEntity(stringEntity);
         }
@@ -264,16 +244,7 @@ public class HttpClientUtil {
         for (String key : headers.keySet()) {
             httpPost.setHeader(key, headers.get(key));
         }
-        if (socketTimeout != SOCKET_TIMEOUT) {
-            RequestConfig.Builder configBuilder = RequestConfig.custom();
-            // 设置连接超时
-            configBuilder.setConnectTimeout(CONNECT_TIMEOUT);
-            // 设置读取超时
-            configBuilder.setSocketTimeout(socketTimeout);
-            // 设置从连接池获取连接实例的超时
-            configBuilder.setConnectionRequestTimeout(CONNECTION_REQUEST_TIMEOUT);
-            requestConfig = configBuilder.build();
-        }
+        getRequestConfig(socketTimeout);
         httpPost.setConfig(requestConfig);
         CloseableHttpClient httpclient = getClientFromPool();
         MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
@@ -286,7 +257,7 @@ public class HttpClientUtil {
         String response = EMPTY_BODY;
         try (CloseableHttpResponse responseDto = httpclient.execute(httpPost)) {
             clock.stop();
-            response = EntityUtils.toString(responseDto.getEntity(), DEFAULT_CHARSET);
+            response = EntityUtils.toString(responseDto.getEntity(), StandardCharsets.UTF_8);
         } catch (Exception e) {
             log.error("文件上传请求异常：", e);
         }
@@ -312,16 +283,7 @@ public class HttpClientUtil {
         for (String key : headers.keySet()) {
             httpGet.setHeader(key, headers.get(key));
         }
-        if (socketTimeout != SOCKET_TIMEOUT) {
-            RequestConfig.Builder configBuilder = RequestConfig.custom();
-            // 设置连接超时
-            configBuilder.setConnectTimeout(CONNECT_TIMEOUT);
-            // 设置读取超时
-            configBuilder.setSocketTimeout(socketTimeout);
-            // 设置从连接池获取连接实例的超时
-            configBuilder.setConnectionRequestTimeout(CONNECTION_REQUEST_TIMEOUT);
-            requestConfig = configBuilder.build();
-        }
+        getRequestConfig(socketTimeout);
         httpGet.setConfig(requestConfig);
         CloseableHttpClient httpclient = getClientFromPool();
         String response = EMPTY_BODY;
@@ -350,16 +312,7 @@ public class HttpClientUtil {
         for (String key : headers.keySet()) {
             httpDelete.setHeader(key, headers.get(key));
         }
-        if (socketTimeout != SOCKET_TIMEOUT) {
-            RequestConfig.Builder configBuilder = RequestConfig.custom();
-            // 设置连接超时
-            configBuilder.setConnectTimeout(CONNECT_TIMEOUT);
-            // 设置读取超时
-            configBuilder.setSocketTimeout(socketTimeout);
-            // 设置从连接池获取连接实例的超时
-            configBuilder.setConnectionRequestTimeout(CONNECTION_REQUEST_TIMEOUT);
-            requestConfig = configBuilder.build();
-        }
+        getRequestConfig(socketTimeout);
         httpDelete.setConfig(requestConfig);
         CloseableHttpClient httpclient = getClientFromPool();
         String response = EMPTY_BODY;
@@ -389,22 +342,13 @@ public class HttpClientUtil {
         for (String key : headers.keySet()) {
             httpPut.setHeader(key, headers.get(key));
         }
-        if (socketTimeout != SOCKET_TIMEOUT) {
-            RequestConfig.Builder configBuilder = RequestConfig.custom();
-            // 设置连接超时
-            configBuilder.setConnectTimeout(CONNECT_TIMEOUT);
-            // 设置读取超时
-            configBuilder.setSocketTimeout(socketTimeout);
-            // 设置从连接池获取连接实例的超时
-            configBuilder.setConnectionRequestTimeout(CONNECTION_REQUEST_TIMEOUT);
-            requestConfig = configBuilder.build();
-        }
+        getRequestConfig(socketTimeout);
         httpPut.setConfig(requestConfig);
         CloseableHttpClient httpclient = getClientFromPool();
         String response = EMPTY_BODY;
         if (StrUtil.isNotEmpty(body)) {
             StringEntity stringEntity = new StringEntity(body, StandardCharsets.UTF_8);
-            stringEntity.setContentEncoding(DEFAULT_CHARSET);
+            stringEntity.setContentEncoding(StandardCharsets.UTF_8.name());
             stringEntity.setContentType(CONTENT_TYPE_JSON);
             httpPut.setEntity(stringEntity);
         }
@@ -437,22 +381,13 @@ public class HttpClientUtil {
         for (String key : headers.keySet()) {
             httpPatch.setHeader(key, headers.get(key));
         }
-        if (socketTimeout != SOCKET_TIMEOUT) {
-            RequestConfig.Builder configBuilder = RequestConfig.custom();
-            // 设置连接超时
-            configBuilder.setConnectTimeout(CONNECT_TIMEOUT);
-            // 设置读取超时
-            configBuilder.setSocketTimeout(socketTimeout);
-            // 设置从连接池获取连接实例的超时
-            configBuilder.setConnectionRequestTimeout(CONNECTION_REQUEST_TIMEOUT);
-            requestConfig = configBuilder.build();
-        }
+        getRequestConfig(socketTimeout);
         httpPatch.setConfig(requestConfig);
         String response = EMPTY_BODY;
         try (CloseableHttpClient httpclient = getClientFromPool()) {
             if (StrUtil.isNotEmpty(body)) {
                 StringEntity stringEntity = new StringEntity(body, StandardCharsets.UTF_8);
-                stringEntity.setContentEncoding(DEFAULT_CHARSET);
+                stringEntity.setContentEncoding(StandardCharsets.UTF_8.name());
                 stringEntity.setContentType(CONTENT_TYPE_JSON);
                 httpPatch.setEntity(stringEntity);
             }
@@ -473,6 +408,22 @@ public class HttpClientUtil {
         return response;
     }
 
+    /**
+     * 设置请求配置 #setConnectTimeout 设置连接超时 #setSocketTimeout 设置读取超时 #setConnectionRequestTimeout 设置从连接池获取连接实例的超时
+     *
+     * @param socketTimeout
+     */
+    private static void getRequestConfig(int socketTimeout) {
+
+        if (socketTimeout != SOCKET_TIMEOUT) {
+            requestConfig = RequestConfig.custom().setConnectTimeout(CONNECT_TIMEOUT).setSocketTimeout(socketTimeout)
+                .setConnectionRequestTimeout(CONNECTION_REQUEST_TIMEOUT).build();
+        } else {
+            requestConfig = RequestConfig.custom().setConnectTimeout(CONNECT_TIMEOUT).setSocketTimeout(SOCKET_TIMEOUT)
+                .setConnectionRequestTimeout(CONNECTION_REQUEST_TIMEOUT).build();
+        }
+    }
+
     public static String generatorParamString(Map<String, Object> parameters) {
         StringBuilder params = new StringBuilder();
         if (parameters != null) {
@@ -481,9 +432,7 @@ public class HttpClientUtil {
                 String value = parameters.get(name).toString();
                 params.append(name).append("=");
                 try {
-                    params.append(URLEncoder.encode(value, DEFAULT_CHARSET));
-                } catch (UnsupportedEncodingException e) {
-                    throw new RuntimeException(e.getMessage(), e);
+                    params.append(URLEncoder.encode(value, StandardCharsets.UTF_8));
                 } catch (Exception e) {
                     String message = String.format(FORMAT_NAME_VALUE, name, value);
                     throw new RuntimeException(message, e);
@@ -509,12 +458,12 @@ public class HttpClientUtil {
     /**
      * 请求连接池失败重试策略
      */
-    public static class MyRetryHandle implements HttpRequestRetryHandler {
+    public static class RequestPoolRetryHandle implements HttpRequestRetryHandler {
         /**
          * 重试策略的重试次数
          */
         public static final int RETRY_LIMIT = 3;
-        Logger logger = LoggerFactory.getLogger(MyRetryHandle.class);
+        Logger logger = LoggerFactory.getLogger(RequestPoolRetryHandle.class);
 
         //请求失败时,进行请求重试
         @Override

@@ -16,8 +16,8 @@
 
     <properties>
         <java.version>11</java.version>
-        <druid.version>1.2.20</druid.version>
-        <mybatis-flex.version>1.7.9</mybatis-flex.version>
+        <druid.version>1.2.22</druid.version>
+        <mybatis-flex.version>1.8.2</mybatis-flex.version>
     </properties>
 
     <dependencies>
