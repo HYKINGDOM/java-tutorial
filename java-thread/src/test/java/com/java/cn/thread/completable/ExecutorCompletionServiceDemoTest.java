@@ -122,9 +122,7 @@ public class ExecutorCompletionServiceDemoTest {
             }
             System.out.println("总裁：1小时了 我上完大号了。你来接吧");
             return "总裁上完大号了";
-        }).thenAcceptAsync(returnStr -> {
-            System.out.println(returnStr + "，你去接他");
-        }, executorService);
+        }).thenAcceptAsync(returnStr -> System.out.println(returnStr + "，你去接他"), executorService);
 
         CompletableFuture<Void> stringCompletableFuture2 = CompletableFuture.supplyAsync(() -> {
             System.out.println("研发：我在家上大号 我比较快 要蹲3分钟就可以出来 你等会来接我吧");
@@ -135,9 +133,7 @@ public class ExecutorCompletionServiceDemoTest {
             }
             System.out.println("研发：3分钟 我上完大号了。你来接吧");
             return "研发上完大号了";
-        }).thenAcceptAsync(returnStr -> {
-            System.out.println(returnStr + "，你去接他");
-        }, executorService);
+        }).thenAcceptAsync(returnStr -> System.out.println(returnStr + "，你去接他"), executorService);
 
         CompletableFuture<Void> stringCompletableFuture3 = CompletableFuture.supplyAsync(() -> {
             System.out.println("中层管理：我在家上大号  要蹲10分钟就可以出来 你等会来接我吧");
@@ -148,9 +144,7 @@ public class ExecutorCompletionServiceDemoTest {
             }
             System.out.println("中层管理：10分钟 我上完大号了。你来接吧");
             return "中层管理上完大号了";
-        }).thenAcceptAsync(returnStr -> {
-            System.out.println(returnStr + "，你去接他");
-        }, executorService);
+        }).thenAcceptAsync(returnStr -> System.out.println(returnStr + "，你去接他"), executorService);
 
         TimeUnit.SECONDS.sleep(1);
         System.out.println("都通知完了,等着接吧。");
