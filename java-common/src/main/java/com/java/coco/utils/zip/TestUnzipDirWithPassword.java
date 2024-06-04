@@ -1,14 +1,18 @@
 package com.java.coco.utils.zip;
 
 import com.google.common.base.Splitter;
-import net.lingala.zip4j.core.ZipFile;
+import net.lingala.zip4j.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.model.FileHeader;
 import net.lingala.zip4j.model.ZipParameters;
-import net.lingala.zip4j.util.Zip4jConstants;
+import net.lingala.zip4j.model.enums.CompressionLevel;
+import net.lingala.zip4j.model.enums.CompressionMethod;
+import net.lingala.zip4j.model.enums.EncryptionMethod;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -57,7 +61,7 @@ public class TestUnzipDirWithPassword {
      */
     public static File[] unzip(File zipFile, String dest, String passwd) throws ZipException {
         ZipFile zFile = new ZipFile(zipFile);
-        zFile.setFileNameCharset("GBK");
+        zFile.setCharset(StandardCharsets.UTF_8);
         if (!zFile.isValidZipFile()) {
             throw new ZipException("压缩文件不合法,可能被损坏.");
         }
@@ -131,15 +135,19 @@ public class TestUnzipDirWithPassword {
         File srcFile = new File(src);
         dest = buildDestinationZipFilePath(srcFile, dest);
         ZipParameters parameters = new ZipParameters();
-        parameters.setCompressionMethod(Zip4jConstants.COMP_DEFLATE);           // 压缩方式
-        parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_NORMAL);    // 压缩级别
-        if (!StringUtils.isEmpty(passwd)) {
-            parameters.setEncryptFiles(true);
-            parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_STANDARD); // 加密方式
-            parameters.setPassword(passwd.toCharArray());
-        }
-        try {
-            ZipFile zipFile = new ZipFile(dest);
+        // 压缩方式
+        parameters.setCompressionMethod(CompressionMethod.DEFLATE);
+        // 压缩级别
+        parameters.setCompressionLevel(CompressionLevel.NORMAL);
+        parameters.setEncryptFiles(true);
+        // 加密方式
+        parameters.setEncryptionMethod(EncryptionMethod.ZIP_STANDARD);
+
+        try (ZipFile zipFile = new ZipFile(dest)) {
+
+            if (!StringUtils.isEmpty(passwd)) {
+                zipFile.setPassword(passwd.toCharArray());
+            }
             if (srcFile.isDirectory()) {
                 // 如果不创建目录的话,将直接把给定目录下的文件压缩到压缩文件,即没有目录结构
                 if (!isCreateDir) {
@@ -156,6 +164,8 @@ public class TestUnzipDirWithPassword {
             return dest;
         } catch (ZipException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -176,7 +186,8 @@ public class TestUnzipDirWithPassword {
                 destParam = srcFile.getParent() + File.separator + fileName + ".zip";
             }
         } else {
-            createDestDirectoryIfNecessary(destParam);  // 在指定路径不存在的情况下将其创建出来
+            // 在指定路径不存在的情况下将其创建出来
+            createDestDirectoryIfNecessary(destParam);
             if (destParam.endsWith(File.separator)) {
                 String fileName = "";
                 if (srcFile.isDirectory()) {

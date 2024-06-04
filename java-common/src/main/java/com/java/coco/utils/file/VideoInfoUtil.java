@@ -1,4 +1,4 @@
-package com.java.coco.utils.file.util;
+package com.java.coco.utils.file;
 
 import com.java.coco.utils.file.video.VideoInfo;
 import lombok.extern.slf4j.Slf4j;

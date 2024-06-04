@@ -8,9 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.java.coco.utils.file.util.DirectorUtil.clearNullFileDir;
-import static com.java.coco.utils.file.util.DirectorUtil.createDirector;
-import static com.java.coco.utils.file.util.DirectorUtil.createMoreFiles;
+import static com.java.coco.utils.file.DirectorUtil.createDirector;
+import static com.java.coco.utils.file.DirectorUtil.createMoreFiles;
 
 class DirectorUtilTest {
 

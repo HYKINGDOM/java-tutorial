@@ -5,12 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.java.coco.utils.file.util.DirectorUtil.clearNullFileDir;
-import static com.java.coco.utils.file.util.DirectorUtil.createDirector;
-import static com.java.coco.utils.file.util.FileMoveUtil.moveFileToTargetIndex;
-import static com.java.coco.utils.file.util.FileNameUtils.formatFileNameHandle;
-import static com.java.coco.utils.file.util.FileNameUtils.rewriteFileName;
-import static com.java.coco.utils.file.util.FilesUtil.fileFromDirectoryToFiles;
+import static com.java.coco.utils.file.DirectorUtil.clearNullFileDir;
+import static com.java.coco.utils.file.DirectorUtil.createDirector;
+import static com.java.coco.utils.file.FileMoveUtil.moveFileToTargetIndex;
+import static com.java.coco.utils.file.FileNameUtils.formatFileNameHandle;
+import static com.java.coco.utils.file.FileNameUtils.rewriteFileName;
+import static com.java.coco.utils.file.FilesUtil.fileFromDirectoryToFiles;
 
 /**
  * 模版模式整理文件夹

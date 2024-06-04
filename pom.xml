@@ -68,26 +68,27 @@
         <module>spring-boot-project-camunda</module>
         <module>spring-boot-project-LiteFlow</module>
         <module>spring-boot-project-mybatis-flex</module>
+        <module>spring-boot-project-document</module>
     </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-boot-starter-version>2.7.5</spring-boot-starter-version>
-        <spring-boot-starter-web>2.7.5</spring-boot-starter-web>
-        <spring-boot-devtools>2.7.5</spring-boot-devtools>
-        <spring-boot-starter-test>2.7.5</spring-boot-starter-test>
+        <spring-boot-starter-version>2.7.18</spring-boot-starter-version>
+        <spring-boot-starter-web>2.7.18</spring-boot-starter-web>
+        <spring-boot-devtools>2.7.18</spring-boot-devtools>
+        <spring-boot-starter-test>2.7.18</spring-boot-starter-test>
         <lombok.version>1.18.30</lombok.version>
         <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
-        <druid-spring-start.version>1.2.22</druid-spring-start.version>
+        <druid-spring-start.version>1.2.23</druid-spring-start.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
-        <mybatis-flex.version>1.8.2</mybatis-flex.version>
-        <fastjson.version>2.0.41</fastjson.version>
-        <fastjson2.version>2.0.45</fastjson2.version>
-        <guava.version>33.0.0-jre</guava.version>
+        <mybatis-flex.version>1.9.2</mybatis-flex.version>
+        <fastjson.version>2.0.51</fastjson.version>
+        <fastjson2.version>2.0.51</fastjson2.version>
+        <guava.version>33.2.1-jre</guava.version>
         <commons-lang3.version>3.14.0</commons-lang3.version>
         <caffeine.version>3.1.8</caffeine.version>
-        <hutool-all.version>5.8.26</hutool-all.version>
+        <hutool-all.version>5.8.27</hutool-all.version>
         <mysql-connector-j.version>8.3.0</mysql-connector-j.version>
         <postgresql.version>42.6.0</postgresql.version>
         <gson.version>2.10.1</gson.version>

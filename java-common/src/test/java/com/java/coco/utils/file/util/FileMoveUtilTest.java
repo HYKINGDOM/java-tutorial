@@ -1,11 +1,12 @@
 package com.java.coco.utils.file.util;
 
+import com.java.coco.utils.file.FileMoveUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
-import static com.java.coco.utils.file.util.FileMoveUtil.moveFileToTargetIndex;
+import static com.java.coco.utils.file.FileMoveUtil.moveFileToTargetIndex;
 
 class FileMoveUtilTest {
 

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
-import static com.java.coco.utils.file.util.VideoInfoUtil.getVideoInfo;
+import static com.java.coco.utils.file.VideoInfoUtil.getVideoInfo;
 
 class VideoInfoUtilTest {
 

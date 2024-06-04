@@ -1,8 +1,8 @@
-package com.java.coco.utils.file.util;
+package com.java.coco.utils.file;
 
 import java.io.File;
 
-import static com.java.coco.utils.file.util.FileNameUtils.rewriteRandomFileName;
+import static com.java.coco.utils.file.FileNameUtils.rewriteRandomFileName;
 
 /**
  * @author HY

@@ -1,4 +1,4 @@
-package com.java.coco.utils.file.util;
+package com.java.coco.utils.file;
 
 import cn.hutool.core.io.file.PathUtil;
 
@@ -15,6 +15,9 @@ import java.util.Set;
 
 import static com.java.coco.utils.file.constant.FileTypeConstant.getAllFileType;
 
+/**
+ * @author kscs
+ */
 public class DirectorUtil {
 
     private static int iFile = 0;

@@ -1,4 +1,4 @@
-package com.java.coco.utils.file.util;
+package com.java.coco.utils.file;
 
 import cn.hutool.core.io.FileTypeUtil;
 import cn.hutool.core.io.FileUtil;

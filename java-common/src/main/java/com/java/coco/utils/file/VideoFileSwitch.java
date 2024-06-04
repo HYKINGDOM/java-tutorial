@@ -13,7 +13,7 @@ import java.util.Map;
 import static cn.hutool.core.io.FileUtil.rename;
 import static com.java.coco.utils.HalfAndFullConverseUtil.qj2bj;
 import static com.java.coco.utils.file.constant.FileTypeConstant.VIDEO_EXTENSION;
-import static com.java.coco.utils.file.util.FilesUtil.fileDirectoryLists;
+import static com.java.coco.utils.file.FilesUtil.fileDirectoryLists;
 
 /**
  * @author HY
