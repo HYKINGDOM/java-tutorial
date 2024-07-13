@@ -206,7 +206,7 @@ class GenerateImageUtilTest {
         map1.put("合计15", title15);
         map1.put("总计16", title16);
 
-        generateImageUtil.createImageByTable(map1, "2023-04-18", "E:\\sqlite\\test3.jpg", "personal-pronouns.ftl");
+        generateImageUtil.createSizeTableImage(map1, "2023-04-18", "E:\\sqlite\\test3.jpg");
     }
 
 }

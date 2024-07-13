@@ -15,6 +15,7 @@ import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
+import javax.annotation.Resource;
 import java.util.concurrent.ScheduledExecutorService;
 
 /**
@@ -24,7 +25,7 @@ import java.util.concurrent.ScheduledExecutorService;
 public class QuartzConfig implements SchedulingConfigurer {
 
     @Qualifier("ttlScheduledExecutorService")
-    @Autowired
+    @Resource
     private ScheduledExecutorService defaultScheduledExecutorService;
 
     @Bean("springQuartzJob")

@@ -43,7 +43,7 @@ public class CommonHandleCmp {
         orderContext.setExecuteRuleList(executeRuleList);
     }
 
-    @LiteflowMethod(value = LiteFlowMethodEnum.PROCESS_IF, nodeType = NodeTypeEnum.IF, nodeId = "order_k",
+    @LiteflowMethod(value = LiteFlowMethodEnum.PROCESS_SWITCH, nodeType = NodeTypeEnum.SWITCH, nodeId = "order_k",
         nodeName = "KNodeComponent")
     public boolean processK(NodeComponent nodeComponent) {
         log.info("执行处理业务节点K");

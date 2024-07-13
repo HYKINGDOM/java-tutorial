@@ -1,7 +1,7 @@
 package com.java.tutorial.project.config;
 
+import cn.hutool.core.thread.ThreadFactoryBuilder;
 import com.alibaba.ttl.threadpool.TtlExecutors;
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.springframework.context.annotation.Bean;
@@ -103,7 +103,7 @@ public class ThreadPoolExecutorConfig {
     public ThreadPoolExecutor systemCheckPoolExecutorService() {
         return new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.SECONDS,
             new LinkedBlockingQueue<>(QUEUE_CAPACITY),
-            new ThreadFactoryBuilder().setNameFormat("default-executor-%d").build(),
+            new ThreadFactoryBuilder().setNamePrefix("default-executor-%d").build(),
             (r, executor) -> log.error("defaultThreadPoolExecutor pool is full! "));
     }
 
@@ -112,7 +112,7 @@ public class ThreadPoolExecutorConfig {
      */
     @Bean(name = "threadPoolExecutor")
     public ExecutorService taskExecutor() {
-        ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("Thread-Pool-Executor-%d").build();
+        ThreadFactory threadFactory = new ThreadFactoryBuilder().setNamePrefix("Thread-Pool-Executor-%d").build();
         ThreadPoolExecutor.CallerRunsPolicy callerRunsPolicy = new ThreadPoolExecutor.CallerRunsPolicy();
         return new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.SECONDS,
             createQueue(QUEUE_CAPACITY), threadFactory, callerRunsPolicy);
@@ -120,7 +120,7 @@ public class ThreadPoolExecutorConfig {
 
     @Bean(name = "ttlThreadPoolExecutor")
     public ExecutorService ttlThreadPoolExecutorService() {
-        ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("ttl-Thread-Pool-Executor-%d").build();
+        ThreadFactory threadFactory = new ThreadFactoryBuilder().setNamePrefix("ttl-Thread-Pool-Executor-%d").build();
         ThreadPoolExecutor.CallerRunsPolicy callerRunsPolicy = new ThreadPoolExecutor.CallerRunsPolicy();
         ThreadPoolExecutor threadPoolExecutor =
             new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.SECONDS,
@@ -165,7 +165,7 @@ public class ThreadPoolExecutorConfig {
     }
 
     private BlockingQueue<Runnable> createQueue(int queueCapacity) {
-        return (BlockingQueue)(queueCapacity > 0 ? new LinkedBlockingQueue<>(queueCapacity) : new SynchronousQueue());
+        return (queueCapacity > 0 ? new LinkedBlockingQueue<>(queueCapacity) : new SynchronousQueue<>());
     }
 
 }
