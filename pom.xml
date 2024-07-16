@@ -95,6 +95,7 @@
         <junit-jupiter.version>5.10.2</junit-jupiter.version>
         <mockito-core.version>5.11.0</mockito-core.version>
         <assertj-core.version>3.25.3</assertj-core.version>
+        <commons-pool2.version>2.12.0</commons-pool2.version>
     </properties>
 
     <dependencies>
@@ -112,6 +113,13 @@
     <dependencyManagement>
 
         <dependencies>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-pool2</artifactId>
+                <version>${commons-pool2.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
