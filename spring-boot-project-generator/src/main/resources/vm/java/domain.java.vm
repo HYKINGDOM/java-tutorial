@@ -1,0 +1,74 @@
+package ${packageName}.domain;
+
+#foreach ($import in $importList)
+import ${import};
+#end
+#if($table.sub)
+import ${packageName}.domain.${subClassName};
+#end
+#set($exitsDelFlagVersionFlag=false)
+#foreach ($column in $columns)
+    #if(!$table.isSuperColumn($column.javaField))
+        #if($column.javaField=='delFlag')
+            #set($exitsDelFlagVersionFlag=true)
+        #end
+        #if($column.javaField=='version')
+            #set($exitsDelFlagVersionFlag=true)
+        #end
+    #end
+#end
+#if($exitsDelFlagVersionFlag)
+import com.mybatisflex.annotation.Column;
+#end
+import com.mybatisflex.annotation.Id;
+import com.mybatisflex.annotation.Table;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import java.io.Serial;
+#if($table.crud || $table.sub)
+import com.meta.common.orm.core.domain.BaseEntity;
+#elseif($table.tree)
+import com.meta.common.orm.core.domain.TreeEntity;
+#end
+
+/**
+ * ${functionName}对象 ${tableName}
+ *
+ * @author ${author}
+ * ${datetime}
+ */
+#if($table.crud || $table.sub)
+    #set($Entity="BaseEntity")
+#elseif($table.tree)
+    #set($Entity="TreeEntity")
+#end
+@Data
+@EqualsAndHashCode(callSuper = true)
+@Table(value = "${tableName}")
+public class ${ClassName} extends ${Entity}
+{
+    @Serial
+    private static final long serialVersionUID = 1L;
+
+#foreach ($column in $columns)
+    #if(!$table.isSuperColumn($column.javaField))
+    /** $column.columnComment */
+#if($column.javaField=='delFlag')
+    @Column(isLogicDelete = true)
+#end
+#if($column.javaField=='version')
+    @Column(version = true)
+#end
+#if($column.isPk=='1')
+    @Id
+#end
+    private $column.javaType $column.javaField;
+
+    #end
+#end
+#if($table.sub)
+    /** $table.subTable.functionName信息 */
+    private List<${subClassName}> ${subclassName}List;
+#end
+
+}

@@ -69,6 +69,7 @@
         <module>spring-boot-project-LiteFlow</module>
         <module>spring-boot-project-mybatis-flex</module>
         <module>spring-boot-project-document</module>
+        <module>spring-boot-project-generator</module>
     </modules>
 
     <properties>

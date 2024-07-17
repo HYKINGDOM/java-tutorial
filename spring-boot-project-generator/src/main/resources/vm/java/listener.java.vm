@@ -1,0 +1,126 @@
+package ${packageName}.listener;
+
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.ObjectUtil;
+import com.alibaba.excel.context.AnalysisContext;
+import com.alibaba.excel.event.AnalysisEventListener;
+import com.meta.common.core.exception.ServiceException;
+import com.meta.common.core.utils.SpringUtils;
+import com.meta.common.core.utils.ValidatorUtils;
+import com.meta.common.excel.core.ExcelListener;
+import com.meta.common.excel.core.ExcelResult;
+import ${packageName}.domain.bo.${ClassName}Bo;
+import ${packageName}.domain.vo.*;
+import ${packageName}.service.*;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.List;
+
+/**
+ * ${functionName}自定义导入
+ *
+ * @author ${author}
+ */
+@Slf4j
+public class ${ClassName}ImportListener extends AnalysisEventListener<${ClassName}ImportVo> implements ExcelListener<${ClassName}ImportVo> {
+    private final I${ClassName}Service ${className}Service;
+
+    private final Boolean isUpdateSupport;
+    private int successNum = 0;
+    private int failureNum = 0;
+    private final StringBuilder successMsg = new StringBuilder();
+    private final StringBuilder failureMsg = new StringBuilder();
+
+    public ${ClassName}ImportListener(Boolean isUpdateSupport) {
+        this.${className}Service = SpringUtils.getBean(I${ClassName}Service.class);
+        this.isUpdateSupport = isUpdateSupport;
+    }
+
+    @Override
+    public void invoke(${ClassName}ImportVo ${className}Vo, AnalysisContext context) {
+        try {
+
+            ${ClassName}Bo ${className}Bo = BeanUtil.toBean(${className}Vo, ${ClassName}Bo.class);
+
+            //TODO:根据某个字段，查询数据库表中是否存在记录，不存在就新增，存在就更新
+            ${ClassName}Vo ${className}Vo1 = null;
+
+            #if($table.tree)
+            ${className}Vo1 = ${className}Service.selectById(${className}Vo.get${pkColumn.capJavaField}());
+            #else
+            //${className}Vo1 = ${className}Service.selectBySomefield(${className}Vo.getSomefield());
+            #end
+            if (ObjectUtil.isNull(${className}Vo1)) {
+                //不存在就新增
+                ${className}Bo.setVersion(0);
+                ValidatorUtils.validate(${className}Bo);
+              #if($table.tree)
+                boolean inserted = ${className}Service.insertWithPk(${className}Bo);//树表需要前台传来主键值
+              #else
+                boolean inserted = ${className}Service.insert(${className}Bo);
+              #end
+
+                if (inserted) {
+                    successNum++;
+                    successMsg.append("<br/>").append(successNum).append("、${functionName} 记录导入成功");
+                    return;
+                } else {
+                    failureNum++;
+                    failureMsg.append("<br/>").append(failureNum).append("、${functionName} 记录导入失败");
+                    return;
+                }
+            } else if (isUpdateSupport) {
+                //存在就更新
+                ${className}Bo.set${pkColumn.capJavaField}(${className}Vo1.get${pkColumn.capJavaField}());//主键
+                ${className}Bo.setVersion(${className}Vo1.getVersion());
+                boolean updated = ${className}Service.update(${className}Bo);
+                if (updated) {
+                    successNum++;
+                    successMsg.append("<br/>").append(successNum).append("、${functionName} 记录更新成功");
+                    return;
+                } else {
+                    failureNum++;
+                    failureMsg.append("<br/>").append(failureNum).append("、${functionName} 记录更新失败");
+                    return;
+                }
+            }
+        } catch (Exception e) {
+            failureNum++;
+            String msg = "<br/>" + failureNum + "、${functionName} 记录导入失败：";
+            failureMsg.append(msg).append(e.getMessage());
+            log.error(msg, e);
+        }
+    }
+
+    @Override
+    public void doAfterAllAnalysed(AnalysisContext context) {
+
+    }
+
+    @Override
+    public ExcelResult<${ClassName}ImportVo> getExcelResult() {
+        return new ExcelResult<>() {
+
+            @Override
+            public String getAnalysis() {
+                if (failureNum > 0) {
+                    failureMsg.insert(0, "很抱歉，导入失败！共 " + failureNum + " 条数据没有成功导入，错误如下：");
+                    throw new ServiceException(failureMsg.toString());
+                } else {
+                    successMsg.insert(0, "恭喜您，数据已全部导入成功！共 " + successNum + " 条，数据如下：");
+                }
+                return successMsg.toString();
+            }
+
+            @Override
+            public List<${ClassName}ImportVo> getList() {
+                return null;
+            }
+
+            @Override
+            public List<String> getErrorList() {
+                return null;
+            }
+        };
+    }
+}

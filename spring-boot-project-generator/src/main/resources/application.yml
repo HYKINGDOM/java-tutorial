@@ -1,0 +1,88 @@
+# 开发环境配置
+server:
+  # 服务器的HTTP端口，默认为8080
+  port: 9987
+  servlet:
+    # 应用的访问路径
+    context-path: /meta-app
+  tomcat:
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    # 连接数满后的排队数，默认为100
+    accept-count: 1000
+    threads:
+      # tomcat最大线程数，默认为200
+      max: 800
+      # Tomcat启动初始化的线程数，默认值10
+      min-spare: 100
+
+
+# Spring配置
+spring:
+  application:
+    name: generator-server
+  # 资源信息
+  messages:
+    # 国际化资源文件路径
+    basename: i18n/messages
+  profiles:
+    active: dev
+  # 文件上传
+  servlet:
+    multipart:
+      # 单个文件大小
+      max-file-size: 10MB
+      # 设置总上传的文件大小
+      max-request-size: 20MB
+  mvc:
+    format:
+      date-time: yyyy-MM-dd HH:mm:ss
+  jackson:
+    # 日期格式化
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      # 格式化输出
+      indent_output: false
+      # 忽略无法转换的对象
+      fail_on_empty_beans: false
+    deserialization:
+      # 允许对象忽略json中不存在的属性
+      fail_on_unknown_properties: false
+
+mybatis-flex:
+  # 搜索指定包别名
+  type-aliases-package: com.java.tutorial.project.domain
+  # 多包名使用 例如 org.dromara.**.mapper,org.xxx.**.mapper
+  mapper-package: com.java.tutorial.project.mapper
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  configuration:
+    # 自动驼峰命名规则（camel case）映射
+    map_underscore_to_camel_case: true
+    # MyBatis 自动映射策略
+    # NONE：不启用 PARTIAL：只对非嵌套 resultMap 自动映射 FULL：对所有 resultMap 自动映射
+    auto_mapping_behavior: FULL
+    # MyBatis 自动映射时未知列或未知属性处理策
+    # NONE：不做处理 WARNING：打印相关警告 FAILING：抛出异常和详细信息
+    auto_mapping_unknown_column_behavior: NONE
+    # 更详细的日志输出 会有性能损耗 org.apache.ibatis.logging.stdout.StdOutImpl
+    # 关闭日志记录 org.apache.ibatis.logging.nologging.NoLoggingImpl
+    # 默认日志输出 org.apache.ibatis.logging.slf4j.Slf4jImpl
+    #log_impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    logImpl: org.apache.ibatis.logging.nologging.NoLoggingImpl
+    cacheEnabled: true
+  global-config:
+    # 是否控制台打印 MyBatis-Flex 的 LOGO 及版本号
+    print-banner: true
+    # 全局的 ID 生成策略配置:雪花算法
+    key-config:
+      key-type: Generator
+      value: snowFlakeId
+    # 逻辑未删除值
+    normal-value-of-logic-delete: 0
+    # 逻辑已删除值(框架表均使用此值 禁止随意修改)
+    deleted-value-of-logic-delete: 1
+    # 默认的逻辑删除字段
+    logic-delete-column: del_flag
+    # 默认的乐观锁字段
+    version-column: version

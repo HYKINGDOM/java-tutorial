@@ -1,0 +1,329 @@
+package ${packageName}.service.impl;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import cn.hutool.core.util.ObjectUtil;
+import com.mybatisflex.core.paginate.Page;
+import com.mybatisflex.core.query.QueryMethods;
+import com.mybatisflex.core.query.QueryWrapper;
+import com.mybatisflex.core.update.UpdateChain;
+import com.meta.common.core.utils.MapstructUtils;
+import com.meta.common.core.utils.StringUtils;
+import com.meta.common.orm.core.page.PageQuery;
+import com.meta.common.orm.core.page.TableDataInfo;
+import com.meta.common.orm.core.service.impl.BaseServiceImpl;
+#foreach ($column in $columns)
+#if($column.javaField == 'createTime' || $column.javaField == 'updateTime')
+import com.meta.common.core.utils.DateUtils;
+#break
+#end
+#end
+import jakarta.annotation.Resource;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+#if($table.sub)
+import java.util.ArrayList;
+import java.util.Arrays;
+import ${packageName}.domain.${subClassName};
+import ${packageName}.mapper.${subClassName}Mapper;
+import static ${packageName}.domain.table.${subClassName}TableDef.${CapitalUnderScoreSubClassName};
+#end
+import ${packageName}.mapper.${ClassName}Mapper;
+import ${packageName}.domain.${ClassName};
+import ${packageName}.domain.bo.${ClassName}Bo;
+import ${packageName}.domain.vo.${ClassName}Vo;
+import ${packageName}.service.I${ClassName}Service;
+import static ${packageName}.domain.table.${ClassName}TableDef.${CapitalUnderScoreClassName};
+
+/**
+ * ${functionName}Service业务层处理
+ *
+ * @author ${author}
+ * ${datetime}
+ */
+@Service
+public class ${ClassName}ServiceImpl extends BaseServiceImpl<${ClassName}Mapper, ${ClassName}> implements I${ClassName}Service
+{
+    @Resource
+    private ${ClassName}Mapper ${className}Mapper;
+    #if($table.sub)
+    @Resource
+    private ${subClassName}Mapper ${subclassName}Mapper;
+    #end
+
+    @Override
+    public QueryWrapper query() {
+        return super.query().from(${CapitalUnderScoreClassName});
+    }
+
+    private QueryWrapper buildQueryWrapper(${ClassName}Bo ${className}Bo) {
+        QueryWrapper queryWrapper = super.buildBaseQueryWrapper();
+#foreach($column in $columns)
+#if($column.query)
+    #set($queryType=$column.queryType)
+    #set($javaField=$column.javaField)
+    #set($javaType=$column.javaType)
+    #set($columnName=$column.columnName)
+    #set($capitalColumnName=$column.columnName.toUpperCase())
+    #set($AttrName=$column.javaField.substring(0,1).toUpperCase() + ${column.javaField.substring(1)})
+    #set($mpMethod=$column.queryType.toLowerCase())
+    #if($queryType != 'BETWEEN')
+        queryWrapper.and(${CapitalUnderScoreClassName}.${capitalColumnName}.$mpMethod(${className}Bo.get$AttrName()));
+    #else
+        queryWrapper.and(${CapitalUnderScoreClassName}.${capitalColumnName}.$mpMethod(${className}Bo.getParams().get("begin$AttrName"), ${className}Bo.getParams().get("end$AttrName")));
+    #end
+#end
+#end
+    #if($table.tree)
+        queryWrapper.orderBy(${CapitalUnderScoreClassName}.ORDER_NUM.asc());
+    #end
+
+        return queryWrapper;
+    }
+
+    /**
+     * 查询${functionName}
+     *
+     * @param ${pkColumn.javaField} ${functionName}主键
+     * @return ${functionName}
+     */
+    @Override
+    public ${ClassName}Vo selectById(${pkColumn.javaType} ${pkColumn.javaField})
+    {
+        #set($CapitalPkColumn=${pkColumn.columnName.toUpperCase()})
+        #if($table.sub)
+        return ${className}Mapper.selectOneWithRelationsByQueryAs(query().where(${CapitalUnderScoreClassName}.${CapitalPkColumn}.eq(${pkColumn.javaField})), ${ClassName}Vo.class);
+        #else
+        return this.getOneAs(query().where(${CapitalUnderScoreClassName}.${CapitalPkColumn}.eq(${pkColumn.javaField})), ${ClassName}Vo.class);
+        #end
+
+    }
+
+    /**
+     * 查询${functionName}列表
+     *
+     * @param ${className}Bo ${functionName}Bo
+     * @return ${functionName}集合
+     */
+    @Override
+    public List<${ClassName}Vo> selectList(${ClassName}Bo ${className}Bo)
+    {
+        QueryWrapper queryWrapper = buildQueryWrapper(${className}Bo);
+        #if($table.sub)
+        return ${className}Mapper.selectListWithRelationsByQueryAs(queryWrapper, ${ClassName}Vo.class);
+        #else
+        return this.listAs(queryWrapper, ${ClassName}Vo.class);
+        #end
+    }
+
+#if($table.crud || $table.sub)
+    /**
+     * 分页查询${functionName}列表
+     *
+     * @param ${className}Bo ${functionName}Bo
+     * @return 分页${functionName}集合
+     */
+    @Override
+    public TableDataInfo<${ClassName}Vo> selectPage(${ClassName}Bo ${className}Bo)
+    {
+        QueryWrapper queryWrapper = buildQueryWrapper(${className}Bo);
+        #if($table.sub)
+        Page<${ClassName}Vo> page = ${className}Mapper.paginateWithRelationsAs(PageQuery.build(), queryWrapper, ${ClassName}Vo.class);
+        #else
+        Page<${ClassName}Vo> page = this.pageAs(PageQuery.build(), queryWrapper, ${ClassName}Vo.class);
+        #end
+        return TableDataInfo.build(page);
+    }
+#end
+
+    /**
+     * 新增${functionName}
+     *
+     * @param ${className}Bo ${functionName}Bo
+     * @return 结果:true 操作成功，false 操作失败
+     */
+#if($table.sub)
+    @Transactional
+#end
+    @Override
+    public boolean insert(${ClassName}Bo ${className}Bo)
+    {
+        ${ClassName} ${className} = MapstructUtils.convert(${className}Bo, ${ClassName}.class);
+
+#if($table.tree)
+        //获取祖级列表字段
+        Long parentId = ${className}.getParentId();
+        if (parentId == 0) {
+            ${className}.setAncestors("0");
+        } else {
+                ${ClassName}Vo parent${ClassName} = selectById(${className}Bo.getParentId());
+            if (ObjectUtil.isNotNull(parent${ClassName})) {
+                ${className}.setAncestors(parent${ClassName}.getAncestors()+"," +parentId);
+            } else {
+                ${className}.setAncestors("0");
+            }
+        }
+#end
+
+#if($table.sub)
+        boolean inserted = this.save(${className});//使用全局配置的雪花算法主键生成器生成ID值
+        if (inserted && ObjectUtil.isNotNull(${className})) {
+            return insert${subClassName}(${className});
+        }
+        return false;
+#else
+        return this.save(${className});//使用全局配置的雪花算法主键生成器生成ID值
+#end
+    }
+
+    /**
+     * 新增${functionName}，前台提供主键值，一般用于导入的场合
+     *
+     * @param ${className}Bo ${functionName}Bo
+     * @return 结果:true 操作成功，false 操作失败
+     */
+        #if($table.sub)
+        @Transactional
+        #end
+    @Override
+    public boolean insertWithPk(${ClassName}Bo ${className}Bo)
+    {
+        ${ClassName} ${className} = MapstructUtils.convert(${className}Bo, ${ClassName}.class);
+
+        #if($table.tree)
+            //获取祖级列表字段
+            Long parentId = ${className}.getParentId();
+            if (parentId == 0) {
+                ${className}.setAncestors("0");
+            } else {
+                    ${ClassName}Vo parent${ClassName} = selectById(${className}Bo.getParentId());
+                if (ObjectUtil.isNotNull(parent${ClassName})) {
+                    ${className}.setAncestors(parent${ClassName}.getAncestors()+"," +parentId);
+                } else {
+                    ${className}.setAncestors("0");
+                }
+            }
+        #end
+
+        #if($table.sub)
+            boolean inserted = ${className}Mapper.insertWithPk(${className}) > 0;//前台传来主键值
+            if (inserted && ObjectUtil.isNotNull(${className})) {
+                return insert${subClassName}(${className});
+            }
+            return false;
+        #else
+            return ${className}Mapper.insertWithPk(${className}) > 0;//前台传来主键值
+        #end
+    }
+
+    /**
+     * 修改${functionName}
+     *
+     * @param ${className}Bo ${functionName}Bo
+     * @return 结果:true 更新成功，false 更新失败
+     */
+#if($table.sub)
+    @Transactional
+#end
+    @Override
+    public boolean update(${ClassName}Bo ${className}Bo)
+    {
+        ${ClassName} ${className} = MapstructUtils.convert(${className}Bo, ${ClassName}.class);
+        if(ObjectUtil.isNotNull(${className}) && ObjectUtil.isNotNull(${className}.get${pkColumn.capJavaField}())) {
+            #if($table.tree)
+            //更新祖级列表字段
+            ${ClassName}Vo newParent${ClassName} = selectById(${className}.getParentId());
+            ${ClassName}Vo old${ClassName} = selectById(${className}.get${pkColumn.capJavaField}());
+            if ( ObjectUtil.isNotNull(newParent${ClassName}) && ObjectUtil.isNotNull(old${ClassName}) ) {
+                String newAncestors = newParent${ClassName}.getAncestors() + "," + newParent${ClassName}.get${pkColumn.capJavaField}();
+                String oldAncestors = old${ClassName}.getAncestors();
+                ${className}.setAncestors(newAncestors);
+                update${ClassName}Children(${className}.get${pkColumn.capJavaField}(), newAncestors, oldAncestors);
+            }
+            #end
+            boolean updated = this.updateById(${className});
+            #if($table.sub)
+            if (updated) {
+                QueryWrapper queryWrapper = QueryWrapper.create().from(${CapitalUnderScoreSubClassName}).where(${CapitalUnderScoreSubClassName}.${CapitalUnderScoreSubTableFkClassName}.eq(${className}.get${pkColumn.capJavaField}()));
+                ${subclassName}Mapper.deleteByQuery(queryWrapper);
+                return insert${subClassName}(${className});
+            }
+            #else
+            return updated;
+            #end
+        }
+        return false;
+    }
+
+  #if($table.tree)
+    /**
+     * 修改子元素关系
+     *
+     * @param ${pkColumn.javaField}   主键ID
+     * @param newAncestors 新的父ID集合
+     * @param oldAncestors 旧的父ID集合
+     */
+    @Transactional
+    public void update${ClassName}Children(Long ${pkColumn.javaField}, String newAncestors, String oldAncestors) {
+        QueryWrapper queryWrapper = QueryWrapper.create()
+            .from(${CapitalUnderScoreClassName})
+            .where(QueryMethods.findInSet(QueryMethods.number(${pkColumn.javaField}), ${CapitalUnderScoreClassName}.ANCESTORS).gt(0));
+
+        List<${ClassName}Vo> children = this.listAs(queryWrapper, ${ClassName}Vo.class);
+
+        for (${ClassName}Vo child : children) {
+            child.setAncestors(child.getAncestors().replaceFirst(oldAncestors, newAncestors));
+
+            UpdateChain.of(${ClassName}.class)
+                .set(${ClassName}::getAncestors, child.getAncestors())
+                .where(${ClassName}::get${pkColumn.capJavaField}).eq(child.get${pkColumn.capJavaField}())
+                .update();
+        }
+    }
+  #end
+
+    /**
+     * 批量删除${functionName}
+     *
+     * @param ${pkColumn.javaField}s 需要删除的${functionName}主键集合
+     * @return 结果:true 删除成功，false 删除失败
+     */
+    @Transactional
+    @Override
+    public boolean deleteByIds(${pkColumn.javaType}[] ${pkColumn.javaField}s)
+    {
+    #if($table.sub)
+        QueryWrapper queryWrapper = QueryWrapper.create().from(${CapitalUnderScoreSubClassName}).where(${CapitalUnderScoreSubClassName}.${CapitalUnderScoreSubTableFkClassName}.in(Arrays.asList(${pkColumn.javaField}s)));
+        ${subclassName}Mapper.deleteByQuery(queryWrapper);
+    #end
+        return this.removeByIds(Arrays.asList(${pkColumn.javaField}s));
+    }
+
+#if($table.sub)
+    /**
+     * 新增${subTable.functionName}信息
+     *
+     * @param ${className} ${functionName}对象
+     */
+    private boolean insert${subClassName}(${ClassName} ${className})
+    {
+        List<${subClassName}> ${subclassName}List = ${className}.get${subClassName}List();
+        ${pkColumn.javaType} ${pkColumn.javaField} = ${className}.get${pkColumn.capJavaField}();
+        if (StringUtils.isNotNull(${subclassName}List))
+        {
+            List<${subClassName}> list = new ArrayList<>();
+            for (${subClassName} ${subclassName} : ${subclassName}List)
+            {
+                ${subclassName}.set${subTableFkClassName}(${pkColumn.javaField});
+                list.add(${subclassName});
+            }
+            if (list.size() > 0)
+            {
+                return ${subclassName}Mapper.insertBatch(list)>0;
+            }
+        }
+        return true;
+    }
+#end
+}

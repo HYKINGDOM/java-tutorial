@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
  *
  * 需搭配 {@link CellMergeStrategy} 策略使用
  *
- * @author Lion Li
+ * @author meta
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)

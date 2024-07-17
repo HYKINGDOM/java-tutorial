@@ -1,0 +1,21 @@
+package ${packageName}.mapper;
+
+import com.mybatisflex.core.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
+#if($table.sub)
+import ${packageName}.domain.${subClassName};
+#else
+import ${packageName}.domain.${ClassName};
+#end
+
+/**
+ * ${subTable.functionName}Mapper接口
+ *
+ * @author ${author}
+ * ${datetime}
+ */
+@Mapper
+public interface ${subClassName}Mapper extends BaseMapper<${subClassName}>
+{
+
+}

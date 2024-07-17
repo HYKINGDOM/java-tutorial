@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 /**
  * 字典格式化
  *
- * @author Lion Li
+ * @author meta
  */
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)

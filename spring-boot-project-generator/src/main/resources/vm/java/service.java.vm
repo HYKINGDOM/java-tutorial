@@ -1,0 +1,78 @@
+package ${packageName}.service;
+
+import java.util.List;
+import ${packageName}.domain.${ClassName};
+import ${packageName}.domain.vo.${ClassName}Vo;
+import ${packageName}.domain.bo.${ClassName}Bo;
+import com.meta.common.orm.core.service.IBaseService;
+#if($table.crud || $table.sub)
+import com.meta.common.orm.core.page.TableDataInfo;
+#end
+
+/**
+ * ${functionName}Service接口
+ *
+ * @author ${author}
+ * ${datetime}
+ */
+public interface I${ClassName}Service extends IBaseService<${ClassName}>
+{
+    /**
+     * 查询${functionName}
+     *
+     * @param ${pkColumn.javaField} ${functionName}主键
+     * @return ${functionName}
+     */
+    ${ClassName}Vo selectById(${pkColumn.javaType} ${pkColumn.javaField});
+
+    /**
+     * 查询${functionName}列表
+     *
+     * @param ${className}Bo ${functionName}Bo
+     * @return ${functionName}集合
+     */
+    List<${ClassName}Vo> selectList(${ClassName}Bo ${className}Bo);
+
+#if($table.crud || $table.sub)
+    /**
+     * 分页查询${functionName}列表
+     *
+     * @param ${className}Bo ${functionName}Bo
+     * @return 分页${functionName}集合
+     */
+    TableDataInfo<${ClassName}Vo> selectPage(${ClassName}Bo ${className}Bo);
+#end
+
+    /**
+     * 新增${functionName}
+     *
+     * @param ${className}Bo ${functionName}Bo
+     * @return 结果:true 操作成功，false 操作失败
+     */
+    boolean insert(${ClassName}Bo ${className}Bo);
+
+    /**
+     * 新增${functionName}，前台提供主键值，一般用于导入的场合
+     *
+     * @param ${className}Bo ${functionName}Bo
+     * @return 结果:true 操作成功，false 操作失败
+     */
+    boolean insertWithPk(${ClassName}Bo ${className}Bo);
+
+    /**
+     * 修改${functionName}
+     *
+     * @param ${className}Bo ${functionName}Bo
+     * @return 结果:true 更新成功，false 更新失败
+     */
+    boolean update(${ClassName}Bo ${className}Bo);
+
+    /**
+     * 批量删除${functionName}
+     *
+     * @param ${pkColumn.javaField}s 需要删除的${functionName}主键集合
+     * @return 结果:true 删除成功，false 删除失败
+     */
+    boolean deleteByIds(${pkColumn.javaType}[] ${pkColumn.javaField}s);
+
+}
