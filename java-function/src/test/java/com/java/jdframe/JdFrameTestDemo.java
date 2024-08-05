@@ -123,10 +123,14 @@ public class JdFrameTestDemo {
     public void test_Function_03() {
         List<Student> std = null;
         std = SDFrame.read(studentList).distinct().toLists(); // 根据对象hashCode去重
+        System.out.println("columns: " + JSON.toJSONString(std));
         std = SDFrame.read(studentList).distinct(Student::getSchool).toLists(); // 根据学校名去重
+        System.out.println("columns: " + JSON.toJSONString(std));
         std = SDFrame.read(studentList).distinct(e -> e.getSchool() + e.getLevel()).toLists(); // 根据学校名拼接级别去重复
+        System.out.println("columns: " + JSON.toJSONString(std));
         std = SDFrame.read(studentList).distinct(Student::getSchool).distinct(Student::getLevel)
             .toLists(); // 先根据学校名去除重复再根据级别去除重复
+        System.out.println("columns: " + JSON.toJSONString(std));
 
     }
 
