@@ -4,6 +4,9 @@ import io.vavr.Function1;
 import io.vavr.Function2;
 import io.vavr.Function3;
 
+/**
+ * @author meta
+ */
 public class FunctionVavr {
 
     public static void main(String[] args) {
