@@ -70,6 +70,7 @@
         <module>spring-boot-project-mybatis-flex</module>
         <module>spring-boot-project-document</module>
         <module>spring-boot-project-generator</module>
+        <module>spring-boot-project-disruptor</module>
     </modules>
 
     <properties>
@@ -114,6 +115,13 @@
     <dependencyManagement>
 
         <dependencies>
+
+            <!-- https://mvnrepository.com/artifact/com.lmax/disruptor -->
+            <dependency>
+                <groupId>com.lmax</groupId>
+                <artifactId>disruptor</artifactId>
+                <version>4.0.0</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.apache.commons</groupId>
