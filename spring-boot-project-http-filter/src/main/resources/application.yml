@@ -20,5 +20,4 @@ monitor:
   #监控是否开启，默认不开启
   enabled: true
   #白名单
-  filter:
-    whiteUrl: "/api/v1/user/login"
+  filter-whiteUrl: "/api/v1/user/login"

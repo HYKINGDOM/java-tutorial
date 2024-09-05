@@ -172,7 +172,7 @@ public class HttpMonitorFilter implements Filter {
     }
 
     private Boolean isUrlInWhiteList(String checkVal) {
-        String url = properties.getWhiteUrl();
+        String url = properties.getFilterWhiteUrl();
         String[] skiUrls = url.split("\\|");
         for (String skiUrl : skiUrls) {
             if (checkVal.equals(skiUrl)) {
