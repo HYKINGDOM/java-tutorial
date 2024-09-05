@@ -16,7 +16,7 @@ import java.util.Set;
 import static com.java.coco.utils.file.constant.FileTypeConstant.getAllFileType;
 
 /**
- * @author kscs
+ * @author meta
  */
 public class DirectorUtil {
 

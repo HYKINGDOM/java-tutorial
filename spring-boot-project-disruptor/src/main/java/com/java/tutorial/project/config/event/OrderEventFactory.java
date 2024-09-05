@@ -1,4 +1,4 @@
-package com.java.tutorial.project.config;
+package com.java.tutorial.project.config.event;
 
 import com.java.tutorial.project.domain.OrderEvent;
 import com.lmax.disruptor.EventFactory;

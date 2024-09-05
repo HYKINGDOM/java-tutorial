@@ -1,23 +1,22 @@
 package com.java.coco.utils;
 
-import com.alibaba.ttl.TransmittableThreadLocal;
 import com.java.coco.utils.ip.IPUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
 import java.util.UUID;
 
+/**
+ * @author meta
+ */
 @Slf4j
 public class TraceIDUtil {
 
     public static final String DEFAULT_TRACE_ID = "traceId";
 
     private static final char[] HEX = "0123456789abcdef".toCharArray();
-
-    private static final TransmittableThreadLocal<String> THREAD_LOCAL = new TransmittableThreadLocal<>();
 
     /**
      * 根据入参设置traceId到MDC
@@ -35,7 +34,6 @@ public class TraceIDUtil {
      */
     public static void setTraceIdToMdcAndTtl(String traceId) {
         MDC.put(DEFAULT_TRACE_ID, traceId);
-        setTraceIdToTtl(traceId);
     }
 
     /**
@@ -45,27 +43,11 @@ public class TraceIDUtil {
      * @return traceId
      */
     public static String getTraceId() {
-        String ttlTraceId = getTraceIdByTtl();
         String traceId = MDC.get(DEFAULT_TRACE_ID);
-
-        log.info("current thread of ttlTraceId: {}, traceId: {}", ttlTraceId, traceId);
-        if (StringUtils.isEmpty(traceId) && StringUtils.isEmpty(ttlTraceId)) {
+        if (null == traceId) {
             traceId = createTraceId();
-            ttlTraceId = traceId;
             setTraceIdToMdc(traceId);
-            setTraceIdToTtl(ttlTraceId);
-        } else if (!StringUtils.isEmpty(traceId) && StringUtils.isEmpty(ttlTraceId)) {
-            ttlTraceId = traceId;
-            setTraceIdToTtl(traceId);
-        } else if (StringUtils.isEmpty(traceId) && !StringUtils.isEmpty(ttlTraceId)) {
-            traceId = ttlTraceId;
-            setTraceIdToMdc(ttlTraceId);
         }
-
-        if (!ttlTraceId.equals(traceId)) {
-            setTraceIdToMdc(ttlTraceId);
-        }
-
         return traceId;
     }
 
@@ -74,32 +56,6 @@ public class TraceIDUtil {
      */
     public static void clearTraceId() {
         MDC.remove(DEFAULT_TRACE_ID);
-        removeTraceIdByTtl();
-    }
-
-    /**
-     * 设置线程需要保存的值
-     *
-     * @param str
-     */
-    private static void setTraceIdToTtl(String str) {
-        THREAD_LOCAL.set(str);
-    }
-
-    /**
-     * 获取线程中保存的值
-     *
-     * @return
-     */
-    private static String getTraceIdByTtl() {
-        return THREAD_LOCAL.get();
-    }
-
-    /**
-     * 移除线程中保存的值
-     */
-    private static void removeTraceIdByTtl() {
-        THREAD_LOCAL.remove();
     }
 
     /**

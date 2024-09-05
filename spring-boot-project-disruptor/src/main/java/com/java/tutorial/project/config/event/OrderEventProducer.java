@@ -1,10 +1,13 @@
-package com.java.tutorial.project.config;
+package com.java.tutorial.project.config.event;
 
 import com.java.tutorial.project.domain.OrderEvent;
 import com.lmax.disruptor.RingBuffer;
 
 import java.nio.ByteBuffer;
 
+/**
+ * @author meta
+ */
 public class OrderEventProducer {
 
     private final RingBuffer<OrderEvent> ringBuffer;

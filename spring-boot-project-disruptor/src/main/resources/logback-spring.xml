@@ -5,7 +5,7 @@
 <!-- debug:当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。 -->
 <configuration scan="true" scanPeriod="60 seconds"
                debug="false">
-    <contextName>kscs</contextName>
+    <contextName>meta</contextName>
     <!-- <springProperty scope="context" name="logPath" source="logging.path"
         defaultValue="logs"/> -->
     <!-- name的值是变量的名称，value的值时变量定义的值。通过定义的值会被插入到logger上下文中。定义后，可以使“${}”来使用变量。 -->
@@ -30,8 +30,7 @@
             <level>debug</level>
         </filter>
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [traceId:%X{traceId}] [%X{PROCESS_ID}] %-5level
-                %logger{50}.%method:%L - %msg%n
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [traceId:%X{traceId}] [%X{PROCESS_ID}] %-5level %logger{50}.%method:%L - %msg%n
             </pattern>
             <!--            <Pattern>${CONSOLE_LOG_PATTERN}</Pattern>-->
             <!-- 设置字符集 -->
@@ -45,8 +44,7 @@
         <!-- 正在记录的日志文档的路径及文档名 -->
         <!--日志文档输出格式 -->
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [traceId:%X{traceId}] [%X{PROCESS_ID}] %-5level
-                %logger{50}.%method:%L - %msg%n
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [traceId:%X{traceId}] [%X{PROCESS_ID}] %-5level %logger{50}.%method:%L - %msg%n
             </pattern>
             <charset>UTF-8</charset> <!-- 设置字符集 -->
         </encoder>
@@ -72,8 +70,7 @@
         <!-- 正在记录的日志文档的路径及文档名 -->
         <!--日志文档输出格式 -->
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [traceId:%X{traceId}] [%X{PROCESS_ID}] %-5level
-                %logger{50}.%method:%L - %msg%n
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [traceId:%X{traceId}] [%X{PROCESS_ID}] %-5level %logger{50}.%method:%L - %msg%n
             </pattern>
             <charset>UTF-8</charset>
         </encoder>
@@ -99,16 +96,15 @@
         <!-- 正在记录的日志文档的路径及文档名 -->
         <!--日志文档输出格式 -->
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [traceId:%X{traceId}] [%X{PROCESS_ID}] %-5level
-                %logger{50}.%method:%L - %msg%n
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [traceId:%X{traceId}] [%X{PROCESS_ID}] %-5level %logger{50}.%method:%L - %msg%n
             </pattern>
             <charset>UTF-8</charset> <!-- 此处设置字符集 -->
         </encoder>
         <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
-        <rollingPolicy
-                class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>${log.path}/web-warn-%d{yyyy-MM-dd}-%i.log.gz</fileNamePattern>
-            <maxFileSize>100mb</maxFileSize> <!-- 设置每个log文件的最大大小 -->
+            <!-- 设置每个log文件的最大大小 -->
+            <maxFileSize>100mb</maxFileSize>
             <!--日志文档保留天数 -->
             <maxHistory>15</maxHistory>
         </rollingPolicy>
@@ -120,13 +116,11 @@
         </filter>
     </appender>
     <!-- 2.4 level为 ERROR 日志，时间滚动输出 -->
-    <appender name="ERROR_FILE"
-              class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 正在记录的日志文档的路径及文档名 -->
         <!--日志文档输出格式 -->
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [traceId:%X{traceId}] [%X{PROCESS_ID}] %-5level
-                %logger{50}.%method:%L - %msg%n
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [traceId:%X{traceId}] [%X{PROCESS_ID}] %-5level %logger{50}.%method:%L - %msg%n
             </pattern>
             <charset>UTF-8</charset> <!-- 此处设置字符集 -->
         </encoder>

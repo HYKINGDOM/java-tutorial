@@ -6,7 +6,7 @@ import com.java.tutorial.tool.event.Account;
 
 /**
  * 微信支付观察者
- * @author kscs
+ * @author meta
  */
 public class WeixinObserver {
     // 标记当前订阅者是线程安全的，支持并发接收消息

@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * 按照指定的规则排序
  *
- * @author kscs
+ * @author meta
  */
 public class ComparatorUtils {
 

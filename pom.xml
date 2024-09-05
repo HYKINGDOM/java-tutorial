@@ -71,6 +71,7 @@
         <module>spring-boot-project-document</module>
         <module>spring-boot-project-generator</module>
         <module>spring-boot-project-disruptor</module>
+        <module>spring-boot-project-http-filter</module>
     </modules>
 
     <properties>
@@ -115,6 +116,13 @@
     <dependencyManagement>
 
         <dependencies>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-logging</artifactId>
+                <version>${spring-boot-starter-version}</version>
+            </dependency>
+
 
             <!-- https://mvnrepository.com/artifact/com.lmax/disruptor -->
             <dependency>

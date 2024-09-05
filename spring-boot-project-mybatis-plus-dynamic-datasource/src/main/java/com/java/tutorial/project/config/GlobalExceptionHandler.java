@@ -30,7 +30,7 @@ import org.springframework.web.multipart.MaxUploadSizeExceededException;
 /**
  * 全局异常处理器
  *
- * @author kscs
+ * @author meta
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
