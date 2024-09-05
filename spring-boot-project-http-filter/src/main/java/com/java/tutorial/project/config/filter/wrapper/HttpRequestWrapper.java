@@ -62,11 +62,32 @@ public class HttpRequestWrapper extends HttpServletRequestWrapper {
 
             @Override
             public boolean isReady() {
+                /**
+                 * 方法的主要作用是告诉容器当前输入流是否已经准备好接收数据。具体来说：
+                 * 异步处理：
+                 * 当容器启动异步处理时，它会调用 isReady() 方法来检查输入流是否准备好接收数据。
+                 * 如果 isReady() 返回 true，则表示输入流已经准备好接收数据。
+                 * 如果 isReady() 返回 false，则表示输入流还没有准备好接收数据。
+                 * 性能优化：
+                 * 在某些情况下，如果输入流尚未准备好接收数据，容器可能会延迟处理或等待数据就绪。
+                 * 返回 true 表示输入流始终准备好接收数据，这对于简单的同步处理是合适的。
+                 */
                 return true;
             }
 
             @Override
             public void setReadListener(ReadListener readListener) {
+                /**
+                 * 设置读取监听器：
+                 * 在 setReadListener 方法中，我们通过 AsyncContext 启动一个异步任务。
+                 * 在异步任务中，我们循环检查 isFinished 方法，直到数据读取完成。
+                 * 当数据可用时，调用 readListener.onDataAvailable() 方法。
+                 * 处理异步读取事件：
+                 * 如果在读取过程中发生异常，调用 readListener.onError(e) 方法。
+                 * 释放资源：
+                 * 最后，通过 asyncContext.complete() 方法完成异步任务。
+                 * 这样，setReadListener 方法就可以实现异步读取数据的功能，并且在数据可用时通知监听器。
+                 */
             }
 
             @Override

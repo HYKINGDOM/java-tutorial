@@ -21,7 +21,7 @@ public class HttpResponseWrapper extends HttpServletResponseWrapper {
 
     private final ByteArrayOutputStream bytes = new ByteArrayOutputStream();
 
-    private HttpServletResponse response;
+    private final HttpServletResponse response;
 
     private PrintWriter printWriter;
 
@@ -52,14 +52,11 @@ public class HttpResponseWrapper extends HttpServletResponseWrapper {
             return bytes.toByteArray();
         }
 
-        if (null != bytes) {
-            try {
-                bytes.flush();
-            } catch (IOException e) {
-                log.error("HttpResponseWrapper getBytes error:", e);
-            }
+        try {
+            bytes.flush();
+        } catch (IOException e) {
+            log.error("HttpResponseWrapper getBytes error:", e);
         }
-        assert bytes != null;
         return bytes.toByteArray();
     }
 
@@ -69,19 +66,17 @@ public class HttpResponseWrapper extends HttpServletResponseWrapper {
             return bytes.toString(StandardCharsets.UTF_8);
         }
 
-        if (null != bytes) {
-            try {
-                bytes.flush();
-            } catch (IOException e) {
-                log.error("HttpResponseWrapper getContent error:", e);
-            }
+        try {
+            bytes.flush();
+        } catch (IOException e) {
+            log.error("HttpResponseWrapper getContent error:", e);
         }
-        assert bytes != null;
         return bytes.toString(StandardCharsets.UTF_8);
     }
 
-    class MyServletOutputStream extends ServletOutputStream {
-        private ByteArrayOutputStream outputStream;
+    public static class MyServletOutputStream extends ServletOutputStream {
+
+        private final ByteArrayOutputStream outputStream;
 
         public MyServletOutputStream(ByteArrayOutputStream outputStream) {
             this.outputStream = outputStream;
@@ -95,7 +90,7 @@ public class HttpResponseWrapper extends HttpServletResponseWrapper {
 
         @Override
         public boolean isReady() {
-            return false;
+            return true;
         }
 
         @Override

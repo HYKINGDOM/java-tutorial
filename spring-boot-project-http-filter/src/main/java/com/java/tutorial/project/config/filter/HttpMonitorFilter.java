@@ -7,7 +7,6 @@ import com.java.tutorial.project.config.filter.wrapper.HttpRequestWrapper;
 import com.java.tutorial.project.config.filter.wrapper.HttpResponseWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
-import org.springframework.http.HttpMethod;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -21,6 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author meta
@@ -136,11 +138,29 @@ public class HttpMonitorFilter implements Filter {
     }
 
     private String getReqParam(HttpRequestWrapper wrapperRequest) {
-        String method = wrapperRequest.getMethod();
-        if (HttpMethod.POST.name().equals(method)) {
-            return wrapperRequest.getBody();
-        } else {
-            return JSON.toJSONString(wrapperRequest.getParameterMap());
+
+        try {
+            // 添加查询参数
+            Map<String, Object> params = new HashMap<>(wrapperRequest.getParameterMap());
+
+            // 添加头部信息
+            Enumeration<String> headers = wrapperRequest.getHeaders(TraceIDUtil.DEFAULT_TRACE_ID);
+            if (headers != null) {
+                params.put(TraceIDUtil.DEFAULT_TRACE_ID, headers);
+            }
+
+            // 尝试获取请求体
+            String body = wrapperRequest.getBody();
+            if (null != body) {
+                // 将所有参数合并为 JSON 字符串
+                params.put("body", body);
+            }
+
+            return JSON.toJSONString(params);
+        } catch (Exception e) {
+            // 异常处理，可以选择记录日志或者返回默认值
+            System.err.println("Error retrieving request body: " + e.getMessage());
+            return "";
         }
     }
 

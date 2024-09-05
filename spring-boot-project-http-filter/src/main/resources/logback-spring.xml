@@ -30,8 +30,7 @@
             <level>debug</level>
         </filter>
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [traceId:%X{traceId}] [%X{PROCESS_ID}] %-5level
-                %logger{50}.%method:%L - %msg%n
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [traceId:%X{traceId}] [%X{PROCESS_ID}] %-5level %logger{50}.%method:%L - %msg%n
             </pattern>
             <!--            <Pattern>${CONSOLE_LOG_PATTERN}</Pattern>-->
             <!-- 设置字符集 -->
@@ -45,8 +44,7 @@
         <!-- 正在记录的日志文档的路径及文档名 -->
         <!--日志文档输出格式 -->
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [traceId:%X{traceId}] [%X{PROCESS_ID}] %-5level
-                %logger{50}.%method:%L - %msg%n
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [traceId:%X{traceId}] [%X{PROCESS_ID}] %-5level %logger{50}.%method:%L - %msg%n
             </pattern>
             <charset>UTF-8</charset> <!-- 设置字符集 -->
         </encoder>
@@ -72,8 +70,7 @@
         <!-- 正在记录的日志文档的路径及文档名 -->
         <!--日志文档输出格式 -->
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [traceId:%X{traceId}] [%X{PROCESS_ID}] %-5level
-                %logger{50}.%method:%L - %msg%n
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [traceId:%X{traceId}] [%X{PROCESS_ID}] %-5level %logger{50}.%method:%L - %msg%n
             </pattern>
             <charset>UTF-8</charset>
         </encoder>
@@ -99,8 +96,7 @@
         <!-- 正在记录的日志文档的路径及文档名 -->
         <!--日志文档输出格式 -->
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [traceId:%X{traceId}] [%X{PROCESS_ID}] %-5level
-                %logger{50}.%method:%L - %msg%n
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [traceId:%X{traceId}] [%X{PROCESS_ID}] %-5level %logger{50}.%method:%L - %msg%n
             </pattern>
             <charset>UTF-8</charset> <!-- 此处设置字符集 -->
         </encoder>
@@ -125,8 +121,7 @@
         <!-- 正在记录的日志文档的路径及文档名 -->
         <!--日志文档输出格式 -->
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [traceId:%X{traceId}] [%X{PROCESS_ID}] %-5level
-                %logger{50}.%method:%L - %msg%n
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [traceId:%X{traceId}] [%X{PROCESS_ID}] %-5level %logger{50}.%method:%L - %msg%n
             </pattern>
             <charset>UTF-8</charset> <!-- 此处设置字符集 -->
         </encoder>
