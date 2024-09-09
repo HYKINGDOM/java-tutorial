@@ -5,7 +5,7 @@ import com.java.tutorial.project.exception.job.TaskException;
 import com.java.tutorial.project.service.ISysJobService;
 import com.java.tutorial.project.util.Constants;
 import com.java.tutorial.project.util.CronUtils;
-import com.java.tutorial.project.util.ScheduleUtils;
+import com.java.tutorial.project.config.ScheduleUtils;
 import com.java.tutorial.project.util.StringUtils;
 
 import org.quartz.SchedulerException;
@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**

@@ -6,7 +6,7 @@ import com.java.tutorial.project.mapper.SysJobMapper;
 import com.java.tutorial.project.service.ISysJobService;
 import com.java.tutorial.project.util.CronUtils;
 import com.java.tutorial.project.util.ScheduleConstants;
-import com.java.tutorial.project.util.ScheduleUtils;
+import com.java.tutorial.project.config.ScheduleUtils;
 import org.quartz.JobDataMap;
 import org.quartz.JobKey;
 import org.quartz.Scheduler;

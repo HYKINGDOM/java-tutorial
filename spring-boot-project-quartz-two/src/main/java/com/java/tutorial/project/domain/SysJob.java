@@ -52,14 +52,6 @@ public class SysJob extends BaseEntity {
 
     private String remark;
 
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
     @NotBlank(message = "调用目标字符串不能为空")
     @Size(min = 0, max = 500, message = "调用目标字符串长度不能超过500个字符")
     public String getInvokeTarget() {

@@ -67,7 +67,6 @@ public class HttpMonitorFilter implements Filter {
             String clientIp = getRemoteHost(wrapperRequest);
             String reqParam = getReqParam(wrapperRequest);
             // 放置日志控件域对象中
-            MDC.put(REQUEST_MESSAGE, reqParam);
             log.info("ip:[{}],url:[{}],reqParam:[{}]", clientIp, url, reqParam);
             long startTime = System.currentTimeMillis();
             filterChain.doFilter(wrapperRequest, wrapperResponse);
@@ -83,7 +82,6 @@ public class HttpMonitorFilter implements Filter {
                 servletOutputStream.flush();
                 servletOutputStream.close();
             }
-            MDC.remove(REQUEST_MESSAGE);
             TraceIDUtil.clearTraceId();
         }
     }

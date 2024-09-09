@@ -16,7 +16,6 @@ import java.util.Date;
  * @author meta
  */
 public class BaseController {
-    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
      * 将前台传递过来的日期格式的字符串，自动转化为Date类型
@@ -84,10 +83,6 @@ public class BaseController {
         return rows > 0 ? AjaxResult.success() : AjaxResult.error();
     }
 
-    //    protected R<Void> toAjax(int rows) {
-    //        return rows > 0 ? R.ok() : R.fail();
-    //    }
-
     /**
      * 响应返回结果
      *
@@ -97,10 +92,6 @@ public class BaseController {
     protected AjaxResult toAjax(boolean result) {
         return result ? success() : error();
     }
-
-    //    protected R<Void> toAjax(boolean result) {
-    //        return result ? R.ok() : R.fail();
-    //    }
 
     /**
      * 页面跳转
