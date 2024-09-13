@@ -14,7 +14,7 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
 /**
- * @author kscs
+ * @author meta
  */
 @Slf4j
 public class HttpResponseWrapper extends HttpServletResponseWrapper {

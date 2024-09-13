@@ -72,6 +72,7 @@
         <module>spring-boot-project-generator</module>
         <module>spring-boot-project-disruptor</module>
         <module>spring-boot-project-http-filter</module>
+        <module>spring-boot-project-statemachine</module>
     </modules>
 
     <properties>

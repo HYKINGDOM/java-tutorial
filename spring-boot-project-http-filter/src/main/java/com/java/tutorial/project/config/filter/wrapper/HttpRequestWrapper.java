@@ -20,7 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * @author kscs
+ * @author meta
  */
 @Slf4j
 public class HttpRequestWrapper extends HttpServletRequestWrapper {
