@@ -1,5 +1,6 @@
 package com.java.coco.common;
 
+import com.java.coco.utils.TraceIDUtil;
 import lombok.Data;
 
 /**
@@ -19,6 +20,12 @@ public class Result<T> {
      * 消息
      */
     private String msg;
+
+    /**
+     *
+     */
+    private String traceId;
+
     /**
      * 数据
      */
@@ -34,6 +41,7 @@ public class Result<T> {
         Result<T> r = new Result<T>();
         r.setSuccess(true);
         r.setCode(ErrorCode.SUCCESS.getCode());
+        r.setTraceId(TraceIDUtil.getTraceId());
         return r;
     }
 
@@ -48,6 +56,7 @@ public class Result<T> {
         Result<T> r = new Result<T>();
         r.setSuccess(true);
         r.setCode(ErrorCode.SUCCESS.getCode());
+        r.setTraceId(TraceIDUtil.getTraceId());
         r.setData(data);
         return r;
     }
@@ -89,6 +98,7 @@ public class Result<T> {
         r.setSuccess(false);
         r.setCode(code);
         r.setMsg(msg);
+        r.setTraceId(TraceIDUtil.getTraceId());
         r.setData(data);
         return r;
     }

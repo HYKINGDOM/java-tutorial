@@ -34,9 +34,13 @@ public class OrderStatusMachineConfig
     @Override
     public void configure(StateMachineTransitionConfigurer<OrderStatusEnum, OrderStatusChangeEventEnum> transitions)
         throws Exception {
-        transitions.withExternal().source(OrderStatusEnum.WAIT_PAYMENT).target(OrderStatusEnum.WAIT_DELIVER)
-            .event(OrderStatusChangeEventEnum.PAYED).and().withExternal().source(OrderStatusEnum.WAIT_DELIVER)
-            .target(OrderStatusEnum.WAIT_RECEIVE).event(OrderStatusChangeEventEnum.DELIVERY).and().withExternal()
+        transitions.withExternal()
+            .source(OrderStatusEnum.WAIT_PAYMENT).target(OrderStatusEnum.WAIT_DELIVER)
+            .event(OrderStatusChangeEventEnum.PAYED)
+            .and().withExternal()
+            .source(OrderStatusEnum.WAIT_DELIVER).target(OrderStatusEnum.WAIT_RECEIVE)
+            .event(OrderStatusChangeEventEnum.DELIVERY)
+            .and().withExternal()
             .source(OrderStatusEnum.WAIT_RECEIVE).target(OrderStatusEnum.FINISH)
             .event(OrderStatusChangeEventEnum.RECEIVED);
     }

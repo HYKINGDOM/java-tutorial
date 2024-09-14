@@ -74,7 +74,7 @@ public class TraceIDUtil {
      *
      * @return
      */
-    private static String createTraceId() {
+    public static String createTraceId() {
         return ipToLong(IPUtil.getLocalIPAddress()) + System.currentTimeMillis() + getRandomString() + getProcessId();
     }
 

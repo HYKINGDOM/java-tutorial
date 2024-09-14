@@ -15,7 +15,7 @@ public class MdcInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        response.setHeader(TraceIDUtil.DEFAULT_TRACE_ID, TraceIDUtil.getTraceId());
+        response.setHeader(TraceIDUtil.DEFAULT_TRACE_ID, TraceIDUtil.createTraceId());
         return true;
     }
 
