@@ -4,7 +4,7 @@ import com.java.tutorial.project.constant.OrderStatusEnum;
 import lombok.Data;
 
 /**
- * @author kscs
+ * @author meta
  */
 @Data
 public class Order {

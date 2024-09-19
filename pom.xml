@@ -73,6 +73,7 @@
         <module>spring-boot-project-disruptor</module>
         <module>spring-boot-project-http-filter</module>
         <module>spring-boot-project-statemachine</module>
+        <module>spring-boot-project-minIO</module>
     </modules>
 
     <properties>

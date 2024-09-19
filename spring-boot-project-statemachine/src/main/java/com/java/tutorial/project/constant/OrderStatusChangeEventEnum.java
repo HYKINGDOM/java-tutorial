@@ -1,7 +1,7 @@
 package com.java.tutorial.project.constant;
 
 /**
- * @author kscs
+ * @author meta
  */
 public enum OrderStatusChangeEventEnum {
     /**
