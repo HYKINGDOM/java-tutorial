@@ -16,8 +16,7 @@ public class BootStrapClientConfig {
     @Bean
     public BootStrap totalHandlerResult() {
         BootStrap bootStrap = new BootStrap();
-        //出参工厂
-        //自定义channel
+
         return bootStrap
             //出参工厂
             .outboundFactory(new HandlerResultFactory())
