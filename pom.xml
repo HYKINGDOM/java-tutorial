@@ -74,6 +74,7 @@
         <module>spring-boot-project-http-filter</module>
         <module>spring-boot-project-statemachine</module>
         <module>spring-boot-project-minIO</module>
+        <module>spring-boot-project-pie</module>
     </modules>
 
     <properties>

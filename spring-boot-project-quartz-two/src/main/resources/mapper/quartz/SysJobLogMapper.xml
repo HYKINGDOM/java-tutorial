@@ -6,13 +6,13 @@
 
     <resultMap type="com.java.tutorial.project.domain.SysJobLog" id="SysJobLogResult">
         <id property="jobLogId" column="job_log_id"/>
-        <result property="jobName" column="job_name"/>
-        <result property="jobGroup" column="job_group"/>
-        <result property="invokeTarget" column="invoke_target"/>
-        <result property="jobMessage" column="job_message"/>
-        <result property="status" column="status"/>
-        <result property="exceptionInfo" column="exception_info"/>
-        <result property="createTime" column="create_time"/>
+        <handlerResult property="jobName" column="job_name"/>
+        <handlerResult property="jobGroup" column="job_group"/>
+        <handlerResult property="invokeTarget" column="invoke_target"/>
+        <handlerResult property="jobMessage" column="job_message"/>
+        <handlerResult property="status" column="status"/>
+        <handlerResult property="exceptionInfo" column="exception_info"/>
+        <handlerResult property="createTime" column="create_time"/>
     </resultMap>
 
     <sql id="selectJobLogVo">

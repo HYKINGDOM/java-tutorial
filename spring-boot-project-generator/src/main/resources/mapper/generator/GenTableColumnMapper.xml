@@ -6,27 +6,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <resultMap type="com.java.tutorial.project.domain.GenTableColumn" id="GenTableColumnResult">
         <id     property="columnId"       column="column_id"      />
-        <result property="tableId"        column="table_id"       />
-        <result property="columnName"     column="column_name"    />
-        <result property="columnComment"  column="column_comment" />
-        <result property="columnType"     column="column_type"    />
-        <result property="javaType"       column="java_type"      />
-        <result property="javaField"      column="java_field"     />
-        <result property="isPk"           column="is_pk"          />
-        <result property="isIncrement"    column="is_increment"   />
-        <result property="isRequired"     column="is_required"    />
-        <result property="isInsert"       column="is_insert"      />
-        <result property="isEdit"         column="is_edit"        />
-        <result property="isList"         column="is_list"        />
-        <result property="isQuery"        column="is_query"       />
-        <result property="queryType"      column="query_type"     />
-        <result property="htmlType"       column="html_type"      />
-        <result property="dictType"       column="dict_type"      />
-        <result property="sort"           column="sort"           />
-        <result property="createBy"       column="create_by"      />
-        <result property="createTime"     column="create_time"    />
-        <result property="updateBy"       column="update_by"      />
-        <result property="updateTime"     column="update_time"    />
+        <handlerResult property="tableId"        column="table_id"       />
+        <handlerResult property="columnName"     column="column_name"    />
+        <handlerResult property="columnComment"  column="column_comment" />
+        <handlerResult property="columnType"     column="column_type"    />
+        <handlerResult property="javaType"       column="java_type"      />
+        <handlerResult property="javaField"      column="java_field"     />
+        <handlerResult property="isPk"           column="is_pk"          />
+        <handlerResult property="isIncrement"    column="is_increment"   />
+        <handlerResult property="isRequired"     column="is_required"    />
+        <handlerResult property="isInsert"       column="is_insert"      />
+        <handlerResult property="isEdit"         column="is_edit"        />
+        <handlerResult property="isList"         column="is_list"        />
+        <handlerResult property="isQuery"        column="is_query"       />
+        <handlerResult property="queryType"      column="query_type"     />
+        <handlerResult property="htmlType"       column="html_type"      />
+        <handlerResult property="dictType"       column="dict_type"      />
+        <handlerResult property="sort"           column="sort"           />
+        <handlerResult property="createBy"       column="create_by"      />
+        <handlerResult property="createTime"     column="create_time"    />
+        <handlerResult property="updateBy"       column="update_by"      />
+        <handlerResult property="updateTime"     column="update_time"    />
     </resultMap>
 
 	<sql id="selectGenTableColumnVo">

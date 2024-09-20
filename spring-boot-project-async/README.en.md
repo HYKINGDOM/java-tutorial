@@ -24,7 +24,7 @@ complex. If there are related needs and interests, we can study it.
 1. The client requests the server interface, which needs to call the interfaces of other n microservices. For example,
    to request my order, you need to call the user's RPC, product details RPC, inventory RPC, coupons and many other
    services. At the same time, these services also have interdependence, for example, you must first get a user's field,
-   and then go to an RPC service to request data. After all the results are finally obtained or timeout, the result will
+   and then go to an RPC service to request data. After all the results are finally obtained or timeout, the handlerResult will
    be summarized and returned to the client.
 
 
@@ -60,11 +60,11 @@ screenshot. PNG")
 
 ! [enter picture description] (https://images.gitee.com/uploads/images/2019/1226/093023 "screenshot. PNG")
 
-####Possible requirements for concurrent scenarios -- callbacks for each execution result
+####Possible requirements for concurrent scenarios -- callbacks for each execution handlerResult
 
 Traditional future and completeablefuture can complete task choreography to some extent, and transfer the results to the
 next task. For example, completabilefuture has the then method, but it can't do the callback for each execution unit.
-For example, if the execution of a is successful, followed by B, I hope that a will have a callback result after the
+For example, if the execution of a is successful, followed by B, I hope that a will have a callback handlerResult after the
 execution, so that I can monitor the current execution status, or log something. Failed, I can also record an exception
 information or something.
 
@@ -92,12 +92,12 @@ If you don't rely on must, you can execute any dependency and then you can execu
 ####Possible requirements for concurrent scenarios -- relying on upstream execution results as input parameters
 
 For example, for the three execution units of a-b-c, the input parameter of a is string, and the output parameter is
-int. for B, it needs to use the result of a as its input parameter. In other words, a and B are not independent but
-result dependent.
+int. for B, it needs to use the handlerResult of a as its input parameter. In other words, a and B are not independent but
+handlerResult dependent.
 
-Before a finishes executing, B can't get the result. It just knows the result type of A.
+Before a finishes executing, B can't get the handlerResult. It just knows the handlerResult type of A.
 
-So, my framework also supports such scenarios. You can take the result wrapper class of a as the input parameter of B
+So, my framework also supports such scenarios. You can take the handlerResult wrapper class of a as the input parameter of B
 when arranging. Although it is not implemented at this time, it must be empty, but it can ensure that after the
 implementation of a, the participation of B will be assigned.
 

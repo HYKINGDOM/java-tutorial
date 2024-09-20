@@ -83,8 +83,8 @@ public class ${ClassName}Controller extends BaseController
     @SaCheckPermission("${permissionPrefix}:import")
     @PostMapping("/importData")
     public R<Void> importData(MultipartFile file, boolean updateSupport) throws Exception {
-        ExcelResult<${ClassName}ImportVo> result = ExcelUtil.importExcel(file.getInputStream(), ${ClassName}ImportVo.class, new ${ClassName}ImportListener(updateSupport));
-        return R.ok(result.getAnalysis());
+        ExcelResult<${ClassName}ImportVo> handlerResult = ExcelUtil.importExcel(file.getInputStream(), ${ClassName}ImportVo.class, new ${ClassName}ImportListener(updateSupport));
+        return R.ok(handlerResult.getAnalysis());
     }
 
     @SaCheckPermission("${permissionPrefix}:import")

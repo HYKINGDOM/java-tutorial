@@ -10,7 +10,6 @@ import java.util.List;
 /**
  * @author HY
  */
-
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING,unmappedTargetPolicy = ReportingPolicy.IGNORE)
 @DecoratedWith(AbstractStudentMappingDecorator.class)
 public interface StudentMapping {

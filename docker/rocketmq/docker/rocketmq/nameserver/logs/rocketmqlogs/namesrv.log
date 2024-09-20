@@ -517,7 +517,7 @@ java.io.IOException: Connection reset by peer
 	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:140) [netty-all-4.0.42.Final.jar:4.0.42.Final]
 	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_191]
 2022-11-14 22:07:00 INFO NettyServerCodecThread_3 - NETTY SERVER PIPELINE: channelInactive, the channel[172.17.0.4:51958]
-2022-11-14 22:07:00 INFO NettyServerNIOSelector_3_2 - closeChannel: close the connection to remote address[172.17.0.4:51958] result: true
+2022-11-14 22:07:00 INFO NettyServerNIOSelector_3_2 - closeChannel: close the connection to remote address[172.17.0.4:51958] handlerResult: true
 2022-11-14 22:07:00 INFO NettyServerCodecThread_3 - NETTY SERVER PIPELINE: channelUnregistered, the channel[172.17.0.4:51958]
 2022-11-14 22:07:09 INFO NettyServerCodecThread_4 - NETTY SERVER PIPELINE: channelRegistered 172.17.0.1:56514
 2022-11-14 22:07:09 INFO NettyServerCodecThread_4 - NETTY SERVER PIPELINE: channelActive, the channel[172.17.0.1:56514]

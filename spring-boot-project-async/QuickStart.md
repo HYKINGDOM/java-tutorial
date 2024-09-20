@@ -81,7 +81,7 @@ public interface ICallback<T, V> {
      * 耗时操作执行完毕后，就给value注入值
      *
      */
-    void result(boolean success, T param, WorkResult<V> workResult);
+    void handlerResult(boolean success, T param, WorkResult<V> workResult);
 }
 
 ```
@@ -119,7 +119,7 @@ public class ParWorker1 implements IWorker<String, String>, ICallback<String, St
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return "result = " + SystemClock.now() + "---param = " + object + " from 1";
+        return "handlerResult = " + SystemClock.now() + "---param = " + object + " from 1";
     }
 
     @Override
@@ -133,7 +133,7 @@ public class ParWorker1 implements IWorker<String, String>, ICallback<String, St
     }
 
     @Override
-    public void result(boolean success, String param, WorkResult<String> workResult) {
+    public void handlerResult(boolean success, String param, WorkResult<String> workResult) {
         if (success) {
             System.out.println("callback worker1 success--" + SystemClock.now() + "----" + workResult.getResult()
                     + "-threadName:" +Thread.currentThread().getName());

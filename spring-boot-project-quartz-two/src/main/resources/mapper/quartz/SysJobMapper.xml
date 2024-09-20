@@ -6,18 +6,18 @@
 
     <resultMap type="com.java.tutorial.project.domain.SysJob" id="SysJobResult">
         <id property="jobId" column="job_id"/>
-        <result property="jobName" column="job_name"/>
-        <result property="jobGroup" column="job_group"/>
-        <result property="invokeTarget" column="invoke_target"/>
-        <result property="cronExpression" column="cron_expression"/>
-        <result property="misfirePolicy" column="misfire_policy"/>
-        <result property="concurrent" column="concurrent"/>
-        <result property="status" column="status"/>
-        <result property="createBy" column="create_by"/>
-        <result property="createTime" column="create_time"/>
-        <result property="updateBy" column="update_by"/>
-        <result property="updateTime" column="update_time"/>
-        <result property="remark" column="remark"/>
+        <handlerResult property="jobName" column="job_name"/>
+        <handlerResult property="jobGroup" column="job_group"/>
+        <handlerResult property="invokeTarget" column="invoke_target"/>
+        <handlerResult property="cronExpression" column="cron_expression"/>
+        <handlerResult property="misfirePolicy" column="misfire_policy"/>
+        <handlerResult property="concurrent" column="concurrent"/>
+        <handlerResult property="status" column="status"/>
+        <handlerResult property="createBy" column="create_by"/>
+        <handlerResult property="createTime" column="create_time"/>
+        <handlerResult property="updateBy" column="update_by"/>
+        <handlerResult property="updateTime" column="update_time"/>
+        <handlerResult property="remark" column="remark"/>
     </resultMap>
 
     <sql id="selectJobVo">
