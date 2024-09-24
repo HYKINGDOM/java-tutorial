@@ -1,0 +1,42 @@
+# 开发环境配置
+server:
+  # 服务器的HTTP端口，默认为8080
+  port: 9987
+  servlet:
+    # 应用的访问路径
+    context-path: /meta-app
+  tomcat:
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    # 连接数满后的排队数，默认为100
+    accept-count: 1000
+    threads:
+      # tomcat最大线程数，默认为200
+      max: 800
+      # Tomcat启动初始化的线程数，默认值10
+      min-spare: 100
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://10.0.201.34:5432/user_7nhcJZ
+    username: user_7nhcJZ
+    password: password_iG5ez3
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      connection-test-query: SELECT 1
+      maximum-pool-size: 20
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: async-hikariCP
+      max-lifetime: 60000
+      connection-timeout: 30000
+  jpa:
+    database: POSTGRESQL
+    # 控制台显示sql语句，一般很难看
+    show-sql: true
+    hibernate:
+      # 项目启动时，根据实体类怎么变更数据库的表
+      ddl-auto: none
+    open-in-view: false
