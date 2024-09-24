@@ -1,7 +1,10 @@
 package com.java.tutorial.project.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
@@ -15,10 +18,13 @@ import java.util.Objects;
  * 达人信息对象
  * @author meta
  */
+@Builder
 @Getter
 @Setter
 @Entity
 @Table(name = "creator_info")
+@NoArgsConstructor
+@AllArgsConstructor
 public class CreatorInfo {
 
     /**

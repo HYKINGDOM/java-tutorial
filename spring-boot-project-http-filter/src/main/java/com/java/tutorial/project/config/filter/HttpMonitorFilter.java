@@ -7,6 +7,7 @@ import com.java.tutorial.project.config.filter.wrapper.HttpRequestWrapper;
 import com.java.tutorial.project.config.filter.wrapper.HttpResponseWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
+import org.springframework.util.StopWatch;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -68,10 +69,11 @@ public class HttpMonitorFilter implements Filter {
             String reqParam = getReqParam(wrapperRequest);
             // 放置日志控件域对象中
             log.info("ip:[{}],url:[{}],reqParam:[{}]", clientIp, url, reqParam);
-            long startTime = System.currentTimeMillis();
+            StopWatch stopWatch = new StopWatch(url);
+            stopWatch.start();
             filterChain.doFilter(wrapperRequest, wrapperResponse);
             response.setHeader(TraceIDUtil.DEFAULT_TRACE_ID, traceId);
-            long elapsed = System.currentTimeMillis() - startTime;
+            long elapsed = stopWatch.getTotalTimeMillis();
             String res = wrapperResponse.getContent();
             log.info("ip:[{}],url:[{}],response:[{}],elapsed:[{}]ms", clientIp, url, res, elapsed);
             servletOutputStream.write(res.getBytes());
