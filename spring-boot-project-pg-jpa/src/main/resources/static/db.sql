@@ -1,0 +1,121 @@
+-- public.creator_info definition
+
+-- Drop table
+
+-- DROP TABLE public.creator_info;
+
+CREATE TABLE public.creator_info (
+                                     creator_id varchar(255) NOT NULL,
+                                     creator_name varchar(255) NOT NULL,
+                                     creator_nickname varchar(255) NULL,
+                                     creator_portrait varchar(2048) NULL,
+                                     mcn_contract varchar(255) NULL,
+                                     creator_categories varchar(255) NULL,
+                                     daren_category_en varchar(500) NULL,
+                                     ecommerce_type varchar(255) NULL,
+                                     creator_verification varchar(255) NULL,
+                                     description text NULL,
+                                     homepage text NULL,
+                                     email varchar(255) NULL,
+                                     country varchar(255) NOT NULL,
+                                     cap_name varchar(255) NULL,
+                                     add_time timestamp NULL,
+                                     update_time timestamp NULL,
+                                     source_platform varchar(255) NULL,
+                                     fans_num int4 NULL,
+                                     followers int4 NULL,
+                                     likes int4 NULL,
+                                     videos int4 NULL,
+                                     livestreamings int4 NULL,
+                                     video_gpm_min float4 NULL,
+                                     video_gpm_max float4 NULL,
+                                     live_gpm_min float4 NULL,
+                                     live_gpm_max float4 NULL,
+                                     national_rank int4 NULL,
+                                     related_shops int4 NULL,
+                                     promoted_products int4 NULL,
+                                     product_categories_top1 varchar(255) NULL,
+                                     product_categories_top1_en varchar(255) NULL,
+                                     product_categories_proportion_top1 float4 NULL,
+                                     product_categories_top2 varchar(255) NULL,
+                                     product_categories_top2_en varchar(255) NULL,
+                                     product_categories_proportion_top2 float4 NULL,
+                                     product_categories_top3 varchar(255) NULL,
+                                     product_categories_top3_en varchar(255) NULL,
+                                     product_categories_proportion_top3 float4 NULL,
+                                     product_categories_top4 varchar(255) NULL,
+                                     product_categories_top4_en varchar(255) NULL,
+                                     product_categories_proportion_top4 float4 NULL,
+                                     product_categories_top5 varchar(255) NULL,
+                                     product_categories_top5_en varchar(255) NULL,
+                                     product_categories_proportion_top5 float4 NULL,
+                                     fans_18_24_percent float4 NULL,
+                                     fans_25_34_percent float4 NULL,
+                                     fans_35_above_percent float4 NULL,
+                                     female_percent float4 NULL,
+                                     male_percent float4 NULL,
+                                     recent_30_videos_views int4 NULL,
+                                     recent_30_videos_likes int4 NULL,
+                                     recent_30_videos_comments int4 NULL,
+                                     recent_30_videos_shares int4 NULL,
+                                     recent_30_days_gmv float4 NULL,
+                                     videoslikes_gained_7days int4 NULL,
+                                     ecommerce_lives_7days int4 NULL,
+                                     videos_7days int4 NULL,
+                                     followers_gained_7days int4 NULL,
+                                     video_ipm_7days int4 NULL,
+                                     ecommerce_videos_28days int4 NULL,
+                                     products_promoted_in_videos_28days int4 NULL,
+                                     fans_main_age varchar(100) NULL,
+                                     fans_main_sex varchar(100) NULL,
+                                     video_gmv_28days float8 NULL,
+                                     live_gmv_28days float8 NULL,
+                                     total_gmv_28days float8 NULL,
+                                     product_ecommerce_orders_max float8 NULL,
+                                     craw_time timestamp NULL,
+                                     total_gmv_all float8 NULL,
+                                     ecommerce_videos int4 NULL,
+                                     ecommerce_videos_60days int4 NULL,
+                                     recent_60_days_gmv float8 NULL,
+                                     ecommerce_videos_90days int4 NULL,
+                                     recent_90_days_gmv float8 NULL,
+                                     instagram_username varchar(128) NULL,
+                                     instagram_link varchar(128) NULL,
+                                     youtube_link varchar(128) NULL,
+                                     youtube_channel_title varchar(128) NULL,
+                                     guard_status varchar(128) NULL,
+                                     is_commission_daren int2 NULL,
+                                     bound_status varchar(128) NULL,
+                                     video_gmv_7days float8 NULL,
+                                     total_gmv_7days float8 NULL,
+                                     video_gmv_14days float8 NULL,
+                                     total_gmv_14days float8 NULL,
+                                     median_watch_pv_video_7d int4 NULL,
+                                     median_watch_pv_video_14d int4 NULL,
+                                     median_watch_pv_video_28d int4 NULL,
+                                     CONSTRAINT creator_info_pkey PRIMARY KEY (creator_id)
+);
+CREATE INDEX add_time_idx ON public.creator_info USING btree (add_time);
+CREATE INDEX creator_name_idx ON public.creator_info USING btree (creator_name);
+
+-- public.email_replied_info definition
+
+-- Drop table
+
+-- DROP TABLE public.email_replied_info;
+
+CREATE TABLE public.email_replied_info (
+                                           id int8 NOT NULL,
+                                           plan_id int8 NULL,
+                                           creator_id varchar(255) NULL,
+                                           from_account varchar(255) NULL,
+                                           to_account varchar(255) NULL,
+                                           "content" text NULL,
+                                           send_time timestamp NULL,
+                                           email_id varchar(500) NULL,
+                                           create_time timestamp NULL,
+                                           conversation_id varchar(500) NULL,
+                                           CONSTRAINT email_replied_info_pkey PRIMARY KEY (id)
+);
+CREATE INDEX conversation_id_idx ON public.email_replied_info USING btree (conversation_id);
+CREATE INDEX from_account_idx ON public.email_replied_info USING btree (from_account);
