@@ -22,7 +22,7 @@ public class Result<T> {
     private String msg;
 
     /**
-     *
+     * traceId
      */
     private String traceId;
 

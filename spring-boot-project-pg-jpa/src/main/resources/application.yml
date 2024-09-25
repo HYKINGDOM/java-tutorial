@@ -40,3 +40,30 @@ spring:
       # 项目启动时，根据实体类怎么变更数据库的表
       ddl-auto: none
     open-in-view: false
+
+javers:
+  mappingStyle: FIELD
+  algorithm: LEVENSHTEIN_DISTANCE
+  commitIdGenerator: synchronized_sequence
+  prettyPrint: false
+  typeSafeValues: false
+  initialChanges: true
+  terminalChanges: true
+  packagesToScan: com.java.tutorial.project.domain
+  auditableAspectEnabled: true
+  springDataAuditableRepositoryAspectEnabled: true
+  usePrimitiveDefaults: true
+  prettyPrintDateFormats:
+    localDateTime: 'yyyy-MM-dd HH:mm:ss'
+    zonedDateTime: 'yyyy-MM-dd HH:mm:ssZ'
+    localDate: 'yyyy-MM-dd'
+    localTime: 'HH:mm:ss'
+  sqlSchema: public
+  audit-snapshot-props: true
+  sqlSchemaManagementEnabled: true
+  sqlGlobalIdCacheDisabled: false
+  objectAccessHook: org.javers.hibernate.integration.HibernateUnproxyObjectAccessHook
+  sqlGlobalIdTableName: jv_global_id
+  sqlCommitTableName: jv_commit
+  sqlSnapshotTableName: jv_snapshot
+  sqlCommitPropertyTableName: jv_commit_property
