@@ -1,8 +1,9 @@
-package com.java.tutorial.project.service;
+package com.java.tutorial.project.service.impl;
 
 import com.java.tutorial.project.domain.CreatorInfo;
 import com.java.tutorial.project.domain.QCreatorInfo;
 import com.java.tutorial.project.repository.CreatorInfoRepository;
+import com.java.tutorial.project.service.CreatorInfoService;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.javers.spring.annotation.JaversAuditable;
