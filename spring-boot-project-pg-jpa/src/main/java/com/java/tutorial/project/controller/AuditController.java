@@ -1,6 +1,7 @@
 package com.java.tutorial.project.controller;
 
 import com.java.tutorial.project.domain.CreatorInfo;
+import com.java.tutorial.project.domain.SendEmailInfoEntity;
 import org.javers.core.Javers;
 import org.javers.core.diff.Change;
 import org.javers.repository.jql.QueryBuilder;
@@ -34,6 +35,22 @@ public class AuditController {
     public String getPersonChanges() {
         // 创建一个QueryBuilder对象，用于指定查询的类
         QueryBuilder jqlQuery = QueryBuilder.byClass(CreatorInfo.class);
+
+        // 执行查询，获取变更列表
+        List<Change> changes = javers.findChanges(jqlQuery.build());
+
+        // 将变更列表转换为JSON字符串并返回
+        return javers.getJsonConverter().toJson(changes);
+    }
+
+    /**
+     * 获取邮件变更信息
+     * @return
+     */
+    @RequestMapping("/getSendEmailInfoEntityChanges")
+    public String getSendEmailInfoEntityChanges() {
+        // 创建一个QueryBuilder对象，用于指定查询的类
+        QueryBuilder jqlQuery = QueryBuilder.byClass(SendEmailInfoEntity.class);
 
         // 执行查询，获取变更列表
         List<Change> changes = javers.findChanges(jqlQuery.build());

@@ -5,11 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,7 +31,8 @@ import java.util.Objects;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "email_replied_info")
+@Table(name = "email_replied_info_test")
+@EntityListeners(AuditingEntityListener.class)
 public class EmailRepliedInfoEntity implements Serializable {
 
     /**
@@ -80,10 +82,12 @@ public class EmailRepliedInfoEntity implements Serializable {
      * 入库时间
      */
     @CreatedDate
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
 
     @CreatedDate
     @LastModifiedDate
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updateTime;
 
     /**
