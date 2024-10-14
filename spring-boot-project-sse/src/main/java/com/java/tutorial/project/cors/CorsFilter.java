@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * @author meta
+ */
 @Component
 public class CorsFilter implements Filter {
     @Override

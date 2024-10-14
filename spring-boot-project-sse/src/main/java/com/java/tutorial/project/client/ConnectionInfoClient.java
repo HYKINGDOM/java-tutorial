@@ -8,6 +8,9 @@ import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author meta
+ */
 @Component
 @Slf4j
 public class ConnectionInfoClient {

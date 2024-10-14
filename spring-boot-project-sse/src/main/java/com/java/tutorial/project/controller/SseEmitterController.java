@@ -27,6 +27,7 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 /**
  * SSE长链接
+ * @author meta
  */
 @RestController
 @RequestMapping("/sse")
