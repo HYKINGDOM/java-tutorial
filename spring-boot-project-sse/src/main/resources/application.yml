@@ -1,7 +1,5 @@
 server:
-  port: 8183
-  servlet:
-    context-path: /sse
+  port: 8899
 spring:
   servlet:
     multipart:
@@ -9,6 +7,8 @@ spring:
       max-request-size: 1000MB
   application:
     name: sse-server
+  profiles:
+    active: dev
 logging:
   config: classpath:logback-spring.xml
   level:

@@ -1,0 +1,14 @@
+spring:
+  data:
+    mongodb:
+      host: 10.0.201.34
+      port: 27017
+      database: sse_test
+      username: daniel
+      password: 123456
+sse:
+  msg:
+    send:
+      group:
+        url: http://10.10.3.29:8080/msg/group
+        id: 65
