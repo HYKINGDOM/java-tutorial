@@ -10,6 +10,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+/**
+ * @author meta
+ */
 @Service
 public class ConnectionInfoServiceImpl implements ConnectionInfoService {
     @Resource

@@ -1,6 +1,7 @@
 package com.java.tutorial.project.controller;
 
-import com.alibaba.fastjson2.util.DateUtils;
+
+import cn.hutool.core.date.DateUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.java.tutorial.project.util.AjaxResult;
@@ -38,7 +39,7 @@ public class BaseController {
         binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
             @Override
             public void setAsText(String text) {
-                setValue(DateUtils.parseDate(text));
+                setValue(DateUtil.parseDate(text));
             }
         });
     }

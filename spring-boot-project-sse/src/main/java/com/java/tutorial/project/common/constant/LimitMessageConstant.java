@@ -1,5 +1,8 @@
 package com.java.tutorial.project.common.constant;
 
+/**
+ * @author meta
+ */
 public class LimitMessageConstant {
     public static final String TITLE = "LIMITED_TIME_AVAILABLE_PURCHASE";
     public static String content1 =

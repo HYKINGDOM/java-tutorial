@@ -1,15 +1,18 @@
 package com.java.tutorial.project.service;
 
 import com.java.tutorial.project.common.vo.MessageVo;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.util.Set;
 
-import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
-
+/**
+ * @author meta
+ */
 public interface SseEmitterService {
     /**
      * 创建连接
      *
+     * @param type     连接类型
      * @param clientId 客户端ID
      */
     SseEmitter createConnect(String clientId, Integer type);
@@ -22,6 +25,8 @@ public interface SseEmitterService {
     SseEmitter getSseEmitterByClientId(String clientId);
 
     Set<String> getAllClient();
+
+    SseEmitter getSseEmitter(String clientId);
 
     /**
      * 发送消息给所有客户端

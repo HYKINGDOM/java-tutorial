@@ -17,11 +17,12 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class MsgClient {
+
     @Value("${sse.msg.send.group.url:http://10.0.220.31:8080/msg/group}")
     private String groupUrl;
 
-    //    @Value("${product.msg.send.person.url:http://10.0.220.31:8080/msg/person}")
     private String personUrl = "http://127.0.0.1:8080/msg/person";
+
     @Value("${sse.msg.send.group.id:35}")
     private Long groupId;
 

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class ConnectionInfoClient {
+
     @Resource
     private ConnectionInfoService connectionInfoService;
 

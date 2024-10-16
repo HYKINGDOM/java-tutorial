@@ -4,6 +4,9 @@ import com.java.tutorial.project.common.entity.ConnectionInfo;
 
 import java.util.List;
 
+/**
+ * @author meta
+ */
 public interface ConnectionInfoService {
     /**
      * 添加连接

@@ -1,21 +1,25 @@
 package com.java.tutorial.project.service.impl;
 
-import static com.alibaba.fastjson2.util.DateUtils.DateTimeFormatPattern.DATE_TIME_FORMAT_19_DASH;
-
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpStatus;
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson2.util.DateUtils;
 import com.java.tutorial.project.client.MsgClient;
 import com.java.tutorial.project.common.entity.ConnectionInfo;
+import com.java.tutorial.project.common.enumtype.ConnectionTypeEnum;
 import com.java.tutorial.project.common.enumtype.SceneEnum;
 import com.java.tutorial.project.common.vo.MessageVo;
 import com.java.tutorial.project.service.ConnectionInfoService;
 import com.java.tutorial.project.service.MessageService;
 import com.java.tutorial.project.service.SseEmitterService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Map;
@@ -23,13 +27,12 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
-import javax.annotation.Resource;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
+import static com.java.tutorial.project.common.util.DateTimeUtil.FORMAT_DATE_TIME;
 
+/**
+ * @author meta
+ */
 @Service
 @Slf4j
 public class SseEmitterServiceImpl implements SseEmitterService {
@@ -38,10 +41,15 @@ public class SseEmitterServiceImpl implements SseEmitterService {
      * 容器，保存连接，用于输出返回 ;可使用其他方法实现
      */
     private static final Map<String, SseEmitter> sseCache = new ConcurrentHashMap<>();
+
+    public static final String FORMAT_TIME = DateUtil.format(new Date(), "yyyy-MM-dd HH:mm:ss");
+
     @Resource
     private MsgClient msgClient;
+
     @Resource
     private ConnectionInfoService connectionInfoService;
+
     @Resource
     private MessageService messageService;
 
@@ -67,12 +75,40 @@ public class SseEmitterServiceImpl implements SseEmitterService {
      */
     @Override
     public SseEmitter createConnect(String clientId, Integer type) {
-        // 设置超时时间，0表示不过期。默认30秒，超过时间未完成会抛出异常：AsyncRequestTimeoutException
-        SseEmitter sseEmitter = new SseEmitter(0L);
+        // 判断连接类型
+        ConnectionTypeEnum connectionTypeEnum = ConnectionTypeEnum.getByCode(type);
         // 是否需要给客户端推送ID
         if (StrUtil.isBlank(clientId)) {
             clientId = IdUtil.simpleUUID();
         }
+        SseEmitter sseEmitter = getSseEmitter(clientId);
+        sseCache.put(clientId, sseEmitter);
+        log.info("创建新的sse连接，当前用户：{}, 累计用户:{}", clientId, sseCache.size());
+        try {
+
+            // 注册成功返回用户信息
+            MessageVo messageVo = new MessageVo();
+            messageVo.setClientId(clientId);
+            messageVo.setType(connectionTypeEnum.getCode());
+            sseEmitter.send(SseEmitter.event().id(String.valueOf(HttpStatus.HTTP_CREATED))
+                .data(messageVo, MediaType.APPLICATION_JSON));
+            // 保存连接信息
+            ConnectionInfo connectionInfo = ConnectionInfo.builder().clientId(clientId).createTime(FORMAT_DATE_TIME)
+                .type(connectionTypeEnum.getCode()).lastContactTime("").build();
+
+            //保存连接信息到MongoDB中
+            connectionInfoService.create(connectionInfo);
+        } catch (IOException e) {
+            log.error("创建长链接异常，客户端ID:{}   异常信息:{}", clientId, e.getMessage());
+            throw new RuntimeException("创建链接异常");
+        }
+        return sseEmitter;
+    }
+
+    @Override
+    public SseEmitter getSseEmitter(String clientId) {
+        // 设置超时时间，0表示不过期。默认30秒，超过时间未完成会抛出异常：AsyncRequestTimeoutException
+        SseEmitter sseEmitter = new SseEmitter(0L);
         // 注册回调
         // 长链接完成后回调接口(即关闭连接时调用)
         sseEmitter.onCompletion(completionCallBack(clientId));
@@ -80,22 +116,6 @@ public class SseEmitterServiceImpl implements SseEmitterService {
         sseEmitter.onTimeout(timeoutCallBack(clientId));
         // 推送消息异常时，回调方法
         sseEmitter.onError(errorCallBack(clientId));
-        sseCache.put(clientId, sseEmitter);
-        log.info("创建新的sse连接，当前用户：{}    累计用户:{}", clientId, sseCache.size());
-        try {
-            // 注册成功返回用户信息
-            MessageVo messageVo = new MessageVo();
-            messageVo.setClientId(clientId);
-            messageVo.setType(0);
-            sseEmitter.send(SseEmitter.event().id(String.valueOf(HttpStatus.HTTP_CREATED))
-                .data(messageVo, MediaType.APPLICATION_JSON));
-            //保存连接信息到MongoDB中
-            connectionInfoService.create(ConnectionInfo.builder().clientId(clientId)
-                .createTime(DateUtils.format(new Date(), DATE_TIME_FORMAT_19_DASH.name())).type(type == null ? 1 : type)
-                .lastContactTime("").build());
-        } catch (IOException e) {
-            log.error("创建长链接异常，客户端ID:{}   异常信息:{}", clientId, e.getMessage());
-        }
         return sseEmitter;
     }
 
@@ -110,6 +130,9 @@ public class SseEmitterServiceImpl implements SseEmitterService {
             return;
         }
         // 判断发送的消息是否为空
+        if (StrUtil.isBlank(msg)) {
+            return;
+        }
 
         for (Map.Entry<String, SseEmitter> entry : sseCache.entrySet()) {
             MessageVo messageVo = new MessageVo();
@@ -117,7 +140,6 @@ public class SseEmitterServiceImpl implements SseEmitterService {
             messageVo.setData(msg);
             sendMsgToClientByClientId(entry.getKey(), messageVo, entry.getValue());
         }
-
     }
 
     /**
@@ -193,8 +215,7 @@ public class SseEmitterServiceImpl implements SseEmitterService {
             if (Objects.nonNull(client)) {
                 connectionInfoService.create(
                     ConnectionInfo.builder().clientId(clientId).createTime(client.getCreateTime())
-                        .type(client.getType())
-                        .lastContactTime(DateUtils.format(new Date(), DATE_TIME_FORMAT_19_DASH.name())).build());
+                        .type(client.getType()).lastContactTime(FORMAT_TIME).build());
             }
         } catch (IOException e) {
             // 推送消息失败，记录错误日志，进行重推

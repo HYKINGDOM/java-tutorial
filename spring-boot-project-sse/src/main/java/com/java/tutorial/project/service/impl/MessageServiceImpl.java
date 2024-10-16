@@ -1,21 +1,21 @@
 package com.java.tutorial.project.service.impl;
 
-import static com.alibaba.fastjson2.util.DateUtils.DateTimeFormatPattern.DATE_TIME_FORMAT_19_DASH;
-
-import com.alibaba.fastjson2.util.DateUtils;
 import com.java.tutorial.project.client.MsgClient;
 import com.java.tutorial.project.common.constant.CommonMessageConstant;
 import com.java.tutorial.project.common.constant.LimitMessageConstant;
 import com.java.tutorial.project.common.constant.SignalMessageConstant;
 import com.java.tutorial.project.common.enumtype.SceneEnum;
 import com.java.tutorial.project.service.MessageService;
-
-import java.util.Date;
-import javax.annotation.Resource;
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
+import static com.java.tutorial.project.common.util.DateTimeUtil.FORMAT_DATE_TIME;
+
+/**
+ * @author meta
+ */
 @Service
 @Slf4j
 public class MessageServiceImpl implements MessageService {
@@ -41,8 +41,7 @@ public class MessageServiceImpl implements MessageService {
 
     private void sendCommon(String clientId) {
         String title = "未建立连接";
-        String content = String.format(CommonMessageConstant.content, clientId,
-            DateUtils.format(new Date(), DATE_TIME_FORMAT_19_DASH.name()));
+        String content = String.format(CommonMessageConstant.content, clientId, FORMAT_DATE_TIME);
         msgClient.groupSend(title, content);
     }
 
@@ -50,17 +49,13 @@ public class MessageServiceImpl implements MessageService {
         String content = "";
         String title = SignalMessageConstant.title;
         if (SceneEnum.ERROR == scene) {
-            content = String.format(SignalMessageConstant.content1, clientId,
-                DateUtils.format(new Date(), DATE_TIME_FORMAT_19_DASH.name()));
+            content = String.format(SignalMessageConstant.content1, clientId, FORMAT_DATE_TIME);
         } else if (SceneEnum.EXPIRED == scene) {
-            content = String.format(SignalMessageConstant.content3, clientId,
-                DateUtils.format(new Date(), DATE_TIME_FORMAT_19_DASH.name()));
+            content = String.format(SignalMessageConstant.content3, clientId, FORMAT_DATE_TIME);
         } else if (SceneEnum.NO_CONN == scene) {
-            content = String.format(SignalMessageConstant.content2, clientId,
-                DateUtils.format(new Date(), DATE_TIME_FORMAT_19_DASH.name()));
+            content = String.format(SignalMessageConstant.content2, clientId, FORMAT_DATE_TIME);
         } else if (SceneEnum.CLOSE == scene) {
-            content = String.format(SignalMessageConstant.content4, clientId,
-                DateUtils.format(new Date(), DATE_TIME_FORMAT_19_DASH.name()));
+            content = String.format(SignalMessageConstant.content4, clientId, FORMAT_DATE_TIME);
         }
         msgClient.groupSend(title, content);
     }
@@ -69,17 +64,13 @@ public class MessageServiceImpl implements MessageService {
         String content = "";
         String title = LimitMessageConstant.TITLE;
         if (SceneEnum.ERROR == scene) {
-            content = String.format(LimitMessageConstant.content1, clientId,
-                DateUtils.format(new Date(), DATE_TIME_FORMAT_19_DASH.name()));
+            content = String.format(LimitMessageConstant.content1, clientId, FORMAT_DATE_TIME);
         } else if (SceneEnum.EXPIRED == scene) {
-            content = String.format(LimitMessageConstant.content3, clientId,
-                DateUtils.format(new Date(), DATE_TIME_FORMAT_19_DASH.name()));
+            content = String.format(LimitMessageConstant.content3, clientId, FORMAT_DATE_TIME);
         } else if (SceneEnum.NO_CONN == scene) {
-            content = String.format(LimitMessageConstant.content2, clientId,
-                DateUtils.format(new Date(), DATE_TIME_FORMAT_19_DASH.name()));
+            content = String.format(LimitMessageConstant.content2, clientId, FORMAT_DATE_TIME);
         } else if (SceneEnum.CLOSE == scene) {
-            content = String.format(LimitMessageConstant.content4, clientId,
-                DateUtils.format(new Date(), DATE_TIME_FORMAT_19_DASH.name()));
+            content = String.format(LimitMessageConstant.content4, clientId, FORMAT_DATE_TIME);
         }
         msgClient.groupSend(title, content);
     }

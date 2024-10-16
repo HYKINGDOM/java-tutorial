@@ -1,5 +1,8 @@
 package com.java.tutorial.project.common.constant;
 
+/**
+ * 启动信号
+ */
 public class SignalMessageConstant {
     public static final String title = "start_up_signal";
     public static String content1 =
