@@ -4,6 +4,7 @@ import com.java.tutorial.project.common.entity.ConnectionInfo;
 import com.java.tutorial.project.dao.ConnectionInfoDao;
 import com.java.tutorial.project.service.ConnectionInfoService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.Resource;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ConnectionInfoServiceImpl implements ConnectionInfoService {
+
     @Resource
     private ConnectionInfoDao connectionInfoDao;
 
@@ -28,6 +30,11 @@ public class ConnectionInfoServiceImpl implements ConnectionInfoService {
     public ConnectionInfo getClient(String clientId) {
         Optional<ConnectionInfo> optional = connectionInfoDao.findById(clientId);
         return optional.orElse(null);
+    }
+
+    @Override
+    public List<ConnectionInfo> getAllConnectionByNoTimeOut() {
+        return connectionInfoDao.findByLastContactTimeAfter(LocalDateTime.now());
     }
 
     @Override

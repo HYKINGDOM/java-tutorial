@@ -19,6 +19,12 @@ public interface ConnectionInfoService {
     ConnectionInfo getClient(String clientId);
 
     /**
+     * 获取所有未过期的连接信息
+     * @return
+     */
+    List<ConnectionInfo> getAllConnectionByNoTimeOut();
+
+    /**
      * 删除
      */
     int delete(List<String> clientIds);
