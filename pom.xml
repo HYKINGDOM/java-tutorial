@@ -76,6 +76,7 @@
         <module>spring-boot-project-minIO</module>
         <module>spring-boot-project-pie</module>
         <module>spring-boot-project-pg-jpa</module>
+        <module>spring-boot-project-dag</module>
     </modules>
 
     <properties>
