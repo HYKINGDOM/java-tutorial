@@ -1,6 +1,6 @@
 package com.java.tutorial.project.service;
 
-import com.java.tutorial.project.common.entity.ConnectionInfo;
+import com.java.tutorial.project.infrastucture.entity.ConnectionEntity;
 
 import java.util.List;
 
@@ -11,18 +11,24 @@ public interface ConnectionInfoService {
     /**
      * 添加连接
      *
-     * @param connectionInfo
+     * @param connectionEntity
      * @return
      */
-    int create(ConnectionInfo connectionInfo);
+    int create(ConnectionEntity connectionEntity);
 
-    ConnectionInfo getClient(String clientId);
+    /**
+     * 获取连接信息
+     * @param clientId
+     * @return
+     */
+    ConnectionEntity getClient(String clientId);
 
     /**
      * 获取所有未过期的连接信息
+     *
      * @return
      */
-    List<ConnectionInfo> getAllConnectionByNoTimeOut();
+    List<ConnectionEntity> getAllConnectionByNoTimeOut();
 
     /**
      * 删除
@@ -31,7 +37,7 @@ public interface ConnectionInfoService {
 
     int deleteByClientId(String clientId);
 
-    List<ConnectionInfo> listAll();
+    List<ConnectionEntity> listAll();
 
     void deleteAll();
 }

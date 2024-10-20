@@ -1,10 +1,13 @@
 package com.java.tutorial.project.controller;
 
-import com.java.coco.common.Result;
-import com.java.tutorial.project.common.entity.ConnectionInfo;
+
+import com.java.tutorial.project.common.vo.ContentVo;
+import com.java.tutorial.project.infrastucture.entity.ConnectionEntity;
 import com.java.tutorial.project.common.vo.MessageVo;
 import com.java.tutorial.project.service.ConnectionInfoService;
 import com.java.tutorial.project.service.SseEmitterService;
+import com.java.tutorial.project.common.util.Result;
+import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
-import javax.annotation.Resource;
+
 import java.util.List;
 import java.util.Set;
 
@@ -40,9 +43,9 @@ public class SseEmitterController {
         return sseEmitterService.createConnect(clientId, type);
     }
 
-    @PostMapping("/broadcast")
-    public void sendMessageToAllClient(@RequestBody(required = false) String msg) {
-        sseEmitterService.sendMessageToAllClient(msg);
+    @PostMapping("/send-message-to-all")
+    public void sendMessageToAllClient(@RequestBody ContentVo contentVo) {
+        sseEmitterService.sendMessageToAllClient(contentVo);
     }
 
     @PostMapping("/sendMessage")
@@ -50,7 +53,7 @@ public class SseEmitterController {
         if (messageVo.getClientId().isEmpty()) {
             return;
         }
-        sseEmitterService.sendMessageToOneClient(messageVo.getClientId(), messageVo.getData(), messageVo.getType());
+        sseEmitterService.sendMessageToOneClient(messageVo);
     }
 
     @PostMapping("/sendMessageToManyClient")
@@ -73,7 +76,7 @@ public class SseEmitterController {
     }
 
     @GetMapping("/getAllConnectionInfo")
-    public List<ConnectionInfo> getAllConnectionInfo() {
+    public List<ConnectionEntity> getAllConnectionInfo() {
         return connectionInfoService.listAll();
     }
 }

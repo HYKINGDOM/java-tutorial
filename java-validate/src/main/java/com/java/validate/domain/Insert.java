@@ -1,7 +1,7 @@
 package com.java.validate.domain;
 
 /**
- * @author HY
+ * @author meta
  */
 public interface Insert {
 }

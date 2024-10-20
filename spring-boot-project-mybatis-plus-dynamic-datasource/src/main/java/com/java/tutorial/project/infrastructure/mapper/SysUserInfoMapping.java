@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import java.util.List;
 
 /**
- * @author hy
+ * @author meta
  */
 @Mapper(componentModel = "spring")
 public interface SysUserInfoMapping {

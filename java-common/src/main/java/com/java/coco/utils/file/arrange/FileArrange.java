@@ -15,7 +15,7 @@ import static com.java.coco.utils.file.FilesUtil.fileFromDirectoryToFiles;
 /**
  * 模版模式整理文件夹
  *
- * @author HY
+ * @author meta
  */
 public abstract class FileArrange {
 

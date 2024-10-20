@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 使用注入bean的方式调用Caffeine
  *
- * @author HY
+ * @author meta
  */
 @Configuration
 public class CacheConfig {

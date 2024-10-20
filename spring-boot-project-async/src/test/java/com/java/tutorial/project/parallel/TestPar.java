@@ -14,7 +14,7 @@ import java.util.concurrent.Executors;
 /**
  * 并行测试
  *
- * @author hy
+ * @author meta
  */
 @SuppressWarnings("ALL")
 public class TestPar {

@@ -1,7 +1,9 @@
 package com.java.tutorial.project.common.util;
 
-import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.lang.Pair;
+
+
+import org.dromara.hutool.core.date.DateUtil;
+import org.dromara.hutool.core.lang.tuple.Pair;
 
 import java.time.LocalDateTime;
 

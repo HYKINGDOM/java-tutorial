@@ -3,7 +3,7 @@ package com.java.coco.bookmarksyntool;
 import java.util.List;
 
 /**
- * @author HY
+ * @author meta
  */
 public class ReadChromeBookMark {
 

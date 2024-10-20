@@ -52,7 +52,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * http 封装工具类 JDK8 起
  *
- * @author hy
+ * @author meta
  */
 @Slf4j
 public class HttpClientUtil {

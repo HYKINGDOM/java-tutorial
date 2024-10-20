@@ -19,7 +19,7 @@ import javax.annotation.Resource;
 import java.util.concurrent.ScheduledExecutorService;
 
 /**
- * @author HY
+ * @author meta
  */
 @Configuration
 public class QuartzConfig implements SchedulingConfigurer {

@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
- * @author hy
+ * @author meta
  */
 @Repository
 public class SysUserInfoRepositoryImpl implements SysUserInfoRepository {

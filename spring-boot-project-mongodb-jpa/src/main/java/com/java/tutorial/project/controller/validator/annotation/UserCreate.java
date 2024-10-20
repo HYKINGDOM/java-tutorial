@@ -1,7 +1,7 @@
 package com.java.tutorial.project.controller.validator.annotation;
 
 /**
- * @author hy
+ * @author meta
  */
 public interface UserCreate {
 }

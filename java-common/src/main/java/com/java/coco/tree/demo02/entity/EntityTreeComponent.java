@@ -3,7 +3,7 @@ package com.java.coco.tree.demo02.entity;
 import java.util.Iterator;
 
 /**
- * @author hy852
+ * @author meta
  * @Tree 结构
  */
 public abstract class EntityTreeComponent {

@@ -16,7 +16,7 @@ import static com.java.coco.utils.file.constant.FileTypeConstant.VIDEO_EXTENSION
 import static com.java.coco.utils.file.FilesUtil.fileDirectoryLists;
 
 /**
- * @author HY
+ * @author meta
  */
 public class VideoFileSwitch {
 

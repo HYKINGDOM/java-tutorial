@@ -46,7 +46,7 @@ T，V两个泛型，分别是入参和出参类型。
 ```
 /**
  * 每个最小执行单元需要实现该接口
- *  @author hy
+ *  @author meta
  */
 public interface IWorker<T, V> {
     /**
@@ -71,7 +71,7 @@ callBack：对每个worker的回调。worker执行完毕后，会回调该接口
 /**
  * 每个执行单元执行完毕后，会回调该接口</p>
  * 需要监听执行结果的，实现该接口即可
- *  @author hy
+ *  @author meta
  */
 public interface ICallback<T, V> {
 
@@ -108,7 +108,7 @@ wrapper的泛型和worker的一样，决定了入参和结果的类型。
 
 ```
 /**
- * @author hy
+ * @author meta
  */
 public class ParWorker1 implements IWorker<String, String>, ICallback<String, String> {
 

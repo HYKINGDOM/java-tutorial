@@ -1,6 +1,7 @@
 package com.java.tutorial.project.common.vo;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
  * @author meta
  */
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class MessageVo {
@@ -18,7 +20,7 @@ public class MessageVo {
     /**
      * 传输数据体(json)
      */
-    private String data;
+    private ContentVo content;
     /**
      * 类型，type=1,type=2
      */

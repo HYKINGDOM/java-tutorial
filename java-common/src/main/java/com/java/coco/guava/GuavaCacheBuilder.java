@@ -8,7 +8,7 @@ import lombok.extern.java.Log;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author HY
+ * @author meta
  */
 @Log
 public class GuavaCacheBuilder {

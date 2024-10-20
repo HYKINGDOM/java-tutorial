@@ -1,7 +1,7 @@
 package com.java.patterns.ChainofResponsibility;
 
 /**
- * @author HY
+ * @author meta
  */
 public class BusinessLogicHandler extends Handler<User> {
 

@@ -3,7 +3,7 @@ package com.java.coco.utils.file;
 import java.io.File;
 
 /**
- * @author HY
+ * @author meta
  */
 public class WindowsFiles {
 

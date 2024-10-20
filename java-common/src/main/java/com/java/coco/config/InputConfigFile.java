@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * @author HY
+ * @author meta
  */
 @Log
 public class InputConfigFile {

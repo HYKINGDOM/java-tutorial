@@ -5,7 +5,7 @@ import org.springframework.batch.item.validator.ValidatingItemProcessor;
 import org.springframework.batch.item.validator.ValidationException;
 
 /**
- * @author HY
+ * @author meta
  */
 public class MyItemProcessor extends ValidatingItemProcessor<BlogInfo> {
     @Override

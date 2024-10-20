@@ -11,7 +11,7 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 /**
  * 生成随机数据集合，用于方法测试
  *
- * @author HY
+ * @author meta
  */
 public class RanDomCollectUtils {
 

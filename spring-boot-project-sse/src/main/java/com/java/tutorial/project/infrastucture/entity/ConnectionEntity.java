@@ -1,7 +1,9 @@
-package com.java.tutorial.project.common.entity;
+package com.java.tutorial.project.infrastucture.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -10,10 +12,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @author meta
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Document(collection = "connection_info")
 @Accessors(chain = true)
-@Builder
-public class ConnectionInfo {
+public class ConnectionEntity {
     /**
      * 长连接id,文档唯一标志
      */

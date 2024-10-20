@@ -10,7 +10,7 @@ import java.util.concurrent.ExecutionException;
 /**
  * 串行测试
  *
- * @author hy
+ * @author meta
  */
 @SuppressWarnings("Duplicates")
 public class TestSequentialTimeout {

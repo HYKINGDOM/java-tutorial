@@ -24,7 +24,7 @@ import static com.java.data.config.RequestInvalidConstant.FIELD_IS_MIN_FAILED;
 import static com.java.data.config.RequestInvalidConstant.FIELD_IS_REGULAR_FAILED;
 
 /**
- * @author HY
+ * @author meta
  */
 @UserValid
 @Builder

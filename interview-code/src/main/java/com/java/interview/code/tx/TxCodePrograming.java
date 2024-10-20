@@ -1,7 +1,7 @@
 package com.java.util.javautil.interview.tx;
 
 /**
- * @author HY
+ * @author meta
  */
 public class TxCodePrograming {
 }

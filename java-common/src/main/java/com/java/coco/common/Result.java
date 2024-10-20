@@ -4,7 +4,7 @@ import com.java.coco.utils.TraceIDUtil;
 import lombok.Data;
 
 /**
- * @author hy
+ * @author meta
  */
 @Data
 public class Result<T> {

@@ -8,7 +8,7 @@ import org.mapstruct.Mappings;
 import org.mapstruct.ReportingPolicy;
 
 /**
- * @author HY
+ * @author meta
  */
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface UserEntityMapper {

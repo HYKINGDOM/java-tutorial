@@ -15,7 +15,7 @@ import static com.java.coco.utils.file.constant.FileTypeConstant.VIDEO_EXTENSION
 import static java.util.stream.Collectors.groupingBy;
 
 /**
- * @author HY
+ * @author meta
  */
 public class PrivateVideoClassFile {
 

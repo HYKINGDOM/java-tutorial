@@ -3,7 +3,7 @@ package com.java.tutorial.project.common.auth;
 /**
  * 用户对象上下文, 用于处理当前操作的用户信息
  *
- * @author hy
+ * @author meta
  */
 public final class AccessContext {
 

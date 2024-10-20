@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * @author hy852
+ * @author meta
  */
 public class MenuInfo extends EntityTreeComponent {
 

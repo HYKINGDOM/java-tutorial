@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
 /**
- * @author hy
+ * @author meta
  */
 @Configuration
 public class SchedulerConfig {

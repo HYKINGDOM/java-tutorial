@@ -1,5 +1,6 @@
 package com.java.tutorial.project.service;
 
+import com.java.tutorial.project.common.vo.ContentVo;
 import com.java.tutorial.project.common.vo.MessageVo;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
@@ -24,25 +25,37 @@ public interface SseEmitterService {
      */
     SseEmitter getSseEmitterByClientId(String clientId);
 
+    /**
+     * 获取所有客户端ID
+     * @return
+     */
     Set<String> getAllClient();
 
-    SseEmitter getSseEmitter(String clientId);
+    /**
+     * 构建SseEmitter对象
+     * @param clientId
+     * @return
+     */
+    SseEmitter buildSseEmitter(String clientId);
 
     /**
      * 发送消息给所有客户端
      *
-     * @param msg 消息内容
+     * @param contentVo 消息内容
      */
-    void sendMessageToAllClient(String msg);
+    void sendMessageToAllClient(ContentVo contentVo);
 
     /**
      * 给指定客户端发送消息
      *
-     * @param clientId 客户端ID
-     * @param msg      消息内容
+     * @param messageVo 消息内容
      */
-    void sendMessageToOneClient(String clientId, String msg, Integer type);
+    void sendMessageToOneClient(MessageVo messageVo);
 
+    /**
+     * 给多个客户端发送消息
+     * @param messageVo
+     */
     void sendMessageToManyClient(MessageVo messageVo);
 
     /**

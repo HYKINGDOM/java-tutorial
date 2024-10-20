@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
- * @author hy
+ * @author meta
  */
 @EnableJpaAuditing
 @EnableJpaRepositories

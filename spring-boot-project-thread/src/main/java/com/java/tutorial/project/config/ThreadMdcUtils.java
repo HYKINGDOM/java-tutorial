@@ -6,7 +6,7 @@ import org.slf4j.MDC;
 import java.util.Map;
 
 /**
- * @author hy
+ * @author meta
  */
 public class ThreadMdcUtils {
 

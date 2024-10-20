@@ -10,7 +10,7 @@ import org.springframework.batch.core.SkipListener;
  * <p>
  * 跳过的元素只会出现一次。 SkipListener始终在事物提交之前被调用，这样可以保证监听器使用的事物资源不会被业务事物影响。
  *
- * @author hy
+ * @author meta
  */
 @Slf4j
 public class CustomSkipListener implements SkipListener<Address, Address> {

@@ -8,7 +8,7 @@ import org.mapstruct.ReportingPolicy;
 import java.util.List;
 
 /**
- * @author HY
+ * @author meta
  */
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING,unmappedTargetPolicy = ReportingPolicy.IGNORE)
 @DecoratedWith(AbstractStudentMappingDecorator.class)

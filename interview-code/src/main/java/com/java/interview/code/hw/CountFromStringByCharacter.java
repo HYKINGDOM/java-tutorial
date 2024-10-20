@@ -7,7 +7,7 @@ import java.util.Scanner;
  * <p>
  * 输出描述: 输出输入字符串中含有该字符的个数。
  *
- * @author hy852
+ * @author meta
  */
 public class CountFromStringByCharacter {
 

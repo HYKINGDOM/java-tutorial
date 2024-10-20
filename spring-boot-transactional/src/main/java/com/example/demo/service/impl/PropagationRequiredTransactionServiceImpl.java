@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * propagation_required
  *
- * @author HY
+ * @author meta
  */
 @Service
 @RequiredArgsConstructor

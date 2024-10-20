@@ -6,7 +6,7 @@ import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
 /**
- * @author HY
+ * @author meta
  */
 public class SeqUtils {
 

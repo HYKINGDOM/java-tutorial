@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * @author HY
+ * @author meta
  */
 @Component
 @ConfigurationProperties(prefix = "test")

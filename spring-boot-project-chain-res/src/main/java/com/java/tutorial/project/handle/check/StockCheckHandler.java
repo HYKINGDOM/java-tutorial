@@ -9,7 +9,7 @@ import com.java.tutorial.project.util.ErrorCode;
 /**
  * 库存校验处理器
  *
- * @author hy
+ * @author meta
  */
 @Component
 public class StockCheckHandler extends AbstractCheckHandler {

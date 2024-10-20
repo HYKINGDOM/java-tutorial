@@ -3,7 +3,7 @@ package com.java.cn.thread.javajoin;
 import java.util.List;
 
 /**
- * @author HY
+ * @author meta
  */
 public interface FightQuery {
 

@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 /**
  * 格式化特殊文件名
  *
- * @author HY
+ * @author meta
  */
 public class FileFormatNameConstant {
 

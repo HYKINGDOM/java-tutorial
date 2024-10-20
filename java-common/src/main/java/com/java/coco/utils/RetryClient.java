@@ -16,7 +16,7 @@ import java.util.function.Function;
 /**
  * 重试操作
  *
- * @author hy
+ * @author meta
  */
 @Slf4j
 public class RetryClient {

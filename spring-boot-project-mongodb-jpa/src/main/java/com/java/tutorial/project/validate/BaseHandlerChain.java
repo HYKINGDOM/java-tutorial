@@ -16,7 +16,7 @@ import java.util.List;
  * <p>
  * 3. 编写业务需要的处理器 Handler 实现 MyHandler 接口的 doHandle 方法。推荐把控制器和处理器都交给 Spring 控制，可以直接注入。
  *
- * @author HY
+ * @author meta
  */
 public class BaseHandlerChain<Handler extends BaseHandler<Param, Result>, Param, Result> {
 

@@ -9,7 +9,7 @@ import com.java.tutorial.project.async.wrapper.WorkerWrapper;
 import java.util.Map;
 
 /**
- * @author hy
+ * @author meta
  */
 public class SeqWorker implements IWorker<String, String>, ICallback<String, String> {
 

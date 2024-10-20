@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * @author HY
+ * @author meta
  */
 @Entity
 @Builder

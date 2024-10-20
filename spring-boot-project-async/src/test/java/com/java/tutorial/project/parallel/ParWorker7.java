@@ -9,7 +9,7 @@ import com.java.tutorial.project.async.wrapper.WorkerWrapper;
 import java.util.Map;
 
 /**
- * @author hy
+ * @author meta
  */
 public class ParWorker7 implements IWorker<String, String>, ICallback<String, String> {
     private long sleepTime = 1000;

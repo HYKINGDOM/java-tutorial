@@ -5,7 +5,7 @@ import com.java.func.service.TypeService;
 import java.util.function.Function;
 
 /**
- * @author HY
+ * @author meta
  */
 public class ATypeServiceImpl implements TypeService {
     @Override

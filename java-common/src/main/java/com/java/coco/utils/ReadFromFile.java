@@ -18,7 +18,7 @@ import java.io.RandomAccessFile;
 import java.io.Reader;
 
 /**
- * @author HY
+ * @author meta
  */
 public class ReadFromFile {
     /**

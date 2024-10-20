@@ -1,7 +1,7 @@
 package com.java.tutorial.project.config;
 
 /**
- * @author HY
+ * @author meta
  */
 public class TestThreadLocal implements Runnable {
     private static ThreadLocal<String> threadLocal = new ThreadLocal<>();

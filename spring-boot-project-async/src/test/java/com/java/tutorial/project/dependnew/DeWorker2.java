@@ -8,7 +8,7 @@ import com.java.tutorial.project.async.wrapper.WorkerWrapper;
 import java.util.Map;
 
 /**
- * @author hy
+ * @author meta
  */
 public class DeWorker2 implements IWorker<User, String>, ICallback<User, String> {
 

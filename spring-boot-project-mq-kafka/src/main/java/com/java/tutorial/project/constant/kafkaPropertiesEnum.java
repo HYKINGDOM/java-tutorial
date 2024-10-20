@@ -1,7 +1,7 @@
 package com.java.tutorial.project.constant;
 
 /**
- * @author HY
+ * @author meta
  */
 public enum kafkaPropertiesEnum {
 

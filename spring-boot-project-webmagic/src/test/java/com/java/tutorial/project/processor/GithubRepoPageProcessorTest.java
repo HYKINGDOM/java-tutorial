@@ -6,7 +6,7 @@ import us.codecraft.webmagic.pipeline.ConsolePipeline;
 import us.codecraft.webmagic.pipeline.FilePipeline;
 
 /**
- * @author hy
+ * @author meta
  */
 public class GithubRepoPageProcessorTest {
 

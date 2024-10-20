@@ -16,7 +16,7 @@ import static cn.hutool.core.io.FileUtil.readableFileSize;
 import static cn.hutool.core.io.FileUtil.rename;
 
 /**
- * @author HY
+ * @author meta
  */
 public class TXTRename {
 

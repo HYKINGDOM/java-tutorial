@@ -4,7 +4,7 @@ import javax.validation.GroupSequence;
 import javax.validation.groups.Default;
 
 /**
- * @author hy
+ * @author meta
  */
 @GroupSequence({UserUpdate.class, UserCreate.class, Default.class})
 public interface UserSequenceDesc {

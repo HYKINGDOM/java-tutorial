@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
 /**
- * @author HY
+ * @author meta
  */
 public class TraceIdInterceptor implements HandlerInterceptor {
 

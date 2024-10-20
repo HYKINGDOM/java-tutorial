@@ -1,7 +1,7 @@
 package com.java.tutorial.project.common.constant;
 
 /**
- * @author hy
+ * @author meta
  */
 public interface DateFormatConstant {
 

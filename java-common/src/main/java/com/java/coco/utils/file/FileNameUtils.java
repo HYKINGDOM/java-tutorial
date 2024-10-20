@@ -12,7 +12,7 @@ import static com.java.coco.utils.HalfAndFullConverseUtil.qj2bj;
 import static com.java.coco.utils.file.constant.FileFormatNameConstant.getAllFileSymbolFormatName;
 
 /**
- * @author HY
+ * @author meta
  */
 public class FileNameUtils {
 

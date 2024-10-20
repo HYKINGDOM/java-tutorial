@@ -6,7 +6,7 @@ import com.java.tutorial.project.infrastructure.entity.SysUserInfoEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * @author hy
+ * @author meta
  */
 @Mapper
 @DS("postgresql")

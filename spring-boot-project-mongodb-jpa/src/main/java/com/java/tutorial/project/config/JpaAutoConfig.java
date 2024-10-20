@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- * @author hy
+ * @author meta
  */
 @Configuration
 public class JpaAutoConfig {

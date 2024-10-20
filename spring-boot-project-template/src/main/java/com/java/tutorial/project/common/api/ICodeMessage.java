@@ -3,7 +3,7 @@ package com.java.tutorial.project.common.api;
 /**
  * 常用API返回对象接口
  *
- * @author HY
+ * @author meta
  */
 public interface ICodeMessage {
     /**

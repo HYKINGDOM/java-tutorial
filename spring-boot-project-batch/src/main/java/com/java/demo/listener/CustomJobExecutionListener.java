@@ -12,7 +12,7 @@ import org.springframework.batch.item.ExecutionContext;
  * <p>
  * 通过 ExecutionContext executionContext = jobExecution.getExecutionContext(); 设置的值，在job的一整个生命周期中都可以获取到
  *
- * @author hy
+ * @author meta
  */
 @Slf4j
 public class CustomJobExecutionListener implements JobExecutionListener {

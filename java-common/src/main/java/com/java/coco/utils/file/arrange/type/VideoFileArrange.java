@@ -5,7 +5,7 @@ import com.java.coco.utils.file.arrange.FileArrange;
 /**
  * 视频文件处理类
  *
- * @author HY
+ * @author meta
  */
 public class VideoFileArrange extends FileArrange {
     @Override

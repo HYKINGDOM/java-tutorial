@@ -24,7 +24,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * 对每个worker及callback进行包装，一对一
  *
- * @author hy
+ * @author meta
  */
 public class WorkerWrapper<T, V> {
     private static final int FINISH = 1;

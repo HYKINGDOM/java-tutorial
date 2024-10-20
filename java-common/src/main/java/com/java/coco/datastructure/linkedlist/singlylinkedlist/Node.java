@@ -3,7 +3,7 @@ package com.java.coco.datastructure.linkedlist.singlylinkedlist;
 /**
  * 单链表
  *
- * @author HY
+ * @author meta
  */
 public class Node {
 

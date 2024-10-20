@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 import static cn.hutool.core.io.FileUtil.readableFileSize;
 
 /**
- * @author HY
+ * @author meta
  */
 public class SmallVideoFileTransfer {
 

@@ -18,7 +18,7 @@ import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * @author HY
+ * @author meta
  */
 @Configuration
 public class RestTemplateConfig {

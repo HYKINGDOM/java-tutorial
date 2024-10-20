@@ -11,7 +11,7 @@ import java.util.zip.GZIPOutputStream;
 /**
  * gzip字符串压缩
  *
- * @author HY
+ * @author meta
  */
 public class StringDataZip {
 

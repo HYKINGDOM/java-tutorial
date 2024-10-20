@@ -24,7 +24,7 @@ import java.util.Date;
  * LocalDateTime：组合了日期和时间，但不包含时差和时区信息。 ZonedDateTime：最完整的日期时间，包含时区和相对UTC或格林威治的时差。 新API还引入了 ZoneOffSet 和 ZoneId
  * 类，使得解决时区问题更为简便。解析、格式化时间的 DateTimeFormatter 类也全部重新设计。
  *
- * @author hy852
+ * @author meta
  */
 public class DateUtils {
 

@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author HY
+ * @author meta
  */
 public class FightQueryTask extends Thread implements FightQuery {
 

@@ -8,7 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 /**
- * @author HY
+ * @author meta
  */
 public class ImageUtils {
     /**

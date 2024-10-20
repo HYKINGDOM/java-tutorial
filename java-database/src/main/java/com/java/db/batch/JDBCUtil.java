@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * 单连接 JDBC工具类 重复创建连接会关闭原来的连接
  *
- * @author hy
+ * @author meta
  */
 
 public abstract class JDBCUtil {

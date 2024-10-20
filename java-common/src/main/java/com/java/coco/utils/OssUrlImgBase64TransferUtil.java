@@ -12,7 +12,7 @@ import java.util.Base64;
 /**
  * 图片下载转字节流
  *
- * @author hy
+ * @author meta
  */
 @Slf4j
 public class OssUrlImgBase64TransferUtil {

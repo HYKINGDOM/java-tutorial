@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * map 工具类
  *
- * @author hy
+ * @author meta
  */
 public class MapUtil {
 

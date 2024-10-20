@@ -9,7 +9,7 @@ import org.springframework.batch.item.ExecutionContext;
 /**
  * 在此监听器中，获取到具体的需要读取的文件路径，并保存到 ExecutionContext
  *
- * @author hy
+ * @author meta
  */
 @Slf4j
 public class AssemblyReadCsvPathListener implements JobExecutionListener {

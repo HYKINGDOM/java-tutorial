@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @author hy
+ * @author meta
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

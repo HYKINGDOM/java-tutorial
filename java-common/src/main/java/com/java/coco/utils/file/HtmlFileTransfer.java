@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 import static com.java.coco.utils.file.constant.FileTypeConstant.WEB_EXTENSION;
 
 /**
- * @author HY
+ * @author meta
  */
 public class HtmlFileTransfer {
 

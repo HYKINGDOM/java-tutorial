@@ -1,7 +1,7 @@
 package com.java.data.config;
 
 /**
- * @author HY
+ * @author meta
  */
 public class RequestInvalidConstant {
 

@@ -1,10 +1,9 @@
-package com.java.tutorial.project.client;
+package com.java.tutorial.project.config;
 
 import com.java.tutorial.project.service.ConnectionInfoService;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Slf4j
-public class ConnectionInfoClient {
+public class ConnectionConfig {
 
     @Resource
     private ConnectionInfoService connectionInfoService;

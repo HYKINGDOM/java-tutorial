@@ -7,7 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 /**
- * @author HY
+ * @author meta
  */
 @Component
 public class BeanLifeComponent implements BeanNameAware {

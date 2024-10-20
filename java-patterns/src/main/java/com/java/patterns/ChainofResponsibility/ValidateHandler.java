@@ -3,7 +3,7 @@ package com.java.patterns.ChainofResponsibility;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * @author HY
+ * @author meta
  */
 public class ValidateHandler extends Handler<User> {
     @Override

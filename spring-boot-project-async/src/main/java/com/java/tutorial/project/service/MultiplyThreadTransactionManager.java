@@ -24,7 +24,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * 多线程事务一致性管理 <br> 声明式事务管理无法完成,此时我们只能采用初期的编程式事务管理才行
  *
- * @author hy
+ * @author meta
  */
 @Slf4j
 @Component

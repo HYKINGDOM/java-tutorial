@@ -16,7 +16,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * @author HY
+ * @author meta
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {

@@ -1,6 +1,6 @@
-package com.java.tutorial.project.dao;
+package com.java.tutorial.project.infrastucture.dao;
 
-import com.java.tutorial.project.common.entity.ConnectionInfo;
+import com.java.tutorial.project.infrastucture.entity.ConnectionEntity;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -13,17 +13,17 @@ import org.springframework.stereotype.Repository;
  * @author meta
  */
 @Repository
-public interface ConnectionInfoDao extends MongoRepository<ConnectionInfo, String> {
+public interface ConnectionInfoDao extends MongoRepository<ConnectionEntity, String> {
     /**
      * 根据id查询连接
      * @param clientId
      * @return
      */
-    List<ConnectionInfo> findByClientId(String clientId);
+    List<ConnectionEntity> findByClientId(String clientId);
 
 
     @Query("{ 'lastContactTime': { $gt: ?0 } }")
-    List<ConnectionInfo> findByLastContactTimeAfter(LocalDateTime now);
+    List<ConnectionEntity> findByLastContactTimeAfter(LocalDateTime now);
 
 
 }

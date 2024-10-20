@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.drools.core.definitions.rule.impl.RuleImpl;
 
 /**
- * @author HY
+ * @author meta
  */
 @Slf4j
 public class PeopleRuleAction {

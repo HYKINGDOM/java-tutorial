@@ -1,7 +1,7 @@
 package com.java.func;
 
 /**
- * @author HY
+ * @author meta
  */
 public final class StopException extends RuntimeException {
     public static final StopException INSTANCE = new StopException();

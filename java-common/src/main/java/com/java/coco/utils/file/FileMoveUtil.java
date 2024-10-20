@@ -5,7 +5,7 @@ import java.io.File;
 import static com.java.coco.utils.file.FileNameUtils.rewriteRandomFileName;
 
 /**
- * @author HY
+ * @author meta
  */
 public class FileMoveUtil {
 

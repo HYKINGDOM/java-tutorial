@@ -24,7 +24,7 @@ import static com.java.tutorial.project.config.RequestInvalidConstant.FIELD_IS_M
 import static com.java.tutorial.project.config.RequestInvalidConstant.FIELD_IS_REGULAR_FAILED;
 
 /**
- * @author HY
+ * @author meta
  */
 @UserValid
 @Builder

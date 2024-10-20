@@ -3,7 +3,7 @@ package com.java.tutorial.project.util;
 import com.alibaba.ttl.TransmittableThreadLocal;
 
 /**
- * @author HY
+ * @author meta
  */
 public class TransmittableThreadLocalUtil {
     public static final TransmittableThreadLocal<String> THREAD_LOCAL = new TransmittableThreadLocal<>();

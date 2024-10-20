@@ -3,7 +3,7 @@ package com.java.cn.thread.forkjoin;
 import java.util.concurrent.RecursiveTask;
 
 /**
- * @author HY
+ * @author meta
  */
 public class ForkJoinSumCalculate extends RecursiveTask<Long> {
 

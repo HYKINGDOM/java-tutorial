@@ -6,7 +6,7 @@ import com.java.tutorial.project.infrastructure.entity.SysUserEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * @author hy
+ * @author meta
  */
 @Mapper
 @DS("mysql")

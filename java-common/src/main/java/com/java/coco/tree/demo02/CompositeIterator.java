@@ -9,7 +9,7 @@ import java.util.Stack;
 /**
  * 自定义组合模式的组合节点的专属迭代器 CompositeIterator
  *
- * @author hy852
+ * @author meta
  */
 public class CompositeIterator implements Iterator {
 

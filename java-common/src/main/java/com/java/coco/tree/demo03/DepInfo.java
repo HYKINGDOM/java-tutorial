@@ -6,7 +6,7 @@ import java.util.List;
 import static com.java.coco.tree.demo03.TreeUtil.buildByTreeNode;
 
 /**
- * @author hy852
+ * @author meta
  */
 public class DepInfo extends AbstractTreeNode {
 

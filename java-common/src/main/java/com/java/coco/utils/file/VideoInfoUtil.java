@@ -7,7 +7,7 @@ import org.bytedeco.javacv.FFmpegFrameGrabber;
 import java.io.File;
 
 /**
- * @author HY
+ * @author meta
  */
 @Slf4j
 public class VideoInfoUtil {

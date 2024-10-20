@@ -1,7 +1,7 @@
 package com.leetcode.title.longestpalindromicsubstring;
 
 /**
- * @author HY
+ * @author meta
  */
 public class LongestPalindromicSubstringSolution {
 

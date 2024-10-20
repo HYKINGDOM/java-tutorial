@@ -3,7 +3,7 @@ package com.java.tutorial.project.domain;
 import lombok.Data;
 
 /**
- * @author HY
+ * @author meta
  */
 @Data
 public class Cat {

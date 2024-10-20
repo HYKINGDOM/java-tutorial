@@ -23,7 +23,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.stream.Collectors;
 
 /**
- * @author hy
+ * @author meta
  */
 @Slf4j
 public class HttpClientUtils {

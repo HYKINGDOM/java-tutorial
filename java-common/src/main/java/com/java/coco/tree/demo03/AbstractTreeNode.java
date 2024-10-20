@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by Ace on 2017/6/12.
  *
- * @author hy852
+ * @author meta
  */
 public abstract class AbstractTreeNode {
 

@@ -1,7 +1,7 @@
 package com.java.tutorial.project.config;
 
 /**
- * @author HY
+ * @author meta
  */
 public class RequestInvalidConstant {
 

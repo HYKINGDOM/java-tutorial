@@ -1,15 +1,15 @@
 package com.java.tutorial.project.service.impl;
 
-import com.java.tutorial.project.client.MsgClient;
+import com.java.tutorial.project.config.client.MsgClient;
 import com.java.tutorial.project.common.constant.CommonMessageConstant;
 import com.java.tutorial.project.common.constant.LimitMessageConstant;
 import com.java.tutorial.project.common.constant.SignalMessageConstant;
 import com.java.tutorial.project.common.enumtype.SceneEnum;
 import com.java.tutorial.project.service.MessageService;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 
 import static com.java.tutorial.project.common.util.DateTimeUtil.FORMAT_DATE_TIME;
 
@@ -41,7 +41,7 @@ public class MessageServiceImpl implements MessageService {
 
     private void sendCommon(String clientId) {
         String title = "未建立连接";
-        String content = String.format(CommonMessageConstant.content, clientId, FORMAT_DATE_TIME);
+        String content = String.format(String.valueOf(CommonMessageConstant.CONTENT), clientId, FORMAT_DATE_TIME);
         msgClient.groupSend(title, content);
     }
 

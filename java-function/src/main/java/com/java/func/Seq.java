@@ -10,7 +10,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
- * @author hy
+ * @author meta
  */
 public interface Seq<T> {
 

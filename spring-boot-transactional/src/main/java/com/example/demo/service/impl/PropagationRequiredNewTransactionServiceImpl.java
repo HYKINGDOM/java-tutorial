@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * propagation_requires_new
  *
- * @author HY
+ * @author meta
  */
 @RequiredArgsConstructor
 @Service

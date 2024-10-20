@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 /**
  * 幂等性判断
  *
- * @author hy
+ * @author meta
  */
 @Component
 @RequiredArgsConstructor

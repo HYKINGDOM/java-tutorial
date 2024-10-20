@@ -13,7 +13,7 @@ import java.util.Set;
 /**
  * 用户规划
  *
- * @author HY
+ * @author meta
  */
 public class UserProjection {
 

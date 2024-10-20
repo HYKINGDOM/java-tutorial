@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * 基础类
  *
- * @author HY
+ * @author meta
  */
 @Data
 public class BaseEntity implements Serializable {

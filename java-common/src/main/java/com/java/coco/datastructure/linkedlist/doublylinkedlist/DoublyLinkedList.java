@@ -3,7 +3,7 @@ package com.java.coco.datastructure.linkedlist.doublylinkedlist;
 /**
  * 双向链表
  *
- * @author HY
+ * @author meta
  */
 public class DoublyLinkedList {
 

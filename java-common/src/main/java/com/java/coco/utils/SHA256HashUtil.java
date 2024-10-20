@@ -9,7 +9,7 @@ import java.security.NoSuchAlgorithmException;
 /**
  * hash 256
  *
- * @author hy
+ * @author meta
  */
 @Slf4j
 public class SHA256HashUtil {

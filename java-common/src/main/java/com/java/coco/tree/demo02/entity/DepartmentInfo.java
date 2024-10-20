@@ -1,7 +1,7 @@
 package com.java.coco.tree.demo02.entity;
 
 /**
- * @author hy852
+ * @author meta
  */
 public class DepartmentInfo {
 

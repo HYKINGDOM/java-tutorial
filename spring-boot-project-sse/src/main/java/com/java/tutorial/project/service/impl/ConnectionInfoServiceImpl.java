@@ -1,14 +1,14 @@
 package com.java.tutorial.project.service.impl;
 
-import com.java.tutorial.project.common.entity.ConnectionInfo;
-import com.java.tutorial.project.dao.ConnectionInfoDao;
+import com.java.tutorial.project.infrastucture.entity.ConnectionEntity;
+import com.java.tutorial.project.infrastucture.dao.ConnectionInfoDao;
 import com.java.tutorial.project.service.ConnectionInfoService;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import javax.annotation.Resource;
 
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,19 +21,19 @@ public class ConnectionInfoServiceImpl implements ConnectionInfoService {
     private ConnectionInfoDao connectionInfoDao;
 
     @Override
-    public int create(ConnectionInfo connectionInfo) {
-        connectionInfoDao.save(connectionInfo);
+    public int create(ConnectionEntity connectionEntity) {
+        connectionInfoDao.save(connectionEntity);
         return 0;
     }
 
     @Override
-    public ConnectionInfo getClient(String clientId) {
-        Optional<ConnectionInfo> optional = connectionInfoDao.findById(clientId);
+    public ConnectionEntity getClient(String clientId) {
+        Optional<ConnectionEntity> optional = connectionInfoDao.findById(clientId);
         return optional.orElse(null);
     }
 
     @Override
-    public List<ConnectionInfo> getAllConnectionByNoTimeOut() {
+    public List<ConnectionEntity> getAllConnectionByNoTimeOut() {
         return connectionInfoDao.findByLastContactTimeAfter(LocalDateTime.now());
     }
 
@@ -50,7 +50,7 @@ public class ConnectionInfoServiceImpl implements ConnectionInfoService {
     }
 
     @Override
-    public List<ConnectionInfo> listAll() {
+    public List<ConnectionEntity> listAll() {
         return connectionInfoDao.findAll();
     }
 

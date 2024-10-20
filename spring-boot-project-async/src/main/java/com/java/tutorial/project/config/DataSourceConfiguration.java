@@ -12,7 +12,7 @@ import org.springframework.util.StringUtils;
 import javax.sql.DataSource;
 
 /**
- * @author hy
+ * @author meta
  */
 @Configuration
 public class DataSourceConfiguration {

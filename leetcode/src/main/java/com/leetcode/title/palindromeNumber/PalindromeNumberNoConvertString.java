@@ -1,7 +1,7 @@
 package com.leetcode.title.palindromeNumber;
 
 /**
- * @author HY
+ * @author meta
  */
 public class PalindromeNumberNoConvertString {
 
