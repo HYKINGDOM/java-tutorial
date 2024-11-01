@@ -10,9 +10,14 @@ services:
     image: kibana:8.15.3
     environment:
       - ELASTICSEARCH_HOSTS =http://elasticsearch:9200
-      - ELASTICSEARCH_USERNAME=elastic
-      - ELASTICSEARCH_PASSWORD=Elastic_TmrNSa
-      - XPACK_SECURITY_ENABLED=true"
+      - ELASTICSEARCH_USERNAME=kibana_user
+      - ELASTICSEARCH_PASSWORD=Kibana_User_Pass
+      - XPACK_SECURITY_ENABLED=true
+      - TZ=Asia/Shanghai
+      - SERVER_NAME=kibana
+      - SERVER_HOST=0.0.0.0
+      - SERVER_PORT=5601
+      - SERVER_SSL_ENABLED=false
     labels:
       createdBy: Apps
     networks:
