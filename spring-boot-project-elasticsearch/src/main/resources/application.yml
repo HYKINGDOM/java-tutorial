@@ -1,9 +1,12 @@
 server:
-  port: 9000
+  port: 9987
+  servlet:
+    # 应用的访问路径
+    context-path: /meta-app
 
 
 spring:
   elasticsearch:
-    uris: "http://10.0.201.34:9200"
-    username: elasticsearch
-    password: Elastic_TmrNSa
+    uris: http://10.0.201.34:9200
+    username: myuser
+    password: myuser_password
