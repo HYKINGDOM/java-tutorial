@@ -1,0 +1,22 @@
+version: '3.8'
+
+networks:
+  1panel-network:
+    external: true
+
+services:
+  kibana:
+    container_name: kibana8
+    image: kibana:8.15.3
+    environment:
+      - ELASTICSEARCH_HOSTS =http://elasticsearch:9200
+      - ELASTICSEARCH_USERNAME=elastic
+      - ELASTICSEARCH_PASSWORD=Elastic_TmrNSa
+      - XPACK_SECURITY_ENABLED=true"
+    labels:
+      createdBy: Apps
+    networks:
+      - 1panel-network
+    ports:
+      - "5601:5601"
+    restart: always
