@@ -9,7 +9,7 @@ services:
     container_name: kibana8
     image: kibana:8.15.3
     environment:
-      - ELASTICSEARCH_HOSTS =http://elasticsearch:9200
+      - ELASTICSEARCH_HOSTS=elasticsearch
       - ELASTICSEARCH_USERNAME=kibana_user
       - ELASTICSEARCH_PASSWORD=Kibana_User_Pass
       - XPACK_SECURITY_ENABLED=true
