@@ -4,7 +4,7 @@
   "avatar": "",
   "version": "4.9.2",
   "createdTime": "2024-11-6 16:28:16",
-  "updatedTime": "2024-11-6 17:19:07",
+  "updatedTime": "2024-11-7 14:08:53",
   "dbConns": [],
   "profile": {
     "default": {
@@ -18,9 +18,9 @@
           "type": "BIGINT",
           "len": "",
           "scale": "",
-          "primaryKey": false,
-          "notNull": false,
-          "autoIncrement": false,
+          "primaryKey": true,
+          "notNull": true,
+          "autoIncrement": true,
           "defaultValue": "",
           "hideInGraph": true,
           "domain": "",
@@ -631,7 +631,8 @@
       "#000000",
       "#DDE5FF"
     ],
-    "DDLToggleCase": "L"
+    "DDLToggleCase": "L",
+    "menuWidth": "307px"
   },
   "entities": [
     {
@@ -2784,8 +2785,8 @@
           "codeRoot": ""
         }
       },
-      "defKey": "sys_user_property",
-      "defName": "用户资产",
+      "defKey": "sys_user_points",
+      "defName": "用户积分表",
       "comment": "",
       "properties": {
         "partitioned by": "(date string)",
@@ -2963,8 +2964,8 @@
           "id": "AA336FB7-D24E-4D1A-B69B-1ED8A0B193A9"
         },
         {
-          "defKey": "user_points",
-          "defName": "用户积分",
+          "defKey": "user_points_used",
+          "defName": "用户可用积分",
           "comment": "",
           "type": "BIGINT",
           "len": "",
@@ -2981,8 +2982,8 @@
           "id": "DE7FDF92-3AFA-4664-87A7-5B466F89A650"
         },
         {
-          "defKey": "user_coins",
-          "defName": "用户金币",
+          "defKey": "user_points_total",
+          "defName": "用户积分总数",
           "comment": "",
           "type": "BIGINT",
           "len": "",
@@ -3086,6 +3087,287 @@
           "refDict": "",
           "uiHint": "",
           "id": "14D80EEB-BCFE-40CF-A0BB-BA5342319543",
+          "baseType": "89D69E81-EA34-42EE-9FA2-93B8BD27E098"
+        }
+      ],
+      "correlations": [],
+      "indexes": [],
+      "type": "P"
+    },
+    {
+      "id": "57C50FFB-E64D-477B-8A28-44ADDC98C84F",
+      "env": {
+        "base": {
+          "nameSpace": "",
+          "codeRoot": ""
+        }
+      },
+      "defKey": "sys_user_points_record",
+      "defName": "用户积分记录表",
+      "comment": "",
+      "properties": {
+        "partitioned by": "(date string)",
+        "row format delimited": "",
+        "fields terminated by ','": "",
+        "collection items terminated by '-'": "",
+        "map keys terminated by ':'": "",
+        "store as textfile;": ""
+      },
+      "sysProps": {
+        "nameTemplate": "{defKey}[{defName}]"
+      },
+      "notes": {},
+      "headers": [
+        {
+          "refKey": "hideInGraph",
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defKey",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "defName",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "primaryKey",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "notNull",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "autoIncrement",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "domain",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "type",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "len",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "scale",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "comment",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "refDict",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "defaultValue",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "isStandard",
+          "freeze": false,
+          "hideInGraph": false
+        },
+        {
+          "refKey": "uiHint",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "extProps",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr1",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr2",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr3",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr4",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr5",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr6",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr7",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr8",
+          "freeze": false,
+          "hideInGraph": true
+        },
+        {
+          "refKey": "attr9",
+          "freeze": false,
+          "hideInGraph": true
+        }
+      ],
+      "fields": [
+        {
+          "defKey": "id",
+          "defName": "主键ID",
+          "comment": "",
+          "type": "BIGINT",
+          "len": "",
+          "scale": "",
+          "primaryKey": true,
+          "notNull": true,
+          "autoIncrement": true,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "domain": "",
+          "refDict": "",
+          "uiHint": "",
+          "id": "64D64CF5-0B50-47A5-BC54-325A70650E23",
+          "baseType": "A46BEF5B-7194-4BBB-81E8-39008BCA0D8E"
+        },
+        {
+          "defKey": "user_account_id",
+          "defName": "用户唯一标识ID",
+          "comment": "",
+          "type": "BIGINT",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "A46BEF5B-7194-4BBB-81E8-39008BCA0D8E",
+          "extProps": {},
+          "domain": "",
+          "id": "FD483322-9955-4592-9FAE-DDBBC6D25F49"
+        },
+        {
+          "defKey": "points_number",
+          "defName": "积分数量",
+          "comment": "",
+          "type": "BIGINT",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "A46BEF5B-7194-4BBB-81E8-39008BCA0D8E",
+          "extProps": {},
+          "domain": "",
+          "id": "0FD0BE07-78C4-4A97-AA79-3BF7E8A430EC"
+        },
+        {
+          "defKey": "points_opera",
+          "defName": "积分操作(0获取,1扣减)",
+          "comment": "",
+          "type": "INT",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "1D764C4A-6F9F-421E-B11A-6F3E23B51811",
+          "extProps": {},
+          "domain": "",
+          "id": "8679E73D-59C1-45ED-848C-038FCCD37C9F"
+        },
+        {
+          "defKey": "points_resource",
+          "defName": "积分来源",
+          "comment": "",
+          "type": "INT",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "baseType": "1D764C4A-6F9F-421E-B11A-6F3E23B51811",
+          "extProps": {},
+          "domain": "",
+          "id": "BBB49DCC-ED6D-4B84-BA12-BF313D9A96F8"
+        },
+        {
+          "defKey": "created_by",
+          "defName": "创建人",
+          "comment": "",
+          "domain": "",
+          "type": "BIGINT",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "96C3EDCF-227C-4AE6-BCE8-C865C19F4F1D",
+          "baseType": "A46BEF5B-7194-4BBB-81E8-39008BCA0D8E"
+        },
+        {
+          "defKey": "created_time",
+          "defName": "创建时间",
+          "comment": "",
+          "domain": "7CFFA0D3-6A93-4DDC-BC10-DF21211064DC",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": true,
+          "refDict": "",
+          "uiHint": "",
+          "id": "79E73733-88EB-4D7A-96EC-EED791C5DF9C",
           "baseType": "89D69E81-EA34-42EE-9FA2-93B8BD27E098"
         }
       ],

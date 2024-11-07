@@ -1,0 +1,24 @@
+version: "3.3"
+services:
+  spug:
+    image: registry.cn-hangzhou.aliyuncs.com/openspug/spug-service
+    container_name: spug
+    privileged: true
+    restart: always
+    volumes:
+      - /data/spug/service:/data/spug
+      - /data/spug/repos:/data/repos
+    ports:
+      # 如果80端口被占用可替换为其他端口，例如: - "8000:80"
+      - "8107:80"
+    environment:
+      - MYSQL_DATABASE=spug
+      - MYSQL_USER=spug
+      - MYSQL_PASSWORD=spug_tiEpR3
+      - MYSQL_HOST=mariadb
+      - TZ=Asia/Shanghai
+    networks:
+      - 1panel-network
+networks:
+  1panel-network:
+    external: true
