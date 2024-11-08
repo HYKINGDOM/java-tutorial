@@ -9,6 +9,7 @@ sudo docker pull photoprism/photoprism:latest
 sudo systemctl daemon-reload
 sudo systemctl restart
 
+```json
      {
          "registry-mirrors": [
              "https://docker.mirrors.ustc.edu.cn",
@@ -18,21 +19,28 @@ sudo systemctl restart
          ],
          "dns": ["114.114.114.114", "8.8.8.8"]
      }
+
+```
      
-     
-	 
-	 
-	 
-	 {
-    "registry-mirrors": [
-        "https://do.nark.eu.org",
-        "https://dc.j8.work",
-        "https://docker.m.daocloud.io",
-        "https://dockerproxy.com",
-        "https://docker.mirrors.ustc.edu.cn",
-        "https://docker.nju.edu.cn"
-    ]
+```json
+
+{
+  "registry-mirrors": [
+    "https://do.nark.eu.org",
+    "https://dc.j8.work",
+    "https://docker.m.daocloud.io",
+    "https://dockerproxy.com",
+    "https://docker.mirrors.ustc.edu.cn",
+    "https://docker.nju.edu.cn"
+  ]
 }
+
+
+```
+	 
+	 
+	 
+
 EOF
 sudo systemctl daemon-reload
 sudo systemctl restart docker
