@@ -12,6 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.io.InputStream;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.time.ZonedDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +31,11 @@ public class MinioService {
 
     @Resource
     private MinioConfigProperties minioConfigProperties;
+
+    /**
+     * kk文件预览服务器
+     */
+    private final static String KK_FILE_VIEW_SERVER = "http://localhost:8012";
 
     /**
      * @description: 获取上传临时签名
@@ -91,4 +98,14 @@ public class MinioService {
         return url;
     }
 
+    /**
+     * 获取预览文件url
+     *
+     * @param fileName
+     * @return
+     */
+    public String getPreviewUrl(String fileName) {
+        String fileUrl = getUrl(fileName, 7, TimeUnit.DAYS);
+        return KK_FILE_VIEW_SERVER + "/onlinePreview?url=" + URLEncoder.encode(fileUrl, StandardCharsets.UTF_8);
+    }
 }

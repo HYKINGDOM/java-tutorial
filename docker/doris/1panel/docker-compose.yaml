@@ -1,0 +1,55 @@
+version: "3"
+services:
+  doris-builder:
+    image: apache/doris:build-env-for-3.0
+    container_name: doris-builder
+    volumes:
+      - ~/.m2:/root/.m2
+      - ./doris-branch-3.0:/root/doris-branch-3.0
+    working_dir: /root/doris-branch-3.0
+    environment:
+      - JAVA_HOME=/usr/lib/jvm/jdk-17.0.2/
+      - PATH=$JAVA_HOME/bin/:$PATH
+    command: sh build.sh
+
+  fe:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - JAVA_HOME=/usr/lib/jvm/jdk-17.0.2/
+        - PATH=$JAVA_HOME/bin/:$PATH
+    image: apache/doris:3.0.0-fe-x86_64
+    hostname: fe
+    environment:
+      - FE_SERVERS=fe1:${CURRENT_MACHINE_IP}:9010
+      - FE_ID=1
+    volumes:
+      - /data/fe/doris-meta/:/opt/apache-doris/fe/doris-meta/
+      - /data/fe/log/:/opt/apache-doris/fe/log/
+    networks:
+      - 1panel-network
+
+  be:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - JAVA_HOME=/usr/lib/jvm/jdk-17.0.2/
+        - PATH=$JAVA_HOME/bin/:$PATH
+    image: apache/doris:3.0.0-be-x86_64
+    hostname: be
+    environment:
+      - FE_SERVERS=fe1:${CURRENT_MACHINE_IP}:9010
+      - BE_ADDR=${CURRENT_MACHINE_IP}:9050
+    volumes:
+      - /data/be/storage/:/opt/apache-doris/be/storage/
+      - /data/be/log/:/opt/apache-doris/be/log/
+    depends_on:
+      - fe
+    networks:
+      - 1panel-network
+
+networks:
+  1panel-network:
+    external: true
