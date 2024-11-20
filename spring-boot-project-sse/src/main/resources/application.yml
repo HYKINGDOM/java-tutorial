@@ -9,6 +9,9 @@ spring:
     name: sse-server
   profiles:
     active: dev
+  threads:
+    virtual:
+      enabled: true
 logging:
   config: classpath:logback-spring.xml
   level:
