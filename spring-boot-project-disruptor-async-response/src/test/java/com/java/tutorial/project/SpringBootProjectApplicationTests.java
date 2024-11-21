@@ -2,9 +2,9 @@ package com.java.tutorial.project;
 
 import cn.hutool.core.thread.ThreadFactoryBuilder;
 import cn.hutool.core.thread.ThreadUtil;
-import com.java.tutorial.project.config.event.OrderEventFactory;
-import com.java.tutorial.project.config.event.OrderEventConsumer;
-import com.java.tutorial.project.config.event.OrderEventProducer;
+import com.java.tutorial.project.event.factory.OrderEventFactory;
+import com.java.tutorial.project.event.consumer.OrderEventConsumer;
+import com.java.tutorial.project.event.producer.OrderEventProducer;
 import com.java.tutorial.project.domain.OrderEvent;
 import com.lmax.disruptor.BlockingWaitStrategy;
 import com.lmax.disruptor.RingBuffer;

@@ -1,4 +1,4 @@
-package com.java.tutorial.project.config.event;
+package com.java.tutorial.project.event.consumer;
 
 import com.java.coco.utils.TraceIDUtil;
 import com.java.tutorial.project.domain.OrderEvent;

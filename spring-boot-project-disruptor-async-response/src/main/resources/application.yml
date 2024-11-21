@@ -1,4 +1,6 @@
-
+spring:
+  main:
+    allow-circular-references: true
 # 开发环境配置
 server:
   # 服务器的HTTP端口，默认为8080
