@@ -26,7 +26,8 @@ public class DataEventHandler implements EventHandler<DataEventRequest> {
     public void onEvent(DataEventRequest event, long sequence, boolean endOfBatch) throws Exception {
         TraceIDUtil.setTraceIdToMdcAndTtl(event.getTraceId());
         // 处理数据
-        log.info("Processing data: {}", JSON.toJSONString(event));
+        log.info("Processing data: {}, thread name:{}", JSON.toJSONString(event), Thread.currentThread().getName());
+
 
 
         String msg;
@@ -36,8 +37,7 @@ public class DataEventHandler implements EventHandler<DataEventRequest> {
         }else {
             msg = "订单生成失败: " + event.getData();
         }
-
-
+        log.info(msg);
         Thread.sleep(5000);
 
         // 将处理后的数据放入队列 B

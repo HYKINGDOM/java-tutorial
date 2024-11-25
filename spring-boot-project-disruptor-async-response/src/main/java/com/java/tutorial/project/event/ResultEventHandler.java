@@ -23,7 +23,7 @@ public class ResultEventHandler implements EventHandler<DataEventRequest> {
         dataEventResponse.setThreadName(Thread.currentThread().getName());
         dataEventResponse.setNumber(RandomUtil.randomString(15));
         dataEventResponse.setTraceId(event.getTraceId());
-        log.info("ResultEventHandler处理结果：{}", JSON.toJSONString(dataEventResponse));
+        log.info("ResultEventHandler处理结果：{}, thread name:{}", JSON.toJSONString(dataEventResponse), Thread.currentThread().getName());
         event.getDeferredResult().setResult(dataEventResponse);
     }
 }

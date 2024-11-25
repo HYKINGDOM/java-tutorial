@@ -1,5 +1,6 @@
 package com.java.tutorial.project.controller;
 
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.RandomUtil;
 import com.java.tutorial.project.service.DisruptorEventPublisher;
 import com.java.tutorial.project.service.DisruptorEventPublisherService;
@@ -15,6 +16,7 @@ import org.springframework.web.context.request.async.WebAsyncTask;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
@@ -23,9 +25,6 @@ import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -48,6 +47,15 @@ public class DisruptorAsyncEventController {
      * 定义一个全局的变量，用来存储DeferredResult对象
      */
     private Map<String, DeferredResult<String>> deferredResultMap = new ConcurrentHashMap<>();
+
+
+    private final AtomicInteger goodsCount = new AtomicInteger();
+
+
+    @PostConstruct
+    public void initData(){
+        goodsCount.set(2);
+    }
 
     /**
      * 发送消息-demo-01
@@ -82,7 +90,7 @@ public class DisruptorAsyncEventController {
     public Callable<String> testCallAble() {
         return () -> {
             Thread.sleep(40000);
-            return "hello " + RandomStringUtils.randomAlphabetic(5);
+            return "hello " + getGoodsCount();
         };
     }
 
@@ -91,10 +99,11 @@ public class DisruptorAsyncEventController {
      *
      * @return
      */
-    @GetMapping("/webAsyncTask")
+    @GetMapping(value = "/webAsyncTask", produces = MediaType.TEXT_PLAIN_VALUE)
     public WebAsyncTask<String> webAsyncTask() {
         WebAsyncTask<String> result = new WebAsyncTask<>(30003, () -> {
-            return "hello " + RandomStringUtils.randomAlphabetic(5);
+            Thread.sleep(2000);
+            return "hello " + getGoodsCount();
         });
         result.onTimeout(() -> {
             log.info("timeout callback");
@@ -132,7 +141,7 @@ public class DisruptorAsyncEventController {
             // 创建一个新的 DeferredResult 实例
             // 将结果设置为 key 加上随机生成的 20 个字符的字符串，以确保结果的唯一性
             DeferredResult<String> deferredResult = new DeferredResult<>();
-            deferredResult.setResult(key + RandomUtil.randomString(20));
+            deferredResult.setResult(getGoodsCount());
 
             // 模拟耗时操作，休眠 2 秒
             // 目的是展示 DeferredResult 的异步特性
@@ -156,7 +165,7 @@ public class DisruptorAsyncEventController {
      *
      * @return ResponseBodyEmitter 实例，用于发送数据和控制流
      */
-    @GetMapping("/bodyEmitter")
+    @GetMapping(value = "/bodyEmitter", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public ResponseBodyEmitter handle(HttpServletResponse response) {
         // 创建一个ResponseBodyEmitter，-1代表不超时
         ResponseBodyEmitter emitter = new ResponseBodyEmitter(-1L);
@@ -183,7 +192,7 @@ public class DisruptorAsyncEventController {
     }
 
     /**
-     * 使用SseEmitter处理请求的方法 该方法用于当需要异步处理请求并实时发送数据
+     * 使用SseEmitter进行消息流的返回 该方法用于当需要异步处理请求并实时发送数据时
      *
      * @return
      */
@@ -197,34 +206,38 @@ public class DisruptorAsyncEventController {
     }
 
     private void performEmitterTask(SseEmitter emitter) {
-        ScheduledExecutorService scheduler = new ScheduledThreadPoolExecutor(1);
-        AtomicInteger counter = new AtomicInteger(0);
 
-        Runnable task = () -> {
-            int i = counter.getAndIncrement();
-            if (i < 10) {
-                try {
+        CompletableFuture.runAsync(() -> {
+            try {
+                // 模拟耗时操作
+                for (int i = 0; i < 10; i++) {
                     // 发送数据
-                    String msg = "bodyEmitter " + i + " @ " + new Date() + "\n";
-                    SseEmitter.SseEventBuilder event =
-                        SseEmitter.event().name("message").data(msg).id(String.valueOf(i));
-                    emitter.send(event);
+                    String msg = "bodyEmitter " + i + " @ " + new Date();
+                    emitter.send(msg);
                     log.info(msg);
+                    Thread.sleep(2000);
                     log.info("bodyEmitter " + i);
-                    //scheduler.schedule(task, 2, TimeUnit.SECONDS);
-                } catch (Exception e) {
-                    log.error("Error in bodyEmitter: " + e.getMessage());
-                    emitter.completeWithError(e);
                 }
-            } else {
-                // 完成
-                emitter.complete();
-                scheduler.shutdown();
+                // 完成 如果不调用complete方法，则客户端会一直等待数据
+                //emitter.complete();
+            } catch (Exception e) {
+                // 发生异常时结束接口
+                emitter.completeWithError(e);
             }
-        };
+        });
+    }
 
-        // 启动任务
-        scheduler.schedule(task, 0, TimeUnit.SECONDS);
+    private String getGoodsCount() {
+
+        String msg;
+        if (goodsCount.get() != 0){
+            goodsCount.incrementAndGet();
+            msg = "订单生成成功: " + IdUtil.fastSimpleUUID() + " 剩余数量:" + goodsCount.get();
+        }else {
+            msg = "订单生成失败: " + " 剩余数量:" + goodsCount.get();
+        }
+        log.info(msg);
+        return msg;
     }
 
 }
