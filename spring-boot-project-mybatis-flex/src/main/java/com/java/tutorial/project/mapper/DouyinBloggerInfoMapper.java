@@ -7,6 +7,9 @@ import com.mybatisflex.core.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 
+/**
+ * @author meta
+ */
 @Mapper
 @UseDataSource("talent_rw")
 public interface DouyinBloggerInfoMapper extends BaseMapper<DouyinBloggerInfo> {
