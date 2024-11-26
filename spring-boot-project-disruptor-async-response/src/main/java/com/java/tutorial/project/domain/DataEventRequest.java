@@ -7,7 +7,7 @@ import org.springframework.web.context.request.async.DeferredResult;
 /**
  * 请求参数封装类
  *
- * @author kscs
+ * @author meta
  */
 @Data
 public class DataEventRequest {

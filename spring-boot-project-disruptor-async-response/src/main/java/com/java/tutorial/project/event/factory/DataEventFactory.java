@@ -4,7 +4,7 @@ import com.java.tutorial.project.domain.DataEventRequest;
 import com.lmax.disruptor.EventFactory;
 
 /**
- * @author kscs
+ * @author meta
  */
 public class DataEventFactory implements EventFactory<DataEventRequest> {
     @Override

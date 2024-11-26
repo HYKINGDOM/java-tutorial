@@ -46,8 +46,9 @@ public class DisruptorConfig {
     public Disruptor<DataEventRequest> disruptorB() {
         int bufferSize = 1024;
         DataEventFactory factory = new DataEventFactory();
-        ThreadFactoryBuilder threadFactoryBuilder = ThreadUtil.createThreadFactoryBuilder();
-        ThreadFactory threadFactory = threadFactoryBuilder.setNamePrefix("disruptor-B-order-event-thread-").build();
+        ThreadFactory threadFactory =
+            ThreadUtil.createThreadFactoryBuilder().setNamePrefix("disruptor-B-order-event-thread-%d").setDaemon(true)
+                .build();
         Disruptor<DataEventRequest> disruptor = new Disruptor<>(factory, bufferSize, threadFactory);
         disruptor.handleEventsWith(new ResultEventHandler());
         disruptor.start();
@@ -62,9 +63,9 @@ public class DisruptorConfig {
     @Bean
     public Disruptor<DataEventRequest> disruptorA(RingBuffer<DataEventRequest> ringBufferB) {
         int bufferSize = 1024;
-
-        ThreadFactoryBuilder threadFactoryBuilder = ThreadUtil.createThreadFactoryBuilder();
-        ThreadFactory threadFactory = threadFactoryBuilder.setNamePrefix("disruptor-A-order-event-thread-").build();
+        ThreadFactory threadFactory =
+            ThreadUtil.createThreadFactoryBuilder().setNamePrefix("disruptor-A-order-event-thread-%d").setDaemon(true)
+                .build();
         DataEventFactory factory = new DataEventFactory();
         Disruptor<DataEventRequest> disruptor = new Disruptor<>(factory, bufferSize, threadFactory);
         disruptor.handleEventsWith(new DataEventHandler(ringBufferB));

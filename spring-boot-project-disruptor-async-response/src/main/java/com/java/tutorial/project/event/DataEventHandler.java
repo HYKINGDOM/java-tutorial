@@ -8,7 +8,7 @@ import com.lmax.disruptor.RingBuffer;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @author kscs
+ * @author meta
  */
 @Slf4j
 public class DataEventHandler implements EventHandler<DataEventRequest> {

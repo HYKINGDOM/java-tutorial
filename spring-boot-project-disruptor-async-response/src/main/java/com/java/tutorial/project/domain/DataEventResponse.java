@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * 返回参数封装类
  *
- * @author kscs
+ * @author meta
  */
 @Data
 public class DataEventResponse {

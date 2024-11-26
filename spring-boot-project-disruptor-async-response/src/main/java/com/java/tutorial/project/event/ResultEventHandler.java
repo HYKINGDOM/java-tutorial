@@ -9,7 +9,7 @@ import com.lmax.disruptor.EventHandler;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @author kscs
+ * @author meta
  */
 @Slf4j
 public class ResultEventHandler implements EventHandler<DataEventRequest> {
