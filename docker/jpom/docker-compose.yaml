@@ -1,0 +1,18 @@
+services:
+  jpom-server:
+    image: jpomdocker/jpom
+    container_name: jpom-server
+    ports:
+      - "2122:2122"
+    volumes:
+      - /home/bryce/jpom-server/data:/usr/local/jpom-server/data
+      - /home/bryce/jpom-server/logs:/usr/local/jpom-server/logs
+      - /home/bryce/jpom-server/conf:/usr/local/jpom-server/conf
+    restart: unless-stopped
+    privileged: true
+    networks:
+      - 1panel-network
+
+networks:
+  1panel-network:
+    external: true
