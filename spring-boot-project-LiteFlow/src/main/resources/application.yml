@@ -26,15 +26,13 @@ liteflow:
   #liteflow是否开启，默认为true
   enable: true
   #liteflow的banner打印是否开启，默认为true
-  print-banner: true
-  #zkNode的节点，只有使用zk作为配置源的时候才起作用，默认为/lite-flow/flow
-  zk-node: /lite-flow/flow
+  print-banner: false
   #上下文的最大数量槽，默认值为1024
   slot-size: 1024
   #FlowExecutor的execute2Future的线程数，默认为64
   main-executor-works: 64
   #FlowExecutor的execute2Future的自定义线程池Builder，LiteFlow提供了默认的Builder
-  main-executor-class: com.java.tutorial.project.config.MyLiteFlowThreadPool
+  main-executor-class: com.java.tutorial.project.config.LiteFlowThreadPool
   #main-executor-class: com.yomahub.liteflow.thread.LiteFlowDefaultMainExecutorBuilder
   #自定义请求ID的生成类，LiteFlow提供了默认的生成类
   request-id-generator-class: com.yomahub.liteflow.flow.id.DefaultRequestIdGenerator

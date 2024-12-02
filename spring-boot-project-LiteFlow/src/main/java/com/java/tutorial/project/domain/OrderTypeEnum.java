@@ -4,6 +4,10 @@ import lombok.AllArgsConstructor;
 
 import java.util.Arrays;
 
+/**
+ * @author meta
+ */
+
 @AllArgsConstructor
 public enum OrderTypeEnum {
     /**

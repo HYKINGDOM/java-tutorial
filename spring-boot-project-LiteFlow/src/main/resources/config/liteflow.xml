@@ -2,16 +2,16 @@
 <flow>
 
     <chain name="order_handle">
-        // 定义一个if节点处理df/e
+        <!-- 定义一个if节点处理df/e -->
         order_if = IF(order_k, THEN(order_d, order_f), order_e);
 
-        // 定义to_c的订单流程 用id标识流程为to_c
+        <!-- 定义to_c的订单流程 用id标识流程为to_c -->
         to_c = THEN(order_a, order_c, order_if).id("to_c");
 
-        // 定义to_b的订单流程 用id标识为流程to_b
+        <!-- 定义to_b的订单流程 用id标识为流程to_b -->
         to_b = THEN(order_b, order_c, order_if).id("to_b");
 
-        // 主流程
+        <!-- 主流程 -->
         THEN(SWITCH(order_x).TO(to_c, to_b), order_h);
     </chain>
 </flow>

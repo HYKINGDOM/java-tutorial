@@ -10,13 +10,19 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * liteflow 线程池
+ *
  * @author meta
  */
-public class MyLiteFlowThreadPool implements ExecutorBuilder {
+public class LiteFlowThreadPool implements ExecutorBuilder {
 
     @Override
     public ExecutorService buildExecutor() {
-        ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("mythread-pool-%s").build();
+        ThreadFactory threadFactory =
+            new ThreadFactoryBuilder().setNameFormat("liteflow-thread-pool-%s").setDaemon(true).build();
+
+        ThreadTaskDecoratorFactory copyingThreadFactory = new ThreadTaskDecoratorFactory(threadFactory);
+
         return new ThreadPoolExecutor(
             // 核心线程数，即2个常开窗口
             2,
@@ -27,9 +33,10 @@ public class MyLiteFlowThreadPool implements ExecutorBuilder {
             // 工作队列
             new LinkedBlockingQueue<>(5),
             // 线程工厂
-            threadFactory,
+            copyingThreadFactory,
             // 拒绝策略
             new ThreadPoolExecutor.AbortPolicy());
 
     }
+
 }
