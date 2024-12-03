@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 @SpringBootTest
 public class SpringBootProjectApplicationTests {
 
-	@Autowired
+	@Resource
 	private FlowExecutor flowExecutor;
 
 	@Test
