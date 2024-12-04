@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow>
+
+    <chain name="test_switch_handle">
+        ITERATOR(list).DO(
+            SWITCH(aNode).to(bNode, cNode, dNode)
+        );
+    </chain>
+</flow>
+

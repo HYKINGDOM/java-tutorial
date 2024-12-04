@@ -38,7 +38,13 @@ public class SpringBootProjectApplicationTests {
     @Test
     public void runCheckAgeFlowTest() {
         LiteflowResponse testHandle = flowExecutor.execute2Resp("test_handle");
-        System.out.println("runOrderFlowTest2:" + JSON.toJSONString(testHandle.getExecuteStepStr()));
+        System.out.println("runCheckAgeFlowTest:" + JSON.toJSONString(testHandle.getExecuteStepStr()));
     }
 
+
+    @Test
+    public void runCheckSwitchFlowTest() {
+        LiteflowResponse testHandle = flowExecutor.execute2Resp("test_switch_handle");
+        System.out.println("runCheckSwitchFlowTest:" + JSON.toJSONString(testHandle.getExecuteStepStr()));
+    }
 }
