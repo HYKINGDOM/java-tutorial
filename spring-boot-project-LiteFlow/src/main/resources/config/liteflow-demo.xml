@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow>
+
+    <chain name="test_handle">
+        ITERATOR(list).DO(
+        THEN(
+        IF(ageCheck, hasWork,noWork),
+        modifyAge
+        )
+        );
+    </chain>
+</flow>
+
