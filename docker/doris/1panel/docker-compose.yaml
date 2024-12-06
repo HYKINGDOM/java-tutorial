@@ -1,4 +1,3 @@
-version: "3"
 services:
   doris-builder:
     image: apache/doris:build-env-for-3.0
