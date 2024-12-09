@@ -1,7 +1,7 @@
 package com.java.tutorial.project.core.enums;
 
 /**
- * @author kscs
+ * @author meta
  */
 public enum NodeEnum {
     // 普通节点

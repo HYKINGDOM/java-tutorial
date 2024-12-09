@@ -1,6 +1,6 @@
 package com.java.tutorial.project.config;
 
-import com.java.tutorial.project.domian.ProductVO;
+import com.java.tutorial.project.domain.ProductVO;
 import com.java.tutorial.project.util.Result;
 import lombok.Getter;
 import lombok.Setter;

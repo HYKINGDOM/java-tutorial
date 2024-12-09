@@ -1,4 +1,4 @@
-package com.java.tutorial.project.domian;
+package com.java.tutorial.project.domain;
 
 import lombok.Builder;
 import lombok.Data;

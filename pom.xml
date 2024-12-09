@@ -78,6 +78,7 @@
         <module>spring-boot-project-pg-jpa</module>
         <module>spring-boot-project-dag</module>
         <module>spring-boot-project-disruptor-async-response</module>
+        <module>spring-boot-project-timefold-solver</module>
     </modules>
 
     <properties>

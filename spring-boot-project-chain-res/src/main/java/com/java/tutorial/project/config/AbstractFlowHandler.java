@@ -1,6 +1,6 @@
 package com.java.tutorial.project.config;
 
-import com.java.tutorial.project.domian.MoneyPayVO;
+import com.java.tutorial.project.domain.MoneyPayVO;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;

@@ -1,7 +1,7 @@
 package com.java.tutorial.project.handle.check;
 
 import com.java.tutorial.project.config.AbstractCheckHandler;
-import com.java.tutorial.project.domian.ProductVO;
+import com.java.tutorial.project.domain.ProductVO;
 import com.java.tutorial.project.util.ErrorCode;
 import com.java.tutorial.project.util.Result;
 import org.springframework.stereotype.Component;

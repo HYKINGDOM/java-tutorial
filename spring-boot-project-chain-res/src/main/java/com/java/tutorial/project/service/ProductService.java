@@ -4,7 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
 import com.java.tutorial.project.config.AbstractCheckHandler;
 import com.java.tutorial.project.config.ProductCheckHandlerConfig;
-import com.java.tutorial.project.domian.ProductVO;
+import com.java.tutorial.project.domain.ProductVO;
 import com.java.tutorial.project.util.Result;
 import org.springframework.stereotype.Component;
 

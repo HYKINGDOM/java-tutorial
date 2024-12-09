@@ -1,7 +1,7 @@
 package com.java.tutorial.project.service;
 
 import com.java.tutorial.project.config.AbstractCheckHandler;
-import com.java.tutorial.project.domian.ProductVO;
+import com.java.tutorial.project.domain.ProductVO;
 import com.java.tutorial.project.util.Result;
 
 public class HandlerClient {

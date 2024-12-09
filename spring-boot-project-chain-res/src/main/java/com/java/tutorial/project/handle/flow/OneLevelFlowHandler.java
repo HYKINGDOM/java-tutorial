@@ -1,7 +1,7 @@
 package com.java.tutorial.project.handle.flow;
 
 import com.java.tutorial.project.config.AbstractFlowHandler;
-import com.java.tutorial.project.domian.MoneyPayVO;
+import com.java.tutorial.project.domain.MoneyPayVO;
 import org.springframework.stereotype.Component;
 
 @Component
