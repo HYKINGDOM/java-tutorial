@@ -3,6 +3,7 @@ package com.java.tutorial.project.domain;
 import ai.timefold.solver.core.api.domain.lookup.PlanningId;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.Data;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -12,6 +13,7 @@ import java.time.LocalTime;
  * @author meta 
  */
 @JsonIdentityInfo(scope = Timeslot.class, generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+@Data
 public class Timeslot {
 
     @PlanningId
@@ -35,29 +37,5 @@ public class Timeslot {
         this(id, dayOfWeek, startTime, startTime.plusMinutes(50));
     }
 
-    @Override
-    public String toString() {
-        return dayOfWeek + " " + startTime;
-    }
-
-    // ************************************************************************
-    // Getters and setters
-    // ************************************************************************
-
-    public String getId() {
-        return id;
-    }
-
-    public DayOfWeek getDayOfWeek() {
-        return dayOfWeek;
-    }
-
-    public LocalTime getStartTime() {
-        return startTime;
-    }
-
-    public LocalTime getEndTime() {
-        return endTime;
-    }
 }
 

@@ -7,9 +7,12 @@ import ai.timefold.solver.core.api.domain.solution.ProblemFactCollectionProperty
 import ai.timefold.solver.core.api.domain.valuerange.ValueRangeProvider;
 import ai.timefold.solver.core.api.score.buildin.hardsoft.HardSoftScore;
 import ai.timefold.solver.core.api.solver.SolverStatus;
+import lombok.Data;
 
 import java.util.List;
 
+
+@Data
 @PlanningSolution
 public class Timetable {
 
@@ -18,19 +21,25 @@ public class Timetable {
     @ProblemFactCollectionProperty
     @ValueRangeProvider
     private List<Timeslot> timeslots;
+
     @ProblemFactCollectionProperty
     @ValueRangeProvider
     private List<Room> rooms;
+
     @PlanningEntityCollectionProperty
     private List<Lesson> lessons;
 
     @PlanningScore
     private HardSoftScore score;
 
-    // Ignored by Timefold, used by the UI to display solve or stop solving button
+    /**
+     * Ignored by Timefold, used by the UI to display solve or stop solving button
+     */
     private SolverStatus solverStatus;
 
-    // No-arg constructor required for Timefold
+    /**
+     * No-arg constructor required for Timefold
+     */
     public Timetable() {
     }
 
@@ -47,36 +56,5 @@ public class Timetable {
         this.lessons = lessons;
     }
 
-    // ************************************************************************
-    // Getters and setters
-    // ************************************************************************
-
-    public String getName() {
-        return name;
-    }
-
-    public List<Timeslot> getTimeslots() {
-        return timeslots;
-    }
-
-    public List<Room> getRooms() {
-        return rooms;
-    }
-
-    public List<Lesson> getLessons() {
-        return lessons;
-    }
-
-    public HardSoftScore getScore() {
-        return score;
-    }
-
-    public SolverStatus getSolverStatus() {
-        return solverStatus;
-    }
-
-    public void setSolverStatus(SolverStatus solverStatus) {
-        this.solverStatus = solverStatus;
-    }
 
 }

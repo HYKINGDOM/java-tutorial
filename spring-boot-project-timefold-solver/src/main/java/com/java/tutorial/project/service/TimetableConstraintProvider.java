@@ -6,6 +6,12 @@ import ai.timefold.solver.core.api.score.stream.ConstraintFactory;
 import ai.timefold.solver.core.api.score.stream.ConstraintProvider;
 import ai.timefold.solver.core.api.score.stream.Joiners;
 import com.java.tutorial.project.domain.Lesson;
+import com.java.tutorial.project.service.impl.RoomConflictJustification;
+import com.java.tutorial.project.service.impl.StudentGroupConflictJustification;
+import com.java.tutorial.project.service.impl.StudentGroupSubjectVarietyJustification;
+import com.java.tutorial.project.service.impl.TeacherConflictJustification;
+import com.java.tutorial.project.service.impl.TeacherRoomStabilityJustification;
+import com.java.tutorial.project.service.impl.TeacherTimeEfficiencyJustification;
 
 import java.time.Duration;
 
