@@ -88,15 +88,19 @@ public class HttpUtils {
     }
 
     public static String doDelete(String url) {
-        return HttpClientUtil.doDelete(url, EMPTY_HEADERS, SOCKET_TIMEOUT);
+        return HttpClientUtil.doDelete(url, EMPTY_HEADERS, null, SOCKET_TIMEOUT);
     }
 
     public static String doDelete(String url, int socketTimeout) {
-        return HttpClientUtil.doDelete(url, EMPTY_HEADERS, socketTimeout);
+        return HttpClientUtil.doDelete(url, EMPTY_HEADERS, null, socketTimeout);
+    }
+
+    public static String doDelete(String url, Map<String, String> headers, String body, int socketTimeout) {
+        return HttpClientUtil.doDelete(url, headers, body, socketTimeout);
     }
 
     public static String doDeleteWithHeaders(String url, Map<String, String> headers) {
-        return HttpClientUtil.doDelete(url, headers, SOCKET_TIMEOUT);
+        return HttpClientUtil.doDelete(url, headers, null, SOCKET_TIMEOUT);
     }
 
     public static String doPutWithHeaders(String url, Map<String, String> headers) {

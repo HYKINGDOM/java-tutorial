@@ -12,7 +12,7 @@ import org.apache.http.NoHttpResponseException;
 import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPatch;
 import org.apache.http.client.methods.HttpPost;
@@ -39,6 +39,7 @@ import javax.net.ssl.SSLHandshakeException;
 import java.io.File;
 import java.io.IOException;
 import java.io.InterruptedIOException;
+import java.net.URI;
 import java.net.URLEncoder;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
@@ -461,16 +462,25 @@ public class HttpClientUtil {
      *
      * @param url
      * @param headers
+     * @param body
      * @param socketTimeout
      * @return
      */
-    public static String doDelete(String url, Map<String, String> headers, int socketTimeout) {
+    public static String doDelete(String url, Map<String, String> headers, String body, int socketTimeout) {
         StopWatch clock = new StopWatch(url);
         clock.start();
-        HttpDelete httpDelete = new HttpDelete(url);
+        HttpDeleteWithBody httpDelete = new HttpDeleteWithBody(url);
         for (String key : headers.keySet()) {
             httpDelete.setHeader(key, headers.get(key));
         }
+
+        if (StrUtil.isNotBlank(body)) {
+            StringEntity stringEntity = new StringEntity(body, StandardCharsets.UTF_8);
+            stringEntity.setContentEncoding(StandardCharsets.UTF_8.name());
+            stringEntity.setContentType(CONTENT_TYPE_JSON);
+            httpDelete.setEntity(stringEntity);
+        }
+
         getRequestConfig(socketTimeout);
         httpDelete.setConfig(requestConfig);
         CloseableHttpClient httpclient = getClientFromPool();
@@ -483,6 +493,23 @@ public class HttpClientUtil {
         }
         log.debug("doDelete url:{},costs:{}ms, response: {}", url, clock.getTotalTimeMillis(), response);
         return response;
+    }
+
+    /**
+     * 自定义的 HttpDeleteWithBody 类
+     */
+    public static class HttpDeleteWithBody extends HttpEntityEnclosingRequestBase {
+        public static final String METHOD_NAME = "DELETE";
+
+        public HttpDeleteWithBody(final String uri) {
+            super();
+            setURI(URI.create(uri));
+        }
+
+        @Override
+        public String getMethod() {
+            return METHOD_NAME;
+        }
     }
 
     /**
