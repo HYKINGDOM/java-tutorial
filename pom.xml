@@ -79,6 +79,7 @@
         <module>spring-boot-project-dag</module>
         <module>spring-boot-project-disruptor-async-response</module>
         <module>spring-boot-project-timefold-solver</module>
+        <module>spring-boot-project-tess4j</module>
         <module>spring-boot-project-tika</module>
     </modules>
 
