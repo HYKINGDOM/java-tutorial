@@ -6,7 +6,7 @@ import com.java.tutorial.project.util.JoinOperator;
 import com.ql.util.express.DefaultContext;
 import com.ql.util.express.ExpressRunner;
 
-class SpringBootProjectApplicationTests {
+public class SpringBootProjectApplicationTests {
 
     @Test
     void contextLoads() throws Exception {
