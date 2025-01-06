@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.annotation.Resource;
 
+/**
+ * @author meta
+ */
 @Slf4j
 @Component
 public class KafkaProducer {
@@ -27,9 +30,9 @@ public class KafkaProducer {
                 int partition = 1;
                 // 消息在分区内的offset
                 long offset = 1;
-                System.out.println("发送消息成功:" + topic + "-" + partition + "-" + offset);
+                log.info("发送消息成功:{}-{}-{}", topic, partition, offset);
             }, failure -> {
-                System.out.println("发送消息失败:" + failure.getMessage());
+                log.error("发送消息失败:{}", failure.getMessage());
             });
     }
 
@@ -37,14 +40,13 @@ public class KafkaProducer {
         kafkaTemplate.send("topic1", callbackMessage).addCallback(new ListenableFutureCallback<>() {
             @Override
             public void onFailure(@NonNull Throwable throwable) {
-                System.out.println("发送消息失败：" + throwable.getMessage());
+                log.error("发送消息失败：{}", throwable.getMessage());
             }
 
             @Override
             public void onSuccess(SendResult<String, Object> result) {
-                System.out.println(
-                    "发送消息成功：" + result.getRecordMetadata().topic() + "-" + result.getRecordMetadata()
-                        .partition() + "-" + result.getRecordMetadata().offset());
+                log.info("发送消息成功：{}-{}-{}", result.getRecordMetadata().topic(),
+                    result.getRecordMetadata().partition(), result.getRecordMetadata().offset());
             }
         });
     }

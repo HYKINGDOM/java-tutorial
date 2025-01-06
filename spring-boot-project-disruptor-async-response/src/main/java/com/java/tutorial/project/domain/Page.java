@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * @author kscs
+ * @author meta
  * @param <T>
  */
 @AllArgsConstructor

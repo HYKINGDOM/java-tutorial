@@ -3,17 +3,17 @@ package com.java.tutorial.project.constant;
 /**
  * @author meta
  */
-public enum kafkaPropertiesEnum {
+public enum kafkaStreamPropertiesEnum {
 
     /**
-     * event-topic-first
+     * ks1In
      */
-    FIRST("event-topic-first", "", 1),
+    FIRST("ks1In", "", 2),
 
     /**
-     * event-topic-second
+     * ks1Out
      */
-    SECOND("event-topic-second", "", 1);
+    SECOND("ks1Out", "", 3);
 
     private String topic;
 
@@ -21,7 +21,7 @@ public enum kafkaPropertiesEnum {
 
     private int partition;
 
-    kafkaPropertiesEnum(String topic, String groupId, int partition) {
+    kafkaStreamPropertiesEnum(String topic, String groupId, int partition) {
         this.topic = topic;
         this.groupId = groupId;
         this.partition = partition;

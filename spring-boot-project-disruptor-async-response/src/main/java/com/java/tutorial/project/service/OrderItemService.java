@@ -5,7 +5,7 @@ import com.java.tutorial.project.domain.Page;
 import com.java.tutorial.project.domain.PageRequest;
 
 /**
- * @author kscs
+ * @author meta
  */
 public interface OrderItemService {
 
