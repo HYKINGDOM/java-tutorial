@@ -28,10 +28,6 @@ public class CheckSymbolTest {
     @Test
     public void contextLoads_test01() throws Exception {
 
-        String param = "[{\"rule\":\"未接通\",\"symbol\":\"<\",\"value\":\"5\"},{\"rule\":\"已授权\",\"symbol\":null,\"value\":null},{\"rule\":\"未加微\",\"symbol\":null,\"value\":null}]";
-
-        JSONArray objects = JSONArray.parseArray(param);
-
         DefaultContext<String, Object> context = new DefaultContext<>();
         context.put("a", 1);
         context.put("b", 2);
@@ -39,6 +35,27 @@ public class CheckSymbolTest {
         String express = "a + b * c";
         Object r = runner.execute(express, context, null, true, false);
         assertEquals("7", r.toString(), r.toString());
+    }
+
+    @Test
+    public void contextLoads_test03() throws Exception {
+
+        String param = "[{\"rule\":\"未接通\",\"symbol\":\"<\",\"value\":\"5\"},{\"rule\":\"已授权\",\"symbol\":null,\"value\":null},{\"rule\":\"未加微\",\"symbol\":null,\"value\":null}]";
+
+        DefaultContext<String, Object> context = new DefaultContext<>();
+        context.put("未接通", 1);
+        String express = "(未接通 < 5)";
+        Object r = runner.execute(express, context, null, true, false);
+        assertEquals("true", r.toString(), r.toString());
+    }
+
+
+    @Test
+    public void contextLoads_test02() throws Exception {
+        String param = " (true || false) && true || (true || false)";
+        DefaultContext<String, Object> context = new DefaultContext<>();
+        Object r = runner.execute(param, context, null, true, false);
+        assertEquals("true", r.toString(), r.toString());
     }
 
 
