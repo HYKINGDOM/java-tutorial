@@ -7,6 +7,7 @@ import com.java.tutorial.project.util.Result;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -32,6 +33,20 @@ public class RandomInsertController {
         List<DouyinBloggerInfo> douyinBloggerInfos = douyinBloggerInfoMapper.selectAll();
 
         return Result.success(douyinBloggerInfos);
+    }
+
+
+    @PostMapping("/update")
+    public Result<Object> updateTalentSchema(@RequestParam Long id) {
+
+        DouyinBloggerInfo douyinBloggerInfo1 = douyinBloggerInfoMapper.selectOneById(id);
+
+        String remark = RandomUtil.randomString(50);
+        douyinBloggerInfo1.setRemark(remark);
+
+        int update = douyinBloggerInfoMapper.update(douyinBloggerInfo1);
+
+        return Result.success(remark);
     }
 
 
