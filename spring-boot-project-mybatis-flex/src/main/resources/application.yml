@@ -17,29 +17,50 @@ server:
       # Tomcat启动初始化的线程数，默认值10
       min-spare: 100
 
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      # 最大连接池数量
+      maximum-pool-size: 20
+      # 最小空闲线程数量
+      minimum-idle: 10
+      # 配置获取连接等待超时的时间
+      connectionTimeout: 30000
+      # 校验超时时间
+      validationTimeout: 5000
+      # 空闲连接存活最大时间，默认10分钟
+      idleTimeout: 600000
+      # 此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认30分钟
+      maxLifetime: 1800000
+      # 多久检查一次连接的活性
+      keepaliveTime: 30000
+
+
 mybatis-flex:
+  # 搜索指定包别名
+  typeAliasesPackage: com.java.tutorial.project.domain
+  # 不支持多包, 如有需要可在注解配置 或 提升扫包等级：com.**.**.mapper
+  mapperPackage: com.java.tutorial.project.mapper
   global-config:
     print-banner: false
   configuration:
-    mapUnderscoreToCamelCase: true
     safeRowBoundsEnabled: true
+    # 自动驼峰命名规则（camel case）映射
+    mapUnderscoreToCamelCase: true
+    # MyBatis 自动映射策略
+    # NONE：不启用 PARTIAL：只对非嵌套 resultMap 自动映射 FULL：对所有 resultMap 自动映射
+    #autoMappingBehavior: FULL
+    # MyBatis 自动映射时未知列或未知属性处理策
+    # NONE：不做处理 WARNING：打印相关警告 FAILING：抛出异常和详细信息
+    #autoMappingUnknownColumnBehavior: NONE
+    # 更详细的日志输出 会有性能损耗 org.apache.ibatis.logging.stdout.StdOutImpl
+    # 关闭日志记录  org.apache.ibatis.logging.nologging.NoLoggingImpl
+    # 默认日志输出 org.apache.ibatis.logging.slf4j.Slf4jImpl
+    #logImpl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+    #cacheEnabled: true
   datasource:
     talent_rw:
       url: jdbc:mysql://localhost:3306/test_demo?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true&rewriteBatchedStatements=true&connectTimeout=1000&socketTimeout=30000
       username: root
       password: root
-      type: druid
-      minIdle: 10
-      maxActive: 100
-      maxWait: 1000
-      timeBetweenEvictionRunsMillis: 60000
-      minEvictableIdleTimeMillis: 30000
-      validationQuery: select 1
-      testWhileIdle: true
-      testOnBorrow: false
-      testOnReturn: false
-      poolPreparedStatements: false
-      maxPoolPreparedStatementPerConnectionSize: -1
-      filters: stat
-      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=20000
-      useGlobalDataSourceStat: true

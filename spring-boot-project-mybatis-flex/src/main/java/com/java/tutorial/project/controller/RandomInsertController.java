@@ -1,19 +1,23 @@
 package com.java.tutorial.project.controller;
 
-
 import cn.hutool.core.util.RandomUtil;
-import com.java.coco.common.Result;
 import com.java.tutorial.project.domain.DouyinBloggerInfo;
 import com.java.tutorial.project.mapper.DouyinBloggerInfoMapper;
+import com.java.tutorial.project.util.Result;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.lang.reflect.Field;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
+/**
+ * @author meta
+ */
 @RestController
 @RequestMapping("/talent")
 public class RandomInsertController {
@@ -22,8 +26,17 @@ public class RandomInsertController {
     @Resource
     private DouyinBloggerInfoMapper douyinBloggerInfoMapper;
 
-    @GetMapping
-    public Result<Object> getTalentSchema() throws IllegalAccessException {
+    @GetMapping("/getTalentSchema")
+    public Result<Object> getTalentSchema() {
+
+        List<DouyinBloggerInfo> douyinBloggerInfos = douyinBloggerInfoMapper.selectAll();
+
+        return Result.success(douyinBloggerInfos);
+    }
+
+
+    @PostMapping
+    public Result<Object> insertTalentSchema() throws IllegalAccessException {
 
 
         DouyinBloggerInfo douyinBloggerInfo = new DouyinBloggerInfo();
@@ -34,6 +47,7 @@ public class RandomInsertController {
 
         return Result.success(douyinBloggerInfo);
     }
+
 
 
     private static final Random RANDOM = RandomUtil.getRandom();

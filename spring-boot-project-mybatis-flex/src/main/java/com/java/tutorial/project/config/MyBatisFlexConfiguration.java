@@ -41,6 +41,7 @@ public class MyBatisFlexConfiguration implements ConfigurationCustomizer, MyBati
     public void customize(FlexConfiguration configuration) {
         //mybatis实现的打印sql到控制台，便于调试
         configuration.setLogImpl(StdOutImpl.class);
+        configuration.addInterceptor(new MyInterceptor());
     }
 
     @Override

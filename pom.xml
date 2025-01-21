@@ -94,7 +94,7 @@
         <org.mapstruct.version>1.6.2</org.mapstruct.version>
         <druid-spring-start.version>1.2.23</druid-spring-start.version>
         <mapstruct.version>1.6.3</mapstruct.version>
-        <mybatis-flex.version>1.10.4</mybatis-flex.version>
+        <mybatis-flex.version>1.10.5</mybatis-flex.version>
         <fastjson.version>2.0.51</fastjson.version>
         <fastjson2.version>2.0.51</fastjson2.version>
         <guava.version>33.3.1-jre</guava.version>

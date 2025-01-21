@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author meta
  */
 @SpringBootApplication
-public class SpringBootProjectApplication {
+public class SpringBootProjectMybatisFlexApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootProjectApplication.class, args);
+		SpringApplication.run(SpringBootProjectMybatisFlexApplication.class, args);
 	}
 
 }

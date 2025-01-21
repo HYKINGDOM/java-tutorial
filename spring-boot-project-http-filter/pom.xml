@@ -66,7 +66,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.7.5</version>
                 <configuration>
-                    <mainClass>com.java.tutorial.project.SpringBootProjectApplication</mainClass>
+                    <mainClass>com.java.tutorial.project.SpringBootProjectMybatisFlexApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

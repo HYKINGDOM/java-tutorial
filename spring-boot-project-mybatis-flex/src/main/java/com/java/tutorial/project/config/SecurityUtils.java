@@ -2,6 +2,9 @@ package com.java.tutorial.project.config;
 
 import com.java.tutorial.project.domain.LoginUser;
 
+/**
+ * @author meta
+ */
 public class SecurityUtils {
 
     /**

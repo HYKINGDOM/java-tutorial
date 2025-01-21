@@ -14,6 +14,9 @@ import org.springframework.stereotype.Component;
 import java.lang.reflect.Method;
 import java.util.Map;
 
+/**
+ * @author meta
+ */
 @Aspect
 @Component
 public class LimitAspect {
