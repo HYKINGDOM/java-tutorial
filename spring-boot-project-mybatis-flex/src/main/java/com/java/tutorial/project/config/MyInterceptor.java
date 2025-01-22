@@ -2,6 +2,12 @@ package com.java.tutorial.project.config;
 
 import cn.hutool.core.util.ReflectUtil;
 import lombok.extern.slf4j.Slf4j;
+import net.sf.jsqlparser.expression.Expression;
+import net.sf.jsqlparser.parser.CCJSqlParser;
+import net.sf.jsqlparser.parser.CCJSqlParserUtil;
+import net.sf.jsqlparser.schema.Table;
+import net.sf.jsqlparser.statement.Statement;
+import net.sf.jsqlparser.statement.update.Update;
 import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.plugin.Interceptor;
@@ -42,9 +48,20 @@ public class MyInterceptor implements Interceptor {
             ReflectUtil.setFieldValue(boundSql, "parameterObject", obj);
 
         } else if (sql.trim().toUpperCase().startsWith("UPDATE")) {
-            sql = sql.replaceAll(" set ", " SET ").replaceAll(" Set ", " SET ")
-                .replaceAll(" SET ", " SET rev = rev+1, operate_time = NOW(), ");
-            ReflectUtil.setFieldValue(boundSql, "sql", sql);
+            CCJSqlParser parser = CCJSqlParserUtil.newParser(sql);
+            Statement statement = parser.Statement();
+            log.info("statement:{}", statement);
+
+            if (statement instanceof Update){
+                Update update =  (Update)statement;
+
+                Table table = update.getTable();
+
+                log.info("table: {}", table);
+            }
+
+
+
         }
         return invocation.proceed();
     }
