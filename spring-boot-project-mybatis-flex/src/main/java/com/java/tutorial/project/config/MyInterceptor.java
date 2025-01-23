@@ -36,6 +36,7 @@ public class MyInterceptor implements Interceptor {
         Object[] args = invocation.getArgs();
         log.info("method:{}, args:{}", method, args);
 
+
         StatementHandler statementHandler = (StatementHandler)invocation.getTarget();
         BoundSql boundSql = statementHandler.getBoundSql();
         Object obj = boundSql.getParameterObject();

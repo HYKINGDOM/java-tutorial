@@ -152,7 +152,16 @@ INSERT INTO douyin_blogger_info (
 
 
 
-
+CREATE TABLE `audit_log` (
+                             `id` bigint(20) NOT NULL AUTO_INCREMENT,
+                             `table_name` varchar(100) NOT NULL COMMENT '表名',
+                             `operator_id` varchar(50) NOT NULL COMMENT '操作人ID',
+                             `operate_time` datetime NOT NULL COMMENT '操作时间',
+                             `change_content` text NOT NULL COMMENT '变更内容(JSON)',
+                             `change_fields` varchar(500) NOT NULL COMMENT '变更字段列表',
+                             PRIMARY KEY (`id`),
+                             KEY `idx_operate_time` (`operate_time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='数据审计日志表';
 
 
 

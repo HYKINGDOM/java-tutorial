@@ -61,6 +61,6 @@ mybatis-flex:
     #cacheEnabled: true
   datasource:
     talent_rw:
-      url: jdbc:mysql://localhost:3306/test_demo?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true&rewriteBatchedStatements=true&connectTimeout=1000&socketTimeout=30000
+      url: jdbc:mysql://10.0.201.34:3306/test_demo?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true&rewriteBatchedStatements=true&connectTimeout=1000&socketTimeout=30000
       username: root
-      password: root
+      password: mysql_F44EQG

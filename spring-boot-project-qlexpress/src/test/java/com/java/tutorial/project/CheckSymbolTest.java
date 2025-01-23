@@ -110,6 +110,19 @@ public class CheckSymbolTest {
         assertEquals("7", r.toString(), r.toString());
     }
 
+
+    @Test
+    public void contextLoads_test06() throws Exception {
+
+        DefaultContext<String, Object> context = new DefaultContext<>();
+        context.put("a", true);
+        context.put("b", false);
+        context.put("c", true);
+        String express = "a || b && c";
+        Object r = runner.execute(express, context, null, true, false);
+        assertEquals("true", r.toString(), r.toString());
+    }
+
     @Test
     public void contextLoads_test03() throws Exception {
 
