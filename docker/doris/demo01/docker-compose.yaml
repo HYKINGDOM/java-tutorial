@@ -1,0 +1,42 @@
+services:
+  fe:
+    image: apache/doris:doris-fe-2.1.7
+    hostname: doris-fe
+    ports:
+      - "8030:8030"    # Web UI
+      - "9030:9030"    # MySQL 协议端口
+      - "9010:9010"    # FE 编辑日志端口（关键！必须暴露）
+    environment:
+      - FE_ID=1
+      # 严格按照 FE_NAME:实际IP:9010 格式配置（IP 必须为容器固定 IP）
+      - FE_SERVERS=fe1:172.18.0.100:9010
+    volumes:
+      - ./fe/doris-meta:/opt/apache-doris/fe/doris-meta
+    networks:
+      1panel-network:
+        ipv4_address: 172.18.0.100  # 固定 FE 的 IP
+
+  be:
+    image: apache/doris:doris-be-2.1.7
+    hostname: doris-be
+    environment:
+      # BE 连接 FE 的配置（直接指向 FE 的固定 IP）
+      - FE_MASTER_IP=172.18.0.100   # FE 的固定 IP
+      - BE_IP=172.18.0.101          # BE 的固定 IP
+      - BE_PORT=9050
+    volumes:
+      - ./be/storage:/opt/apache-doris/be/storage
+    networks:
+      1panel-network:
+        ipv4_address: 172.18.0.101  # 固定 BE 的 IP
+    depends_on:
+      - fe
+
+networks:
+  1panel-network:
+    external: true
+    name: 1panel-network
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/24  # 子网必须与固定 IP 匹配
