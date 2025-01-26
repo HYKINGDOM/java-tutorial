@@ -54,7 +54,6 @@ public class SpringBootProjectApplicationTests {
         runner.replaceOperator("+", new JoinOperator());
         Object r = runner.execute("1 + 2 + 3", context, null, false, false);
         System.out.println(r); // 返回结果 [1, 2, 3]
-
     }
 
     @Test
@@ -66,4 +65,15 @@ public class SpringBootProjectApplicationTests {
         System.out.println(r); // 返回结果 [1, 2, 3]
     }
 
+
+    @Test
+    void contextLoads_06() throws Exception {
+
+        // (2)replaceOperator
+        ExpressRunner runner = new ExpressRunner();
+        DefaultContext<String, Object> context = new DefaultContext<String, Object>();
+        runner.replaceOperator("+", new JoinOperator());
+        Object r = runner.execute("1 + 2 + 3", context, null, false, false);
+        System.out.println(r); // 返回结果 [1, 2, 3]
+    }
 }

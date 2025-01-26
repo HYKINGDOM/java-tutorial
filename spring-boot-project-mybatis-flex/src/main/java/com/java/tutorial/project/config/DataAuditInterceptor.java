@@ -4,19 +4,21 @@ import com.java.tutorial.project.domain.AuditLog;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.MappedStatement;
-import org.apache.ibatis.plugin.*;
-import net.sf.jsqlparser.parser.CCJSqlParserUtil;
-import net.sf.jsqlparser.statement.update.Update;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.ibatis.plugin.Interceptor;
+import org.apache.ibatis.plugin.Intercepts;
+import org.apache.ibatis.plugin.Invocation;
+import org.apache.ibatis.plugin.Plugin;
+import org.apache.ibatis.plugin.Signature;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
+
 
 @Intercepts({
     @Signature(type = Executor.class, method = "update",
@@ -63,6 +65,14 @@ public class DataAuditInterceptor implements Interceptor {
         return result;
     }
 
+    private Map<String, Object> getAfterData(MappedStatement ms, Object parameter) {
+        return null;
+    }
+
+    private Map<String, Object> getBeforeData(MappedStatement ms, Object parameter) {
+        return null;
+    }
+
     private boolean hasDataAuditAnnotation(Object parameter) {
         return parameter != null &&
             parameter.getClass().isAnnotationPresent(DataAudit.class);
@@ -78,21 +88,25 @@ public class DataAuditInterceptor implements Interceptor {
         afterData.forEach((key, value) -> {
             Object oldValue = beforeData.get(key);
             if (!Objects.equals(value, oldValue)) {
-                changes.put(key, new Change(oldValue, value));
+                //changes.put(key, new Change(oldValue, value));
                 changedFields.add(key);
             }
         });
 
         if (!changes.isEmpty()) {
             AuditLog log = new AuditLog();
-            log.setTableName(getTableName(parameter.getClass()));
+//            log.setTableName(getTableName(parameter.getClass()));
             log.setOperatorId(getCurrentUserId());
             log.setOperateTime(new Date());
-            log.setChangeContent(new ObjectMapper().writeValueAsString(changes));
+//            log.setChangeContent(new ObjectMapper().writeValueAsString(changes));
             log.setChangeFields(String.join(",", changedFields));
 
-            auditLogMapper.insert(log);
+            //auditLogMapper.insert(log);
         }
+    }
+
+    private String getCurrentUserId() {
+        return null;
     }
 
     @Override
