@@ -1,0 +1,31 @@
+services:
+  localai:
+    # 取消注释，使用支持 CUDA 12 的 GPU 镜像
+    image: localai/localai:v2.25.0-aio-gpu-nvidia-cuda-12
+    container_name: ${CONTAINER_NAME}
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: always
+    networks:
+      - 1panel-network
+    ports:
+      - ${PANEL_APP_PORT_HTTP}:8080
+    environment:
+      - DEBUG=true
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/readyz"]
+      interval: 1m
+      timeout: 20m
+      retries: 5
+    volumes:
+      - ./data:/build/models:cached
+    labels:
+      createdBy: "Apps"
+networks:
+  1panel-network:
+    external: true
