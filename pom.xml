@@ -81,6 +81,7 @@
         <module>spring-boot-project-timefold-solver</module>
         <module>spring-boot-project-tess4j</module>
         <module>spring-boot-project-tika</module>
+        <module>spring-boot-project-deepseek4j</module>
     </modules>
 
     <properties>

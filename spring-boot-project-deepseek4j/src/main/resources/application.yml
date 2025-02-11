@@ -1,0 +1,33 @@
+
+# 开发环境配置
+server:
+  # 服务器的HTTP端口，默认为8080
+  port: 9987
+  tomcat:
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    # 连接数满后的排队数，默认为100
+    accept-count: 1000
+    threads:
+      # tomcat最大线程数，默认为200
+      max: 800
+      # Tomcat启动初始化的线程数，默认值10
+      min-spare: 100
+
+spring:
+  application:
+    name: deepseek-server
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+
+deepseek:
+  base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
+  model: deepseek-r1
+  api-key: sk-12j3k4l1h3k54h2wh83n3k2n2k3b4
+  log-requests: true
+  log-responses: true
+  log-level: DEBUG
+  connect-timeout: 30
+  read-timeout: 30
+  call-timeout: 60
