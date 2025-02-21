@@ -1,6 +1,6 @@
 package com.java.tutorial.project.controller;
 
-import com.java.coco.common.Result;
+import com.java.tutorial.project.util.Result;
 import com.java.tutorial.project.domain.EmailRepliedInfoEntity;
 import com.java.tutorial.project.service.EmailRepliedInfoService;
 import org.springframework.web.bind.annotation.PostMapping;

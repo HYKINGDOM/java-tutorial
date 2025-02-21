@@ -16,6 +16,8 @@
 
     <properties>
         <java.version>11</java.version>
+        <querydsl.version>5.1.0</querydsl.version>
+        <spring-boot-jpa-starter-version>2.7.18</spring-boot-jpa-starter-version>
     </properties>
 
     <dependencies>
@@ -25,36 +27,47 @@
             <groupId>org.javers</groupId>
             <artifactId>javers-spring-boot-starter-sql</artifactId>
             <version>6.14.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.code.gson</groupId>
+                    <artifactId>gson</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <version>${spring-boot-starter-version}</version>
+            <version>${spring-boot-jpa-starter-version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.querydsl</groupId>
             <artifactId>querydsl-jpa</artifactId>
-            <version>5.1.0</version>
+            <version>${querydsl.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.querydsl</groupId>
             <artifactId>querydsl-apt</artifactId>
-            <version>5.1.0</version>
+            <version>${querydsl.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.querydsl</groupId>
             <artifactId>querydsl-core</artifactId>
-            <version>5.1.0</version>
+            <version>${querydsl.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.querydsl</groupId>
             <artifactId>querydsl-sql</artifactId>
-            <version>5.1.0</version>
+            <version>${querydsl.version}</version>
         </dependency>
 
         <dependency>
@@ -86,32 +99,12 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <scope>runtime</scope>
         </dependency>
 
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>com.java.coco</groupId>
-            <artifactId>java-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>org.apache.derby</groupId>-->
-<!--            <artifactId>derbyclient</artifactId>-->
-<!--            <version>10.17.1.0</version>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>org.apache.derby</groupId>-->
-<!--            <artifactId>derby</artifactId>-->
-<!--            <version>10.17.1.0</version>-->
-<!--        </dependency>-->
-
 
     </dependencies>
 

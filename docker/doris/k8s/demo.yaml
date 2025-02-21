@@ -1,0 +1,28 @@
+version: '3'
+services:
+  fe:
+    image: apachedoris/doris:latest
+    container_name: doris-fe
+    ports:
+      - "8030:8030"
+      - "9030:9030"
+    environment:
+      - CLUSTER_NAME=doris
+      - FE_HOST=fe
+      - FE_IP=192.168.1.2
+  be0:
+    image: apachedoris/doris:latest
+    container_name: doris-be0
+    environment:
+      - CLUSTER_NAME=doris
+      - FE_IP=192.168.1.2
+      - BE_IP=192.168.1.2
+      - BE_PORT=9030
+  be1:
+    image: apachedoris/doris:latest
+    container_name: doris-be1
+    environment:
+      - CLUSTER_NAME=doris
+      - FE_IP=192.168.1.2
+      - BE_IP=192.168.1.3
+      - BE_PORT=9030
