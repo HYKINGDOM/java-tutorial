@@ -67,7 +67,7 @@ public class TraceIDUtil {
      * @return
      */
     public static String createTraceId() {
-        return ipToLong(IdUtil.fastSimpleUUID()) + System.currentTimeMillis() + getRandomString() + getProcessId();
+        return IdUtil.fastSimpleUUID() + System.currentTimeMillis() + getRandomString() + getProcessId();
     }
 
     private static String ipToLong(String ipString) {

@@ -25,10 +25,7 @@ public class RequestWrapperFilter extends OncePerRequestFilter {
         throws ServletException, IOException {
         TraceIDUtil.getTraceId();
         ContentCachingRequestWrapper requestWrapper = new ContentCachingRequestWrapper(request);
-        // 可以在这里处理请求数据
-        byte[] body = requestWrapper.getContentAsByteArray();
-        // 处理body，例如记录日志
-        log.info("Request body: {}", new String(body));
+        log.info("请求参数为：{}", requestWrapper.getParameterMap());
         filterChain.doFilter(requestWrapper, response);
     }
 }

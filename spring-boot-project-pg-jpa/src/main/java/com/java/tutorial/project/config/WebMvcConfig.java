@@ -3,13 +3,12 @@ package com.java.tutorial.project.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * @author meta
  */
 @Configuration
-public class WebMvcConfig implements WebMvcConfigurer {
+public class WebMvcConfig {
 
     @Bean
     public CommonsRequestLoggingFilter logFilter() {
@@ -18,6 +17,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         filter.setIncludePayload(true);
         filter.setIncludeHeaders(true);
         filter.setIncludeClientInfo(true);
+        filter.setMaxPayloadLength(10000);
         filter.setAfterMessagePrefix("REQUEST DATA-");
         return filter;
     }
