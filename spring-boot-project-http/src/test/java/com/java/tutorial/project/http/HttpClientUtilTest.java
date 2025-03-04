@@ -1,5 +1,17 @@
 package com.java.tutorial.project.http;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.hc.client5.http.entity.mime.FileBody;
+import org.apache.hc.client5.http.entity.mime.MultipartEntityBuilder;
+import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.HttpEntity;
+import org.assertj.core.api.Assertions;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.junit.jupiter.api.Test;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.Authenticator;
@@ -17,8 +29,10 @@ import java.net.http.WebSocket;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ExecutionException;
@@ -26,27 +40,33 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import org.apache.hc.client5.http.entity.mime.FileBody;
-import org.apache.hc.client5.http.entity.mime.MultipartEntityBuilder;
-import org.apache.hc.core5.http.ContentType;
-import org.apache.hc.core5.http.HttpEntity;
-import org.assertj.core.api.Assertions;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-import org.junit.jupiter.api.Test;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-
 /**
  * jdk11--HttpClient实现
  *
  * @author meta
  */
 class HttpClientUtilTest {
+
+    /**
+     * cpu 核心数
+     */
+    private static final int CPU_COUNT = Runtime.getRuntime().availableProcessors();
+    /**
+     * 核心线程数量大小
+     */
+    private static final int CORE_POOL_SIZE = Math.max(2, Math.min(CPU_COUNT - 1, 4));
+    /**
+     * 线程池最大容纳线程数
+     */
+    private static final int MAX_POOL_SIZE = CPU_COUNT * 2 + 1;
+    /**
+     * 阻塞队列
+     */
+    private static final int WORK_QUEUE = 20;
+    /**
+     * 线程空闲后的存活时长
+     */
+    private static final int KEEP_ALIVE_TIME = 30;
 
     @Test
     public void testTimeout() throws IOException, InterruptedException {
@@ -124,6 +144,72 @@ class HttpClientUtilTest {
         CompletableFuture<String> result =
             client.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenApply(HttpResponse::body);
         System.out.println(result.get());
+    }
+
+    public ThreadPoolTaskExecutor getThreadPoolTaskExecutor() {
+
+        //此处使用的是spring封装ThreadPoolExecutor之后的线程池
+        ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
+        //核心线程数
+        threadPoolTaskExecutor.setCorePoolSize(CORE_POOL_SIZE);
+        //最大线程数
+        threadPoolTaskExecutor.setMaxPoolSize(MAX_POOL_SIZE);
+        //等待队列
+        threadPoolTaskExecutor.setQueueCapacity(WORK_QUEUE);
+        //线程前缀
+        threadPoolTaskExecutor.setThreadNamePrefix("taskExecutor-");
+        //线程池维护线程所允许的空闲时间,单位为秒
+        threadPoolTaskExecutor.setKeepAliveSeconds(KEEP_ALIVE_TIME);
+        // 线程池对拒绝任务(无线程可用)的处理策略
+        threadPoolTaskExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+        threadPoolTaskExecutor.initialize();
+        return threadPoolTaskExecutor;
+    }
+
+    @Test
+    public void testAsyncGetParam() throws ExecutionException, InterruptedException, URISyntaxException {
+        ThreadPoolTaskExecutor threadPoolTaskExecutor = getThreadPoolTaskExecutor();
+
+        HttpClient client =
+            HttpClient.newBuilder().connectTimeout(Duration.ofMillis(5000)).version(HttpClient.Version.HTTP_2)
+                .executor(threadPoolTaskExecutor).build();
+
+        int length = 200;
+        String path = "https://";
+
+        List<CompletableFuture<String>> futures = new ArrayList<>(length);
+        Map<String, String> params = new HashMap<>(1);
+
+        for (int i = 0; i < length; i++) {
+
+            params.put("customerId", String.valueOf(i));
+            URI uri = buildUriWithParams(path, params);
+            HttpRequest request = HttpRequest.newBuilder().uri(uri).GET().build();
+            CompletableFuture<String> result =
+                client.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenApply(HttpResponse::body);
+            futures.add(result);
+        }
+
+        CompletableFuture<Void> voidCompletableFuture =
+            CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
+        voidCompletableFuture.join();
+        for (CompletableFuture<String> future : futures) {
+            System.out.println(future.get());
+        }
+    }
+
+    private URI buildUriWithParams(String baseUrl, Map<String, String> params) throws URISyntaxException {
+        StringBuilder query = new StringBuilder();
+        for (Map.Entry<String, String> param : params.entrySet()) {
+            if (query.length() > 0) {
+                query.append("&");
+            }
+            query.append(param.getKey()).append("=").append(param.getValue());
+        }
+        if (query.length() > 0) {
+            return new URI(baseUrl + "?" + query);
+        }
+        return new URI(baseUrl);
     }
 
     @Test
