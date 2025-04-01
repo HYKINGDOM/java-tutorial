@@ -84,6 +84,7 @@
         <module>spring-boot-project-deepseek4j</module>
         <module>spring-boot-project-selenium</module>
         <module>spring-boot-project-ADBC</module>
+        <module>spring-boot-project-easy-rules</module>
     </modules>
 
     <properties>
