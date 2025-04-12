@@ -1,0 +1,19 @@
+
+services:
+  whisper-cuda:
+    image: ghcr.io/ggerganov/whisper.cpp:main-cuda
+    container_name: whisper-cuda-container
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities:
+                - gpu
+              count: all
+              driver: nvidia
+    volumes:
+      # 将本地的模型存储文件夹挂载到容器内的/models目录，根据实际路径修改
+      - /home/data/whisper/models:/models
+      # 如果有音频文件需要处理，将本地音频文件夹挂载到容器内的/audios目录，根据实际路径修改
+      - /home/data/whisper/audios:/audios
+      - /home/data/whisper/videos:/videos

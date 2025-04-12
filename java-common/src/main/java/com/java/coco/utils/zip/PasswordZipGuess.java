@@ -11,13 +11,14 @@ import static com.java.coco.utils.zip.TestUnzipDirWithPassword.unzip;
 
 public class PasswordZipGuess {
 
-    private static final String PATH_ZIP = "F:\\test.zip";
+    private static final String PATH_ZIP = "E:\\download\\demo-cloud-demo.zip";
     public static Stack<String> stackStr = new Stack<>();
     public static List<String> stringList = new ArrayList<>();
     public static String password;
 
     public static void main(String[] args) throws ZipException {
         //String str = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()-_+=~`[]{}|\\\\:;\\\"'<>,.?/";
+        //String str = "0123456789abcdefghijklmnopqrstuvwxyz";
         String str = "1234567890";
         List<String> stringList = Splitter.fixedLength(1).splitToList(str);
         String[] strArray = new String[stringList.size()];
@@ -40,13 +41,12 @@ public class PasswordZipGuess {
             toString = toString.replace(" ", "");
 
             try {
-                if (unzip(PATH_ZIP, toString) != null) {
-                    password = toString;
-                    System.out.println("找到密码!!!");
-                    return;
-                }
+                unzip(PATH_ZIP, toString);
+                password = toString;
+                System.out.println("找到密码!!!");
+                return;
             } catch (ZipException e) {
-                System.out.println("该密码无效！" + e.getMessage());
+                //System.out.println("该密码无效！" + e.getMessage());
                 DeleteFileUtil.deleteDirectory(PATH_ZIP.split("\\.")[0]);
             }
             return;
