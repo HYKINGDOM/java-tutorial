@@ -25,3 +25,11 @@ spring:
 #    show-sql: true
 #    hibernate:
 #      ddl-auto: update
+
+
+threadpool:
+  monitor:
+    enabled: true  # 是否启用监控
+  alert:
+    threshold: 80  # 告警阈值（百分比）
+    channels: slack,email,wechat  # 告警通道
