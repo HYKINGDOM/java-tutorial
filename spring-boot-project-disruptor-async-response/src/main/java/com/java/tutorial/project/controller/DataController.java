@@ -1,9 +1,11 @@
 package com.java.tutorial.project.controller;
 
 import com.java.coco.utils.TraceIDUtil;
+import com.java.tutorial.project.config.DisruptorConfig;
 import com.java.tutorial.project.domain.DataEventRequest;
 import com.java.tutorial.project.domain.DataEventResponse;
 import com.lmax.disruptor.RingBuffer;
+import com.lmax.disruptor.dsl.Disruptor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +18,10 @@ import org.springframework.web.context.request.async.DeferredResult;
 @RestController
 public class DataController {
 
+    /**
+     * 需要再配置文件中定义
+     * @see DisruptorConfig#ringBufferA(Disruptor)
+     */
     private final RingBuffer<DataEventRequest> ringBufferA;
 
     public DataController(RingBuffer<DataEventRequest> ringBufferA) {

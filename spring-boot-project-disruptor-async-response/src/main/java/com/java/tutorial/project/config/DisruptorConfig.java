@@ -4,7 +4,7 @@ import cn.hutool.core.thread.ThreadFactoryBuilder;
 import cn.hutool.core.thread.ThreadUtil;
 import com.java.tutorial.project.domain.DataEventRequest;
 import com.java.tutorial.project.domain.OrderEvent;
-import com.java.tutorial.project.event.DataEventHandler;
+import com.java.tutorial.project.event.consumer.DataEventHandlerConsumer;
 import com.java.tutorial.project.event.ResultEventHandler;
 import com.java.tutorial.project.event.consumer.OrderEventConsumer;
 import com.java.tutorial.project.event.factory.DataEventFactory;
@@ -68,7 +68,7 @@ public class DisruptorConfig {
                 .build();
         DataEventFactory factory = new DataEventFactory();
         Disruptor<DataEventRequest> disruptor = new Disruptor<>(factory, bufferSize, threadFactory);
-        disruptor.handleEventsWith(new DataEventHandler(ringBufferB));
+        disruptor.handleEventsWith(new DataEventHandlerConsumer(ringBufferB));
         disruptor.start();
         return disruptor;
     }
