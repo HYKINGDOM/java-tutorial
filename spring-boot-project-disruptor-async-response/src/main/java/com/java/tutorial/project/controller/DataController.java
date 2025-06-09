@@ -20,12 +20,12 @@ public class DataController {
 
     /**
      * 需要再配置文件中定义
-     * @see DisruptorConfig#ringBufferA(Disruptor)
+     * @see DisruptorConfig#producerData(Disruptor)
      */
-    private final RingBuffer<DataEventRequest> ringBufferA;
+    private final RingBuffer<DataEventRequest> producerData;
 
-    public DataController(RingBuffer<DataEventRequest> ringBufferA) {
-        this.ringBufferA = ringBufferA;
+    public DataController(RingBuffer<DataEventRequest> producerData) {
+        this.producerData = producerData;
     }
 
     /**
@@ -41,12 +41,11 @@ public class DataController {
         DeferredResult<DataEventResponse> deferredResult = new DeferredResult<>();
         // 将DeferredResult对象设置到请求对象中，以便在处理完成后能够通知请求方
         dataEventRequest.setDeferredResult(deferredResult);
-
         // 从环形缓冲区中获取下一个序列号，用于存放数据事件请求
-        long sequence = ringBufferA.next();
+        long sequence = producerData.next();
         try {
             // 获取序列号对应的事件对象
-            DataEventRequest event = ringBufferA.get(sequence);
+            DataEventRequest event = producerData.get(sequence);
             // 将请求对象中的数据复制到事件对象中
             event.setData(dataEventRequest.getData());
             event.setUserId(dataEventRequest.getUserId());
@@ -56,7 +55,7 @@ public class DataController {
             event.setDeferredResult(deferredResult);
         } finally {
             // 发布事件，表示事件已经准备好，可以被消费者线程处理
-            ringBufferA.publish(sequence);
+            producerData.publish(sequence);
         }
         // 返回DeferredResult对象，等待事件处理完成后的异步结果
         return deferredResult;

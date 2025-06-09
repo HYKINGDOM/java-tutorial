@@ -1,6 +1,6 @@
 package com.java.tutorial.project.event.consumer;
 
-import cn.hutool.core.lang.Snowflake;
+import cn.hutool.core.lang.UUID;
 import com.alibaba.fastjson2.JSON;
 import com.java.coco.utils.TraceIDUtil;
 import com.java.tutorial.project.config.DisruptorConfig;
@@ -19,7 +19,7 @@ public class DataEventHandlerConsumer implements EventHandler<DataEventRequest> 
     /**
      * 队列 B
      *
-     * @see DisruptorConfig#ringBufferB(Disruptor)
+     * @see DisruptorConfig#consumerData(Disruptor)
      */
     private final RingBuffer<DataEventRequest> ringBufferB;
 
@@ -38,7 +38,7 @@ public class DataEventHandlerConsumer implements EventHandler<DataEventRequest> 
         String msg;
         if (goodsCount != 0) {
             goodsCount--;
-            msg = "订单生成成功: " + event.getData();
+            msg = "订单生成成功: " + UUID.randomUUID();
         } else {
             msg = "订单生成失败: " + event.getData();
         }

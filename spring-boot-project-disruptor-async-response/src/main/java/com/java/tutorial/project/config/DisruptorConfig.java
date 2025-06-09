@@ -4,8 +4,8 @@ import cn.hutool.core.thread.ThreadFactoryBuilder;
 import cn.hutool.core.thread.ThreadUtil;
 import com.java.tutorial.project.domain.DataEventRequest;
 import com.java.tutorial.project.domain.OrderEvent;
-import com.java.tutorial.project.event.consumer.DataEventHandlerConsumer;
 import com.java.tutorial.project.event.ResultEventHandler;
+import com.java.tutorial.project.event.consumer.DataEventHandlerConsumer;
 import com.java.tutorial.project.event.consumer.OrderEventConsumer;
 import com.java.tutorial.project.event.factory.DataEventFactory;
 import com.java.tutorial.project.event.factory.OrderEventFactory;
@@ -22,33 +22,32 @@ import java.util.concurrent.ThreadFactory;
 @Configuration
 public class DisruptorConfig {
 
+
+    private static ThreadFactory getThreadFactory(String namePrefix) {
+        return ThreadUtil.createThreadFactoryBuilder().setNamePrefix(namePrefix)
+            .setDaemon(true).build();
+    }
+
     @Bean
     public Disruptor<OrderEvent> disruptor() {
         // Specify the size of the ring buffer, must be power of 2.
         int bufferSize = 1024;
-
-        ThreadFactoryBuilder threadFactoryBuilder = ThreadUtil.createThreadFactoryBuilder();
-        ThreadFactory threadFactory = threadFactoryBuilder.setNamePrefix("disruptor-order-event-thread-").build();
-
+        //  create thread factory
+        ThreadFactory threadFactory = getThreadFactory("disruptor-order-event-thread-%d");
         // Construct the Disruptor
         Disruptor<OrderEvent> disruptor = new Disruptor<>(new OrderEventFactory(), bufferSize, threadFactory);
-
         // Connect the handler
         disruptor.handleEventsWith(new OrderEventConsumer());
-
         // Start the Disruptor, starts all threads running
         disruptor.start();
-
         return disruptor;
     }
 
     @Bean
-    public Disruptor<DataEventRequest> disruptorB() {
+    public Disruptor<DataEventRequest> disruptorConsumerData() {
         int bufferSize = 1024;
         DataEventFactory factory = new DataEventFactory();
-        ThreadFactory threadFactory =
-            ThreadUtil.createThreadFactoryBuilder().setNamePrefix("disruptor-B-order-event-thread-%d").setDaemon(true)
-                .build();
+        ThreadFactory threadFactory = getThreadFactory("disruptor-consumer-order-event-thread-%d");
         Disruptor<DataEventRequest> disruptor = new Disruptor<>(factory, bufferSize, threadFactory);
         disruptor.handleEventsWith(new ResultEventHandler());
         disruptor.start();
@@ -56,26 +55,24 @@ public class DisruptorConfig {
     }
 
     @Bean
-    public RingBuffer<DataEventRequest> ringBufferB(Disruptor<DataEventRequest> disruptorB) {
-        return disruptorB.getRingBuffer();
+    public RingBuffer<DataEventRequest> consumerData(Disruptor<DataEventRequest> disruptorConsumerData) {
+        return disruptorConsumerData.getRingBuffer();
     }
 
     @Bean
-    public Disruptor<DataEventRequest> disruptorA(RingBuffer<DataEventRequest> ringBufferB) {
+    public Disruptor<DataEventRequest> disruptorProducerData(RingBuffer<DataEventRequest> consumerData) {
         int bufferSize = 1024;
-        ThreadFactory threadFactory =
-            ThreadUtil.createThreadFactoryBuilder().setNamePrefix("disruptor-A-order-event-thread-%d").setDaemon(true)
-                .build();
+        ThreadFactory threadFactory = getThreadFactory("disruptor-producer-order-event-thread-%d");
         DataEventFactory factory = new DataEventFactory();
         Disruptor<DataEventRequest> disruptor = new Disruptor<>(factory, bufferSize, threadFactory);
-        disruptor.handleEventsWith(new DataEventHandlerConsumer(ringBufferB));
+        disruptor.handleEventsWith(new DataEventHandlerConsumer(consumerData));
         disruptor.start();
         return disruptor;
     }
 
     @Bean
-    public RingBuffer<DataEventRequest> ringBufferA(Disruptor<DataEventRequest> disruptorA) {
-        return disruptorA.getRingBuffer();
+    public RingBuffer<DataEventRequest> producerData(Disruptor<DataEventRequest> disruptorProducerData) {
+        return disruptorProducerData.getRingBuffer();
     }
 
 }
