@@ -85,6 +85,7 @@
         <module>spring-boot-project-selenium</module>
         <module>spring-boot-project-ADBC</module>
         <module>spring-boot-project-easy-rules</module>
+        <module>spring-boot-project-togglz</module>
     </modules>
 
     <properties>

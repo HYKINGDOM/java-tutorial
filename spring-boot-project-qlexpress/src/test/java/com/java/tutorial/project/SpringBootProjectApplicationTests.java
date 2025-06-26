@@ -6,6 +6,10 @@ import com.java.tutorial.project.util.JoinOperator;
 import com.ql.util.express.DefaultContext;
 import com.ql.util.express.ExpressRunner;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
 public class SpringBootProjectApplicationTests {
 
     @Test
@@ -33,6 +37,51 @@ public class SpringBootProjectApplicationTests {
         Object execute = runner.execute(express, context, null, false, false, 100);
         System.out.println(execute);
     }
+
+    @Test
+    void contextLoads_otc_01() throws Exception {
+        ExpressRunner runner = new ExpressRunner();
+
+        runner.addOperatorWithAlias("大于", ">", null);
+        runner.addOperatorWithAlias("小于", "<",  null);
+        runner.addOperatorWithAlias("且", "&&",  null);
+        runner.addOperatorWithAlias("或", "||", null);
+
+        DefaultContext<String, Object> context = new DefaultContext<>();
+        context.put("roi", new BigDecimal(1.6));
+        context.put("gsv", new BigDecimal(2100000));
+        context.put("live_month", 1);
+
+        String express = "roi大于1.5";
+
+        List<String> errorList = new ArrayList<>();
+
+        Object execute = runner.execute(express, context, errorList, false, false, 100);
+        System.out.println(execute);
+        System.out.println(errorList);
+    }
+
+
+    @Test
+    void contextLoads_otc_01_fixed() throws Exception {
+        ExpressRunner runner = new ExpressRunner();
+
+        // 移除中文别名配置，直接使用标准操作符
+        DefaultContext<String, Object> context = new DefaultContext<>();
+        context.put("roi", 1.6);  // 使用double类型替代BigDecimal
+        context.put("gsv", 2100000.0);  // 使用double类型替代BigDecimal
+        context.put("live_month", 1);
+
+        // 修改表达式为标准语法格式
+        String express = "roi > 1.5 && gsv > 2800000";
+
+        List<String> errorList = new ArrayList<>();
+
+        Object execute = runner.execute(express, context, errorList, false, false, 100);
+        System.out.println(execute);
+        System.out.println(errorList);
+    }
+
 
     @Test
     void contextLoads_02() throws Exception {
