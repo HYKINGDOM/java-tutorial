@@ -4,8 +4,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.togglz.core.manager.FeatureManager;
 
-import static com.example.TogglzFeatures.ALMOST_READY;
-import static com.example.TogglzFeatures.AWESOME;
+import static com.java.tutorial.project.constant.TogglzFeatures.ALMOST_READY;
+import static com.java.tutorial.project.constant.TogglzFeatures.AWESOME;
+
 
 /**
  * // http://localhost:8080/actuator/togglz
