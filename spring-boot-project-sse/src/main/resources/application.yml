@@ -16,3 +16,5 @@ logging:
   config: classpath:logback-spring.xml
   level:
     com.java: info
+    org.springframework.data.mongodb: DEBUG
+    com.mongodb: DEBUG

@@ -20,7 +20,7 @@ public class ConnectionConfig {
     @PostConstruct
     private void init() {
         log.info("清空项目重启前遗留的MongoDB中的连接信息");
-        connectionInfoService.deleteAll();
+        //connectionInfoService.deleteAll();
         log.info("清空完成");
     }
 }

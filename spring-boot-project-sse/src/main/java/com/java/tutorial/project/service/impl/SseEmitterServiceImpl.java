@@ -12,6 +12,7 @@ import com.java.tutorial.project.service.SseEmitterService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.dromara.hutool.core.data.id.IdUtil;
+import org.dromara.hutool.core.exception.ExceptionUtil;
 import org.dromara.hutool.core.map.MapUtil;
 import org.dromara.hutool.core.text.StrUtil;
 import org.dromara.hutool.http.meta.HttpStatus;
@@ -96,7 +97,7 @@ public class SseEmitterServiceImpl implements SseEmitterService {
             //保存连接信息到MongoDB中
             connectionInfoService.create(connectionEntity);
         } catch (IOException e) {
-            log.error("创建长链接异常，客户端ID:{}   异常信息:{}", clientId, e.getMessage());
+            log.error("创建长链接异常，客户端ID:{}   异常信息:{}", clientId, ExceptionUtil.getRootCauseMessage(e));
             throw new RuntimeException("创建链接异常");
         }
         return sseEmitter;
