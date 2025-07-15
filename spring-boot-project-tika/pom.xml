@@ -103,10 +103,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <mainClass>com.java.tutorial.project.SpringBootProjectMybatisFlexApplication</mainClass>
-                    <compilerArgs>
-                        <arg>-parameters</arg>
-                    </compilerArgs>
+                    <mainClass>com.java.tutorial.project.SpringBootProjectApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
@@ -132,6 +129,9 @@
                             <version>${lombok.version}</version>
                         </path>
                     </annotationProcessorPaths>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
         </plugins>

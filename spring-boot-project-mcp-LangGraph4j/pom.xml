@@ -16,6 +16,7 @@
 
     <properties>
         <java.version>21</java.version>
+        <sping-boot.version>2.7.5</sping-boot.version>
     </properties>
 
     <dependencies>
