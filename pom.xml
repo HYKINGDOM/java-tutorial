@@ -87,6 +87,7 @@
         <module>spring-boot-project-easy-rules</module>
         <module>spring-boot-project-togglz</module>
         <module>spring-boot-project-mcp-LangGraph4j</module>
+        <module>spring-boot-project-langchain4j</module>
     </modules>
 
     <properties>

@@ -170,31 +170,31 @@ class HttpClientUtilTest {
     public void testAsyncGetParam() throws ExecutionException, InterruptedException, URISyntaxException {
         ThreadPoolTaskExecutor threadPoolTaskExecutor = getThreadPoolTaskExecutor();
 
-        HttpClient client =
-            HttpClient.newBuilder().connectTimeout(Duration.ofMillis(5000)).version(HttpClient.Version.HTTP_2)
-                .executor(threadPoolTaskExecutor).build();
-
-        int length = 200;
-        String path = "https://";
-
-        List<CompletableFuture<String>> futures = new ArrayList<>(length);
+        List<CompletableFuture<String>> futures = new ArrayList<>(200);
         Map<String, String> params = new HashMap<>(1);
 
-        for (int i = 0; i < length; i++) {
+        try (HttpClient client =
+                 HttpClient.newBuilder().connectTimeout(Duration.ofMillis(5000)).version(HttpClient.Version.HTTP_2)
+                     .executor(threadPoolTaskExecutor).build()) {
+            int length = 200;
+            String path = "https://";
 
-            params.put("customerId", String.valueOf(i));
-            URI uri = buildUriWithParams(path, params);
-            HttpRequest request = HttpRequest.newBuilder().uri(uri).GET().build();
-            CompletableFuture<String> result =
-                client.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenApply(HttpResponse::body);
-            futures.add(result);
-        }
+            for (int i = 0; i < length; i++) {
 
-        CompletableFuture<Void> voidCompletableFuture =
-            CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
-        voidCompletableFuture.join();
-        for (CompletableFuture<String> future : futures) {
-            System.out.println(future.get());
+                params.put("customerId", String.valueOf(i));
+                URI uri = buildUriWithParams(path, params);
+                HttpRequest request = HttpRequest.newBuilder().uri(uri).GET().build();
+                CompletableFuture<String> result =
+                    client.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenApply(HttpResponse::body);
+                futures.add(result);
+            }
+
+            CompletableFuture<Void> voidCompletableFuture =
+                CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
+            voidCompletableFuture.join();
+            for (CompletableFuture<String> future : futures) {
+                System.out.println(future.get());
+            }
         }
     }
 
