@@ -19,11 +19,7 @@ public class LLMConfig {
 
 
         String getenv = System.getenv("aliyunbailian-sdk1");
-        log.info("getenv:{}", getenv);
-        if (!getenv.contains("sk-")) {
-            getenv = "sk-" + getenv;
-        }
-        log.info("getenv end:{}", getenv);
+        getenv = getEnvApiString(getenv);
 
         return OpenAiChatModel.builder()
                 .apiKey(getenv)
@@ -32,5 +28,30 @@ public class LLMConfig {
                 .build();
     }
 
+    /**
+     * 知识出处，<a href="https://api-docs.deepseek.com/zh-cn/">...</a>
+     */
+    @Bean
+    public ChatModel chatModelDeepSeek() {
+
+        String getenv = System.getenv("deepseek");
+        getenv = getEnvApiString(getenv);
+        return OpenAiChatModel.builder()
+                .apiKey(getenv)
+                .modelName("deepseek-chat")
+                //.modelName("deepseek-reasoner")
+                .baseUrl("https://api.deepseek.com/v1")
+                .build();
+    }
+
+
+    private static String getEnvApiString(String getenv) {
+        log.info("getenv:{}", getenv);
+        if (!getenv.contains("sk-")) {
+            getenv = "sk-" + getenv;
+        }
+        log.info("getenv end:{}", getenv);
+        return getenv;
+    }
 }
 
