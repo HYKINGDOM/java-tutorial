@@ -23,9 +23,13 @@ public class LangChain4JController {
     @Resource
     private ChatModel chatModelQwen;
 
-    // http://localhost:9001/langchain4j/hello?prompt=如何学习java
-    @GetMapping(value = "/langchain4j/hello")
-    public Result<String> hello(@RequestParam(value = "prompt", defaultValue = "你是谁?") String prompt) {
+    /**
+     * simpleChat
+     * @param prompt
+     * @return
+     */
+    @GetMapping(value = "/langchain4j/simpleChat")
+    public Result<String> simpleChat(@RequestParam(value = "prompt", defaultValue = "你是谁?") String prompt) {
         String result = chatModelQwen.chat(prompt);
 
         log.info("通过langchain4j调用模型返回结果：{}", result);
