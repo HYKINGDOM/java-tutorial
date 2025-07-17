@@ -23,10 +23,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * LangChain4JController
+ * LangChain4J测试V3
  *
  * @author meta
  */
@@ -71,6 +73,10 @@ public class LangChain4JV3Controller {
 
         SseEmitter emitter = new SseEmitter(60_000L);
 
+        // 添加原子变量用于追踪发射器完成状态
+        AtomicBoolean emitterCompleted = new AtomicBoolean(false);
+        // 用于取消模型响应的Future
+        CompletableFuture<Void> modelResponseFuture;
         try {
             // 获取或创建会话历史
             List<ChatMessage> messages = CONVERSATION_HISTORY.computeIfAbsent(conversationId, k -> new ArrayList<>());
@@ -79,17 +85,24 @@ public class LangChain4JV3Controller {
             UserMessage userMessage = UserMessage.from(prompt);
             messages.add(userMessage);
 
-            // 调用模型并设置流式响应处理器
-            chatStreamingModelQwen.chat(messages, new StreamingChatResponseHandler() {
+            // 调用模型并设置流式响应处理器，保存Future用于取消
+            modelResponseFuture = chatStreamingModelQwen.chat(messages, new StreamingChatResponseHandler() {
                 @Override
                 public void onPartialResponse(String partialResponse) {
-                    try {
-                        emitter.send(
-                            SseEmitter.event().data(partialResponse).id(String.valueOf(System.currentTimeMillis()))
-                                .name("message"));
-                    } catch (IOException e) {
-                        log.error("SSE发送部分响应失败", e);
-                        emitter.completeWithError(e);
+                    // 使用原子变量追踪发射器状态，避免重复操作
+                    if (!emitterCompleted.get()) {
+                        try {
+                            emitter.send(
+                                SseEmitter.event().data(partialResponse).id(String.valueOf(System.currentTimeMillis()))
+                                    .name("message"));
+                        } catch (IOException e) {
+                            log.error("SSE发送部分响应失败", e);
+                            if (emitterCompleted.compareAndSet(false, true)) {
+                                emitter.completeWithError(e);
+                                // 取消模型响应以停止后续事件
+                                modelResponseFuture.cancel(true);
+                            }
+                        }
                     }
                 }
 

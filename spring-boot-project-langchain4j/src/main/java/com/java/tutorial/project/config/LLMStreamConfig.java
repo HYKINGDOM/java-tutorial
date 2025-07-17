@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.List;
+
 /**
  * 语言模型配置
  *
@@ -31,6 +33,7 @@ public class LLMStreamConfig {
         String getenv = System.getenv("deepseek");
         getenv = getEnvApiString(getenv);
         return OpenAiStreamingChatModel.builder().logRequests(true).logResponses(true).apiKey(getenv)
+                .listeners(List.of(new TestChatModelListener()))
             .modelName("deepseek-chat")
             //.modelName("deepseek-reasoner")
             .baseUrl("https://api.deepseek.com/v1").build();

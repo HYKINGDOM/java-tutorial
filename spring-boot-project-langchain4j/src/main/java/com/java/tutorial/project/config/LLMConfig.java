@@ -21,7 +21,7 @@ public class LLMConfig {
         getenv = getEnvApiString(getenv);
 
         return OpenAiChatModel.builder().apiKey(getenv).logRequests(true).logResponses(true).modelName("qwen-plus")
-            .baseUrl("https://dashscope.aliyuncs.com/compatible-mode/v1").build();
+                .baseUrl("https://dashscope.aliyuncs.com/compatible-mode/v1").build();
     }
 
     @Bean
@@ -29,9 +29,12 @@ public class LLMConfig {
 
         String getenv = System.getenv("deepseek");
         getenv = getEnvApiString(getenv);
-        return OpenAiChatModel.builder().apiKey(getenv).logRequests(true).logResponses(true).modelName("deepseek-chat")
-            //.modelName("deepseek-reasoner")
-            .baseUrl("https://api.deepseek.com/v1").build();
+        return OpenAiChatModel.builder().apiKey(getenv).logRequests(true).logResponses(true)
+                // 重试机制共计2次
+                .maxRetries(2)
+                .modelName("deepseek-chat")
+                //.modelName("deepseek-reasoner")
+                .baseUrl("https://api.deepseek.com/v1").build();
     }
 
     private static String getEnvApiString(String getenv) {

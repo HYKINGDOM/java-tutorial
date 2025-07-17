@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * LangChain4JController
+ * LangChain4J测试V2
  *
  * @author meta
  */
