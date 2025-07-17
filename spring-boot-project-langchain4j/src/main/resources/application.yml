@@ -24,3 +24,11 @@ logging:
         web:
           filter:
             CommonsRequestLoggingFilter: DEBUG
+    dev:
+      langchain4j: DEBUG
+  
+langchain4j:
+  open-ai:
+    chat-model:
+      log-requests:  true
+      log-responses: true

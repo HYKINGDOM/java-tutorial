@@ -20,27 +20,19 @@ public class LLMConfig {
         String getenv = System.getenv("aliyunbailian-sdk1");
         getenv = getEnvApiString(getenv);
 
-        return OpenAiChatModel.builder()
-                .apiKey(getenv)
-                .modelName("qwen-plus")
-                .baseUrl("https://dashscope.aliyuncs.com/compatible-mode/v1")
-                .build();
+        return OpenAiChatModel.builder().apiKey(getenv).logRequests(true).logResponses(true).modelName("qwen-plus")
+            .baseUrl("https://dashscope.aliyuncs.com/compatible-mode/v1").build();
     }
-
 
     @Bean
     public ChatModel chatModelDeepSeek() {
 
         String getenv = System.getenv("deepseek");
         getenv = getEnvApiString(getenv);
-        return OpenAiChatModel.builder()
-                .apiKey(getenv)
-                .modelName("deepseek-chat")
-                //.modelName("deepseek-reasoner")
-                .baseUrl("https://api.deepseek.com/v1")
-                .build();
+        return OpenAiChatModel.builder().apiKey(getenv).logRequests(true).logResponses(true).modelName("deepseek-chat")
+            //.modelName("deepseek-reasoner")
+            .baseUrl("https://api.deepseek.com/v1").build();
     }
-
 
     private static String getEnvApiString(String getenv) {
         log.info("getenv:{}", getenv);
