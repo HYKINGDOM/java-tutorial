@@ -76,7 +76,7 @@ public class LangChain4JV3Controller {
         // 添加原子变量用于追踪发射器完成状态
         AtomicBoolean emitterCompleted = new AtomicBoolean(false);
         // 用于取消模型响应的Future
-        CompletableFuture<Void> modelResponseFuture;
+        CompletableFuture<Void> modelResponseFuture = new CompletableFuture<>();
         try {
             // 获取或创建会话历史
             List<ChatMessage> messages = CONVERSATION_HISTORY.computeIfAbsent(conversationId, k -> new ArrayList<>());
@@ -86,15 +86,17 @@ public class LangChain4JV3Controller {
             messages.add(userMessage);
 
             // 调用模型并设置流式响应处理器，保存Future用于取消
-            modelResponseFuture = chatStreamingModelQwen.chat(messages, new StreamingChatResponseHandler() {
+            chatStreamingModelQwen.chat(messages, new StreamingChatResponseHandler() {
                 @Override
                 public void onPartialResponse(String partialResponse) {
+
+                    log.info("接收到部分响应：{}", partialResponse);
+
                     // 使用原子变量追踪发射器状态，避免重复操作
                     if (!emitterCompleted.get()) {
                         try {
                             emitter.send(
-                                SseEmitter.event().data(partialResponse).id(String.valueOf(System.currentTimeMillis()))
-                                    .name("message"));
+                                SseEmitter.event().data(partialResponse));
                         } catch (IOException e) {
                             log.error("SSE发送部分响应失败", e);
                             if (emitterCompleted.compareAndSet(false, true)) {
