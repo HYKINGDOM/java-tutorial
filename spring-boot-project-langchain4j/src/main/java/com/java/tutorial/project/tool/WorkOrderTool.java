@@ -1,11 +1,11 @@
-package com.java.tutorial.project.service;
+package com.java.tutorial.project.tool;
 
 import com.java.coco.utils.date.DateUtil;
 import dev.langchain4j.agent.tool.P;
 import dev.langchain4j.agent.tool.Tool;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Description;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
@@ -13,7 +13,7 @@ import java.util.Date;
  * @author meta
  */
 @Slf4j
-@Component
+@Service
 @Description("工单相关方法")
 public class WorkOrderTool {
 
