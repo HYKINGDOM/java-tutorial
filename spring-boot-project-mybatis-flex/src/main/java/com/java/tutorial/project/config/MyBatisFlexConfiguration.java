@@ -1,5 +1,6 @@
 package com.java.tutorial.project.config;
 
+import com.java.tutorial.project.config.audit.SQLAuditLogInterceptor;
 import com.java.tutorial.project.config.listener.EntityInsertListener;
 import com.java.tutorial.project.config.listener.EntityUpdateListener;
 import com.java.tutorial.project.domain.BaseEntity;
@@ -41,7 +42,7 @@ public class MyBatisFlexConfiguration implements ConfigurationCustomizer, MyBati
     public void customize(FlexConfiguration configuration) {
         //mybatis实现的打印sql到控制台，便于调试
         configuration.setLogImpl(StdOutImpl.class);
-        configuration.addInterceptor(new MyInterceptor());
+        configuration.addInterceptor(new SQLAuditLogInterceptor());
     }
 
     @Override

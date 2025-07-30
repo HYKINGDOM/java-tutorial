@@ -2,7 +2,7 @@ package com.java.tutorial.project.service;
 
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
-import dev.langchain4j.service.spring.AiService;
+
 
 public interface WorkOrderAssistant {
 
