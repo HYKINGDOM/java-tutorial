@@ -27,7 +27,7 @@ public class MyBatisFlexConfiguration implements ConfigurationCustomizer, MyBati
         //开启审计功能
         AuditManager.setAuditEnable(true);
         //设置审计工厂创建审计消息
-        //        AuditManager.setMessageFactory(new MybatisFlexAuditMessageFactory());
+        AuditManager.setMessageFactory(new MybatisFlexAuditMessageFactory());
         //设置 自定义 SQL 审计收集器
         AuditManager.setMessageCollector(
             auditMessage -> logger.info("{},{}ms", auditMessage.getFullSql(), auditMessage.getElapsedTime()));

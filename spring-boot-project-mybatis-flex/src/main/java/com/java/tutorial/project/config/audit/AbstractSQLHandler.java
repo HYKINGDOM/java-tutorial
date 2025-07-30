@@ -35,7 +35,7 @@ public abstract class AbstractSQLHandler implements ISQLHandler {
 
     private SQLStatement sqlStatement;
 
-    private static final Pattern pattern1 = Pattern.compile("(([A-Za-z0-9_]+)(?:\\.))?`?([A-Za-z0-9_]+)`?");
+    private static final Pattern pattern1 = Pattern.compile("(([A-Za-z0-9_]+)\\.)?`?([A-Za-z0-9_]+)`?");
 
     private static final Pattern pattern2 = Pattern.compile("`\\.`");
 

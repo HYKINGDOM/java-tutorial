@@ -114,9 +114,7 @@ public class MySqlDeleteSqlAuditHandler extends AbstractSQLAuditHandler {
     @SuppressWarnings("unchecked")
     private Map<String, List<List<AuditLog>>> getCurrentDataForTables() {
         Map<String, List<List<AuditLog>>> resultListMap = new CaseInsensitiveMap<>();
-        PreparedStatement statement = null;
-        try {
-            statement = getConnection().prepareStatement(querySql);
+        try (PreparedStatement statement = getConnection().prepareStatement(querySql)) {
             ResultSet resultSet = statement.executeQuery();
             int columnCount = resultSet.getMetaData().getColumnCount();
             int row = 0;
@@ -147,14 +145,6 @@ public class MySqlDeleteSqlAuditHandler extends AbstractSQLAuditHandler {
             resultSet.close();
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
         }
         return resultListMap;
     }

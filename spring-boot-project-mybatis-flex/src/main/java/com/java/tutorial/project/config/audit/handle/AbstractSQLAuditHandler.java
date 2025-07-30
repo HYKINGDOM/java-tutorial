@@ -29,9 +29,9 @@ public abstract class AbstractSQLAuditHandler extends AbstractSQLHandler {
 
     private Date insertTime = null;
 
-    private DBMetaDataHolder dbMetaDataHolder;
+    private final DBMetaDataHolder dbMetaDataHolder;
 
-    private Method clerkIdMethod;
+    private final Method clerkIdMethod;
 
     AbstractSQLAuditHandler(Connection connection, DBMetaDataHolder dbMetaDataHolder, Method clerkIdMethod,
         String sql) {
