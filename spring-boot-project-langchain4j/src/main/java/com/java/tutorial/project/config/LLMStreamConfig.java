@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
+import static com.java.tutorial.project.util.ApiKeyEnvUtil.getEnvApiString;
+
 /**
  * 语言模型配置
  *
@@ -39,13 +41,5 @@ public class LLMStreamConfig {
             .baseUrl("https://api.deepseek.com/v1").build();
     }
 
-    private static String getEnvApiString(String getenv) {
-        log.info("getenv:{}", getenv);
-        if (!getenv.contains("sk-")) {
-            getenv = "sk-" + getenv;
-        }
-        log.info("getenv end:{}", getenv);
-        return getenv;
-    }
 }
 

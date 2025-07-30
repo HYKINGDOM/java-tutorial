@@ -53,4 +53,11 @@ public class LangChain4JV1Controller {
         log.info("通过langchain4j调用 deepseek 模型返回结果：{}", result);
         return Result.success(result);
     }
+
+    @GetMapping(value = "/langchain4j/local/deepseek")
+    public Result<String> deepseekLocalCall(@RequestParam(value = "prompt", defaultValue = "你是谁?") String prompt) {
+        String result = chatModelDeepSeek.chat(prompt);
+        log.info("通过langchain4j调用 deepseek 模型返回结果：{}", result);
+        return Result.success(result);
+    }
 }
