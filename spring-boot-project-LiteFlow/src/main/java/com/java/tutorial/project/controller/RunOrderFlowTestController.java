@@ -21,7 +21,7 @@ public class RunOrderFlowTestController {
     @GetMapping("/runOrderFlowTest")
     public String runOrderFlowTest() {
         OrderParam orderParam =
-            OrderParam.builder().orderType(1).userId("coderacademy").userName("码农Academy").build();
+            OrderParam.builder().orderType(1).userId("coderacademy").userName("admin").build();
         LiteflowResponse response = flowExecutor.execute2Resp("order_handle", orderParam, OrderContext.class);
         OrderContext orderContext = response.getContextBean(OrderContext.class);
         System.out.println(JSON.toJSONString(orderContext));

@@ -6,6 +6,7 @@ import com.java.tutorial.project.core.enums.NodeEnum;
 import lombok.Getter;
 
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 public abstract class Node {
@@ -37,5 +38,20 @@ public abstract class Node {
 
     public void addPreNode(Node preNode) {
         pre.add(preNode);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Node node = (Node)o;
+        return Objects.equals(id, node.id) && Objects.equals(name, node.name) && Objects.equals(pre,
+            node.pre) && nodeEnum == node.nodeEnum && Objects.equals(next, node.next);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, pre, nodeEnum, next);
     }
 }

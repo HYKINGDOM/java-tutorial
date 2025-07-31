@@ -1,7 +1,5 @@
 package com.java.tutorial.project.util;
 
-
-import cn.hutool.core.util.IdUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 
@@ -67,7 +65,8 @@ public class TraceIDUtil {
      * @return
      */
     public static String createTraceId() {
-        return IdUtil.fastSimpleUUID() + System.currentTimeMillis() + getRandomString() + getProcessId();
+        return UUID.randomUUID().toString()
+            .replace("-", "") + System.currentTimeMillis() + getRandomString() + getProcessId();
     }
 
     private static String ipToLong(String ipString) {

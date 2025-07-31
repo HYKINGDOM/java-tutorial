@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.java.coco.domian.Person;
 import com.java.coco.scs.domain.TimeMap;
-import org.checkerframework.checker.nullness.qual.Nullable;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -159,7 +159,7 @@ public class TestGuavaStream {
     @Test
     public void test_java_stream_foreach() {
 
-        ArrayList<@Nullable Object> objects = Lists.newArrayList();
+        ArrayList<Object> objects = Lists.newArrayList();
 
         String sortName = "name";
 
