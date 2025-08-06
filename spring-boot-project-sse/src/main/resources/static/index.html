@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>SSE实时消息推送</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+        }
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 500;
+            color: #4285f4;
+            margin-bottom: 20px;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f1f1f1;
+            font-weight: 500;
+            color: #333;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        .send-box {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+        }
+        #messageInput {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>实时消息推送演示</h1>
+
+    <!-- 发送消息区域 -->
+    <div class="send-box">
+        <input type="text" id="messageInput" placeholder="输入消息内容...">
+        <button id="sendBtn">发送消息</button>
+    </div>
+
+    <!-- 控制按钮 -->
+    <div class="controls">
+        <button id="startBtn">开始监听</button>
+        <button id="stopBtn" disabled>停止监听</button>
+    </div>
+
+    <!-- 消息列表 -->
+    <table>
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>作者</th>
+            <th>时间</th>
+            <th>内容</th>
+        </tr>
+        </thead>
+        <tbody id="messages"></tbody>
+    </table>
+</div>
+
+<script>
+    let eventSource;
+    const messageContainer = document.getElementById('messages');
+    const startBtn = document.getElementById('startBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    const messageInput = document.getElementById('messageInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    // 开始监听SSE流
+    function startStream() {
+        const url = `/messages/stream`; // 后端SSE接口
+        eventSource = new EventSource(url);
+
+        // 接收消息
+        eventSource.onmessage = event => {
+            const data = JSON.parse(event.data);
+            if (data) {
+                const row = `
+                        <tr>
+                            <td>${data.id}</td>
+                            <td>${data.author}</td>
+                            <td>${data.time}</td>
+                            <td>${data.message}</td>
+                        </tr>
+                    `;
+                messageContainer.insertAdjacentHTML('afterbegin', row); // 插入到表格顶部
+            }
+        };
+
+        // 错误处理
+        eventSource.onerror = error => {
+            console.error('SSE连接错误:', error);
+            eventSource.close();
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+        };
+
+        startBtn.disabled = true;
+        stopBtn.disabled = false;
+    }
+
+    // 停止监听
+    function stopStream() {
+        if (eventSource) {
+            eventSource.close();
+            eventSource = null;
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+        }
+    }
+
+    // 发送消息到后端
+    function sendMessage() {
+        const content = messageInput.value.trim();
+        if (!content) return;
+
+        // 调用后端发送接口
+        fetch(`/messages/send?message=${encodeURIComponent(content)}`)
+            .then(response => {
+                if (response.ok) {
+                    messageInput.value = ''; // 清空输入框
+                }
+            })
+            .catch(error => console.error('发送失败:', error));
+    }
+
+    // 绑定事件
+    startBtn.addEventListener('click', startStream);
+    stopBtn.addEventListener('click', stopStream);
+    sendBtn.addEventListener('click', sendMessage);
+    messageInput.addEventListener('keypress', e => {
+        if (e.key === 'Enter') sendMessage(); // 回车发送
+    });
+</script>
+</body>
+</html>
